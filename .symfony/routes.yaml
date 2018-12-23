@@ -1,0 +1,2 @@
+"https://{default}/": { type: upstream, upstream: "displeger-symfony:http" }
+"http://{default}/": { type: redirect, to: "https://{default}/" }
