@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="br" target-language="br" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="rujVJ3G" resname="app.title">
+        <source>app.title</source>
+        <target>Displeger verboù brezhonek</target>
+      </trans-unit>
+      <trans-unit id="D2WgmoE" resname="app.amzer.gwan">
+        <source>app.amzer.gwan</source>
+        <target>Anv-gwan verb</target>
+      </trans-unit>
+      <trans-unit id="jz7Z0ih" resname="app.amzer.bremañ">
+        <source>app.amzer.bremañ</source>
+        <target>Amzer a-vremañ</target>
+      </trans-unit>
+      <trans-unit id="A07Epq5" resname="app.amzer.tremenet_ledan">
+        <source>app.amzer.tremenet_ledan</source>
+        <target>Amzer dremenet ledan</target>
+      </trans-unit>
+      <trans-unit id="e5rwBMQ" resname="app.amzer.tremenet_strizh">
+        <source>app.amzer.tremenet_strizh</source>
+        <target>Amzer dremenet strizh</target>
+      </trans-unit>
+      <trans-unit id="BGn2fB8" resname="app.amzer.da_zont">
+        <source>app.amzer.da_zont</source>
+        <target>Amzer da zont</target>
+      </trans-unit>
+      <trans-unit id="T5ilb9H" resname="app.amzer.gallus">
+        <source>app.amzer.gallus</source>
+        <target>Doarz divizout gallus</target>
+      </trans-unit>
+      <trans-unit id="PBznQAB" resname="app.amzer.dichallus">
+        <source>app.amzer.dichallus</source>
+        <target>Doare divizout dic'hallus</target>
+      </trans-unit>
+      <trans-unit id="gdjmmRP" resname="app.amzer.kadarnaat">
+        <source>app.amzer.kadarnaat</source>
+        <target>Stumm kadarnaat</target>
+      </trans-unit>
+      <trans-unit id="E.k_SsB" resname="app.amzer.nach">
+        <source>app.amzer.nach</source>
+        <target>Stumm nac'h</target>
+      </trans-unit>
+      <trans-unit id="NdH4ADz" resname="app.gour.U1">
+        <source>app.gour.U1</source>
+        <target>Kentañ gour unander</target>
+      </trans-unit>
+      <trans-unit id="_t_pnh4" resname="app.gour.U2">
+        <source>app.gour.U2</source>
+        <target>Eil gour undander</target>
+      </trans-unit>
+      <trans-unit id=".63HC0o" resname="app.gour.U3">
+        <source>app.gour.U3</source>
+        <target>Trede gour undander</target>
+      </trans-unit>
+      <trans-unit id="U9xbTtf" resname="app.gour.L1">
+        <source>app.gour.L1</source>
+        <target>Kentañ gour liester</target>
+      </trans-unit>
+      <trans-unit id="mNl2CZc" resname="app.gour.L2">
+        <source>app.gour.L2</source>
+        <target>Eil gour liester</target>
+      </trans-unit>
+      <trans-unit id="44foO5n" resname="app.gour.L3">
+        <source>app.gour.L3</source>
+        <target>Trede gour liester</target>
+      </trans-unit>
+      <trans-unit id="2S2YsXb" resname="app.gour.D">
+        <source>app.gour.D</source>
+        <target>Stumm dic'hour</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

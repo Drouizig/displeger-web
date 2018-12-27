@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+
+{% block body %}
+
+{% 
+    set gour = [
+        'U1',
+        'U2',
+        'U3',
+        'L1',
+        'L2',
+        'L3',
+        'D'
+    ]
+%}
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md">
+        <h1>{{ 'app.title'|trans }}</h1>
+        <form>
+            <input type="text" name="verb" />
+            <button>Klask</button>
+        </form>
+        {% if verb is not null %}
+            <h2>{{verb.anvVerb}}</h2>
+            <div class="row">
+                <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verb.pennrann ~ anvGwan}}</div>
+            </div>
+            <div class="row">
+                {% for amzer, endings in verbEndings %}
+                    <div class="col-md">
+                        <h3>{{ ('app.amzer.' ~ amzer)|trans }}</h3>
+                        <ul>
+                            {% for ending in endings %}
+                                <li>
+                                    <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
+                                    {% if ending|length == 1 %}
+                                        {{verb.pennrann}}<strong>{{ending.0}}</strong>
+                                    {% elseif ending|length > 1%} 
+                                        {% for end in ending %}
+                                            {{verb.pennrann}}<strong>{{end}}</strong>
+                                            {% if loop.index < ending|length %}
+                                                <i>pe</i>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% if loop.index%2 == 0 %}
+                        </div>
+                        <div class="row">
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
