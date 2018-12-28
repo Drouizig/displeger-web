@@ -13,6 +13,6 @@ require('webpack-jquery-ui');
 require('webpack-jquery-ui/css');
 $(document).ready(function() {
     $( ".autocomplete" ).autocomplete({
-      source: '/autocomplete'
+      source: $(this).data('url')
     });
   } );
