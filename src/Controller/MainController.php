@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Verb;
 use App\Util\VerbouManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
 class MainController extends AbstractController
 {
@@ -35,6 +36,7 @@ class MainController extends AbstractController
 
     /**
      * @Route("/verb/{anvVerb}", name="verb")
+     * @Entity("verb", expr="repository.findOneByAnvVerb(anvVerb)")
      */
     public function verb(Request $request,Verb $verb = null)
     {

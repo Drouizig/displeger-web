@@ -22,10 +22,20 @@ class VerbRepository extends ServiceEntityRepository
     public function findByTerm($term)
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.anvVerb LIKE :term')
+            ->andWhere('UPPER(v.anvVerb) LIKE UPPER(:term)')
             ->setParameter('term', $term.'%')
             ->getQuery()
             ->getResult()
+        ;
+    }
+
+    public function findOneByAnvVerb($anvVerb)
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('UPPER(v.anvVerb) = UPPER(:anvVerb)')
+            ->setParameter('anvVerb', $anvVerb)
+            ->getQuery()
+            ->getOneOrNullResult()
         ;
     }
 }
