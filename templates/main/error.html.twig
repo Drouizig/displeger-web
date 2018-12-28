@@ -5,15 +5,12 @@
 {% block body %}
 
 
-<div class="container">
+<div class="container main">
 
   <div class="row">
     <div class="col-md">
         <h1>{{ 'app.title'|trans }}</h1>
-        <form>
-            <input type="text" name="verb" />
-            <button>Klask</button>
-        </form>
+        {% include 'main/partial/search_form.html.twig' %}
         Fazi en ur glask ar verb {{verb}}
     </div>
   </div>

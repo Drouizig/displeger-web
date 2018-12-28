@@ -4,3 +4,32 @@ $primary: darken(#428bca, 20%);
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+@import "grayscale/grayscale.scss";
+
+body {
+    background-color: #e6ecf0;
+}
+
+.print-button {
+    float:right;
+}
+
+.form-control {
+    display: inline;
+    width: 243px;
+}
+
+@media print {
+
+    .print-button,  .search-form {
+        display: none;
+    }
+    main, container {
+        padding: 0;
+        margin: 0;
+    }
+
+    abbr[title]:after {
+        display:none;
+    }
+}

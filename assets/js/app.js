@@ -9,6 +9,10 @@
 require('../css/global.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// var $ = require('jquery');
-
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+require('webpack-jquery-ui');
+require('webpack-jquery-ui/css');
+$(document).ready(function() {
+    $( ".autocomplete" ).autocomplete({
+      source: '/autocomplete'
+    });
+  } );

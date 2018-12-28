@@ -9,6 +9,7 @@ use App\Form\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Verb;
 use App\Util\VerbouManager;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class MainController extends AbstractController
 {
@@ -22,19 +23,21 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/{anvVerb?}", name="main")
+     * @Route("/", name="main")
      */
-    public function index(Request $request,Verb $verb = null)
-    {
+    public function index(Request $request) {
         if ($request->query->get('verb')) {
-            $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
-            /** @var Verb $verb */
-            $verb = $verbRepository->findOneByAnvVerb($request->query->get('verb'));
-            if ($verb != null) {
-                return $this->redirectToRoute('main', ['anvVerb' => $verb->getAnvVerb()]);
-            }
+            return $this->redirectToRoute('verb', ['anvVerb' => $request->query->get('verb')]);
         }
 
+        return $this->render('main/index.html.twig');
+    }
+
+    /**
+     * @Route("/verb/{anvVerb}", name="verb")
+     */
+    public function verb(Request $request,Verb $verb = null)
+    {
         if(null !== $verb) {
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
             $anvGwan = $verbEndings['gwan'];
@@ -46,21 +49,28 @@ class MainController extends AbstractController
             ]);
         }
 
-        $searchTerm = $request->query->get('verb');
-        if (null == $searchTerm) {
-            $searchTerm = $request->attributes->Get('anvVerb');
-        }
-        if(null !== $searchTerm) {
-            return $this->render('main/error.html.twig', [
-                'verb' => $searchTerm,
-            ]);
-        }
-
-        return $this->render('main/index.html.twig', [
-            'verb' => $request->query->get('verb'),
+        $searchTerm = $request->attributes->get('anvVerb');
+        return $this->render('main/error.html.twig', [
+            'verb' => $searchTerm,
         ]);
-        
+    }
 
-        
+    /**
+     * @Route("/autocomplete", name="autocomplete")
+     */
+    public function autocomplete(Request $request)
+    {
+        $term = $request->query->get('term');
+        if (null === $term) {
+            return new JsonResponse();
+        }
+        $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
+        $result = $verbRepository->findByTerm($term);
+        $array = [];
+        /** @var Verb $res */
+        foreach ($result as $res) {
+            $array[] = $res->getAnvVerb();
+        }
+        return new JsonResponse($array);
     }
 }

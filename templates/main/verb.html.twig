@@ -16,15 +16,13 @@
     ]
 %}
 
-<div class="container">
+<div class="container main">
 
   <div class="row">
     <div class="col-md">
         <h1>{{ 'app.title'|trans }}</h1>
-        <form>
-            <input type="text" name="verb" />
-            <button>Klask</button>
-        </form>
+        {% include 'main/partial/search_form.html.twig' %}
+        <a class = "print-button" href="#" onclick="print()"><i class="fas fa-print"></i></a>
         {% if verb is not null %}
             <h2>{{verb.anvVerb}}</h2>
             <div class="row">
@@ -42,7 +40,7 @@
                                         {{verb.pennrann}}<strong>{{ending.0}}</strong>
                                     {% elseif ending|length > 1%} 
                                         {% for end in ending %}
-                                            {{verb.pennrann}}<strong>{{end}}</strong>
+                                            {{verb.pennrann}}<strong>{{end}}</strong>   
                                             {% if loop.index < ending|length %}
                                                 <i>pe</i>
                                             {% endif %}
