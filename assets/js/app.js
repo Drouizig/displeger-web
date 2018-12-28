@@ -12,7 +12,9 @@ require('../css/global.scss');
 require('webpack-jquery-ui');
 require('webpack-jquery-ui/css');
 $(document).ready(function() {
-    $( ".autocomplete" ).autocomplete({
-      source: $(this).data('url')
+  var autocompleteInput = $('.autocomplete');
+  var url = autocompleteInput.data('url');
+  autocompleteInput.autocomplete({
+      source: url
     });
   } );
