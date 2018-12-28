@@ -70,6 +70,7 @@ class ImportVerbsCommand extends Command
             }
             
         }
+        $this->em->flush();
 
         
         
