@@ -1,0 +1,45 @@
+
+parameters:
+  kemmaduriou:
+    blotaat:
+      "k": "g"
+      "t": "d"
+      "p": "b"
+      "g": "c'h"
+      "gw": "w"
+      "gou": "w"
+      "d": "z"
+      "b": "v"
+      "m": "v"
+    blotaat_gm:
+      "k": "g"
+      "t": "d"
+      "p": "b"
+      "g": "c'h"
+      "gw": "w"
+      "gou": "w"
+      "b": "v"
+      "m": "v"
+    chwezhan:
+      "k": "C'H"
+      "t": "Z"
+      "p": "F"
+    kaletaat:
+      "g": "k"
+      "d": "t"
+      "b": "p"
+    kemmesket:
+      "g": "c'h"
+      "gw": "w"
+      "gou": "w"
+      "d": "t"
+      "b": "v"
+      "m": "v"
+    diglok: 
+      "g": "c'h"
+      "gw": "w"
+      "d": "z"
+      "b": "v"
+      "m": "v"
+    diglok_k:
+      "k": "c'h"

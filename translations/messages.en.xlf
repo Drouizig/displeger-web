@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="br" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="rujVJ3G" resname="app.title">
+        <source>app.title</source>
+        <target>__app.title</target>
+      </trans-unit>
+      <trans-unit id="nRpehHf" resname="app.french">
+        <source>app.french</source>
+        <target>__app.french</target>
+      </trans-unit>
+      <trans-unit id="rrATf5W" resname="app.english">
+        <source>app.english</source>
+        <target>__app.english</target>
+      </trans-unit>
+      <trans-unit id="D2WgmoE" resname="app.amzer.gwan">
+        <source>app.amzer.gwan</source>
+        <target>__app.amzer.gwan</target>
+      </trans-unit>
+      <trans-unit id="E.k_SsB" resname="app.amzer.nach">
+        <source>app.amzer.nach</source>
+        <target>__app.amzer.nach</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

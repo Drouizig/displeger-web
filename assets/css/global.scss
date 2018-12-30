@@ -19,9 +19,66 @@ body {
     width: 243px;
 }
 
+.verb-items {
+    ul {
+        list-style: none;
+    }
+}
+.verb-item {
+    opacity: 0.9;
+    width: 70%;
+    .copy { 
+        display:none;
+        float:right;
+        cursor: pointer;
+    }
+    &:hover {
+        opacity: 1.0;
+        background-color: #e6ecf0;
+        .copy {
+            display:inline;
+        }
+    }
+}
+
+.fas, .far {
+    content: 'A';
+    width: 20px;
+    height: 20px;
+}
+
+.message {
+    display:none;
+    position:fixed;
+    width: 100%;
+    top: 0;
+    text-align: center;
+    cursor: pointer;
+    &.ok {
+        background-color: lightgreen;
+    }
+    &.error {
+        background-color: lightcoral;
+    }
+}
+
+.missing_translation {
+    background-color: lightblue;
+    border-radius: 10px;
+    margin: 4px;
+
+    .missing_translation_notice {
+        cursor: pointer;
+    }
+}
+
+.missing_translation_form {
+    display:none;
+}
+
 @media print {
 
-    .print-button,  .search-form {
+    .print-button,  .search-form, .missing_translation {
         display: none;
     }
     main, container {

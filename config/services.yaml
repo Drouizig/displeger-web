@@ -30,3 +30,6 @@ services:
     App\Util\VerbouManager:
         arguments:
             - '%verbou%'
+    App\Util\KemmaduriouManager:
+        arguments:
+            - '%kemmaduriou%'

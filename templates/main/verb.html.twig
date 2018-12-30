@@ -17,7 +17,7 @@
 %}
 
 <div class="container main">
-
+{% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
   <div class="row">
     <div class="col-md">
         <h1>{{ 'app.title'|trans }}</h1>
@@ -26,21 +26,73 @@
         {% if verb is not null %}
             <h2>{{verb.anvVerb}}</h2>
             <div class="row">
+                <div class="col-md">
+                    <p>{{'app.french'|trans}} : <i>{{verb.galleg}}</i></p>
+                    <p>{{'app.english'|trans}} : <i>{{verb.saozneg}}</i></p>
+                </div>
+            </div>
+            {% if verb.galleg is null or verb.saozneg is null %}
+                <div class="row missing_translation">
+                    <div class="missing_translation_notice row">
+                        <div class="col-md">
+                            {{ 'app.missing_translation.notice'|trans }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="missing_translation_form">
+                                {{form_start(contactForm, {
+                                    'action' : 'pouet'
+                                })}}
+                                <div class="row">
+                                    <div class="col-md">
+                                        {{form_label(contactForm.name)}}
+                                    </div><div class="col-md">
+                                        {{form_widget(contactForm.name)}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        {{form_label(contactForm.email)}}
+                                    </div><div class="col-md">
+                                        {{form_widget(contactForm.email)}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        {{form_label(contactForm.message)}}
+                                    </div><div class="col-md">
+                                        {{form_widget(contactForm.message)}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        {{form_widget(contactForm.submit)}}
+                                    </div>
+                                </div>
+                                {{form_widget(contactForm._token)}}
+                                {{form_end(contactForm)}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="row">
                 <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verb.pennrann ~ anvGwan}}</div>
             </div>
-            <div class="row">
+            <div class="row verb-items">
                 {% for amzer, endings in verbEndings %}
                     <div class="col-md">
                         <h3>{{ ('app.amzer.' ~ amzer)|trans }}</h3>
                         <ul>
                             {% for ending in endings %}
-                                <li>
+                                <li class="verb-item">
                                     <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
                                     {% if ending|length == 1 %}
-                                        {{verb.pennrann}}<strong>{{ending.0}}</strong>
+                                        <span class="js-verb">{{verb.pennrann}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy"></i>
                                     {% elseif ending|length > 1%} 
                                         {% for end in ending %}
-                                            {{verb.pennrann}}<strong>{{end}}</strong>   
+                                            {{verb.pennrann}}<strong>{{end}}</strong> <i class="far fa-copy copy"></i>
                                             {% if loop.index < ending|length %}
                                                 <i>pe</i>
                                             {% endif %}
@@ -55,6 +107,18 @@
                         <div class="row">
                     {% endif %}
                 {% endfor %}
+
+                <div class="col-md">
+                    <h3>{{ ('app.amzer.nach')|trans }}</h3>
+                    <ul>
+                        {% for conjugation in nach %}
+                            <li class="verb-item">
+                                <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
+                                <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy"></i>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         {% endif %}
     </div>

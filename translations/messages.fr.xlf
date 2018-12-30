@@ -73,6 +73,18 @@
         <source>app.gour.D</source>
         <target>Forme impersonnelle</target>
       </trans-unit>
+      <trans-unit id="nRpehHf" resname="app.french">
+        <source>app.french</source>
+        <target>__app.french</target>
+      </trans-unit>
+      <trans-unit id="rrATf5W" resname="app.english">
+        <source>app.english</source>
+        <target>__app.english</target>
+      </trans-unit>
+      <trans-unit id="s7c3Bcz" resname="app.missing_translation.notice">
+        <source>app.missing_translation.notice</source>
+        <target>__app.missing_translation.notice</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

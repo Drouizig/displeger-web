@@ -5,10 +5,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use App\Form\SearchType;
+use App\Form\ContactType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Verb;
 use App\Util\VerbouManager;
+use App\Util\KemmaduriouManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
@@ -18,9 +19,13 @@ class MainController extends AbstractController
     /** @var VerbouManager */
     protected $verbouManager;
 
-    public function __construct(VerbouManager $verbouManager)
+    /** @var KemmaduriouManager */
+    protected $kemmaduriouManager;
+
+    public function __construct(VerbouManager $verbouManager, KemmaduriouManager $kemmaduriouManager)
     {
         $this->verbouManager = $verbouManager;
+        $this->kemmaduriouManager = $kemmaduriouManager;
     }
 
     /**
@@ -44,10 +49,23 @@ class MainController extends AbstractController
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
             $anvGwan = $verbEndings['gwan'];
             unset($verbEndings['gwan']);
+            unset($verbEndings['nach']);
+            $mutatedBase = $this->kemmaduriouManager->mutateWord($verb->getPennrann(), KemmaduriouManager::BLOTAAT);
+            $nach = [];
+            foreach($verbEndings['kadarnaat'] as $ending) {
+                if(count($ending) > 0) {
+                    $nach[] = 'na '.$mutatedBase.'<strong>'.$ending[0].'</strong> ket';
+                } else {
+                    $nach[] = null;
+                }
+            }
+            $contactForm = $this->createForm(ContactType::class);
             return $this->render('main/verb.html.twig', [
                 'verb' => $verb,
                 'verbEndings' => $verbEndings,
                 'anvGwan' => $anvGwan,
+                'nach' => $nach,
+                'contactForm' => $contactForm->createView()
             ]);
         }
 

@@ -73,6 +73,34 @@
         <source>app.gour.D</source>
         <target>Stumm dic'hour</target>
       </trans-unit>
+      <trans-unit id="nRpehHf" resname="app.french">
+        <source>app.french</source>
+        <target>Galleg</target>
+      </trans-unit>
+      <trans-unit id="rrATf5W" resname="app.english">
+        <source>app.english</source>
+        <target>Saozneg</target>
+      </trans-unit>
+      <trans-unit id="s7c3Bcz" resname="app.missing_translation.notice">
+        <source>app.missing_translation.notice</source>
+        <target>Chaous, mankout a ra un droidigezh deomp! Mard anavezit anezhi e c'hallit hor skoazellañ en ur gas deomp ur gemennadenn.</target>
+      </trans-unit>
+      <trans-unit id="1" resname="app.form.contact.name">
+        <source>app.form.contact.name</source>
+        <target>Anv</target>
+      </trans-unit>
+      <trans-unit id="2" resname="app.form.contact.email">
+        <source>app.form.contact.email</source>
+        <target>Chomlec'h postel</target>
+      </trans-unit>
+      <trans-unit id="3" resname="app.form.contact.message">
+        <source>app.form.contact.email</source>
+        <target>Kemennadenn</target>
+      </trans-unit>
+      <trans-unit id="4" resname="app.form.contact.submit">
+        <source>app.form.contact.submit</source>
+        <target>Kas</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
