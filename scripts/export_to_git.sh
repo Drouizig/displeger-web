@@ -1,5 +1,7 @@
-SYMFONY_DIR="/var/www/displeger-web"
-DATA_DIR="/var/www/displeger-verbou"
+#/bin/bash
+
+SYMFONY_DIR="/mnt/hdd/dev/displeger-web"
+DATA_DIR="/mnt/hdd/dev/displeger"
 
 cd ${DATA_DIR}
 git checkout web-export

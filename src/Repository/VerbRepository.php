@@ -38,4 +38,25 @@ class VerbRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    public function getAllVerbQuery()
+    {
+        return $this->createQueryBuilder('v')
+        ->addOrderBy('v.category')
+        ->addOrderBy('v.anvVerb')
+        ->addOrderBy('v.pennrann')
+        ->getQuery();
+    }
+
+    public function getSearchQuery($search)
+    {
+        return $this->createQueryBuilder('v')
+        ->where('v.anvVerb LIKE :term')
+        ->orWhere('v.pennrann LIKE :term')
+        ->orWhere('v.category LIKE :term')
+        ->orWhere('v.galleg LIKE :term')
+        ->orWhere('v.saozneg LIKE :term')
+        ->setParameter('term', '%'.$search.'%')
+        ->getQuery();
+    }
 }

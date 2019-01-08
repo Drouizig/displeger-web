@@ -121,6 +121,14 @@
         <source>app.form.verb.saozneg</source>
         <target>Saozneg</target>
       </trans-unit>
+      <trans-unit id="1" resname="app.form.verb.save">
+        <source>app.form.verb.save</source>
+        <target>Enrollañ</target>
+      </trans-unit>
+      <trans-unit id="2" resname="app.form.verb.save_return">
+        <source>app.form.verb.save_return</source>
+        <target>Enrollañ ha distreiñ</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

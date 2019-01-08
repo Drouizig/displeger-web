@@ -15,20 +15,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use App\Form\VerbType;
 
 use Symfony\Component\HttpFoundation\Response;
+use Knp\Component\Pager\PaginatorInterface;
 
 class AdminController extends AbstractController
 {
 
-    /** @var VerbouManager */
-    protected $verbouManager;
+    private $knpPaginator;
 
-    /** @var KemmaduriouManager */
-    protected $kemmaduriouManager;
-
-    public function __construct(VerbouManager $verbouManager, KemmaduriouManager $kemmaduriouManager)
+    public function __construct(PaginatorInterface $knpPaginator)
     {
-        $this->verbouManager = $verbouManager;
-        $this->kemmaduriouManager = $kemmaduriouManager;
+        $this->knpPaginator = $knpPaginator;
     }
 
     /**
@@ -37,9 +33,22 @@ class AdminController extends AbstractController
     public function admin(Request $request) {
 
         $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
-        $verbs = $verbRepository->findAll();
 
-        return $this->render('admin/home.html.twig', ['verbs' => $verbs]);
+        $search = $request->query->get('search');
+        $verbsQuery = null;
+        if (null === $search || '' === $search) {
+            $verbsQuery = $verbRepository->getAllVerbQuery();
+        } else {
+            $verbsQuery = $verbRepository->getSearchQuery($search);
+        }
+
+        $pagination = $this->knpPaginator->paginate(
+            $verbsQuery, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('number', 25)/*limit per page*/
+        );
+
+        return $this->render('admin/home.html.twig', ['pagination' => $pagination]);
     }
 
     /**
@@ -47,14 +56,26 @@ class AdminController extends AbstractController
      */
     public function verb(Request $request,Verb $verb = null)
     {
+
         $form = $this->createForm(VerbType::class, $verb);
+        if(!strpos($request->headers->get('referer'), '/verb/')) {
+            $this->get('session')->set('referer', $request->headers->get('referer'));
+        }
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()) {
                 $verb = $form->getData();
                 $this->getDoctrine()->getManager()->persist($verb);
                 $this->getDoctrine()->getManager()->flush();
-                return $this->redirectToRoute('admin_verb', ['id' => $verb->getId()]);
+                if(key_exists('save', $request->request->get('verb'))) {
+                    return $this->redirectToRoute('admin_verb', ['id' => $verb->getId()]);
+                } else {
+                    if($this->get('session')->has('referer')) {
+                        return $this->redirect($this->get('session')->get('referer'));
+                    } else {
+                        return $this->redirectToRoute('admin');
+                    }
+                }
             }
         }
         return $this->render('admin/verb.html.twig', [

@@ -6,12 +6,60 @@
 
 <div class="container main">
 
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
   <div class="row">
     <div class="col-md">
         <h1>{{ 'app.title'|trans }}</h1>
         <p>Lodenn verañ</p>
-        <a href="{{path('admin')}}">Distreiñ</a>
-        {{form(form)}}
+        <a href="{{path('admin')}}">< Distreiñ</a>
+
+        {{form_start(form)}}
+        <div class="row">
+            <div class="col-md-2">
+                {{form_label(form.anvVerb)}}
+            </div>
+            <div class="col-md-2">
+                {{form_widget(form.anvVerb)}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                {{form_label(form.pennrann)}}
+            </div>
+            <div class="col-md-2">
+                {{form_widget(form.pennrann)}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                {{form_label(form.category)}}
+            </div>
+            <div class="col-md-2">
+                {{form_widget(form.category)}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                {{form_label(form.galleg)}}
+            </div>
+            <div class="col-md-2">
+                {{form_widget(form.galleg)}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                {{form_label(form.saozneg)}}
+            </div>
+            <div class="col-md-2">
+                {{form_widget(form.saozneg)}}
+            </div>
+        </div><br/>
+        <p>
+            {{form_widget(form.save)}}
+            {{form_widget(form.save_return)}}
+        </p>
+
+        {{form_end(form)}}
     </div>
 </div>
 {% endblock %}

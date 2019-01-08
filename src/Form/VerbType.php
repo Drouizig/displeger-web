@@ -27,7 +27,12 @@ class VerbType extends AbstractType
             ])
             ->add('saozneg', null, [
                 'label' => 'app.form.verb.saozneg'
-            ])->add('save', SubmitType::class)
+            ])->add('save', SubmitType::class, [
+                'label' => 'app.form.verb.save'
+            ])
+            ->add('save_return', SubmitType::class, [
+                'label' => 'app.form.verb.save_return'
+            ])
         ;
     }
 
