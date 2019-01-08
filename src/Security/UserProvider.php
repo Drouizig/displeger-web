@@ -24,7 +24,7 @@ class UserProvider implements UserProviderInterface
     {
         $user = new User();
         $user->setUsername('admin');
-        $user->setPassword('$2y$13$I/LEoaAD0QZ5PmvjPeNWYOMfV/X8EfqrNFGsrA4P81uDSyt45OFHC');
+        $user->setPassword('$2y$13$W6Q.FFoPZmYZjDC/IBA8qebUVoM0Famj49jBuV6quRRNuLPs/v/4O');
         $user->setRoles(['ROLE_ADMIN']);
 
         return $user;
@@ -51,7 +51,7 @@ class UserProvider implements UserProviderInterface
 
         $user = new User();
         $user->setUsername('admin');
-        $user->setPassword('test');
+        $user->setPassword('$2y$13$W6Q.FFoPZmYZjDC/IBA8qebUVoM0Famj49jBuV6quRRNuLPs/v/4O');
         $user->setRoles(['ROLE_ADMIN']);
         return $user;
     }

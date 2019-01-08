@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lodenn verañ{% endblock %}
+
+{% block body %}
+
+<div class="container main">
+
+  <div class="row">
+    <div class="col-md">
+        <h1>{{ 'app.title'|trans }}</h1>
+        <p>Lodenn verañ</p>
+        <a href="{{path('admin')}}">Distreiñ</a>
+        {{form(form)}}
+    </div>
+</div>
+{% endblock %}

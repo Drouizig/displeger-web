@@ -85,21 +85,41 @@
         <source>app.missing_translation.notice</source>
         <target>Chaous, mankout a ra un droidigezh deomp! Mard anavezit anezhi e c'hallit hor skoazellañ en ur gas deomp ur gemennadenn.</target>
       </trans-unit>
-      <trans-unit id="1" resname="app.form.contact.name">
+      <trans-unit id="tzmVoeo" resname="app.form.contact.name">
         <source>app.form.contact.name</source>
         <target>Anv</target>
       </trans-unit>
-      <trans-unit id="2" resname="app.form.contact.email">
+      <trans-unit id="Ws74RBh" resname="app.form.contact.email">
         <source>app.form.contact.email</source>
         <target>Chomlec'h postel</target>
       </trans-unit>
-      <trans-unit id="3" resname="app.form.contact.message">
-        <source>app.form.contact.email</source>
+      <trans-unit id="tCR5Ono" resname="app.form.contact.message">
+        <source>app.form.contact.message</source>
         <target>Kemennadenn</target>
       </trans-unit>
-      <trans-unit id="4" resname="app.form.contact.submit">
+      <trans-unit id="BHHgCIS" resname="app.form.contact.submit">
         <source>app.form.contact.submit</source>
         <target>Kas</target>
+      </trans-unit>
+      <trans-unit id="LBAy94c" resname="app.form.verb.anvVerb">
+        <source>app.form.verb.anvVerb</source>
+        <target>Anv-verb</target>
+      </trans-unit>
+      <trans-unit id="z1SwB4K" resname="app.form.verb.pennrann">
+        <source>app.form.verb.pennrann</source>
+        <target>Pennrann</target>
+      </trans-unit>
+      <trans-unit id="6hnVemI" resname="app.form.verb.category">
+        <source>app.form.verb.category</source>
+        <target>Rummad</target>
+      </trans-unit>
+      <trans-unit id="asKWTj7" resname="app.form.verb.galleg">
+        <source>app.form.verb.galleg</source>
+        <target>Galleg</target>
+      </trans-unit>
+      <trans-unit id="fXFcBzk" resname="app.form.verb.saozneg">
+        <source>app.form.verb.saozneg</source>
+        <target>Saozneg</target>
       </trans-unit>
     </body>
   </file>

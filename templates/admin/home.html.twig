@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lodenn verañ{% endblock %}
+
+{% block body %}
+
+<div class="container main">
+
+  <div class="row">
+    <div class="col-md">
+        <h1>{{ 'app.title'|trans }}</h1>
+        <p>Lodenn verañ</p>
+        <div class="row">
+            <div class="col-md">
+                <div class="row">
+                    <div class="col-md">
+                        Anv-verb
+                    </div>
+                    <div class="col-md">
+                        Pennrann
+                    </div>
+                    <div class="col-md">
+                        Rummad
+                    </div>
+                    <div class="col-md">
+                        Galleg
+                    </div>
+                    <div class="col-md">
+                        Saozneg
+                    </div>
+                    <div class="col-md">
+                    </div>
+                </div>
+                {% for verb in verbs %}
+                    <div class="row admin-verb_row">
+                        <div class="col-md">
+                            {{ verb.anvVerb }}
+                        </div>
+                        <div class="col-md">
+                            {{ verb.pennrann }}
+                        </div>
+                        <div class="col-md">
+                            {{ verb.category }}
+                        </div>
+                        <div class="col-md">
+                            {{ verb.galleg }}
+                        </div>
+                        <div class="col-md">
+                            {{ verb.saozneg }}
+                        </div>
+                        <div class="col-md">
+                            <a href="{{path('admin_verb', {'id': verb.id })}}">Kemmañ</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
