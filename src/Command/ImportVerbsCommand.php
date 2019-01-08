@@ -48,6 +48,9 @@ class ImportVerbsCommand extends Command
 
         $serializer = new Serializer([new ObjectNormalizer()], [new CsvEncoder([CsvEncoder::DELIMITER_KEY => ';'])]);
 
+        $deleteCommand = 'DELETE FROM verb';
+        $this->em->getConnection()->exec($deleteCommand);
+
         $c = 0;
         $bashSize = 10;
         $data = $serializer->decode(file_get_contents($filename), 'csv');
