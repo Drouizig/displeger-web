@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -34,21 +35,17 @@ class AdminController extends AbstractController
 
         $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
 
-        $search = $request->query->get('search');
-        $verbsQuery = null;
-        if (null === $search || '' === $search) {
-            $verbsQuery = $verbRepository->getAllVerbQuery();
-        } else {
-            $verbsQuery = $verbRepository->getSearchQuery($search);
-        }
+        $search = $request->query->get('search', null);
+        $verbsQuery = $verbRepository->getSearchQuery($search);
 
         $pagination = $this->knpPaginator->paginate(
             $verbsQuery, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             $request->query->getInt('number', 25)/*limit per page*/
         );
+        $offset = ($request->query->getInt('page', 1) -1) * $request->query->getInt('number', 25);
 
-        return $this->render('admin/home.html.twig', ['pagination' => $pagination]);
+        return $this->render('admin/home.html.twig', ['pagination' => $pagination, 'offset' => $offset]);
     }
 
     /**
@@ -56,11 +53,7 @@ class AdminController extends AbstractController
      */
     public function verb(Request $request,Verb $verb = null)
     {
-
         $form = $this->createForm(VerbType::class, $verb);
-        if(!strpos($request->headers->get('referer'), '/verb/')) {
-            $this->get('session')->set('referer', $request->headers->get('referer'));
-        }
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()) {
@@ -68,13 +61,31 @@ class AdminController extends AbstractController
                 $this->getDoctrine()->getManager()->persist($verb);
                 $this->getDoctrine()->getManager()->flush();
                 if(key_exists('save', $request->request->get('verb'))) {
-                    return $this->redirectToRoute('admin_verb', ['id' => $verb->getId()]);
+                    return $this->redirect($request->getUri());
+                } elseif(key_exists('save_return', $request->request->get('verb'))) {
+                    return $this->redirectToRoute('admin', $request->query->get('params', []));
                 } else {
-                    if($this->get('session')->has('referer')) {
-                        return $this->redirect($this->get('session')->get('referer'));
-                    } else {
-                        return $this->redirectToRoute('admin');
+                    $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
+                    $params = $request->query->get('params', []);
+                    $search = null;
+                    $offset = $request->query->get('offset', 0);
+                    if (key_exists('search', $params)) {
+                        $search = $params['search'];
                     }
+                    //recalculate page
+                    if (key_exists('page', $params)) {
+                        $params['page'] = floor($offset / 25)+1;
+                    }
+                    /** @var Query $verbsQuery */
+                    $verbsQuery = $verbRepository->getSearchQuery($search, $offset, 1);
+                    $result = $verbsQuery->getOneOrNullResult();
+                    return $this->redirectToRoute('admin_verb',
+                        [
+                            'id' => $result->getId(),
+                            'params' => $params,
+                            'offset' => $offset +1
+                        ]
+                    );
                 }
             }
         }

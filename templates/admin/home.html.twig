@@ -59,7 +59,7 @@
                             {{ verb.saozneg }}
                         </td>
                         <td>
-                            <a href="{{path('admin_verb', {'id': verb.id })}}">Kemmañ</a>
+                            <a href="{{path('admin_verb', {'id': verb.id, 'params': pagination.params, 'offset' : offset + loop.index})}}">Kemmañ</a>
                         </td>
                     </tr>
                 {% endfor %}
