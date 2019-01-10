@@ -35,6 +35,8 @@ class StatisticsManager
                 $total += $stat['y'];
                 $names[] = $stat['name'];
                 unset($stats[$key]);
+            } else {
+                $stat['y'] = intval($stat['y']);
             }
         }
         $stats[] = [

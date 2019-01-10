@@ -5,8 +5,6 @@ $(document).ready(function() {
   var chart = $('#js-category-chart');
   var title = chart.data('title');
   var data = chart.data('categories');
-  console.log(title);
-  console.log(data);
   highchart.chart('js-category-chart', {
     chart: {
       plotBackgroundColor: null,
