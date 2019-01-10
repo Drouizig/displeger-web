@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lodenn verañ{% endblock %}
+
+{% block body %}
+
+<div class="container main">
+
+  <div class="row">
+    <div class="col-md">
+        <h1>{{ 'app.title'|trans }}</h1>
+        <a><a href="{{ path('admin_home') }}">Lodenn verañ</a></p>
+
+        <form action="{{ path('admin') }}" class="search-form form-md">
+            <input type="text" name="search" class="form-control" value="{{ app.request.query.get('search') }}"/>
+            <button class="btn btn-primary">Klask</button>
+        </form>
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+        <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">
+                        Anv-verb
+                    </th>
+                    <th scope="col">
+                        Pennrann
+                    </th>
+                    <th scope="col">
+                        Rummad<a href='https://github.com/Drouizig/displeger-verbou/wiki/Rummado%C3%B9' target="_blank"><sup>[?]</sup></a>
+                    </th>
+                    <th scope="col">
+                        Galleg
+                    </th>
+                    <th scope="col">
+                        Saozneg
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+                </thead><tbody>
+                {% for verb in pagination %}
+                    <tr>
+                        <td>
+                            {{ verb.anvVerb }}
+                        </td>
+                        <td>
+                            {{ verb.pennrann }}
+                        </td>
+                        <td>
+                            {{ verb.category }}
+                        </td>
+                        <td>
+                            {{ verb.galleg }}
+                        </td>
+                        <td>
+                            {{ verb.saozneg }}
+                        </td>
+                        <td>
+                            <a href="{{path('admin_verb', {'id': verb.id, 'params': pagination.params, 'offset' : offset + loop.index})}}">Kemmañ</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+    </div>
+</div>
+{% endblock %}

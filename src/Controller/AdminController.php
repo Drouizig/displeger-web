@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Util\StatisticsManager;
 use Doctrine\ORM\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,9 +30,18 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/admin", name="admin_home")
      */
-    public function admin(Request $request) {
+    public function adminHome(Request $request, StatisticsManager $statisticsManager) {
+
+
+        return $this->render('admin/home.html.twig', ['statisticsManager' => $statisticsManager]);
+    }
+
+    /**
+     * @Route("/admin/verbs", name="admin")
+     */
+    public function verbs(Request $request) {
 
         $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
 
@@ -45,7 +55,7 @@ class AdminController extends AbstractController
         );
         $offset = ($request->query->getInt('page', 1) -1) * $request->query->getInt('number', 25);
 
-        return $this->render('admin/home.html.twig', ['pagination' => $pagination, 'offset' => $offset]);
+        return $this->render('admin/verbs.html.twig', ['pagination' => $pagination, 'offset' => $offset]);
     }
 
     /**

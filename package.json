@@ -15,6 +15,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "highcharts": "^7.0.1",
         "webpack-jquery-ui": "^2.0"
     }
 }

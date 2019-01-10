@@ -65,4 +65,13 @@ class VerbRepository extends ServiceEntityRepository
         ;
         return $qb->getQuery();
     }
+
+    public function findCategoryStatistics()
+    {
+        return $this->createQueryBuilder('v')
+            ->select('v.category as name, count(v.anvVerb) as y')
+            ->groupBy('v.category')
+            ->getQuery()
+            ->getResult();
+    }
 }
