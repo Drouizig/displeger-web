@@ -59,7 +59,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/verb/{id}", name="admin_verb")
+     * @Route("/admin/verb/{id?}", name="admin_verb")
      */
     public function verb(Request $request,Verb $verb = null)
     {
