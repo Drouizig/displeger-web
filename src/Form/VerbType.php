@@ -33,6 +33,9 @@ class VerbType extends AbstractType
             ->add('save_return', SubmitType::class, [
                 'label' => 'app.form.verb.save_return'
             ])
+            ->add('save_continue', SubmitType::class, [
+                'label' => 'app.form.verb.save_continue'
+            ])
         ;
     }
 

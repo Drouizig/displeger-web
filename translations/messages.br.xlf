@@ -129,6 +129,10 @@
         <source>app.form.verb.save_return</source>
         <target>Enrollañ ha distreiñ</target>
       </trans-unit>
+      <trans-unit id="3" resname="app.form.verb.save_continue">
+        <source>app.form.verb.save_continue</source>
+        <target>Enrollañ ha kenderc'hel</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

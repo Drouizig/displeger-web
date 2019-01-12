@@ -39,24 +39,39 @@ class VerbRepository extends ServiceEntityRepository
         ;
     }
 
-    public function getAllVerbQuery()
+    public function getSearchQuery($search, $offset = null, $maxResults = null)
     {
-        return $this->createQueryBuilder('v')
-        ->addOrderBy('v.category')
-        ->addOrderBy('v.anvVerb')
-        ->addOrderBy('v.pennrann')
-        ->getQuery();
+        $qb = $this->createQueryBuilder('v');
+        if ($search !== null && $search !== '') {
+            $qb
+                ->where('v.anvVerb LIKE :term')
+                ->orWhere('v.pennrann LIKE :term')
+                ->orWhere('v.category LIKE :term')
+                ->orWhere('v.galleg LIKE :term')
+                ->orWhere('v.saozneg LIKE :term')
+                ->setParameter('term', '%'.$search.'%')
+            ;
+        }
+        if ($offset !== null) {
+            $qb->setFirstResult($offset);
+        }
+        if ($maxResults !== null) {
+            $qb->setMaxResults($maxResults);
+        }
+        $qb
+            ->addOrderBy('v.category')
+            ->addOrderBy('v.anvVerb')
+            ->addOrderBy('v.pennrann')
+        ;
+        return $qb->getQuery();
     }
 
-    public function getSearchQuery($search)
+    public function findCategoryStatistics()
     {
         return $this->createQueryBuilder('v')
-        ->where('v.anvVerb LIKE :term')
-        ->orWhere('v.pennrann LIKE :term')
-        ->orWhere('v.category LIKE :term')
-        ->orWhere('v.galleg LIKE :term')
-        ->orWhere('v.saozneg LIKE :term')
-        ->setParameter('term', '%'.$search.'%')
-        ->getQuery();
+            ->select('v.category as name, count(v.anvVerb) as y')
+            ->groupBy('v.category')
+            ->getQuery()
+            ->getResult();
     }
 }
