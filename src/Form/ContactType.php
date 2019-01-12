@@ -25,7 +25,6 @@ class ContactType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'app.form.contact.submit'
             ])
-            ->setMethod('GET')
         ;
     }
 

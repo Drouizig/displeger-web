@@ -42,7 +42,8 @@
                         <div class="col-md">
                             <div class="missing_translation_form">
                                 {{form_start(contactForm, {
-                                    'action' : 'pouet'
+                                    'action' : path('mail'),
+                                    'attr' : {'class': 'js-contact-form'}
                                 })}}
                                 <div class="row">
                                     <div class="col-md">

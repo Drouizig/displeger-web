@@ -12,6 +12,7 @@ use App\Util\VerbouManager;
 use App\Util\KemmaduriouManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends AbstractController
 {
@@ -45,6 +46,7 @@ class MainController extends AbstractController
      */
     public function verb(Request $request,Verb $verb = null)
     {
+        $contactForm = $this->createForm(ContactType::class);
         if(null !== $verb) {
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
             $anvGwan = $verbEndings['gwan'];
@@ -59,7 +61,6 @@ class MainController extends AbstractController
                     $nach[] = null;
                 }
             }
-            $contactForm = $this->createForm(ContactType::class);
             return $this->render('main/verb.html.twig', [
                 'verb' => $verb,
                 'verbEndings' => $verbEndings,
@@ -72,6 +73,7 @@ class MainController extends AbstractController
         $searchTerm = $request->attributes->get('anvVerb');
         return $this->render('main/error.html.twig', [
             'verb' => $searchTerm,
+            'contactForm' => $contactForm->createView()
         ]);
     }
 
@@ -92,5 +94,40 @@ class MainController extends AbstractController
             $array[] = $res->getAnvVerb();
         }
         return new JsonResponse($array);
+    }
+
+    /**
+     * @Route("/mail", name="mail")
+     */
+    public function sendMail(Request $request, \Swift_Mailer $mailer)
+    {
+        $contactForm = $this->createForm(ContactType::class);
+
+        $contactForm->handleRequest($request);
+        if($contactForm->isSubmitted() && $contactForm->isValid()) {
+            $name = $contactForm->get('name')->getData();
+            $email = $contactForm->get('email')->getData();
+            $text = $contactForm->get('message')->getData();
+            $message = (new \Swift_Message('[Displeger verboù] Kemennadenn digant '.$name))
+            ->setFrom('drouizig@drouizig.org')
+            ->setTo('drouizig@drouizig.org')
+            ->setBody(
+                $this->renderView(
+                    'emails/contact.html.twig',
+                    [
+                        'name' => $name,
+                        'email' => $email,
+                        'text' => $text   
+                    ]
+                ),
+                'text/html'
+            )
+            ;
+    
+            $result = $mailer->send($message);
+            return new JsonResponse(['result' => $result == 0? 'nok' : 'ok']);
+        } else{
+            return new JsonResponse(['result' => 'nok', 'errors' => $contactForm->getErrors(true)]);
+        }
     }
 }

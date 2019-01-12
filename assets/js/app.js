@@ -51,6 +51,23 @@ $(document).ready(function() {
   
 });
 
+$('.js-contact-form').submit(function() {
+  $.post(
+    $(this).attr('action'),
+    $(this).serialize(),
+    function(data) {
+        if (data.result == 'ok') {
+          displayMessage('Kaset eo bet ar gemennadenn gant berzh!', 'ok');
+          $('.js-contact-form input').val('');
+          $('.missing_translation_form').slideUp();
+        } else {
+          displayMessage('Degouezhet ez eus bet ur fazi en ur gas ar gemennadenn, klaskit en-dro mar plij', 'error');
+        }
+    }
+  );
+  return false;
+});
+
 function displayMessage(message, type) {
   var messageContainer = $('.message');
   if(messageContainer.hasClass('error')) {
@@ -62,4 +79,10 @@ function displayMessage(message, type) {
   messageContainer.addClass(type);
   messageContainer.text(message);
   messageContainer.slideDown();
+  setTimeout(slideUpMessage, 2000);
+}
+
+function slideUpMessage()
+{
+  $('.message').slideUp();
 }
