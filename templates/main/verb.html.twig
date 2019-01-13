@@ -17,7 +17,6 @@
 %}
 
 <div class="container main">
-{% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
   <div class="row">
     <div class="col-md">
         <h1>{{ 'app.title'|trans }}</h1>
@@ -32,47 +31,61 @@
                 </div>
             </div>
             {% if verb.galleg is null or verb.saozneg is null %}
+                {% set key = 'saozneg' %}
+                {% if verb.galleg is null and verb.saozneg is null %}
+                    {% set key = 'both' %}
+                {% elseif verb.galleg is null %}
+                    {% set key = 'galleg' %}
+                {% endif %}
                 <div class="row missing_translation">
-                    <div class="missing_translation_notice row">
-                        <div class="col-md">
-                            {{ 'app.missing_translation.notice'|trans }}
+
+                    <div class="col-md">
+                        <div class="missing_translation_notice row">
+                            <div class="col-md">
+                                {{ 'app.missing_translation.notice'|trans }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md">
-                            <div class="missing_translation_form">
-                                {{form_start(contactForm, {
-                                    'action' : path('mail'),
-                                    'attr' : {'class': 'js-contact-form'}
-                                })}}
-                                <div class="row">
-                                    <div class="col-md">
-                                        {{form_label(contactForm.name)}}
-                                    </div><div class="col-md">
-                                        {{form_widget(contactForm.name)}}
+                        <div class="row">
+                            <div class="col-md">
+                                {% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
+                                <div class="missing_translation_form">
+                                    {{form_start(contactForm, {
+                                        'action' : path('mail'),
+                                        'attr' : {'class': 'js-contact-form'}
+                                    })}}
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            {{form_label(contactForm.name)}}
+                                        </div><div class="col-md">
+                                            {{form_widget(contactForm.name)}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md">
-                                        {{form_label(contactForm.email)}}
-                                    </div><div class="col-md">
-                                        {{form_widget(contactForm.email)}}
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            {{form_label(contactForm.email)}}
+                                        </div><div class="col-md">
+                                            {{form_widget(contactForm.email)}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md">
-                                        {{form_label(contactForm.message)}}
-                                    </div><div class="col-md">
-                                        {{form_widget(contactForm.message)}}
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            {{form_label(contactForm.message)}}
+                                        </div><div class="col-md">
+                                            {{form_widget(
+                                                contactForm.message, 
+                                                {'value': ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb})}
+                                            )
+                                            }}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md">
-                                        {{form_widget(contactForm.submit)}}
+                                    <div class="row">
+                                        <div class="col-md">
+                                            {{form_widget(contactForm.submit)}}
+                                        </div>
                                     </div>
+                                    {{form_widget(contactForm._token)}}
+                                    {{form_end(contactForm)}}
                                 </div>
-                                {{form_widget(contactForm._token)}}
-                                {{form_end(contactForm)}}
                             </div>
                         </div>
                     </div>

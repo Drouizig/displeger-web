@@ -15,7 +15,7 @@ body {
 }
 
 .form-control {
-    display: inline;
+    //display: inline;
     width: 243px;
 }
 
@@ -85,6 +85,15 @@ body {
 .pagination {
     span {
         padding: 5px;
+    }
+}
+.form-control {
+    width: inherit;
+}
+
+textarea {
+    &.form-control {
+        min-height: 140px;
     }
 }
 

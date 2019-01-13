@@ -121,17 +121,49 @@
         <source>app.form.verb.saozneg</source>
         <target>Saozneg</target>
       </trans-unit>
-      <trans-unit id="1" resname="app.form.verb.save">
+      <trans-unit id="zDU0IGp" resname="app.form.verb.save">
         <source>app.form.verb.save</source>
         <target>Enrollañ</target>
       </trans-unit>
-      <trans-unit id="2" resname="app.form.verb.save_return">
+      <trans-unit id=".ryMytJ" resname="app.form.verb.save_return">
         <source>app.form.verb.save_return</source>
         <target>Enrollañ ha distreiñ</target>
       </trans-unit>
-      <trans-unit id="3" resname="app.form.verb.save_continue">
+      <trans-unit id="5GLvbaY" resname="app.form.verb.save_continue">
         <source>app.form.verb.save_continue</source>
         <target>Enrollañ ha kenderc'hel</target>
+      </trans-unit>
+      <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_galleg">
+        <source>app.form.contact.default.translation_galleg</source>
+        <target>Demat deoc'h,
+Evit ar verb "%verb%" e vank un droidigezh c'hallek.
+Kinnig a ran deoc'h lakaat :</target>
+      </trans-unit>
+      <trans-unit id="dQtAQNJ" resname="app.form.contact.default.translation_saozneg">
+        <source>app.form.contact.default.translation_saozneg</source>
+        <target>Demat deoc'h,
+Evit ar verb "%verb%" e vank un droidigezh saoznek.
+Kinnig a ran deoc'h lakaat :</target>
+      </trans-unit>
+      <trans-unit id="HTru6jL" resname="app.form.contact.default.translation_both">
+        <source>app.form.contact.default.translation_both</source>
+        <target>Demat deoc'h,
+Evit ar verb "%verb%" e vank an troidigezhioù e galleg hag e saozneg.
+Kinnig a ran deoc'h lakaat :</target>
+      </trans-unit>
+      <trans-unit id="aRmbN1f" resname="app.form.contact.default.verb">
+        <source>app.form.contact.default.verb</source>
+        <target>Demat deoc'h,
+Mankout a ra ar verb "%verb%" war al lec'hienn.
+        </target>
+      </trans-unit>
+      <trans-unit id="56vLyYd" resname="app.verb.not_found">
+        <source>app.verb.not_found</source>
+        <target>N'eo ket bet kavet ar verb %verb%.</target>
+      </trans-unit>
+      <trans-unit id="KCefEpj" resname="app.verb.contact_invitation">
+        <source>app.verb.contact_invitation</source>
+        <target>Ma soñj deoc'h e rankfe bezañ war al lec'hienn e c'hallit kas ur postel deomp gant ar furmskrid amañ dindan:</target>
       </trans-unit>
     </body>
   </file>

@@ -11,8 +11,10 @@
     <div class="col-md">
         <h1>{{ 'app.title'|trans }}</h1>
         {% include 'main/partial/search_form.html.twig' %}
-        N'eo ket bet kavet ar {{verb}}. Gallout a rit kas ur postel deomp gant ar furmskrid amañ dindan :
+        <p>{{'app.verb.not_found'|trans({'%verb%': verb})}}</p>
+        <p>{{'app.verb.contact_invitation'|trans}}</p>
 
+        {% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
         <div>
               {{form_start(contactForm, {
                   'action' : path('mail'),
@@ -35,7 +37,11 @@
                   <div class="col-md-2">
                       {{form_label(contactForm.message)}}
                   </div><div class="col-md">
-                      {{form_widget(contactForm.message)}}
+                     {{form_widget(
+                        contactForm.message, 
+                        {'value': ('app.form.contact.default.verb')|trans({'%verb%': verb})}
+                    )
+                    }}
                   </div>
               </div>
               <div class="row">

@@ -13,6 +13,7 @@ use App\Util\KemmaduriouManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class MainController extends AbstractController
 {
@@ -23,10 +24,14 @@ class MainController extends AbstractController
     /** @var KemmaduriouManager */
     protected $kemmaduriouManager;
 
-    public function __construct(VerbouManager $verbouManager, KemmaduriouManager $kemmaduriouManager)
+    /** @var \Swift_Mailer */
+    protected $mailer;
+
+    public function __construct(VerbouManager $verbouManager, KemmaduriouManager $kemmaduriouManager, \Swift_Mailer $mailer)
     {
         $this->verbouManager = $verbouManager;
         $this->kemmaduriouManager = $kemmaduriouManager;
+        $this->mailer = $mailer;
     }
 
     /**

@@ -7,23 +7,163 @@
     <body>
       <trans-unit id="rujVJ3G" resname="app.title">
         <source>app.title</source>
-        <target>__app.title</target>
-      </trans-unit>
-      <trans-unit id="nRpehHf" resname="app.french">
-        <source>app.french</source>
-        <target>__app.french</target>
-      </trans-unit>
-      <trans-unit id="rrATf5W" resname="app.english">
-        <source>app.english</source>
-        <target>__app.english</target>
+        <target>Breton verb conjugator</target>
       </trans-unit>
       <trans-unit id="D2WgmoE" resname="app.amzer.gwan">
         <source>app.amzer.gwan</source>
-        <target>__app.amzer.gwan</target>
+        <target>Past participle</target>
+      </trans-unit>
+      <trans-unit id="jz7Z0ih" resname="app.amzer.bremañ">
+        <source>app.amzer.bremañ</source>
+        <target>Present</target>
+      </trans-unit>
+      <trans-unit id="A07Epq5" resname="app.amzer.tremenet_ledan">
+        <source>app.amzer.tremenet_ledan</source>
+        <target>Past 1</target>
+      </trans-unit>
+      <trans-unit id="e5rwBMQ" resname="app.amzer.tremenet_strizh">
+        <source>app.amzer.tremenet_strizh</source>
+        <target>Past 2</target>
+      </trans-unit>
+      <trans-unit id="BGn2fB8" resname="app.amzer.da_zont">
+        <source>app.amzer.da_zont</source>
+        <target>Future</target>
+      </trans-unit>
+      <trans-unit id="T5ilb9H" resname="app.amzer.gallus">
+        <source>app.amzer.gallus</source>
+        <target>Conditional 1</target>
+      </trans-unit>
+      <trans-unit id="PBznQAB" resname="app.amzer.dichallus">
+        <source>app.amzer.dichallus</source>
+        <target>Conditional 2</target>
+      </trans-unit>
+      <trans-unit id="gdjmmRP" resname="app.amzer.kadarnaat">
+        <source>app.amzer.kadarnaat</source>
+        <target>Imperative</target>
       </trans-unit>
       <trans-unit id="E.k_SsB" resname="app.amzer.nach">
         <source>app.amzer.nach</source>
-        <target>__app.amzer.nach</target>
+        <target>Negative</target>
+      </trans-unit>
+      <trans-unit id="NdH4ADz" resname="app.gour.U1">
+        <source>app.gour.U1</source>
+        <target>First person singular</target>
+      </trans-unit>
+      <trans-unit id="_t_pnh4" resname="app.gour.U2">
+        <source>app.gour.U2</source>
+        <target>Second person singular</target>
+      </trans-unit>
+      <trans-unit id=".63HC0o" resname="app.gour.U3">
+        <source>app.gour.U3</source>
+        <target>Third person singular</target>
+      </trans-unit>
+      <trans-unit id="U9xbTtf" resname="app.gour.L1">
+        <source>app.gour.L1</source>
+        <target>First person plural</target>
+      </trans-unit>
+      <trans-unit id="mNl2CZc" resname="app.gour.L2">
+        <source>app.gour.L2</source>
+        <target>Second person plural</target>
+      </trans-unit>
+      <trans-unit id="44foO5n" resname="app.gour.L3">
+        <source>app.gour.L3</source>
+        <target>Third person plural</target>
+      </trans-unit>
+      <trans-unit id="2S2YsXb" resname="app.gour.D">
+        <source>app.gour.D</source>
+        <target>Impersonal</target>
+      </trans-unit>
+      <trans-unit id="nRpehHf" resname="app.french">
+        <source>app.french</source>
+        <target>French</target>
+      </trans-unit>
+      <trans-unit id="rrATf5W" resname="app.english">
+        <source>app.english</source>
+        <target>English</target>
+      </trans-unit>
+      <trans-unit id="s7c3Bcz" resname="app.missing_translation.notice">
+        <source>app.missing_translation.notice</source>
+        <target>Sadly, we don't have a translation for this verb. If you know it, you can help us by sending us a message.</target>
+      </trans-unit>
+      <trans-unit id="tzmVoeo" resname="app.form.contact.name">
+        <source>app.form.contact.name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="Ws74RBh" resname="app.form.contact.email">
+        <source>app.form.contact.email</source>
+        <target>Email address</target>
+      </trans-unit>
+      <trans-unit id="tCR5Ono" resname="app.form.contact.message">
+        <source>app.form.contact.message</source>
+        <target>Message</target>
+      </trans-unit>
+      <trans-unit id="BHHgCIS" resname="app.form.contact.submit">
+        <source>app.form.contact.submit</source>
+        <target>Send</target>
+      </trans-unit>
+      <trans-unit id="LBAy94c" resname="app.form.verb.anvVerb">
+        <source>app.form.verb.anvVerb</source>
+        <target>Infinitive</target>
+      </trans-unit>
+      <trans-unit id="z1SwB4K" resname="app.form.verb.pennrann">
+        <source>app.form.verb.pennrann</source>
+        <target>Verbal base</target>
+      </trans-unit>
+      <trans-unit id="6hnVemI" resname="app.form.verb.category">
+        <source>app.form.verb.category</source>
+        <target>Category</target>
+      </trans-unit>
+      <trans-unit id="asKWTj7" resname="app.form.verb.galleg">
+        <source>app.form.verb.galleg</source>
+        <target>French</target>
+      </trans-unit>
+      <trans-unit id="fXFcBzk" resname="app.form.verb.saozneg">
+        <source>app.form.verb.saozneg</source>
+        <target>English</target>
+      </trans-unit>
+      <trans-unit id="zDU0IGp" resname="app.form.verb.save">
+        <source>app.form.verb.save</source>
+        <target>Save</target>
+      </trans-unit>
+      <trans-unit id=".ryMytJ" resname="app.form.verb.save_return">
+        <source>app.form.verb.save_return</source>
+        <target>Save and go back</target>
+      </trans-unit>
+      <trans-unit id="5GLvbaY" resname="app.form.verb.save_continue">
+        <source>app.form.verb.save_continue</source>
+        <target>Save and continue</target>
+      </trans-unit>
+      <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_galleg">
+        <source>app.form.contact.default.translation_galleg</source>
+        <target>Greetings,
+The french translation is missing for the verb "%verb%".
+I propose that you add the following translation:</target>
+      </trans-unit>
+      <trans-unit id="dQtAQNJ" resname="app.form.contact.default.translation_saozneg">
+        <source>app.form.contact.default.translation_saozneg</source>
+        <target>Greetings,
+The english translation is missing for the verb "%verb%".
+I propose that you add the following translation:</target>
+      </trans-unit>
+      <trans-unit id="HTru6jL" resname="app.form.contact.default.translation_both">
+        <source>app.form.contact.default.translation_both</source>
+        <target>Greetings,
+The english and french translation is missing for the verb "%verb%".
+I propose that you add the following translation</target>
+      </trans-unit>
+      <trans-unit id="aRmbN1f" resname="app.form.contact.default.verb">
+        <source>app.form.contact.default.verb</source>
+        <target>Greetings,
+The verb "%verb%" is missing on the website.
+        </target>
+      </trans-unit>
+      <trans-unit id="56vLyYd" resname="app.verb.not_found">
+        <source>app.verb.not_found</source>
+        <target>The verb %verb% was not found.</target>
+      </trans-unit>
+      <trans-unit id="KCefEpj" resname="app.verb.contact_invitation">
+        <source>app.verb.contact_invitation</source>
+        <target>If you think it should be on the website, you can send us an email thanks to the form below:</target>
       </trans-unit>
     </body>
   </file>
