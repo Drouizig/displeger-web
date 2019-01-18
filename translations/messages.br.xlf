@@ -154,8 +154,7 @@ Kinnig a ran deoc'h lakaat :</target>
       <trans-unit id="aRmbN1f" resname="app.form.contact.default.verb">
         <source>app.form.contact.default.verb</source>
         <target>Demat deoc'h,
-Mankout a ra ar verb "%verb%" war al lec'hienn.
-        </target>
+Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       </trans-unit>
       <trans-unit id="56vLyYd" resname="app.verb.not_found">
         <source>app.verb.not_found</source>
