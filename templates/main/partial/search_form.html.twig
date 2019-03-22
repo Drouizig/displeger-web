@@ -1,5 +1,11 @@
 
-        <form action="{{ path('main') }}" class="search-form form-md">
-            <input data-url="{{path('autocomplete')}}" type="text" name="verb" class="autocomplete"/>
+        <form action="{{ path('search') }}" class="search-form form-md">
+            <input 
+                data-url="{{path('autocomplete')}}" 
+                type="text" 
+                name="term" 
+                class="autocomplete"
+                value="{{app.request.get('term', '')}}"    
+            />
             <button class="btn btn-primary">Klask</button>
         </form>

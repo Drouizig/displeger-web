@@ -68,7 +68,7 @@
       <trans-unit id="44foO5n" resname="app.gour.L3">
         <source>app.gour.L3</source>
         <target>Troisième personne du pluriel</target>
-      </trans-unit>Indicatif
+      </trans-unit>
       <trans-unit id="2S2YsXb" resname="app.gour.D">
         <source>app.gour.D</source>
         <target>Forme impersonnelle</target>
@@ -164,6 +164,14 @@ Il manque le verbe "%verb%" sur le site.
       <trans-unit id="KCefEpj" resname="app.verb.contact_invitation">
         <source>app.verb.contact_invitation</source>
         <target>Si vous pensez qu'il devrait être sur le site, vous pouvez nous envoyer un courriel grâce au formulaire ci-dessous :</target>
+      </trans-unit>
+      <trans-unit id="XMmv1NH" resname="app.search.title">
+        <source>app.search.title</source>
+        <target>Résultats</target>
+      </trans-unit>
+      <trans-unit id="fDlVeXN" resname="app.autocomplete.more">
+        <source>app.autocomplete.more</source>
+        <target>Plus de résultats...</target>
       </trans-unit>
     </body>
   </file>

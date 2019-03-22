@@ -19,7 +19,7 @@
 <div class="container main">
   <div class="row">
     <div class="col-md">
-        <h1>{{ 'app.title'|trans }}</h1>
+        <a href="{{ path('main') }}"><h1>{{ 'app.title'|trans }}</h1></a>
         {% include 'main/partial/search_form.html.twig' %}
         <a class = "print-button" href="#" onclick="print()"><i class="fas fa-print"></i></a>
         {% if verb is not null %}

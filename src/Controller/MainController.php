@@ -14,6 +14,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class MainController extends AbstractController
 {
@@ -43,6 +47,28 @@ class MainController extends AbstractController
         }
 
         return $this->render('main/index.html.twig');
+    }
+
+    /**
+     * @Route("/search", name="search")
+     */
+    public function search(Request $request, PaginatorInterface $knpPaginator) {
+        $term = $request->query->get('term', null); 
+        if ( null === $term ) {
+            return $this->redirectToRoute('main');  
+        }
+        $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
+        $searchQuery = $verbRepository->getFrontSearchQuery($term);
+        
+        $pagination = $knpPaginator->paginate(
+            $searchQuery,
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('number', 25)/*limit per page*/
+        );
+
+        return $this->render('main/search.html.twig', [
+            'pagination' => $pagination
+        ]);
     }
 
     /**
@@ -85,18 +111,22 @@ class MainController extends AbstractController
     /**
      * @Route("/autocomplete", name="autocomplete")
      */
-    public function autocomplete(Request $request)
+    public function autocomplete(Request $request, RouterInterface $router, TranslatorInterface $translator)
     {
         $term = $request->query->get('term');
         if (null === $term) {
             return new JsonResponse();
         }
         $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
-        $result = $verbRepository->findByTerm($term);
+        $result = $verbRepository->findByTermAutocomplete($term);
         $array = [];
         /** @var Verb $res */
-        foreach ($result as $res) {
-            $array[] = $res->getAnvVerb();
+        for ($i = 0; $i < min(5, count($result)); $i++) {
+            $res = $result[$i];
+            $array[] = ['value' => $router->generate('verb', ['anvVerb' => $res->getAnvVerb()]), 'label' => $res->getAnvVerb()];
+        }
+        if(count($result) > 5) {
+            $array[] = ['value' => $router->generate('search', ['term' => $term]), 'label' => $translator->trans('app.autocomplete.more')];
         }
         return new JsonResponse($array);
     }

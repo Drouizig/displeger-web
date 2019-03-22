@@ -164,6 +164,14 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.verb.contact_invitation</source>
         <target>Ma soñj deoc'h e rankfe bezañ war al lec'hienn e c'hallit kas ur postel deomp gant ar furmskrid amañ dindan:</target>
       </trans-unit>
+      <trans-unit id="XMmv1NH" resname="app.search.title">
+        <source>app.search.title</source>
+        <target>Disoc'hoù</target>
+      </trans-unit>
+      <trans-unit id="fDlVeXN" resname="app.autocomplete.more">
+        <source>app.autocomplete.more</source>
+        <target>Muioc'h a zisoc'hoù...</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -15,7 +15,12 @@ $(document).ready(function() {
   var autocompleteInput = $('.autocomplete');
   var url = autocompleteInput.data('url');
   autocompleteInput.autocomplete({
-      source: url
+      source: url,
+      select: function( event, ui ) {
+        var url = ui.item['value'];
+        window.location.href = url;
+        return false;
+      }
   });
 
   $('.copy').click(function() {

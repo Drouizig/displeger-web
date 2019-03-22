@@ -19,13 +19,22 @@ class VerbRepository extends ServiceEntityRepository
         parent::__construct($registry, Verb::class);
     }
 
-    public function findByTerm($term)
+    public function findByTermAutocomplete($term)
     {
         return $this->createQueryBuilder('v')
             ->andWhere('UPPER(v.anvVerb) LIKE UPPER(:term)')
             ->setParameter('term', $term.'%')
             ->getQuery()
             ->getResult()
+        ;
+    }
+
+    public function getFrontSearchQuery($term)
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('UPPER(v.anvVerb) LIKE UPPER(:term)')
+            ->setParameter('term', '%'.$term.'%')
+            ->getQuery()
         ;
     }
 
@@ -39,7 +48,7 @@ class VerbRepository extends ServiceEntityRepository
         ;
     }
 
-    public function getSearchQuery($search, $offset = null, $maxResults = null)
+    public function getBackSearchQuery($search, $offset = null, $maxResults = null)
     {
         $qb = $this->createQueryBuilder('v');
         if ($search !== null && $search !== '') {

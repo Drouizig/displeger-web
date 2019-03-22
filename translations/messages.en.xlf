@@ -165,6 +165,14 @@ The verb "%verb%" is missing on the website.
         <source>app.verb.contact_invitation</source>
         <target>If you think it should be on the website, you can send us an email thanks to the form below:</target>
       </trans-unit>
+      <trans-unit id="XMmv1NH" resname="app.search.title">
+        <source>app.search.title</source>
+        <target>Results</target>
+      </trans-unit>
+      <trans-unit id="fDlVeXN" resname="app.autocomplete.more">
+        <source>app.autocomplete.more</source>
+        <target>More results...</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

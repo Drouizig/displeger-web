@@ -87,7 +87,7 @@ class AdminController extends AbstractController
                         $params['page'] = floor($offset / 25)+1;
                     }
                     /** @var Query $verbsQuery */
-                    $verbsQuery = $verbRepository->getSearchQuery($search, $offset, 1);
+                    $verbsQuery = $verbRepository->getBackSearchQuery($search, $offset, 1);
                     $result = $verbsQuery->getOneOrNullResult();
                     return $this->redirectToRoute('admin_verb',
                         [
