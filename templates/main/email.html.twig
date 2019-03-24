@@ -5,18 +5,18 @@
 {% block content %}
     <a href="{{ path('main') }}"><h1>{{ 'app.title'|trans }}</h1></a>
     {% include 'main/partial/search_form.html.twig' %}
-    <p>{{'app.verb.not_found'|trans({'%verb%': verb})}}</p>
-    <p>{{'app.verb.contact_invitation'|trans}}</p>
 
     {% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
     <div>
             {{form_start(contactForm, {
                 'action' : path('mail'),
             })}}
+            {{form_errors(contactForm)}}
             <div class="row">
                 <div class="col-md-2">
                     {{form_label(contactForm.name)}}
                 </div><div class="col-md">
+                    {{form_errors(contactForm.name)}}
                     {{form_widget(contactForm.name)}}
                 </div>
             </div>
@@ -24,6 +24,7 @@
                 <div class="col-md-2">
                     {{form_label(contactForm.email)}}
                 </div><div class="col-md">
+                    {{form_errors(contactForm.email)}}
                     {{form_widget(contactForm.email)}}
                 </div>
             </div>
@@ -31,11 +32,8 @@
                 <div class="col-md-2">
                     {{form_label(contactForm.message)}}
                 </div><div class="col-md">
-                    {{form_widget(
-                    contactForm.message, 
-                    {'value': ('app.form.contact.default.verb')|trans({'%verb%': verb})}
-                )
-                }}
+                    {{form_errors(contactForm.message)}}
+                    {{form_widget(contactForm.message)}}
                 </div>
             </div>
             <div class="row">

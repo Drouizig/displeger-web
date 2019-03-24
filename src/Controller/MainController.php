@@ -18,6 +18,8 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class MainController extends AbstractController
 {
@@ -65,6 +67,13 @@ class MainController extends AbstractController
             $request->query->getInt('page', 1)/*page number*/,
             $request->query->getInt('number', 25)/*limit per page*/
         );
+
+        if($pagination->getTotalItemCount() <= 1) {
+            if($pagination->getTotalItemCount() === 1) {
+                $term = $pagination->getItems()[0]->getAnvVerb();
+            }
+            return $this->redirectToRoute('verb', ['anvVerb' => $term]);
+        }
 
         return $this->render('main/search.html.twig', [
             'pagination' => $pagination
@@ -126,7 +135,7 @@ class MainController extends AbstractController
             $array[] = ['value' => $router->generate('verb', ['anvVerb' => $res->getAnvVerb()]), 'label' => $res->getAnvVerb()];
         }
         if(count($result) > 5) {
-            $array[] = ['value' => $router->generate('search', ['term' => $term]), 'label' => $translator->trans('app.autocomplete.more')];
+            $array[] = ['value' => $router->generate('search', ['term' => $term]), 'label' => $translator->trans    ('app.autocomplete.more')];
         }
         return new JsonResponse($array);
     }
@@ -134,7 +143,7 @@ class MainController extends AbstractController
     /**
      * @Route("/mail", name="mail")
      */
-    public function sendMail(Request $request, \Swift_Mailer $mailer)
+    public function sendMail(Request $request, \Swift_Mailer $mailer, Session $session, TranslatorInterface $translator)
     {
         $contactForm = $this->createForm(ContactType::class);
 
@@ -160,9 +169,34 @@ class MainController extends AbstractController
             ;
     
             $result = $mailer->send($message);
-            return new JsonResponse(['result' => $result == 0? 'nok' : 'ok']);
-        } else{
-            return new JsonResponse(['result' => 'nok', 'errors' => $contactForm->getErrors(true)]);
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['result' => $result == 0? 'nok' : 'ok']);
+            } else {
+                if($result === 0) {
+                    $session->getFlashBag()->set('message', $translator->trans('app.email.error'));
+
+                    return $this->render('main/email.html.twig', [
+                        'contactForm' => $contactForm->createView()
+                    ]);
+                } else {
+                    /** SessionInterface $session */
+                    $session->getFlashBag()->set('message', $translator->trans('app.email.sent'));
+                    return $this->redirectToRoute('main');
+                }
+            }
+        } else if ($contactForm->isSubmitted() && !$contactForm->isValid()) {
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['result' => 'nok', 'errors' => $contactForm->getErrors(true)]);
+            } else {
+                return $this->render('email.html.twig', [
+                    'contactForm' => $contactForm->createView() 
+                ]);
+            }
+        } else {
+            
+            return $this->render('main/email.html.twig', [
+                'contactForm' => $contactForm->createView()
+            ]);
         }
     }
 }

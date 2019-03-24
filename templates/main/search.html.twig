@@ -2,30 +2,22 @@
 
 {% block title %}Displeger verboù brezhonek{% endblock %}
 
-{% block body %}
-<div class="container main">
+{% block content %}
+  <a href="{{ path('main') }}"><h1>{{ 'app.title'|trans }}</h1></a> 
+  {% include 'main/partial/search_form.html.twig' %}
 
-  <div class="row">
-    <div class="col-md">
-        <a href="{{ path('main') }}"><h1>{{ 'app.title'|trans }}</h1></a> 
-        {% include 'main/partial/search_form.html.twig' %}
+  <h2>{{'app.search.title'|trans}}</h2>
 
-        <h2>{{'app.search.title'|trans}}</h2>
-
-        <div class="navigation">
-            {{ knp_pagination_render(pagination) }}
-        </div>
-        <ul>
-          {% for result in pagination %}
-            <li><a href="{{ path('verb', {'anvVerb': result.anvVerb}) }}">{{ result.anvVerb }}</a></li>
-          {% endfor %}
-        </ul>
-
-        <div class="navigation">
-            {{ knp_pagination_render(pagination) }}
-        </div>
-    </div>
+  <div class="navigation">
+      {{ knp_pagination_render(pagination) }}
   </div>
-</div>
+  <ul>
+    {% for result in pagination %}
+      <li><a href="{{ path('verb', {'anvVerb': result.anvVerb}) }}">{{ result.anvVerb }}</a></li>
+    {% endfor %}
+  </ul>
 
+  <div class="navigation">
+      {{ knp_pagination_render(pagination) }}
+  </div>
 {% endblock %}

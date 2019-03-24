@@ -2,65 +2,58 @@
 
 {% block title %}Lodenn verañ{% endblock %}
 
-{% block body %}
-
-<div class="container main">
-
+{% block content %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
-  <div class="row">
-    <div class="col-md">
-        <h1>{{ 'app.title'|trans }}</h1>
-        <p>Lodenn verañ</p>
-        <a href="{{path('admin')}}">< Distreiñ</a>
+    <h1>{{ 'app.title'|trans }}</h1>
+    <p>Lodenn verañ</p>
+    <a href="{{path('admin')}}">< Distreiñ</a>
 
-        {{form_start(form)}}
-        <div class="row">
-            <div class="col-md-2">
-                {{form_label(form.anvVerb)}}
-            </div>
-            <div class="col-md-2">
-                {{form_widget(form.anvVerb)}}
-            </div>
+    {{form_start(form)}}
+    <div class="row">
+        <div class="col-md-2">
+            {{form_label(form.anvVerb)}}
         </div>
-        <div class="row">
-            <div class="col-md-2">
-                {{form_label(form.pennrann)}}
-            </div>
-            <div class="col-md-2">
-                {{form_widget(form.pennrann)}}
-            </div>
+        <div class="col-md-2">
+            {{form_widget(form.anvVerb)}}
         </div>
-        <div class="row">
-            <div class="col-md-2">
-                {{form_label(form.category)}}<a href='https://github.com/Drouizig/displeger-verbou/wiki/Rummado%C3%B9' target="_blank"><sup>[?]</sup></a>
-            </div>
-            <div class="col-md-2">
-                {{form_widget(form.category)}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                {{form_label(form.galleg)}}
-            </div>
-            <div class="col-md-2">
-                {{form_widget(form.galleg)}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                {{form_label(form.saozneg)}}
-            </div>
-            <div class="col-md-2">
-                {{form_widget(form.saozneg)}}
-            </div>
-        </div><br/>
-        <p>
-            {{form_widget(form.save)}}
-            {{form_widget(form.save_return)}}
-            {{form_widget(form.save_continue)}}
-        </p>
-
-        {{form_end(form)}}
     </div>
-</div>
+    <div class="row">
+        <div class="col-md-2">
+            {{form_label(form.pennrann)}}
+        </div>
+        <div class="col-md-2">
+            {{form_widget(form.pennrann)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            {{form_label(form.category)}}<a href='https://github.com/Drouizig/displeger-verbou/wiki/Rummado%C3%B9' target="_blank"><sup>[?]</sup></a>
+        </div>
+        <div class="col-md-2">
+            {{form_widget(form.category)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            {{form_label(form.galleg)}}
+        </div>
+        <div class="col-md-2">
+            {{form_widget(form.galleg)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            {{form_label(form.saozneg)}}
+        </div>
+        <div class="col-md-2">
+            {{form_widget(form.saozneg)}}
+        </div>
+    </div><br/>
+    <p>
+        {{form_widget(form.save)}}
+        {{form_widget(form.save_return)}}
+        {{form_widget(form.save_continue)}}
+    </p>
+
+    {{form_end(form)}}
 {% endblock %}

@@ -46,7 +46,7 @@ class AdminController extends AbstractController
         $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
 
         $search = $request->query->get('search', null);
-        $verbsQuery = $verbRepository->getSearchQuery($search);
+        $verbsQuery = $verbRepository->getBackSearchQuery($search);
 
         $pagination = $this->knpPaginator->paginate(
             $verbsQuery, /* query NOT result */

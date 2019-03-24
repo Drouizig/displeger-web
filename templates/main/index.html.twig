@@ -2,15 +2,7 @@
 
 {% block title %}Displeger verboù brezhonek{% endblock %}
 
-{% block body %}
-<div class="container main">
-
-  <div class="row">
-    <div class="col-md">
-        <a href="{{ path('main') }}"><h1>{{ 'app.title'|trans }}</h1></a>
-        {% include 'main/partial/search_form.html.twig' %}
-    </div>
-  </div>
-</div>
-
+{% block content %}
+    <a href="{{ path('main') }}"><h1>{{ 'app.title'|trans }}</h1></a>
+    {% include 'main/partial/search_form.html.twig' %}
 {% endblock %}

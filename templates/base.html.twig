@@ -10,13 +10,26 @@
         {% endblock %}
         <link 
             rel="stylesheet" 
-            {# href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"  #}
+            href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
             integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
             crossorigin="anonymous"
             />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <div class="container main">
+                <div class="row">
+                    <div class="col-md">
+                            {% for message in app.session.flashbag.get('message') %}
+                                {{message}}
+                            {% endfor %}
+                        {% block content %}
+            
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}

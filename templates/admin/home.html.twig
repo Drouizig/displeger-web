@@ -2,21 +2,14 @@
 
 {% block title %}Lodenn verañ{% endblock %}
 
-{% block body %}
-
-<div class="container main">
-
-  <div class="row">
-    <div class="col-md">
-        <h1>{{ 'app.title'|trans }}</h1>
-        <p>Lodenn verañ</p>
-        <a href="{{ path('admin') }}" class="btn btn-primary">Roll ar verboù</a>
-        <p>Niver a verboù : {{ statisticsManager.total }}</p>
-        <p>Dregantad a verboù troet e galleg : {{ (( 1 - statisticsManager.percentage({'galleg': null})) * 100)|round(2) }} %</p>
-        <p>Dregantad a verboù troet e saozneg : {{ (( 1 - statisticsManager.percentage({'saozneg': null})) * 100)|round(2) }} %</p>
-        <div id="js-category-chart" data-title="Rummadoù" data-categories='{{ statisticsManager.categoryData|raw }}'></div>
-    </div>
-</div>
+{% block content %}
+    <h1>{{ 'app.title'|trans }}</h1>
+    <p>Lodenn verañ</p>
+    <a href="{{ path('admin') }}" class="btn btn-primary">Roll ar verboù</a>
+    <p>Niver a verboù : {{ statisticsManager.total }}</p>
+    <p>Dregantad a verboù troet e galleg : {{ (( 1 - statisticsManager.percentage({'galleg': null})) * 100)|round(2) }} %</p>
+    <p>Dregantad a verboù troet e saozneg : {{ (( 1 - statisticsManager.percentage({'saozneg': null})) * 100)|round(2) }} %</p>
+    <div id="js-category-chart" data-title="Rummadoù" data-categories='{{ statisticsManager.categoryData|raw }}'>
 {% endblock %}
 
 {% block javascripts %}
