@@ -18,6 +18,10 @@ use App\Form\VerbType;
 
 use Symfony\Component\HttpFoundation\Response;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Entity\Configuration;
+use App\Form\ConfigurationType;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class AdminController extends AbstractController
 {
@@ -102,6 +106,34 @@ class AdminController extends AbstractController
         return $this->render('admin/verb.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+
+    /**
+     * @Route("/admin/configuration", name="admin_configuration")
+     */
+    public function configurationEdit(Request $request, SessionInterface $session, TranslatorInterface $translator)
+    {
+        $configurationObject = $this->getDoctrine()->getRepository(Configuration::class)->findFirst();
+        $form = $this->createForm(ConfigurationType::class, $configurationObject);
+
+        if ($request->getMethod() === 'POST') {
+            $form->handleRequest($request);
+            if($form->isSubmitted() && $form->isValid()) {
+                $configuration = $form->getData();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($configuration);
+                $em->flush();
+                $session->getFlashBag()->set('message', $translator->trans('app.configuration.saved'));
+                return $this->redirectToRoute('admin_configuration');
+            }
+        }
+
+        return $this->render('admin/configuration.html.twig', [
+            'form' => $form->createView()
+        ]);
+        
+
     }
 
 }

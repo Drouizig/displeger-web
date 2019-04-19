@@ -20,6 +20,7 @@ use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
+use App\Entity\Configuration;
 
 class MainController extends AbstractController
 {
@@ -48,7 +49,11 @@ class MainController extends AbstractController
             return $this->redirectToRoute('verb', ['anvVerb' => $request->query->get('verb')]);
         }
 
-        return $this->render('main/index.html.twig');
+        $config = $this->getDoctrine()->getRepository(Configuration::class)->findFirst();
+
+        return $this->render('main/index.html.twig', [
+            'intro' => $config === null ? '' : $config->getIntro()
+        ]);
     }
 
     /**

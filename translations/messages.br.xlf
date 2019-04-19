@@ -172,6 +172,22 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.autocomplete.more</source>
         <target>Muioc'h a zisoc'hoù...</target>
       </trans-unit>
+      <trans-unit id="g8JD8uC" resname="app.search.advanced">
+        <source>app.search.advanced</source>
+        <target>Klask kemplezhoc'h</target>
+      </trans-unit>
+      <trans-unit id="zrFahLZ" resname="app.home">
+        <source>app.home</source>
+        <target>Degemer</target>
+      </trans-unit>
+      <trans-unit id="HLXBDuz" resname="app.contact">
+        <source>app.contact</source>
+        <target>Darempred</target>
+      </trans-unit>
+      <trans-unit id="uLIvh_l" resname="app.header.search.placeholder">
+        <source>app.header.search.placeholder</source>
+        <target>Klask ur verb</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

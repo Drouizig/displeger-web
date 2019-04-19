@@ -173,6 +173,22 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.autocomplete.more</source>
         <target>Plus de résultats...</target>
       </trans-unit>
+      <trans-unit id="g8JD8uC" resname="app.search.advanced">
+        <source>app.search.advanced</source>
+        <target>Recherche avancée</target>
+      </trans-unit>
+      <trans-unit id="zrFahLZ" resname="app.home">
+        <source>app.home</source>
+        <target>Accueil</target>
+      </trans-unit>
+      <trans-unit id="HLXBDuz" resname="app.contact">
+        <source>app.contact</source>
+        <target>Contact</target>
+      </trans-unit>
+      <trans-unit id="uLIvh_l" resname="app.header.search.placeholder">
+        <source>app.header.search.placeholder</source>
+        <target>Chercher un verbe</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

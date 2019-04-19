@@ -3,8 +3,7 @@
 {% block title %}Displeger verboù brezhonek - Fazi{% endblock %}
 
 {% block content %}
-    <a href="{{ path('main') }}"><h1>{{ 'app.title'|trans }}</h1></a>
-    {% include 'main/partial/search_form.html.twig' %}
+    {% include 'main/partial/header.html.twig' %}
     <p>{{'app.verb.not_found'|trans({'%verb%': verb})}}</p>
     <p>{{'app.verb.contact_invitation'|trans}}</p>
 

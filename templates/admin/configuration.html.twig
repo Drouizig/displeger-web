@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lodenn verañ{% endblock %}
+
+{% block content %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+    <h1>{{ 'app.title'|trans }}</h1>
+    <p>Lodenn verañ</p>
+    <a href="{{path('admin_home')}}">< Distreiñ</a>
+
+    {{form_start(form)}}
+    <div class="row">
+        <div class="col-md-2">
+            {{form_label(form.intro)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{form_widget(form.intro)}}
+        </div>
+    </div>
+        {{form_widget(form.save)}}
+    </p>
+
+    {{form_end(form)}}
+{% endblock %}

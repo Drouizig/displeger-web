@@ -1,11 +1,17 @@
 
-        <form action="{{ path('search') }}" class="search-form form-md">
+        <form action="{{ path('search') }}" class="search-form form-md form-inline">
             <input 
                 data-url="{{path('autocomplete')}}" 
-                type="text" 
+                type="search" 
                 name="term" 
-                class="autocomplete"
+                placeholder="{{'app.header.search.placeholder'|trans}}"
+                class="autocomplete form-control"
                 value="{{app.request.get('term', '')}}"    
             />
             <button class="btn btn-primary">Klask</button>
         </form>
+
+        {# <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> #}
