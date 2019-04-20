@@ -21,6 +21,10 @@ $(document).ready(function() {
         var url = ui.item['value'];
         window.location.href = url;
         return false;
+      },
+      focus: function(event, ui) {
+        this.value = ui.item['label'];
+        return false;
       }
   });
 
