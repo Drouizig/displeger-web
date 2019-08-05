@@ -4,10 +4,7 @@
 <nav class="navbar navbar-expand-lg ">
 
     {% include 'main/partial/search_form.html.twig' %}
-    {# <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> #}
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-bars"></i>
   </button>
@@ -15,7 +12,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="path('search_advanced')">{{'app.search.advanced'|trans}}</a>
+        <a class="nav-link" href="{{path('search_advanced')}}">{{'app.search.advanced'|trans}}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{path('main')}}">{{'app.home'|trans}}</a>
@@ -23,6 +20,19 @@
       <li class="nav-item">
         <a class="nav-link" href="{{path('mail')}}">{{'app.contact'|trans}}</a>
       </li>
+
     </ul>
+
+    {% macro lang_link(locale) %}
+        {{path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale}))}}
+    {% endmacro %}
+
+    {%import _self as self %}
+
+    <div class="my-2 my-lg-0">
+      <a href="{{self.lang_link('br')}}">BR</a> |
+      <a href="{{self.lang_link('fr')}}">FR</a> |
+      <a href="{{self.lang_link('en')}}">EN</a>
+    </div>
   </div>
 </nav>

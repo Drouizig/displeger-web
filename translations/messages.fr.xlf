@@ -189,6 +189,18 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.header.search.placeholder</source>
         <target>Chercher un verbe</target>
       </trans-unit>
+      <trans-unit id="6r5TohA" resname="app.search_advanced.field.breton">
+        <source>app.search_advanced.field.breton</source>
+        <target>Breton</target>
+      </trans-unit>
+      <trans-unit id="SiadndW" resname="app.search_advanced.field.french">
+        <source>app.search_advanced.field.french</source>
+        <target>Français</target>
+      </trans-unit>
+      <trans-unit id="Mj3dpTw" resname="app.search_advanced.field.english">
+        <source>app.search_advanced.field.english</source>
+        <target>Anglais</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

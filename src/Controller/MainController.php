@@ -41,8 +41,29 @@ class MainController extends AbstractController
         $this->mailer = $mailer;
     }
 
+
     /**
-     * @Route("/", name="main")
+     * @Route("/", name="pre_locale")
+     */
+    public function preLocale(Request $request)
+    {
+        $supportedLanguages = ['br', 'fr', 'en'];
+        $acceptedLanguages = explode(',',$request->headers->get('accept-language'));
+        dump($request->headers);
+        foreach($acceptedLanguages as $fullLocale) {
+            $locale = explode(';', $fullLocale)[0];
+            $language = explode('-', $locale)[0];
+            if(in_array($language, $supportedLanguages)) {
+                return $this->redirect('/'.$language);
+            }
+        }
+        return $this->redirect('/en');
+    }
+
+    /**
+     * @Route("/{_locale}", name="main", requirements= {
+     *      "_locale": "br|fr|en"
+     * })
      */
     public function index(Request $request) {
         if ($request->query->get('verb')) {
@@ -57,7 +78,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/search", name="search")
+     * @Route("/{_locale}/search", name="search")
      */
     public function search(Request $request, PaginatorInterface $knpPaginator) {
         $term = $request->query->get('term', null); 
@@ -86,7 +107,28 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/verb/{anvVerb}", name="verb")
+     * @Route("/{_locale}/search_advanced", name="search_advanced")
+     */
+    public function searchAdvanced(Request $request, PaginatorInterface $knpPaginator) {
+        $term = $request->query->get('term', null);
+
+        $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
+        $searchQuery = $verbRepository->getFrontSearchQuery($term);
+        
+        $pagination = $knpPaginator->paginate(
+            $searchQuery,
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('number', 25)/*limit per page*/
+        );
+
+        return $this->render('main/search_advanced.html.twig', [
+            'pagination' => $pagination
+        ]);
+    }
+
+
+    /**
+     * @Route("/{_locale}/verb/{anvVerb}", name="verb")
      * @Entity("verb", expr="repository.findOneByAnvVerb(anvVerb)")
      */
     public function verb(Request $request,Verb $verb = null)
@@ -123,7 +165,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/autocomplete", name="autocomplete")
+     * @Route("/{_locale}/autocomplete", name="autocomplete")
      */
     public function autocomplete(Request $request, RouterInterface $router, TranslatorInterface $translator)
     {
@@ -146,7 +188,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/mail", name="mail")
+     * @Route("/{_locale}/mail", name="mail")
      */
     public function sendMail(Request $request, \Swift_Mailer $mailer, Session $session, TranslatorInterface $translator)
     {

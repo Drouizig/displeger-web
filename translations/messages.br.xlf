@@ -188,6 +188,18 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.header.search.placeholder</source>
         <target>Klask ur verb</target>
       </trans-unit>
+      <trans-unit id="6r5TohA" resname="app.search_advanced.field.breton">
+        <source>app.search_advanced.field.breton</source>
+        <target>Brezhoneg</target>
+      </trans-unit>
+      <trans-unit id="SiadndW" resname="app.search_advanced.field.french">
+        <source>app.search_advanced.field.french</source>
+        <target>Galleg</target>
+      </trans-unit>
+      <trans-unit id="Mj3dpTw" resname="app.search_advanced.field.english">
+        <source>app.search_advanced.field.english</source>
+        <target>Saozneg</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
