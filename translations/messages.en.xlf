@@ -19,11 +19,11 @@
       </trans-unit>
       <trans-unit id="A07Epq5" resname="app.amzer.tremenet_ledan">
         <source>app.amzer.tremenet_ledan</source>
-        <target>Past 1</target>
+        <target>Imperfect</target>
       </trans-unit>
       <trans-unit id="e5rwBMQ" resname="app.amzer.tremenet_strizh">
         <source>app.amzer.tremenet_strizh</source>
-        <target>Past 2</target>
+        <target>Definite past (simple past)</target>
       </trans-unit>
       <trans-unit id="BGn2fB8" resname="app.amzer.da_zont">
         <source>app.amzer.da_zont</source>
@@ -31,19 +31,19 @@
       </trans-unit>
       <trans-unit id="T5ilb9H" resname="app.amzer.gallus">
         <source>app.amzer.gallus</source>
-        <target>Conditional 1</target>
+        <target>Potenital conditional (present)</target>
       </trans-unit>
       <trans-unit id="PBznQAB" resname="app.amzer.dichallus">
         <source>app.amzer.dichallus</source>
-        <target>Conditional 2</target>
+        <target>Unreal conditional (past)</target>
       </trans-unit>
       <trans-unit id="gdjmmRP" resname="app.amzer.kadarnaat">
         <source>app.amzer.kadarnaat</source>
-        <target>Imperative</target>
+        <target>Imperative (affirmative)</target>
       </trans-unit>
       <trans-unit id="E.k_SsB" resname="app.amzer.nach">
         <source>app.amzer.nach</source>
-        <target>Negative</target>
+        <target>Imperative (negative)</target>
       </trans-unit>
       <trans-unit id="NdH4ADz" resname="app.gour.U1">
         <source>app.gour.U1</source>
