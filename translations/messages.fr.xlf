@@ -35,7 +35,7 @@
       </trans-unit>
       <trans-unit id="PBznQAB" resname="app.amzer.dichallus">
         <source>app.amzer.dichallus</source>
-        <target>Conditionnel iréel (passé)</target>
+        <target>Conditionnel irréel (passé)</target>
       </trans-unit>
       <trans-unit id="gdjmmRP" resname="app.amzer.kadarnaat">
         <source>app.amzer.kadarnaat</source>
@@ -43,7 +43,7 @@
       </trans-unit>
       <trans-unit id="E.k_SsB" resname="app.amzer.nach">
         <source>app.amzer.nach</source>
-        <target>Imperafif (négatif)</target>
+        <target>Impératif (négatif)</target>
       </trans-unit>
       <trans-unit id="NdH4ADz" resname="app.gour.U1">
         <source>app.gour.U1</source>
@@ -83,7 +83,7 @@
       </trans-unit>
       <trans-unit id="s7c3Bcz" resname="app.missing_translation.notice">
         <source>app.missing_translation.notice</source>
-        <target>Malheuresement, il nous manque la traduction pour ce verbe. Si vous la connaissez, vous pouvez nous aider en nous envoyant un message.</target>
+        <target>Malheureusement, il nous manque la traduction pour ce verbe. Si vous la connaissez, vous pouvez nous aider en nous envoyant un message.</target>
       </trans-unit>
       <trans-unit id="tzmVoeo" resname="app.form.contact.name">
         <source>app.form.contact.name</source>
@@ -123,7 +123,7 @@
       </trans-unit>
       <trans-unit id="zDU0IGp" resname="app.form.verb.save">
         <source>app.form.verb.save</source>
-        <target>ENregistrer</target>
+        <target>Enregistrer</target>
       </trans-unit>
       <trans-unit id=".ryMytJ" resname="app.form.verb.save_return">
         <source>app.form.verb.save_return</source>
