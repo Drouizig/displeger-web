@@ -13,6 +13,13 @@ require('webpack-jquery-ui');
 require('bootstrap');
 require('webpack-jquery-ui/css');
 $(document).ready(function() {
+
+
+  /*
+   * ****************
+   *   AUTOCOMPLETE
+   * ****************
+   */
   var autocompleteInput = $('.autocomplete');
   var url = autocompleteInput.data('url');
   autocompleteInput.autocomplete({
@@ -28,6 +35,12 @@ $(document).ready(function() {
       }
   });
 
+
+/*
+ * ****************
+ *   COPY BUTTON
+ * ****************
+ */
   $('.copy').click(function() {
     var text = $(this).parent().find('.js-verb').text();
     if (!navigator.clipboard) {
@@ -51,6 +64,11 @@ $(document).ready(function() {
     });
   });
 
+  /*
+   * ***********
+   *   MESSAGE
+   * ***********
+   */
   $('.message').click(function() {
     $(this).slideUp();
   });
@@ -58,25 +76,30 @@ $(document).ready(function() {
   $('.missing_translation_notice').click(function() {
     $('.missing_translation_form').slideToggle();
   });
-  
+
+  /*
+   * ************************
+   *   CONTACT FORM SENDING
+   * ************************
+   */
+  $('.js-contact-form').submit(function() {
+    $.post(
+        $(this).attr('action'),
+        $(this).serialize(),
+        function(data) {
+          if (data.result == 'ok') {
+            displayMessage('Kaset eo bet ar gemennadenn gant berzh!', 'ok');
+            $('.js-contact-form input').val('');
+            $('.missing_translation_form').slideUp();
+          } else {
+            displayMessage('Degouezhet ez eus bet ur fazi en ur gas ar gemennadenn, klaskit en-dro mar plij', 'error');
+          }
+        }
+    );
+    return false;
+  });
 });
 
-$('.js-contact-form').submit(function() {
-  $.post(
-    $(this).attr('action'),
-    $(this).serialize(),
-    function(data) {
-        if (data.result == 'ok') {
-          displayMessage('Kaset eo bet ar gemennadenn gant berzh!', 'ok');
-          $('.js-contact-form input').val('');
-          $('.missing_translation_form').slideUp();
-        } else {
-          displayMessage('Degouezhet ez eus bet ur fazi en ur gas ar gemennadenn, klaskit en-dro mar plij', 'error');
-        }
-    }
-  );
-  return false;
-});
 
 function displayMessage(message, type) {
   var messageContainer = $('.message');

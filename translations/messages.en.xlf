@@ -201,6 +201,18 @@ The verb "%verb%" is missing on the website.
         <source>app.search_advanced.field.english</source>
         <target>English</target>
       </trans-unit>
+      <trans-unit id="eRniS5." resname="app.locale.fr">
+        <source>app.locale.fr</source>
+        <target>French</target>
+      </trans-unit>
+      <trans-unit id="Neyu0JR" resname="app.locale.en">
+        <source>app.locale.en</source>
+        <target>English</target>
+      </trans-unit>
+      <trans-unit id="O_HlHJX" resname="app.locale.br">
+        <source>app.locale.br</source>
+        <target>Breton</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

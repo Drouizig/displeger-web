@@ -9,18 +9,22 @@
     <a href="{{path('admin_home')}}">< Distreiñ</a>
 
     {{form_start(form)}}
-    <div class="row">
-        <div class="col-md-2">
-            {{form_label(form.intro)}}
+    {% for translation in form.translations%}
+        <h2>{{ ('app.locale.' ~translation.vars.data.locale)|trans }}</h2>
+        <div class="row">
+            <div class="col-md-2">
+                {{ form_label(translation.intro) }}
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            {{form_widget(form.intro)}}
+
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_widget(translation.intro) }}
+            </div>
         </div>
-    </div>
-        {{form_widget(form.save)}}
-    </p>
+    {% endfor %}
+    {{form_widget(form.save)}}
+
 
     {{form_end(form)}}
 {% endblock %}

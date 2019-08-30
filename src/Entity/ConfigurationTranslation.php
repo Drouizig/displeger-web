@@ -26,6 +26,13 @@ class ConfigurationTranslation
      */
     private $intro;
 
+    /**
+     * @var Configuration
+     * @ORM\ManyToOne(targetEntity="App\Entity\Configuration")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    protected $configuration;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,5 +60,21 @@ class ConfigurationTranslation
         $this->intro = $intro;
 
         return $this;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfiguration(): Configuration
+    {
+        return $this->configuration;
+    }
+
+    /**
+     * @param Configuration $configuration
+     */
+    public function setConfiguration(Configuration $configuration): void
+    {
+        $this->configuration = $configuration;
     }
 }
