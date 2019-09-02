@@ -49,15 +49,14 @@ class MainController extends AbstractController
     {
         $supportedLanguages = ['br', 'fr', 'en'];
         $acceptedLanguages = explode(',',$request->headers->get('accept-language'));
-        dump($request->headers);
         foreach($acceptedLanguages as $fullLocale) {
             $locale = explode(';', $fullLocale)[0];
             $language = explode('-', $locale)[0];
             if(in_array($language, $supportedLanguages)) {
-                return $this->redirect('/'.$language);
+                return $this->redirectToRoute('main',['_locale' => $language]);
             }
         }
-        return $this->redirect('/en');
+        return $this->redirectToRoute('main', ['_locale' => 'en']);
     }
 
     /**
