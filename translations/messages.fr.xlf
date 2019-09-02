@@ -7,7 +7,7 @@
     <body>
       <trans-unit id="rujVJ3G" resname="app.title">
         <source>app.title</source>
-        <target>Conjugeur de verbes en breton</target>
+        <target>Conjugueur de verbes en breton</target>
       </trans-unit>
       <trans-unit id="D2WgmoE" resname="app.amzer.gwan">
         <source>app.amzer.gwan</source>
