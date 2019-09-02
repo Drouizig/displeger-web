@@ -70,10 +70,18 @@ class MainController extends AbstractController
             return $this->redirectToRoute('verb', ['anvVerb' => $request->query->get('verb')]);
         }
 
+        $intro = '';
+        /** @var Configuration $config */
         $config = $this->getDoctrine()->getRepository(Configuration::class)->findFirst();
+        if($config) {
+            $configTranslation = $config->getTranslation($request->get('_locale', 'br'));
+            if($configTranslation) {
+                $intro = $configTranslation->getIntro();
+            }
+        }
 
         return $this->render('main/index.html.twig', [
-            'intro' => $config === null ? '' : $config->getIntro()
+            'intro' => $intro
         ]);
     }
 

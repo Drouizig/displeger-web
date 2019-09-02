@@ -29,11 +29,6 @@ class Configuration
     private $translations;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $intro;
-
-    /**
      * Configuration constructor.
      */
     public function __construct()
@@ -46,24 +41,26 @@ class Configuration
         return $this->id;
     }
 
-    public function getIntro(): ?string
-    {
-        return $this->intro;
-    }
-
-    public function setIntro(?string $intro): self
-    {
-        $this->intro = $intro;
-
-        return $this;
-    }
-
     /**
      * @return mixed
      */
     public function getTranslations()
     {
         return $this->translations;
+    }
+    /**
+     * @return ConfigurationTranslation
+     */
+    public function getTranslation($locale = 'br')
+    {
+        /** @var ConfigurationTranslation $translation */
+        foreach($this->translations as $translation) {
+            if($translation->getLocale() === $locale) {
+                return $translation;
+            }
+        }
+
+        return null;
     }
 
     /**
