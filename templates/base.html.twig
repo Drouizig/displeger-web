@@ -30,6 +30,11 @@
                 </div>
             </div>
         {% endblock %}
+
+        {% block footer %}
+            {% include 'main/partial/footer.html.twig' %}
+        {% endblock %}
+
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
