@@ -213,6 +213,10 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.locale.br</source>
         <target>Breton</target>
       </trans-unit>
+      <trans-unit id="84KJ0cZ" resname="app.legal.notice">
+        <source>app.legal.notice</source>
+        <target>Mentions légales</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

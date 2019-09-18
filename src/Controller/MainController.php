@@ -253,4 +253,13 @@ class MainController extends AbstractController
             ]);
         }
     }
+
+    /**
+     * @Route("/{_locale}/notice", name="notice", requirements= {
+     *      "_locale": "br|fr|en"
+     * })
+     */
+    public function notice(Request $request) {
+        return $this->render('misc/notice.html.twig');
+    }
 }
