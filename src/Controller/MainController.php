@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -21,6 +22,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Configuration;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 class MainController extends AbstractController
 {
@@ -135,12 +137,21 @@ class MainController extends AbstractController
 
 
     /**
-     * @Route("/{_locale}/verb/{anvVerb}", name="verb")
+     * @Route("/{_locale}/verb/{anvVerb}", name="verb", defaults={"print" : false})
      * @Entity("verb", expr="repository.findOneByAnvVerb(anvVerb)")
      */
-    public function verb(Request $request,Verb $verb = null)
+    public function verb(Request $request,Verb $verb = null, LoggerInterface $logger, Pdf)
     {
         $contactForm = $this->createForm(ContactType::class);
+        $viewName = 'main/verb.html.twig';
+
+        $print = $request->query->get('print', false);
+
+        $logger->info("Print param: " . ($print?"true":"false"));
+//        if($print){
+//            $viewName = 'main/verb.print.html.twig';
+//        }
+
         if(null !== $verb) {
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
             $anvGwan = $verbEndings['gwan'];
@@ -155,12 +166,13 @@ class MainController extends AbstractController
                     $nach[] = null;
                 }
             }
-            return $this->render('main/verb.html.twig', [
+            return $this->render($viewName, [
                 'verb' => $verb,
                 'verbEndings' => $verbEndings,
                 'anvGwan' => $anvGwan,
                 'nach' => $nach,
-                'contactForm' => $contactForm->createView()
+                'contactForm' => $contactForm->createView(),
+                'print' => $print
             ]);
         }
 
