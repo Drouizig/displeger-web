@@ -22,7 +22,7 @@
     {% endif %}
 {% endblock %}
 
-<a class = "print-button" href="#" onclick="print()"><i class="fas fa-print"></i></a>
+<a class = "hidden-print print-button" href="#" onclick="print()"><i class="fas fa-print"></i></a>
 {% if verb is not null %}
     <h2>{{verb.anvVerb}}</h2>
 
@@ -112,10 +112,10 @@
                         <li class="verb-item">
                             <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
                             {% if ending|length == 1 %}
-                                <span class="js-verb">{{verb.pennrann}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy"></i>
+                                <span class="js-verb">{{verb.pennrann}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
                             {% elseif ending|length > 1%} 
                                 {% for end in ending %}
-                                    {{verb.pennrann}}<strong>{{end}}</strong> <i class="far fa-copy copy"></i>
+                                    {{verb.pennrann}}<strong>{{end}}</strong> <i class="far fa-copy copy hidden-print"></i>
                                     {% if loop.index < ending|length %}
                                         <i>pe</i>
                                     {% endif %}
@@ -137,7 +137,7 @@
                 {% for conjugation in nach %}
                     <li class="verb-item">
                         <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
-                        <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy"></i>
+                        <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print"></i>
                     </li>
                 {% endfor %}
             </ul>

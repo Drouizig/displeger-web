@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Knp\Snappy\Pdf;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -140,17 +141,15 @@ class MainController extends AbstractController
      * @Route("/{_locale}/verb/{anvVerb}", name="verb", defaults={"print" : false})
      * @Entity("verb", expr="repository.findOneByAnvVerb(anvVerb)")
      */
-    public function verb(Request $request,Verb $verb = null, LoggerInterface $logger, Pdf)
+    public function verb(Request $request,Verb $verb = null, LoggerInterface $logger, Pdf $pdf)
     {
         $contactForm = $this->createForm(ContactType::class);
         $viewName = 'main/verb.html.twig';
 
         $print = $request->query->get('print', false);
+        $debug = $request->query->get('debug', false);
 
-        $logger->info("Print param: " . ($print?"true":"false"));
-//        if($print){
-//            $viewName = 'main/verb.print.html.twig';
-//        }
+//        $logger->info("Print param: " . ($print?"true":"false"));
 
         if(null !== $verb) {
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
@@ -166,7 +165,9 @@ class MainController extends AbstractController
                     $nach[] = null;
                 }
             }
-            return $this->render($viewName, [
+
+
+            $html = $this->render($viewName, [
                 'verb' => $verb,
                 'verbEndings' => $verbEndings,
                 'anvGwan' => $anvGwan,
@@ -174,6 +175,24 @@ class MainController extends AbstractController
                 'contactForm' => $contactForm->createView(),
                 'print' => $print
             ]);
+
+            if($print && !$debug){
+                $html2 = $this->generateUrl('verb', [
+                    'verb' => $verb,
+                    'verbEndings' => $verbEndings,
+                    'anvGwan' => $anvGwan,
+                    'nach' => $nach,
+                    'contactForm' => $contactForm->createView(),
+                    'print' => $print,
+                    'anvVerb' => $verb->getAnvVerb()
+                ], true);
+
+                return new PdfResponse(
+                    $pdf->getOutput($html2), $verb->getAnvVerb() . '.pdf'
+                );
+            } else {
+                return $html;
+            }
         }
 
         $searchTerm = $request->attributes->get('anvVerb');
