@@ -1,35 +1,36 @@
+<header class="fixed-top">
 
-    <a href="{{ path('main') }}"><h1>{{ 'app.title'|trans }}</h1></a>
+  <nav class="navbar navbar-expand-lg">
 
-<nav class="navbar navbar-expand-lg ">
+      <a href="{{ path('main') }}"><h1>{{ 'app.title'|trans }}</h1></a>
+      {% include 'main/partial/search_form.html.twig' %}
 
-    {% include 'main/partial/search_form.html.twig' %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <i class="fas fa-bars"></i>
-  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('search_advanced')}}">{{'app.search.advanced'|trans}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('main')}}">{{'app.home'|trans}}</a>
+        </li>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="{{path('search_advanced')}}">{{'app.search.advanced'|trans}}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{path('main')}}">{{'app.home'|trans}}</a>
-      </li>
+      </ul>
 
-    </ul>
+      {% macro lang_link(locale) %}
+          {{path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale}))}}
+      {% endmacro %}
 
-    {% macro lang_link(locale) %}
-        {{path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale}))}}
-    {% endmacro %}
+      {%import _self as self %}
 
-    {%import _self as self %}
-
-    <div class="my-2 my-lg-0">
-      <a href="{{self.lang_link('br')}}">BR</a> |
-      <a href="{{self.lang_link('fr')}}">FR</a> |
-      <a href="{{self.lang_link('en')}}">EN</a>
+      <div class="my-2 my-lg-0">
+        <a href="{{self.lang_link('br')}}">BR</a> |
+        <a href="{{self.lang_link('fr')}}">FR</a> |
+        <a href="{{self.lang_link('en')}}">EN</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>

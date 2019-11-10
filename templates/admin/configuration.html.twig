@@ -22,6 +22,17 @@
                 {{ form_widget(translation.intro) }}
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-2">
+                {{ form_label(translation.thanks) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_widget(translation.thanks) }}
+            </div>
+        </div>
     {% endfor %}
     {{form_widget(form.save)}}
 

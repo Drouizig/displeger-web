@@ -262,4 +262,21 @@ class MainController extends AbstractController
     public function notice(Request $request) {
         return $this->render('misc/notice.html.twig');
     }
+
+    /**
+     * @Route("/{_locale}/thanks", name="thanks", requirements= {
+     *      "_locale": "br|fr|en"
+     * })
+     */
+    public function thanks(Request $request) {
+         /** @var Configuration $config */
+         $config = $this->getDoctrine()->getRepository(Configuration::class)->findFirst();
+         if($config) {
+             $configTranslation = $config->getTranslation($request->get('_locale', 'br'));
+             if($configTranslation) {
+                 $thanks = $configTranslation->getThanks();
+             }
+         }
+        return $this->render('misc/thanks.html.twig', ['thanks' => $thanks]);
+    }
 }

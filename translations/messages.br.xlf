@@ -216,6 +216,10 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.legal.notice</source>
         <target>Menegoù lezenell</target>
       </trans-unit>
+      <trans-unit id="AEMWIko" resname="app.thanks">
+        <source>app.thanks</source>
+        <target>Trugarekadennoù</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

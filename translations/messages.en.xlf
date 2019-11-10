@@ -217,6 +217,10 @@ The verb "%verb%" is missing on the website.
         <source>app.legal.notice</source>
         <target>Legal notice</target>
       </trans-unit>
+      <trans-unit id="AEMWIko" resname="app.thanks">
+        <source>app.thanks</source>
+        <target>Thanks</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
