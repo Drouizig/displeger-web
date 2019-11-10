@@ -220,6 +220,18 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.thanks</source>
         <target>Trugarekadennoù</target>
       </trans-unit>
+      <trans-unit id="AtUKD3e" resname="app.wiktionnary.alt">
+        <source>app.wiktionnary.alt</source>
+        <target>Wikeriadur</target>
+      </trans-unit>
+      <trans-unit id="aF88LIP" resname="app.wiktionnary">
+        <source>app.wiktionnary</source>
+        <target>Wikeriadur</target>
+      </trans-unit>
+      <trans-unit id="VQVcOIW" resname="app.wiktionnary.conjugation">
+        <source>app.wiktionnary.conjugation</source>
+        <target>Displegadur</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

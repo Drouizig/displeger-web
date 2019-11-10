@@ -142,6 +142,7 @@ class MainController extends AbstractController
     {
         $contactForm = $this->createForm(ContactType::class);
         if(null !== $verb) {
+            $locale = $request->get('_locale', 'br');
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
             $anvGwan = $verbEndings['gwan'];
             unset($verbEndings['gwan']);
@@ -155,12 +156,18 @@ class MainController extends AbstractController
                     $nach[] = null;
                 }
             }
+
+            $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verb->getAnvVerb();
+            $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verb->getAnvVerb();
+
             return $this->render('main/verb.html.twig', [
                 'verb' => $verb,
                 'verbEndings' => $verbEndings,
                 'anvGwan' => $anvGwan,
                 'nach' => $nach,
-                'contactForm' => $contactForm->createView()
+                'contactForm' => $contactForm->createView(),
+                'wikeriadur_url' => $wikeriadurUrl,
+                'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl
             ]);
         }
 

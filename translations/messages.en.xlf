@@ -221,6 +221,18 @@ The verb "%verb%" is missing on the website.
         <source>app.thanks</source>
         <target>Thanks</target>
       </trans-unit>
+      <trans-unit id="AtUKD3e" resname="app.wiktionnary.alt">
+        <source>app.wiktionnary.alt</source>
+        <target>Wiktionnary</target>
+      </trans-unit>
+      <trans-unit id="aF88LIP" resname="app.wiktionnary">
+        <source>app.wiktionnary</source>
+        <target>Wiktionnary</target>
+      </trans-unit>
+      <trans-unit id="VQVcOIW" resname="app.wiktionnary.conjugation">
+        <source>app.wiktionnary.conjugation</source>
+        <target>Conjugationn</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
