@@ -214,7 +214,7 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       </trans-unit>
       <trans-unit id="84KJ0cZ" resname="app.legal.notice">
         <source>app.legal.notice</source>
-        <target>Menegoù lezenell</target>
+        <target>Menegoù lezennel</target>
       </trans-unit>
       <trans-unit id="AEMWIko" resname="app.thanks">
         <source>app.thanks</source>
