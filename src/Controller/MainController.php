@@ -5,6 +5,7 @@ namespace App\Controller;
 use Knp\Snappy\Pdf;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Form\ContactType;
@@ -169,7 +170,6 @@ class MainController extends AbstractController
                 }
             }
 
-
             $html = $this->render($viewName, [
                 'verb' => $verb,
                 'verbEndings' => $verbEndings,
@@ -180,19 +180,23 @@ class MainController extends AbstractController
             ]);
 
             if($print && !$debug){
-                $html2 = $this->generateUrl('verb', [
-                    'verb' => $verb,
-                    'verbEndings' => $verbEndings,
-                    'anvGwan' => $anvGwan,
-                    'nach' => $nach,
-                    'contactForm' => $contactForm->createView(),
-                    'print' => $print,
-                    'anvVerb' => $verb->getAnvVerb()
-                ], true);
-
-                return new PdfResponse(
-                    $pdf->getOutput($html2), $verb->getAnvVerb() . '.pdf'
+                $html2 = $this->renderView(
+                    $viewName,
+                    array(
+                        'verb' => $verb,
+                        'verbEndings' => $verbEndings,
+                        'anvGwan' => $anvGwan,
+                        'nach' => $nach,
+                        'contactForm' => $contactForm->createView(),
+                        'print' => $print,
+                        'anvVerb' => $verb->getAnvVerb()
+                    )
                 );
+
+                //TODO will hog the disk in the public folder, maybe we could clean it after. or keep it for cache ?
+                $pdf->generateFromHtml($html2, $verb->getAnvVerb() . '.pdf', [], true);
+                return new BinaryFileResponse($verb->getAnvVerb() . '.pdf');
+
             } else {
                 return $html;
             }
