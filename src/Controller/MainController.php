@@ -150,7 +150,6 @@ class MainController extends AbstractController
         $print = $request->query->get('print', false);
         $debug = $request->query->get('debug', false);
 
-//        $logger->info("Print param: " . ($print?"true":"false"));
         if($print) {
             $viewName = 'main/verb.print.html.twig';
         }
