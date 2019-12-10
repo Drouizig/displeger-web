@@ -1,0 +1,54 @@
+{% extends 'main/verb.html.twig' %}
+
+{% block header %}
+{% endblock %}
+
+{% block missingTranslationForm %}
+{% endblock %}
+
+{% block verbContentTable %}
+    <table class="verb-items">
+        <tr class="row">
+        {% for amzer, endings in verbEndings %}
+            <td class="col-md">
+                <h3>{{ ('app.amzer.' ~ amzer)|trans }}</h3>
+                <ul>
+                    {% for ending in endings %}
+                        <li class="verb-item">
+                            <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
+                            {% if ending|length == 1 %}
+                                <span class="js-verb">{{verb.pennrann}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
+                            {% elseif ending|length > 1%}
+                                {% for end in ending %}
+                                    {{verb.pennrann}}<strong>{{end}}</strong> <i class="far fa-copy copy hidden-print"></i>
+                                    {% if loop.index < ending|length %}
+                                        <i>pe</i>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </td>
+            {% if loop.index%2 == 0 %}
+                </tr>
+                <tr class="row">
+            {% endif %}
+        {% endfor %}
+
+            <td class="col-md">
+                <h3>{{ ('app.amzer.nach')|trans }}</h3>
+                <ul>
+                    {% for conjugation in nach %}
+                        <li class="verb-item">
+                            <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
+                        </li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

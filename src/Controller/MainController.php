@@ -150,6 +150,9 @@ class MainController extends AbstractController
         $debug = $request->query->get('debug', false);
 
 //        $logger->info("Print param: " . ($print?"true":"false"));
+        if($print) {
+            $viewName = 'main/verb.print.html.twig';
+        }
 
         if(null !== $verb) {
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());

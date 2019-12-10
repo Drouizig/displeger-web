@@ -103,46 +103,49 @@
     <div class="row">
         <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verb.pennrann ~ anvGwan}}</div>
     </div>
-    <div class="row verb-items">
-        {% for amzer, endings in verbEndings %}
+
+    {% block verbContentTable %}
+        <div class="row verb-items">
+            {% for amzer, endings in verbEndings %}
+                <div class="col-md">
+                    <h3>{{ ('app.amzer.' ~ amzer)|trans }}</h3>
+                    <ul>
+                        {% for ending in endings %}
+                            <li class="verb-item">
+                                <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
+                                {% if ending|length == 1 %}
+                                    <span class="js-verb">{{verb.pennrann}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
+                                {% elseif ending|length > 1%}
+                                    {% for end in ending %}
+                                        {{verb.pennrann}}<strong>{{end}}</strong> <i class="far fa-copy copy hidden-print"></i>
+                                        {% if loop.index < ending|length %}
+                                            <i>pe</i>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% if loop.index%2 == 0 %}
+                    </div>
+                    <div class="row">
+                {% endif %}
+            {% endfor %}
+
             <div class="col-md">
-                <h3>{{ ('app.amzer.' ~ amzer)|trans }}</h3>
+                <h3>{{ ('app.amzer.nach')|trans }}</h3>
                 <ul>
-                    {% for ending in endings %}
+                    {% for conjugation in nach %}
                         <li class="verb-item">
                             <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
-                            {% if ending|length == 1 %}
-                                <span class="js-verb">{{verb.pennrann}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
-                            {% elseif ending|length > 1%} 
-                                {% for end in ending %}
-                                    {{verb.pennrann}}<strong>{{end}}</strong> <i class="far fa-copy copy hidden-print"></i>
-                                    {% if loop.index < ending|length %}
-                                        <i>pe</i>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
+                            <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print"></i>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
-            {% if loop.index%2 == 0 %}
-                </div>
-                <div class="row">
-            {% endif %}
-        {% endfor %}
-
-        <div class="col-md">
-            <h3>{{ ('app.amzer.nach')|trans }}</h3>
-            <ul>
-                {% for conjugation in nach %}
-                    <li class="verb-item">
-                        <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
-                        <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print"></i>
-                    </li>
-                {% endfor %}
-            </ul>
         </div>
-    </div>
+    {% endblock %}
 {% endif %}
 
 {% endblock %}
