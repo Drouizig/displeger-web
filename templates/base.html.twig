@@ -17,6 +17,10 @@
     </head>
     <body>
         {% block body %}
+
+            {% block header %}
+                {% include 'main/partial/header.html.twig' %}
+            {% endblock %}
             <div class="container main">
                 <div class="row">
                     <div class="col-md">

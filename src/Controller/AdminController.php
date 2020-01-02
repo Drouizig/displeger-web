@@ -7,16 +7,10 @@ use Doctrine\ORM\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use App\Form\ContactType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Verb;
-use App\Util\VerbouManager;
-use App\Util\KemmaduriouManager;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use App\Form\VerbType;
 
-use Symfony\Component\HttpFoundation\Response;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Configuration;
 use App\Form\ConfigurationType;

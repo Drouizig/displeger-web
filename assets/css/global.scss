@@ -6,9 +6,7 @@ $primary: darken(#428bca, 20%);
 @import "~bootstrap/scss/bootstrap";
 @import "grayscale/grayscale.scss";
 
-body {
-    background-color: #e6ecf0;
-}
+
 
 h1 {
     color: black;
@@ -45,6 +43,9 @@ h1 {
     }
 }
 
+.icon {
+    width: 16px;
+}
 .fas, .far {
     content: 'A';
     width: 20px;

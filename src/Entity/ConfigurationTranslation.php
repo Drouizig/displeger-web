@@ -27,6 +27,11 @@ class ConfigurationTranslation
     private $intro;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $thanks;
+
+    /**
      * @var Configuration
      * @ORM\ManyToOne(targetEntity="App\Entity\Configuration")
      * @ORM\JoinColumn(nullable=true)
@@ -58,6 +63,17 @@ class ConfigurationTranslation
     public function setIntro(?string $intro): self
     {
         $this->intro = $intro;
+
+        return $this;
+    }
+    public function getThanks(): ?string
+    {
+        return $this->thanks;
+    }
+
+    public function setThanks(?string $thanks): self
+    {
+        $this->thanks = $thanks;
 
         return $this;
     }

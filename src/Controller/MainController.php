@@ -155,6 +155,7 @@ class MainController extends AbstractController
         }
 
         if(null !== $verb) {
+            $locale = $request->get('_locale', 'br');
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
             $anvGwan = $verbEndings['gwan'];
             unset($verbEndings['gwan']);
@@ -169,13 +170,18 @@ class MainController extends AbstractController
                 }
             }
 
+            $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verb->getAnvVerb();
+            $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verb->getAnvVerb();
+
             $html = $this->render($viewName, [
                 'verb' => $verb,
                 'verbEndings' => $verbEndings,
                 'anvGwan' => $anvGwan,
                 'nach' => $nach,
                 'contactForm' => $contactForm->createView(),
-                'print' => $print
+                'print' => $print,
+                'wikeriadur_url' => $wikeriadurUrl,
+                'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl,
             ]);
 
             if($print && !$debug){
@@ -298,5 +304,22 @@ class MainController extends AbstractController
      */
     public function notice(Request $request) {
         return $this->render('misc/notice.html.twig');
+    }
+
+    /**
+     * @Route("/{_locale}/thanks", name="thanks", requirements= {
+     *      "_locale": "br|fr|en"
+     * })
+     */
+    public function thanks(Request $request) {
+         /** @var Configuration $config */
+         $config = $this->getDoctrine()->getRepository(Configuration::class)->findFirst();
+         if($config) {
+             $configTranslation = $config->getTranslation($request->get('_locale', 'br'));
+             if($configTranslation) {
+                 $thanks = $configTranslation->getThanks();
+             }
+         }
+        return $this->render('misc/thanks.html.twig', ['thanks' => $thanks]);
     }
 }

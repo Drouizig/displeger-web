@@ -26,7 +26,6 @@
     <a class = "hidden-print export-button" href="?print=true"><i class="fas fa-file-pdf"></i></a>
     <a class = "hidden-print print-button" href="#" onclick="print()"><i class="fas fa-print"></i></a>
 {% endblock %}
-
 {% if verb is not null %}
     <h2>{{verb.anvVerb}}</h2>
 
@@ -42,6 +41,13 @@
         </div>
     </div>
     {% if print == false %}
+        <div class="row">
+            <div class="col-md">
+                <p><a href="{{wikeriadur_url}}" target="_blank">
+                <img class="icon" src="{{ asset('build/wikeriadur.ico') }}" alt="{{'app.wiktionnary.alt'|trans}}" />
+                {{'app.wiktionnary'|trans}}</a> (<a href="{{wikeriadur_conjugation_url}}" target="_blank">{{'app.wiktionnary.conjugation'|trans}}</a>)</p>
+            </div>
+        </div>
         {% if verb.galleg is null or verb.saozneg is null %}
             {% set key = 'saozneg' %}
             {% if verb.galleg is null and verb.saozneg is null %}

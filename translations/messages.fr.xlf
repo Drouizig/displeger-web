@@ -217,6 +217,22 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.legal.notice</source>
         <target>Mentions légales</target>
       </trans-unit>
+      <trans-unit id="AEMWIko" resname="app.thanks">
+        <source>app.thanks</source>
+        <target>Remerciements</target>
+      </trans-unit>
+      <trans-unit id="AtUKD3e" resname="app.wiktionnary.alt">
+        <source>app.wiktionnary.alt</source>
+        <target>Wiktionnaire</target>
+      </trans-unit>
+      <trans-unit id="aF88LIP" resname="app.wiktionnary">
+        <source>app.wiktionnary</source>
+        <target>Wiktionnaire</target>
+      </trans-unit>
+      <trans-unit id="VQVcOIW" resname="app.wiktionnary.conjugation">
+        <source>app.wiktionnary.conjugation</source>
+        <target>Conjugaison</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

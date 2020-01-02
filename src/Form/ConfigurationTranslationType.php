@@ -13,6 +13,7 @@ class ConfigurationTranslationType extends AbstractType
     {
         $builder
             ->add('intro')
+            ->add('thanks')
         ;
     }
 
