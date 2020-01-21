@@ -16,6 +16,7 @@
     ]
 %}
 <a class = "print-button" href="#" onclick="print()"><i class="fas fa-print"></i></a>
+<a class = "report-button" href="#"><i class="fas fa-flag"></i></a>
 {% if verb is not null %}
     <h2>{{verb.anvVerb}}</h2>
     <div class="row">
@@ -31,6 +32,8 @@
             {{'app.wiktionnary'|trans}}</a> (<a href="{{wikeriadur_conjugation_url}}" target="_blank">{{'app.wiktionnary.conjugation'|trans}}</a>)</p>
         </div>
     </div>
+
+    {% include 'emails/reportError.html.twig' %}
     {% if verb.galleg is null or verb.saozneg is null %}
         {% set key = 'saozneg' %}
         {% if verb.galleg is null and verb.saozneg is null %}

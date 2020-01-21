@@ -233,6 +233,14 @@ The verb "%verb%" is missing on the website.
         <source>app.wiktionnary.conjugation</source>
         <target>Conjugationn</target>
       </trans-unit>
+      <trans-unit id="plc0R6e" resname="app.report_error.notice">
+        <source>app.report_error.notice</source>
+        <target>Report an error</target>
+      </trans-unit>
+      <trans-unit id="bAgV.gC" resname="app.form.contact.report_error.translation">
+        <source>app.form.contact.report_error.translation</source>
+        <target>Hello, I would like to report an error on the page of the verb %verb%: ...</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -232,6 +232,14 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.wiktionnary.conjugation</source>
         <target>Displegadur</target>
       </trans-unit>
+      <trans-unit id="plc0R6e" resname="app.report_error.notice">
+        <source>app.report_error.notice</source>
+        <target>__app.report_error.notice</target>
+      </trans-unit>
+      <trans-unit id="bAgV.gC" resname="app.form.contact.report_error.translation">
+        <source>app.form.contact.report_error.translation</source>
+        <target>__app.form.contact.report_error.translation</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
