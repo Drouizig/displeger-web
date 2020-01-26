@@ -29,6 +29,8 @@ use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 class MainController extends AbstractController
 {
 
+    const PDF_DIR="pdf_export/";
+
     /** @var VerbouManager */
     protected $verbouManager;
 
@@ -123,6 +125,7 @@ class MainController extends AbstractController
     public function searchAdvanced(Request $request, PaginatorInterface $knpPaginator) {
         $term = $request->query->get('term', null);
 
+        /** @var erbRepository VerbRepository */
         $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
         $searchQuery = $verbRepository->getFrontSearchQuery($term);
         
@@ -148,7 +151,6 @@ class MainController extends AbstractController
         $viewName = 'main/verb.html.twig';
 
         $print = $request->query->get('print', false);
-        $debug = $request->query->get('debug', false);
 
         if($print) {
             $viewName = 'main/verb.print.html.twig';
@@ -173,37 +175,36 @@ class MainController extends AbstractController
             $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verb->getAnvVerb();
             $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verb->getAnvVerb();
 
-            $html = $this->render($viewName, [
-                'verb' => $verb,
-                'verbEndings' => $verbEndings,
-                'anvGwan' => $anvGwan,
-                'nach' => $nach,
-                'contactForm' => $contactForm->createView(),
-                'print' => $print,
-                'wikeriadur_url' => $wikeriadurUrl,
-                'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl,
-            ]);
-
-            if($print && !$debug){
-                $html2 = $this->renderView(
-                    $viewName,
-                    array(
-                        'verb' => $verb,
-                        'verbEndings' => $verbEndings,
-                        'anvGwan' => $anvGwan,
-                        'nach' => $nach,
-                        'contactForm' => $contactForm->createView(),
-                        'print' => $print,
-                        'anvVerb' => $verb->getAnvVerb()
-                    )
-                );
-
-                //TODO will hog the disk in the public folder, maybe we could clean it after. or keep it for cache ?
-                $pdf->generateFromHtml($html2, $verb->getAnvVerb() . '.pdf', [], true);
-                return new BinaryFileResponse($verb->getAnvVerb() . '.pdf');
+            if($print){
+                if(!file_exists(self::PDF_DIR.$verb->getAnvVerb() . '.pdf')) {
+                    $html = $this->renderView(
+                        $viewName,
+                        array(
+                            'verb' => $verb,
+                            'verbEndings' => $verbEndings,
+                            'anvGwan' => $anvGwan,
+                            'nach' => $nach,
+                            'contactForm' => $contactForm->createView(),
+                            'print' => $print,
+                            'anvVerb' => $verb->getAnvVerb()
+                        )
+                    );
+                    //TODO will hog the disk in the public folder, maybe we could clean it after. or keep it for cache ?
+                    $pdf->generateFromHtml($html, self::PDF_DIR.$verb->getAnvVerb() . '.pdf', [], true);
+                }
+                return new BinaryFileResponse(self::PDF_DIR.$verb->getAnvVerb() . '.pdf');
 
             } else {
-                return $html;
+                return $this->render($viewName, [
+                    'verb' => $verb,
+                    'verbEndings' => $verbEndings,
+                    'anvGwan' => $anvGwan,
+                    'nach' => $nach,
+                    'contactForm' => $contactForm->createView(),
+                    'print' => $print,
+                    'wikeriadur_url' => $wikeriadurUrl,
+                    'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl,
+                ]);
             }
         }
 

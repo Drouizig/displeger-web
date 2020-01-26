@@ -23,8 +23,8 @@
 {% endblock %}
 
 {% block printButton %}
-    <a class = "hidden-print export-button" href="?print=true"><i class="fas fa-file-pdf"></i></a>
-    <a class = "hidden-print print-button" href="#" onclick="print()"><i class="fas fa-print"></i></a>
+    <a class = "hidden-print export-button" alt="{{ 'app.button.export'|trans }}" href="?print=true"><i class="fas fa-file-pdf"></i></a>
+    <a class = "hidden-print print-button" alt="{{ 'app.button.print'|trans }}" href="#" onclick="print()"><i class="fas fa-print"></i></a>
 {% endblock %}
 {% if verb is not null %}
     <h2>{{verb.anvVerb}}</h2>
