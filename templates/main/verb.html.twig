@@ -15,126 +15,153 @@
         'D'
     ]
 %}
-<a class = "print-button" href="#" onclick="print()"><i class="fas fa-print"></i></a>
+
+{% block header %}
+    {% if print == false %}
+        {% include 'main/partial/header.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+{% block printButton %}
+    <a class = "hidden-print export-button" alt="{{ 'app.button.export'|trans }}" href="?print=true"><i class="fas fa-file-pdf"></i></a>
+    <a class = "hidden-print print-button" alt="{{ 'app.button.print'|trans }}" href="#" onclick="print()"><i class="fas fa-print"></i></a>
+{% endblock %}
 {% if verb is not null %}
     <h2>{{verb.anvVerb}}</h2>
-    <div class="row">
-        <div class="col-md">
-            <p>{{'app.french'|trans}} : <i>{{verb.galleg}}</i></p>
-            <p>{{'app.english'|trans}} : <i>{{verb.saozneg}}</i></p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md">
-            <p><a href="{{wikeriadur_url}}" target="_blank">
-            <img class="icon" src="{{ asset('build/wikeriadur.ico') }}" alt="{{'app.wiktionnary.alt'|trans}}" />
-            {{'app.wiktionnary'|trans}}</a> (<a href="{{wikeriadur_conjugation_url}}" target="_blank">{{'app.wiktionnary.conjugation'|trans}}</a>)</p>
-        </div>
-    </div>
-    {% if verb.galleg is null or verb.saozneg is null %}
-        {% set key = 'saozneg' %}
-        {% if verb.galleg is null and verb.saozneg is null %}
-            {% set key = 'both' %}
-        {% elseif verb.galleg is null %}
-            {% set key = 'galleg' %}
-        {% endif %}
-        <div class="row missing_translation">
 
+    <div class="row">
+        <div class="col-md">
+            {% if verb.galleg is not null or print == false %}
+                <p>{{'app.french'|trans}} : <i>{{verb.galleg}}</i></p>
+            {% endif %}
+
+            {% if verb.saozneg is not null or print == false %}
+                <p>{{'app.english'|trans}} : <i>{{verb.saozneg}}</i></p>
+            {% endif %}
+        </div>
+    </div>
+    {% if print == false %}
+        <div class="row">
             <div class="col-md">
-                <div class="missing_translation_notice row">
-                    <div class="col-md">
-                        {{ 'app.missing_translation.notice'|trans }}
+                <p><a href="{{wikeriadur_url}}" target="_blank">
+                <img class="icon" src="{{ asset('build/wikeriadur.ico') }}" alt="{{'app.wiktionnary.alt'|trans}}" />
+                {{'app.wiktionnary'|trans}}</a> (<a href="{{wikeriadur_conjugation_url}}" target="_blank">{{'app.wiktionnary.conjugation'|trans}}</a>)</p>
+            </div>
+        </div>
+        {% if verb.galleg is null or verb.saozneg is null %}
+            {% set key = 'saozneg' %}
+            {% if verb.galleg is null and verb.saozneg is null %}
+                {% set key = 'both' %}
+            {% elseif verb.galleg is null %}
+                {% set key = 'galleg' %}
+            {% endif %}
+            <div class="row missing_translation">
+
+                <div class="col-md">
+                    <div class="missing_translation_notice row">
+                        <div class="col-md">
+                            {{ 'app.missing_translation.notice'|trans }}
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md">
-                        {% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
-                        <div class="missing_translation_form">
-                            {{form_start(contactForm, {
-                                'action' : path('mail'),
-                                'attr' : {'class': 'js-contact-form'}
-                            })}}
-                            <div class="row">
-                                <div class="col-md-2">
-                                    {{form_label(contactForm.name)}}
-                                </div><div class="col-md">
-                                    {{form_widget(contactForm.name)}}
+                    <div class="row">
+                        <div class="col-md">
+                            {% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
+                            <div class="missing_translation_form">
+                                {{form_start(contactForm, {
+                                    'action' : path('mail'),
+                                    'attr' : {'class': 'js-contact-form'}
+                                })}}
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        {{form_label(contactForm.name)}}
+                                    </div><div class="col-md">
+                                        {{form_widget(contactForm.name)}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    {{form_label(contactForm.email)}}
-                                </div><div class="col-md">
-                                    {{form_widget(contactForm.email)}}
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        {{form_label(contactForm.email)}}
+                                    </div><div class="col-md">
+                                        {{form_widget(contactForm.email)}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    {{form_label(contactForm.message)}}
-                                </div><div class="col-md">
-                                    {{form_widget(
-                                        contactForm.message, 
-                                        {'value': ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb})}
-                                    )
-                                    }}
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        {{form_label(contactForm.message)}}
+                                    </div><div class="col-md">
+                                        {{form_widget(
+                                            contactForm.message,
+                                            {'value': ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb})}
+                                        )
+                                        }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md">
-                                    {{form_widget(contactForm.submit)}}
+                                <div class="row">
+                                    <div class="col-md">
+                                        {{form_widget(contactForm.submit)}}
+                                    </div>
                                 </div>
+                                {{form_widget(contactForm._token)}}
+                                {{form_end(contactForm)}}
                             </div>
-                            {{form_widget(contactForm._token)}}
-                            {{form_end(contactForm)}}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     {% endif %}
     <div class="row">
         <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verb.pennrann ~ anvGwan}}</div>
     </div>
-    <div class="row verb-items">
-        {% for amzer, endings in verbEndings %}
+
+    {% block verbContentTable %}
+        <div class="row verb-items">
+            {% for amzer, endings in verbEndings %}
+                <div class="col-md">
+                    <h3>{{ ('app.amzer.' ~ amzer)|trans }}</h3>
+                    <ul>
+                        {% for ending in endings %}
+                            <li class="verb-item">
+                                <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
+                                {% if ending|length == 1 %}
+                                    <span class="js-verb">{{verb.pennrann}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
+                                {% elseif ending|length > 1%}
+                                    {% for end in ending %}
+                                        {{verb.pennrann}}<strong>{{end}}</strong> <i class="far fa-copy copy hidden-print"></i>
+                                        {% if loop.index < ending|length %}
+                                            <i>pe</i>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% if loop.index%2 == 0 %}
+                    </div>
+                    <div class="row">
+                {% endif %}
+            {% endfor %}
+
             <div class="col-md">
-                <h3>{{ ('app.amzer.' ~ amzer)|trans }}</h3>
+                <h3>{{ ('app.amzer.nach')|trans }}</h3>
                 <ul>
-                    {% for ending in endings %}
+                    {% for conjugation in nach %}
                         <li class="verb-item">
                             <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
-                            {% if ending|length == 1 %}
-                                <span class="js-verb">{{verb.pennrann}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy"></i>
-                            {% elseif ending|length > 1%} 
-                                {% for end in ending %}
-                                    {{verb.pennrann}}<strong>{{end}}</strong> <i class="far fa-copy copy"></i>
-                                    {% if loop.index < ending|length %}
-                                        <i>pe</i>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
+                            <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print"></i>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
-            {% if loop.index%2 == 0 %}
-                </div>
-                <div class="row">
-            {% endif %}
-        {% endfor %}
-
-        <div class="col-md">
-            <h3>{{ ('app.amzer.nach')|trans }}</h3>
-            <ul>
-                {% for conjugation in nach %}
-                    <li class="verb-item">
-                        <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
-                        <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy"></i>
-                    </li>
-                {% endfor %}
-            </ul>
         </div>
-    </div>
+    {% endblock %}
 {% endif %}
 
+{% endblock %}
+
+{% block footer %}
+    {% if print == false %}
+        {% include 'main/partial/footer.html.twig' %}
+    {% endif %}
 {% endblock %}

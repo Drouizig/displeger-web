@@ -232,6 +232,14 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.wiktionnary.conjugation</source>
         <target>Displegadur</target>
       </trans-unit>
+      <trans-unit id="c6orvDZ" resname="app.button.export">
+        <source>app.button.export</source>
+        <target>Ezporzhiañ e PDF</target>
+      </trans-unit>
+      <trans-unit id="wZ7F4mt" resname="app.button.print">
+        <source>app.button.print</source>
+        <target>Moullañ</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
