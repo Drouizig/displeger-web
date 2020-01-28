@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    {% include 'emails/reportError.html.twig' %}
+    {% include 'main/partial/reportError.html.twig' %}
     {% if verb.galleg is null or verb.saozneg is null %}
         {% set key = 'saozneg' %}
         {% if verb.galleg is null and verb.saozneg is null %}
@@ -41,59 +41,7 @@
         {% elseif verb.galleg is null %}
             {% set key = 'galleg' %}
         {% endif %}
-        <div class="row missing_translation">
-
-            <div class="col-md">
-                <div class="missing_translation_notice row">
-                    <div class="col-md">
-                        {{ 'app.missing_translation.notice'|trans }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md">
-                        {% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
-                        <div class="missing_translation_form">
-                            {{form_start(contactForm, {
-                                'action' : path('mail'),
-                                'attr' : {'class': 'js-contact-form'}
-                            })}}
-                            <div class="row">
-                                <div class="col-md-2">
-                                    {{form_label(contactForm.name)}}
-                                </div><div class="col-md">
-                                    {{form_widget(contactForm.name)}}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    {{form_label(contactForm.email)}}
-                                </div><div class="col-md">
-                                    {{form_widget(contactForm.email)}}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    {{form_label(contactForm.message)}}
-                                </div><div class="col-md">
-                                    {{form_widget(
-                                        contactForm.message, 
-                                        {'value': ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb})}
-                                    )
-                                    }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md">
-                                    {{form_widget(contactForm.submit)}}
-                                </div>
-                            </div>
-                            {{form_widget(contactForm._token)}}
-                            {{form_end(contactForm)}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% include 'main/partial/contact-form.html.twig' %}
     {% endif %}
     <div class="row">
         <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verb.pennrann ~ anvGwan}}</div>

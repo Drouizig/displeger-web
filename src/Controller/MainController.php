@@ -141,6 +141,7 @@ class MainController extends AbstractController
     public function verb(Request $request,Verb $verb = null)
     {
         $contactForm = $this->createForm(ContactType::class);
+        $reportErrorForm = $this->createForm(ContactType::class);
         if(null !== $verb) {
             $locale = $request->get('_locale', 'br');
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
@@ -166,6 +167,7 @@ class MainController extends AbstractController
                 'anvGwan' => $anvGwan,
                 'nach' => $nach,
                 'contactForm' => $contactForm->createView(),
+                'reportErrorForm' => $reportErrorForm->createView(),
                 'wikeriadur_url' => $wikeriadurUrl,
                 'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl
             ]);

@@ -1,15 +1,15 @@
-<div class="row report_error">
+<div class="row missing_translation">
 
     <div class="col-md">
-        <div class="report_error_notice row">
+        <div class="missing_translation_notice row">
             <div class="col-md">
-                {{ 'app.report_error.notice'|trans }}
+                {{ 'app.missing_translation.notice'|trans }}
             </div>
         </div>
         <div class="row">
             <div class="col-md">
                 {% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
-                <div class="report_error_form">
+                <div class="missing_translation_form">
                     {{form_start(contactForm, {
                         'action' : path('mail'),
                         'attr' : {'class': 'js-contact-form'}
@@ -34,7 +34,7 @@
                         </div><div class="col-md">
                             {{form_widget(
                                 contactForm.message,
-                                {'value': ('app.form.contact.report_error.translation')|trans({'%verb%': verb.anvVerb})}
+                                {'value': ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb})}
                             )
                             }}
                         </div>
