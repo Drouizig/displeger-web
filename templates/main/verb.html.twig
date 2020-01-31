@@ -33,7 +33,12 @@
         </div>
     </div>
 
-    {% include 'main/partial/reportError.html.twig' %}
+    {% include 'main/partial/contact_form.html.twig' with {
+        'form_class' : 'report_error',
+        'form_object' : reportErrorForm,
+        'notice_msg' : 'app.report_error.notice' |trans,
+        'default_msg' : ('app.form.contact.report_error.translation')|trans({'%verb%': verb.anvVerb})
+    } %}
     {% if verb.galleg is null or verb.saozneg is null %}
         {% set key = 'saozneg' %}
         {% if verb.galleg is null and verb.saozneg is null %}
@@ -41,7 +46,12 @@
         {% elseif verb.galleg is null %}
             {% set key = 'galleg' %}
         {% endif %}
-        {% include 'main/partial/contact-form.html.twig' %}
+        {% include 'main/partial/contact_form.html.twig' with {
+            'form_class' : 'missing_translation',
+            'form_object' : contactForm,
+            'notice_msg' : 'app.missing_translation.notice' |trans,
+            'default_msg' : ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb})
+        } %}
     {% endif %}
     <div class="row">
         <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verb.pennrann ~ anvGwan}}</div>

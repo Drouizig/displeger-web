@@ -1,51 +1,51 @@
-<div class="row missing_translation">
+<div class="row {{ form_class }}">
 
     <div class="col-md">
-        <div class="missing_translation_notice row">
+        <div class="{{ form_class }}_notice row">
             <div class="col-md">
-                {{ 'app.missing_translation.notice'|trans }}
+                {{ notice_msg }}
             </div>
         </div>
         <div class="row">
             <div class="col-md">
-                {% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
-                <div class="missing_translation_form">
-                    {{form_start(contactForm, {
+                {% form_theme form_object 'bootstrap_4_layout.html.twig' %}
+                <div class="{{ form_class }}_form">
+                    {{form_start(form_object, {
                         'action' : path('mail'),
                         'attr' : {'class': 'js-contact-form'}
                     })}}
                     <div class="row">
                         <div class="col-md-2">
-                            {{form_label(contactForm.name)}}
+                            {{form_label(form_object.name)}}
                         </div><div class="col-md">
-                            {{form_widget(contactForm.name)}}
+                            {{form_widget(form_object.name)}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2">
-                            {{form_label(contactForm.email)}}
+                            {{form_label(form_object.email)}}
                         </div><div class="col-md">
-                            {{form_widget(contactForm.email)}}
+                            {{form_widget(form_object.email)}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2">
-                            {{form_label(contactForm.message)}}
+                            {{form_label(form_object.message)}}
                         </div><div class="col-md">
                             {{form_widget(
-                                contactForm.message,
-                                {'value': ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb})}
+                                form_object.message,
+                                {'value': default_msg }
                             )
                             }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
-                            {{form_widget(contactForm.submit)}}
+                            {{form_widget(form_object.submit)}}
                         </div>
                     </div>
-                    {{form_widget(contactForm._token)}}
-                    {{form_end(contactForm)}}
+                    {{form_widget(form_object._token)}}
+                    {{form_end(form_object)}}
                 </div>
             </div>
         </div>
