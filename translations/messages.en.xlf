@@ -241,6 +241,18 @@ The verb "%verb%" is missing on the website.
         <source>app.form.contact.report_error.translation</source>
         <target>Hello, I would like to report an error on the page of the verb %verb%: ...</target>
       </trans-unit>
+      <trans-unit id="nfzBrUo" resname="app.form.contact.email.placeholder">
+        <source>app.form.contact.email.placeholder</source>
+        <target>john@smith.net</target>
+      </trans-unit>
+      <trans-unit id="qpcmlZC" resname="app.form.contact.name.placeholder">
+        <source>app.form.contact.name.placeholder</source>
+        <target>John Smith</target>
+      </trans-unit>
+      <trans-unit id="Vplte.V" resname="app.form.contact.default.message">
+        <source>app.form.contact.default.message</source>
+        <target>Greetings, I wanted to contact you for ...</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

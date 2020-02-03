@@ -234,11 +234,23 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       </trans-unit>
       <trans-unit id="plc0R6e" resname="app.report_error.notice">
         <source>app.report_error.notice</source>
-        <target>__app.report_error.notice</target>
+        <target>Danevellañ ur fazi</target>
       </trans-unit>
       <trans-unit id="bAgV.gC" resname="app.form.contact.report_error.translation">
         <source>app.form.contact.report_error.translation</source>
-        <target>__app.form.contact.report_error.translation</target>
+        <target>Demat, fellout a ra din danevellañ ur fazi war ar bajenn verb %verb%: ...</target>
+      </trans-unit>
+      <trans-unit id="nfzBrUo" resname="app.form.contact.email.placeholder">
+        <source>app.form.contact.email.placeholder</source>
+        <target>yann@gov.bzh</target>
+      </trans-unit>
+      <trans-unit id="qpcmlZC" resname="app.form.contact.name.placeholder">
+        <source>app.form.contact.name.placeholder</source>
+        <target>Yann ar Gov</target>
+      </trans-unit>
+      <trans-unit id="Vplte.V" resname="app.form.contact.default.message">
+        <source>app.form.contact.default.message</source>
+        <target>Demat, fellout a ra din mont e darempred ganeoc'h evit ...</target>
       </trans-unit>
     </body>
   </file>

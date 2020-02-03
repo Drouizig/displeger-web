@@ -18,14 +18,19 @@
                         <div class="col-md-2">
                             {{form_label(form_object.name)}}
                         </div><div class="col-md">
-                            {{form_widget(form_object.name)}}
+                            {{form_widget(form_object.name,
+                                {'attr' : { 'placeholder' : name_placeholder } }
+                            )}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2">
                             {{form_label(form_object.email)}}
                         </div><div class="col-md">
-                            {{form_widget(form_object.email)}}
+                            {{form_widget(
+                                form_object.email,
+                                {'attr' : { 'placeholder' : email_placeholder } }
+                            )}}
                         </div>
                     </div>
                     <div class="row">

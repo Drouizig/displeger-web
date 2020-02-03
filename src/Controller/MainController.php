@@ -243,7 +243,9 @@ class MainController extends AbstractController
                         'form_class' => '',
                         'notice_msg' => '',
                         'form_attr_class' => '',
-                        'default_msg' => '',
+                        'default_msg' => $translator->trans('app.form.contact.default.message'),
+                        'email_placeholder' => $translator->trans('app.form.contact.email.placeholder'),
+                        'name_placeholder' => $translator->trans('app.form.contact.name.placeholder')
                     ]);
                 } else {
                     /** SessionInterface $session */
@@ -260,7 +262,9 @@ class MainController extends AbstractController
                     'form_class' => '',
                     'notice_msg' => '',
                     'form_attr_class' => '',
-                    'default_msg' => '',
+                    'default_msg' => $translator->trans('app.form.contact.default.message'),
+                    'email_placeholder' => $translator->trans('app.form.contact.email.placeholder'),
+                    'name_placeholder' => $translator->trans('app.form.contact.name.placeholder')
                 ]);
             }
         } else {
@@ -270,7 +274,9 @@ class MainController extends AbstractController
                 'form_class' => '',
                 'notice_msg' => '',
                 'form_attr_class' => '',
-                'default_msg' => '',
+                'default_msg' => $translator->trans('app.form.contact.default.message'),
+                'email_placeholder' => $translator->trans('app.form.contact.email.placeholder'),
+                'name_placeholder' => $translator->trans('app.form.contact.name.placeholder')
             ]);
         }
     }
