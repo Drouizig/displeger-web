@@ -239,7 +239,11 @@ class MainController extends AbstractController
                     $session->getFlashBag()->set('message', $translator->trans('app.email.error'));
 
                     return $this->render('main/email.html.twig', [
-                        'contactForm' => $contactForm->createView()
+                        'form_object' => $contactForm->createView(),
+                        'form_class' => '',
+                        'notice_msg' => '',
+                        'form_attr_class' => '',
+                        'default_msg' => '',
                     ]);
                 } else {
                     /** SessionInterface $session */
@@ -251,14 +255,22 @@ class MainController extends AbstractController
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse(['result' => 'nok', 'errors' => $contactForm->getErrors(true)]);
             } else {
-                return $this->render('email.html.twig', [
-                    'contactForm' => $contactForm->createView() 
+                return $this->render('main/email.html.twig', [
+                    'form_object' => $contactForm->createView(),
+                    'form_class' => '',
+                    'notice_msg' => '',
+                    'form_attr_class' => '',
+                    'default_msg' => '',
                 ]);
             }
         } else {
             
             return $this->render('main/email.html.twig', [
-                'contactForm' => $contactForm->createView()
+                'form_object' => $contactForm->createView(),
+                'form_class' => '',
+                'notice_msg' => '',
+                'form_attr_class' => '',
+                'default_msg' => '',
             ]);
         }
     }

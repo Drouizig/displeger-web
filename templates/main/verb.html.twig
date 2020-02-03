@@ -37,7 +37,8 @@
         'form_class' : 'report_error',
         'form_object' : reportErrorForm,
         'notice_msg' : 'app.report_error.notice' |trans,
-        'default_msg' : ('app.form.contact.report_error.translation')|trans({'%verb%': verb.anvVerb})
+        'default_msg' : ('app.form.contact.report_error.translation')|trans({'%verb%': verb.anvVerb}),
+        'form_attr_class' : 'js-contact-form'
     } %}
     {% if verb.galleg is null or verb.saozneg is null %}
         {% set key = 'saozneg' %}
@@ -50,7 +51,8 @@
             'form_class' : 'missing_translation',
             'form_object' : contactForm,
             'notice_msg' : 'app.missing_translation.notice' |trans,
-            'default_msg' : ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb})
+            'default_msg' : ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb}),
+            'form_attr_class' : 'js-contact-form'
         } %}
     {% endif %}
     <div class="row">
