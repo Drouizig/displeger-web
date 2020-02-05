@@ -48,38 +48,37 @@
                 {{'app.wiktionnary'|trans}}</a> (<a href="{{wikeriadur_conjugation_url}}" target="_blank">{{'app.wiktionnary.conjugation'|trans}}</a>)</p>
             </div>
         </div>
-    </div>
 
-    {% include 'main/partial/contact_form.html.twig' with {
-        'form_class' : 'report_error',
-        'form_object' : reportErrorForm,
-        'notice_msg' : 'app.report_error.notice' |trans,
-        'default_msg' : ('app.form.contact.report_error.translation')|trans({'%verb%': verb.anvVerb}),
-        'form_attr_class' : 'js-contact-form',
-        'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
-        'name_placeholder' : 'app.form.contact.name.placeholder' | trans
-    } %}
-    {% if verb.galleg is null or verb.saozneg is null %}
-        {% set key = 'saozneg' %}
-        {% if verb.galleg is null and verb.saozneg is null %}
-            {% set key = 'both' %}
-        {% elseif verb.galleg is null %}
-            {% set key = 'galleg' %}
-        {% endif %}
         {% include 'main/partial/contact_form.html.twig' with {
-            'form_class' : 'missing_translation',
-            'form_object' : contactForm,
-            'notice_msg' : 'app.missing_translation.notice' |trans,
-            'default_msg' : ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb}),
+            'form_class' : 'report_error',
+            'form_object' : reportErrorForm,
+            'notice_msg' : 'app.report_error.notice' |trans,
+            'default_msg' : ('app.form.contact.report_error.translation')|trans({'%verb%': verb.anvVerb}),
             'form_attr_class' : 'js-contact-form',
             'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
             'name_placeholder' : 'app.form.contact.name.placeholder' | trans
         } %}
-        {% endif %}
+        {% if verb.galleg is null or verb.saozneg is null %}
+            {% set key = 'saozneg' %}
+            {% if verb.galleg is null and verb.saozneg is null %}
+                {% set key = 'both' %}
+            {% elseif verb.galleg is null %}
+                {% set key = 'galleg' %}
+            {% endif %}
+            {% include 'main/partial/contact_form.html.twig' with {
+                'form_class' : 'missing_translation',
+                'form_object' : contactForm,
+                'notice_msg' : 'app.missing_translation.notice' |trans,
+                'default_msg' : ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb}),
+                'form_attr_class' : 'js-contact-form',
+                'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
+                'name_placeholder' : 'app.form.contact.name.placeholder' | trans
+            } %}
+            {% endif %}
+        <div class="row">
+            <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verb.pennrann ~ anvGwan}}</div>
+        </div>
     {% endif %}
-    <div class="row">
-        <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verb.pennrann ~ anvGwan}}</div>
-    </div>
 
     {% block verbContentTable %}
         <div class="row verb-items">
