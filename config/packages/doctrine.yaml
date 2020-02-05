@@ -8,12 +8,12 @@ parameters:
 doctrine:
     dbal:
         # configure these for your database server
-        driver: 'pdo_pgsql'
+        driver: '%env(resolve:DB_DRIVER)%'
         server_version: '11.1'
         charset: utf8
         default_table_options:
-            charset: utf8
-            collate: utf8mb4_unicode_ci
+            charset: '%env(resolve:DB_CHARSET)%'
+            collate: '%env(resolve:DB_COLLATE)%'
 
         url: '%env(resolve:DATABASE_URL)%'
     orm:
