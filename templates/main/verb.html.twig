@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block printButton %}
-    <a class = "hidden-print report-button" href="#"><i class="fas fa-flag"></i></a>
+    <a class = "hidden-print report-button" alt="{{ 'app.button.report'|trans }}" href="#"><i class="fas fa-flag"></i></a>
     <a class = "hidden-print export-button" alt="{{ 'app.button.export'|trans }}" href="?print=true"><i class="fas fa-file-pdf"></i></a>
     <a class = "hidden-print print-button" alt="{{ 'app.button.print'|trans }}" href="#" onclick="print()"><i class="fas fa-print"></i></a>
 {% endblock %}
