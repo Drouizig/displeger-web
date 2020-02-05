@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block printButton %}
-    <a class = "report-button" href="#"><i class="fas fa-flag"></i></a>
+    <a class = "hidden-print report-button" href="#"><i class="fas fa-flag"></i></a>
     <a class = "hidden-print export-button" alt="{{ 'app.button.export'|trans }}" href="?print=true"><i class="fas fa-file-pdf"></i></a>
     <a class = "hidden-print print-button" alt="{{ 'app.button.print'|trans }}" href="#" onclick="print()"><i class="fas fa-print"></i></a>
 {% endblock %}
@@ -75,6 +75,7 @@
             'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
             'name_placeholder' : 'app.form.contact.name.placeholder' | trans
         } %}
+        {% endif %}
     {% endif %}
     <div class="row">
         <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verb.pennrann ~ anvGwan}}</div>

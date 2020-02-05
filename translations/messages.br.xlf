@@ -251,6 +251,7 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       <trans-unit id="Vplte.V" resname="app.form.contact.default.message">
         <source>app.form.contact.default.message</source>
         <target>Demat, fellout a ra din mont e darempred ganeoc'h evit ...</target>
+      </trans-unit>
       <trans-unit id="c6orvDZ" resname="app.button.export">
         <source>app.button.export</source>
         <target>Ezporzhiañ e PDF</target>
