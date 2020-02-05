@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use Knp\Snappy\Pdf;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Form\ContactType;
@@ -21,9 +24,12 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Configuration;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 class MainController extends AbstractController
 {
+
+    const PDF_DIR="pdf_export/";
 
     /** @var VerbouManager */
     protected $verbouManager;
@@ -119,6 +125,7 @@ class MainController extends AbstractController
     public function searchAdvanced(Request $request, PaginatorInterface $knpPaginator) {
         $term = $request->query->get('term', null);
 
+        /** @var erbRepository VerbRepository */
         $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
         $searchQuery = $verbRepository->getFrontSearchQuery($term);
         
@@ -135,13 +142,21 @@ class MainController extends AbstractController
 
 
     /**
-     * @Route("/{_locale}/verb/{anvVerb}", name="verb")
+     * @Route("/{_locale}/verb/{anvVerb}", name="verb", defaults={"print" : false})
      * @Entity("verb", expr="repository.findOneByAnvVerb(anvVerb)")
      */
-    public function verb(Request $request,Verb $verb = null)
+    public function verb(Request $request,Verb $verb = null, LoggerInterface $logger, Pdf $pdf)
     {
         $contactForm = $this->createForm(ContactType::class);
         $reportErrorForm = $this->createForm(ContactType::class);
+        $viewName = 'main/verb.html.twig';
+
+        $print = $request->query->get('print', false);
+
+        if($print) {
+            $viewName = 'main/verb.print.html.twig';
+        }
+
         if(null !== $verb) {
             $locale = $request->get('_locale', 'br');
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
@@ -161,16 +176,38 @@ class MainController extends AbstractController
             $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verb->getAnvVerb();
             $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verb->getAnvVerb();
 
-            return $this->render('main/verb.html.twig', [
-                'verb' => $verb,
-                'verbEndings' => $verbEndings,
-                'anvGwan' => $anvGwan,
-                'nach' => $nach,
-                'contactForm' => $contactForm->createView(),
-                'reportErrorForm' => $reportErrorForm->createView(),
-                'wikeriadur_url' => $wikeriadurUrl,
-                'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl
-            ]);
+            if($print){
+                if(!file_exists(self::PDF_DIR.$verb->getAnvVerb() . '.pdf')) {
+                    $html = $this->renderView(
+                        $viewName,
+                        array(
+                            'verb' => $verb,
+                            'verbEndings' => $verbEndings,
+                            'anvGwan' => $anvGwan,
+                            'nach' => $nach,
+                            'contactForm' => $contactForm->createView(),
+                            'print' => $print,
+                            'anvVerb' => $verb->getAnvVerb()
+                        )
+                    );
+                    //TODO will hog the disk in the public folder, maybe we could clean it after. or keep it for cache ?
+                    $pdf->generateFromHtml($html, self::PDF_DIR.$verb->getAnvVerb() . '.pdf', [], true);
+                }
+                return new BinaryFileResponse(self::PDF_DIR.$verb->getAnvVerb() . '.pdf');
+
+            } else {
+                return $this->render($viewName, [
+                    'verb' => $verb,
+                    'verbEndings' => $verbEndings,
+                    'anvGwan' => $anvGwan,
+                    'nach' => $nach,
+                    'contactForm' => $contactForm->createView(),
+                    'reportErrorForm' => $reportErrorForm->createView(),
+                    'print' => $print,
+                    'wikeriadur_url' => $wikeriadurUrl,
+                    'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl,
+                ]);
+            }
         }
 
         $searchTerm = $request->attributes->get('anvVerb');

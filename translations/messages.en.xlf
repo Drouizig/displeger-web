@@ -252,6 +252,13 @@ The verb "%verb%" is missing on the website.
       <trans-unit id="Vplte.V" resname="app.form.contact.default.message">
         <source>app.form.contact.default.message</source>
         <target>Greetings, I wanted to contact you for ...</target>
+      <trans-unit id="c6orvDZ" resname="app.button.export">
+        <source>app.button.export</source>
+        <target>PDF Export</target>
+      </trans-unit>
+      <trans-unit id="wZ7F4mt" resname="app.button.print">
+        <source>app.button.print</source>
+        <target>Print</target>
       </trans-unit>
     </body>
   </file>
