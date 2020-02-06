@@ -5,5 +5,9 @@
 {% block content %}
     {% include 'main/partial/header.html.twig' %}
 
-    {% include 'main/partial/contact_form.html.twig' %}
+    {% include 'main/partial/contact_form.html.twig' with {
+        'default_msg' : 'app.form.contact.default.message' | trans,
+        'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
+        'name_placeholder' : 'app.form.contact.name.placeholder' | trans
+    } %}
 {% endblock %}

@@ -1,25 +1,25 @@
-<div class="row {{ form_class }}">
+<div class="row {{ form_class ?? '' }}">
 
     <div class="col-md">
-        <div class="{{ form_class }}_notice row">
+        <div class="{{ form_class ?? ''}}_notice row">
             <div class="col-md">
-                {{ notice_msg }}
+                {{ notice_msg ?? ''}}
             </div>
         </div>
         <div class="row">
             <div class="col-md">
                 {% form_theme form_object 'bootstrap_4_layout.html.twig' %}
-                <div class="{{ form_class }}_form">
+                <div class="{{ form_class ?? '' }}_form">
                     {{form_start(form_object, {
                         'action' : path('mail'),
-                        'attr' : {'class': form_attr_class}
+                        'attr' : {'class': form_attr_class ?? ''}
                     })}}
                     <div class="row">
                         <div class="col-md-2">
                             {{form_label(form_object.name)}}
                         </div><div class="col-md">
                             {{form_widget(form_object.name,
-                                {'attr' : { 'placeholder' : name_placeholder } }
+                                {'attr' : { 'placeholder' : name_placeholder ?? ''} }
                             )}}
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         </div><div class="col-md">
                             {{form_widget(
                                 form_object.email,
-                                {'attr' : { 'placeholder' : email_placeholder } }
+                                {'attr' : { 'placeholder' : email_placeholder ?? ''} }
                             )}}
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         </div><div class="col-md">
                             {{form_widget(
                                 form_object.message,
-                                {'value': default_msg }
+                                {'value': default_msg ?? ''}
                             )
                             }}
                         </div>

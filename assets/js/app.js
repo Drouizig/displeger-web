@@ -123,7 +123,3 @@ function slideUpMessage()
 {
   $('.message').slideUp();
 }
-
-function contact(){
-
-}

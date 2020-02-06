@@ -276,13 +276,7 @@ class MainController extends AbstractController
                     $session->getFlashBag()->set('message', $translator->trans('app.email.error'));
 
                     return $this->render('main/email.html.twig', [
-                        'form_object' => $contactForm->createView(),
-                        'form_class' => '',
-                        'notice_msg' => '',
-                        'form_attr_class' => '',
-                        'default_msg' => $translator->trans('app.form.contact.default.message'),
-                        'email_placeholder' => $translator->trans('app.form.contact.email.placeholder'),
-                        'name_placeholder' => $translator->trans('app.form.contact.name.placeholder')
+                        'form_object' => $contactForm->createView()
                     ]);
                 } else {
                     /** SessionInterface $session */
@@ -295,25 +289,13 @@ class MainController extends AbstractController
                 return new JsonResponse(['result' => 'nok', 'errors' => $contactForm->getErrors(true)]);
             } else {
                 return $this->render('main/email.html.twig', [
-                    'form_object' => $contactForm->createView(),
-                    'form_class' => '',
-                    'notice_msg' => '',
-                    'form_attr_class' => '',
-                    'default_msg' => $translator->trans('app.form.contact.default.message'),
-                    'email_placeholder' => $translator->trans('app.form.contact.email.placeholder'),
-                    'name_placeholder' => $translator->trans('app.form.contact.name.placeholder')
+                    'form_object' => $contactForm->createView()
                 ]);
             }
         } else {
             
             return $this->render('main/email.html.twig', [
-                'form_object' => $contactForm->createView(),
-                'form_class' => '',
-                'notice_msg' => '',
-                'form_attr_class' => '',
-                'default_msg' => $translator->trans('app.form.contact.default.message'),
-                'email_placeholder' => $translator->trans('app.form.contact.email.placeholder'),
-                'name_placeholder' => $translator->trans('app.form.contact.name.placeholder')
+                'form_object' => $contactForm->createView()
             ]);
         }
     }
