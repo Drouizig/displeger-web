@@ -148,17 +148,21 @@ class MainController extends AbstractController
     public function verb(Request $request,Verb $verb = null, LoggerInterface $logger, Pdf $pdf)
     {
         $contactForm = $this->createForm(ContactType::class);
-        $viewName = 'main/verb.html.twig';
+        $template = 'main/verb.html.twig';
 
         $print = $request->query->get('print', false);
 
         if($print) {
-            $viewName = 'main/verb.print.html.twig';
+            $template = 'main/verb.print.html.twig';
         }
 
         if(null !== $verb) {
             $locale = $request->get('_locale', 'br');
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
+            if($verb->getAnvVerb() === 'bezañ') {
+                $verbEndings = $this->getParameter('bezan');
+                $template = 'main/irregular/bezan.html.twig';
+            }
             $anvGwan = $verbEndings['gwan'];
             unset($verbEndings['gwan']);
             unset($verbEndings['nach']);
@@ -174,7 +178,6 @@ class MainController extends AbstractController
 
             $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verb->getAnvVerb();
             $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verb->getAnvVerb();
-
             if($print){
                 if(!file_exists(self::PDF_DIR.$verb->getAnvVerb() . '.pdf')) {
                     $html = $this->renderView(
