@@ -149,17 +149,21 @@ class MainController extends AbstractController
     {
         $contactForm = $this->createForm(ContactType::class);
         $reportErrorForm = $this->createForm(ContactType::class);
-        $viewName = 'main/verb.html.twig';
+        $template = 'main/verb.html.twig';
 
         $print = $request->query->get('print', false);
 
         if($print) {
-            $viewName = 'main/verb.print.html.twig';
+            $template = 'main/verb.print.html.twig';
         }
 
         if(null !== $verb) {
             $locale = $request->get('_locale', 'br');
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
+            if($verb->getAnvVerb() === 'bezañ') {
+                $verbEndings = $this->getParameter('bezan');
+                $template = 'main/irregular/bezan.html.twig';
+            }
             $anvGwan = $verbEndings['gwan'];
             unset($verbEndings['gwan']);
             unset($verbEndings['nach']);
@@ -175,11 +179,10 @@ class MainController extends AbstractController
 
             $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verb->getAnvVerb();
             $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verb->getAnvVerb();
-
             if($print){
                 if(!file_exists(self::PDF_DIR.$verb->getAnvVerb() . '.pdf')) {
                     $html = $this->renderView(
-                        $viewName,
+                        $template,
                         array(
                             'verb' => $verb,
                             'verbEndings' => $verbEndings,
@@ -196,7 +199,7 @@ class MainController extends AbstractController
                 return new BinaryFileResponse(self::PDF_DIR.$verb->getAnvVerb() . '.pdf');
 
             } else {
-                return $this->render($viewName, [
+                return $this->render($template, [
                     'verb' => $verb,
                     'verbEndings' => $verbEndings,
                     'anvGwan' => $anvGwan,
