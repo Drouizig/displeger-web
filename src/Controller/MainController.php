@@ -181,7 +181,7 @@ class MainController extends AbstractController
             if($print){
                 if(!file_exists(self::PDF_DIR.$verb->getAnvVerb() . '.pdf')) {
                     $html = $this->renderView(
-                        $viewName,
+                        $template,
                         array(
                             'verb' => $verb,
                             'verbEndings' => $verbEndings,
@@ -198,7 +198,7 @@ class MainController extends AbstractController
                 return new BinaryFileResponse(self::PDF_DIR.$verb->getAnvVerb() . '.pdf');
 
             } else {
-                return $this->render($viewName, [
+                return $this->render($template, [
                     'verb' => $verb,
                     'verbEndings' => $verbEndings,
                     'anvGwan' => $anvGwan,
