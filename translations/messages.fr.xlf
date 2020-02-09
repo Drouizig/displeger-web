@@ -233,6 +233,26 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.wiktionnary.conjugation</source>
         <target>Conjugaison</target>
       </trans-unit>
+      <trans-unit id="plc0R6e" resname="app.report_error.notice">
+        <source>app.report_error.notice</source>
+        <target>Signaler une erreur</target>
+      </trans-unit>
+      <trans-unit id="bAgV.gC" resname="app.form.contact.report_error.translation">
+        <source>app.form.contact.report_error.translation</source>
+        <target>Bonjour, je souhaiterais signaler une erreur sur la page du verbe %verb%: ...</target>
+      </trans-unit>
+      <trans-unit id="nfzBrUo" resname="app.form.contact.email.placeholder">
+        <source>app.form.contact.email.placeholder</source>
+        <target>jean@lefebvre.fr</target>
+      </trans-unit>
+      <trans-unit id="qpcmlZC" resname="app.form.contact.name.placeholder">
+        <source>app.form.contact.name.placeholder</source>
+        <target>Jean Lefebvre</target>
+      </trans-unit>
+      <trans-unit id="Vplte.V" resname="app.form.contact.default.message">
+        <source>app.form.contact.default.message</source>
+        <target>Bonjour, je voulais vous contacter pour ...</target>
+      </trans-unit>
       <trans-unit id="c6orvDZ" resname="app.button.export">
         <source>app.button.export</source>
         <target>Export PDF</target>
@@ -240,6 +260,10 @@ Il manque le verbe "%verb%" sur le site.
       <trans-unit id="wZ7F4mt" resname="app.button.print">
         <source>app.button.print</source>
         <target>Imprimer</target>
+      </trans-unit>
+      <trans-unit id="QTUabQP" resname="app.button.report">
+        <source>app.button.report</source>
+        <target>Signaler une erreur</target>
       </trans-unit>
     </body>
   </file>

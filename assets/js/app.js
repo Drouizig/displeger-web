@@ -77,6 +77,10 @@ $(document).ready(function() {
     $('.missing_translation_form').slideToggle();
   });
 
+  $('.report-button').click(function() {
+    $('.report_error').slideToggle();
+  });
+
   /*
    * ************************
    *   CONTACT FORM SENDING

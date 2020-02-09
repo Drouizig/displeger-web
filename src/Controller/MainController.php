@@ -148,6 +148,7 @@ class MainController extends AbstractController
     public function verb(Request $request,Verb $verb = null, LoggerInterface $logger, Pdf $pdf)
     {
         $contactForm = $this->createForm(ContactType::class);
+        $reportErrorForm = $this->createForm(ContactType::class);
         $template = 'main/verb.html.twig';
 
         $print = $request->query->get('print', false);
@@ -204,6 +205,7 @@ class MainController extends AbstractController
                     'anvGwan' => $anvGwan,
                     'nach' => $nach,
                     'contactForm' => $contactForm->createView(),
+                    'reportErrorForm' => $reportErrorForm->createView(),
                     'print' => $print,
                     'wikeriadur_url' => $wikeriadurUrl,
                     'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl,
@@ -277,7 +279,7 @@ class MainController extends AbstractController
                     $session->getFlashBag()->set('message', $translator->trans('app.email.error'));
 
                     return $this->render('main/email.html.twig', [
-                        'contactForm' => $contactForm->createView()
+                        'form_object' => $contactForm->createView()
                     ]);
                 } else {
                     /** SessionInterface $session */
@@ -289,14 +291,14 @@ class MainController extends AbstractController
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse(['result' => 'nok', 'errors' => $contactForm->getErrors(true)]);
             } else {
-                return $this->render('email.html.twig', [
-                    'contactForm' => $contactForm->createView() 
+                return $this->render('main/email.html.twig', [
+                    'form_object' => $contactForm->createView()
                 ]);
             }
         } else {
             
             return $this->render('main/email.html.twig', [
-                'contactForm' => $contactForm->createView()
+                'form_object' => $contactForm->createView()
             ]);
         }
     }

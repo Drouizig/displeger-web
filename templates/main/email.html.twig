@@ -5,43 +5,9 @@
 {% block content %}
     {% include 'main/partial/header.html.twig' %}
 
-    {% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
-    <div>
-            {{form_start(contactForm, {
-                'action' : path('mail'),
-            })}}
-            {{form_errors(contactForm)}}
-            <div class="row">
-                <div class="col-md-2">
-                    {{form_label(contactForm.name)}}
-                </div><div class="col-md">
-                    {{form_errors(contactForm.name)}}
-                    {{form_widget(contactForm.name)}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    {{form_label(contactForm.email)}}
-                </div><div class="col-md">
-                    {{form_errors(contactForm.email)}}
-                    {{form_widget(contactForm.email)}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    {{form_label(contactForm.message)}}
-                </div><div class="col-md">
-                    {{form_errors(contactForm.message)}}
-                    {{form_widget(contactForm.message)}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md">
-                    {{form_widget(contactForm.submit)}}
-                </div>
-            </div>
-            {{form_widget(contactForm._token)}}
-            {{form_end(contactForm)}}
-        </div>
-    </div>
+    {% include 'main/partial/contact_form.html.twig' with {
+        'default_msg' : 'app.form.contact.default.message' | trans,
+        'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
+        'name_placeholder' : 'app.form.contact.name.placeholder' | trans
+    } %}
 {% endblock %}
