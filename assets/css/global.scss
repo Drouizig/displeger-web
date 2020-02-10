@@ -96,6 +96,10 @@ h1 {
     width: inherit;
 }
 
+.ui-autocomplete.ui-front {
+    z-index: 1100
+}
+
 textarea {
     &.form-control {
         min-height: 140px;
