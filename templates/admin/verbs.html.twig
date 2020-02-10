@@ -8,7 +8,7 @@
 
     <form action="{{ path('admin') }}" class="search-form form-md">
         <input type="text" name="search" class="form-control" value="{{ app.request.query.get('search') }}"/>
-        <button class="btn btn-primary">Klask</button>
+        <button class="btn btn-primary">{{'app.header.search.button'|trans}}</button>
     </form>
     <a href="{{ path('admin_verb') }}" class="btn btn-primary">Ouzhpennañ ur verb</a>
 

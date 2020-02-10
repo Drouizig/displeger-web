@@ -265,6 +265,10 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.button.report</source>
         <target>Signaler une erreur</target>
       </trans-unit>
+      <trans-unit id="4Rgx8OE" resname="app.header.search.button">
+        <source>app.header.search.button</source>
+        <target>Rechercher</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
