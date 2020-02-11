@@ -83,4 +83,20 @@ class VerbRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findRandomVerb(){
+        $allIds = $this->createQueryBuilder('v')
+            ->select('v.id')
+            ->getQuery()
+            ->getArrayResult();
+
+        if(sizeof($allIds) == 0) {
+            $verb = null;
+        } else {
+            shuffle($allIds);
+            $verb = $this->findOneBy(['id' => $allIds[0]]);
+        }
+
+        return $verb;
+    }
 }
