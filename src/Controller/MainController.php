@@ -328,4 +328,21 @@ class MainController extends AbstractController
          }
         return $this->render('misc/thanks.html.twig', ['thanks' => $thanks]);
     }
+
+    /**
+     * @Route("/{_locale}/random", name="random", requirements= {
+     *      "_locale": "br|fr|en"
+     * })
+     */
+    public function randomVerb(){
+        $verb = $this->getDoctrine()->getRepository(Verb::class)->findRandomVerb();
+        $route = 'main';
+        $args = null;
+        if($verb != null){
+            $route = 'verb';
+            $args = ['anvVerb' => $verb->getAnvVerb()];
+        }
+
+        return $this->redirectToRoute($route, $args);
+    }
 }
