@@ -93,8 +93,8 @@ class VerbRepository extends ServiceEntityRepository
         if(sizeof($allIds) == 0) {
             $verb = null;
         } else {
-            shuffle($allIds);
-            $verb = $this->findOneBy(['id' => $allIds[0]]);
+            $randomIdx = random_int(0, sizeof($allIds)-1);
+            $verb = $this->findOneBy(['id' => $allIds[$randomIdx]]);
         }
 
         return $verb;

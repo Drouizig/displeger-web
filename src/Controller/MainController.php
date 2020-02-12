@@ -336,6 +336,13 @@ class MainController extends AbstractController
      */
     public function randomVerb(){
         $verb = $this->getDoctrine()->getRepository(Verb::class)->findRandomVerb();
-        return $this->redirectToRoute('verb', ['anvVerb' => $verb->getAnvVerb()]);
+        $route = 'main';
+        $args = null;
+        if($verb != null){
+            $route = 'verb';
+            $args = ['anvVerb' => $verb->getAnvVerb()];
+        }
+
+        return $this->redirectToRoute($route, $args);
     }
 }
