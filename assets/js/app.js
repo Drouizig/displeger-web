@@ -7,6 +7,7 @@
 
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/global.scss');
+// require('../css/dark-theme.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 require('webpack-jquery-ui');
@@ -102,6 +103,29 @@ $(document).ready(function() {
     );
     return false;
   });
+
+
+  /*
+   * ***********************
+   *   SWITCH TO DARK MODE
+   * ***********************
+   */
+  $('.dark-mode-switch').on('change', function() {
+    if(this.checked) {
+      trans();
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      trans();
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  });
+
+  let trans = () => {
+    document.documentElement.classList.add('transition');
+    window.setTimeout(() => {
+      document.documentElement.classList.remove('transition');
+    }, 1000)
+  }
 });
 
 

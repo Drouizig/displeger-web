@@ -1,0 +1,24 @@
+@import "~bootstrap/scss/bootstrap";
+@import "grayscale/grayscale.scss";
+@import "global.scss";
+
+$secondary: invert($primary, 100%);
+$secondary-hover: lighten($secondary, 10%);
+
+input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+html[data-theme='dark'] {
+  --background: black;
+  --lighter-background: lightgray;
+  --focus-color: black;
+  --hover-color: var(--gray-dark);
+  --message-color: var(--gray-dark);
+  --title-color: white;
+  --text-color: var(--secondary);
+  --button-color: var(--secondary);
+  --button-hover: $secondary-hover;
+}

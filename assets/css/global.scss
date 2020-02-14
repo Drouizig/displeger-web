@@ -1,25 +1,90 @@
 
 // customize some Bootstrap variables
-$primary: darken(#428bca, 20%);
+$primary: darken(#428bca, 25%);
+$primary-hover: lighten($primary, 10%);
+$secondary: invert($primary, 100%);
+$secondary-hover: lighten($secondary, 10%);
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 @import "grayscale/grayscale.scss";
 
+// list colors to switch them easy
+html {
+    --background: white;
+    --lighter-background: lightgray;
+    --focus-color: white;
+    --hover-color: var(--gray-dark);
+    --message-color: lightblue;
+    --title-color: black;
+    --text-color: var(--primary);
+    --button-color: var(--primary);
+    --button-hover: $primary-hover;
+    background: var(--background);
 
+}
+
+html[data-theme='dark'] {
+    --background: black;
+    --lighter-background: lightgray;
+    --focus-color: black;
+    --hover-color: var(--gray-dark);
+    --message-color: var(--gray-dark);
+    --title-color: white;
+    --text-color: var(--secondary);
+    --button-color: var(--secondary);
+    --button-hover: $secondary-hover;
+}
+
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+    transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 420ms!important;
+    transition-delay: 0!important;
+}
+
+body {
+    background: var(--background);
+    color: var(--text-color);
+}
 
 h1 {
-    color: black;
+    color: var(--title-color);
+}
+
+a {
+    color: var(--text-color);
+    &:hover {
+        color: var(--lighter-background);
+    }
 }
 
 .print-button, .report-button, .export-button {
     float:right;
 }
 
+.btn-primary {
+    background-color: var(--button-color);
+    &:hover {
+        background-color: var(--button-hover);
+    }
+}
+
 .form-control {
     //display: inline;
     width: 243px;
+    background: var(--background);
+    color: var(--title-color);
+    &:focus {
+        background: var(--focus-color);
+        color: var(--title-color);
+    }
+    &:placeholder {
+        color: var(--lighter-background);
+    }
 }
+
 
 .verb-items {
     ul {
@@ -36,7 +101,7 @@ h1 {
     }
     &:hover {
         opacity: 1.0;
-        background-color: #e6ecf0;
+        background-color: var(--hover-color);
         .copy {
             display:inline;
         }
@@ -68,7 +133,7 @@ h1 {
 }
 
 .missing_translation, .report_error {
-    background-color: lightblue;
+    background-color: var(--message-color);
     border-radius: 10px;
     margin: 4px;
 
@@ -83,7 +148,7 @@ h1 {
 
 .admin-verb_row {
     &:hover {
-        background-color: lightgray;
+        background-color: var(--hover-color);
     }
 }
 
