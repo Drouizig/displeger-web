@@ -15,9 +15,9 @@
     },
     "dependencies": {
         "bootstrap": "^4.3.1",
+        "bootstrap-toggle": "^2.2.2",
         "highcharts": "^7.0.1",
         "popper.js": "^1.14.7",
-        "webpack-jquery-ui": "^2.0",
-        "bootstrap-toggle": "^2.2.2"
+        "webpack-jquery-ui": "^2.0"
     }
 }

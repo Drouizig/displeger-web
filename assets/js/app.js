@@ -12,6 +12,7 @@ require('../css/global.scss');
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 require('webpack-jquery-ui');
 require('bootstrap');
+require('bootstrap-toggle');
 require('webpack-jquery-ui/css');
 $(document).ready(function() {
 
@@ -114,9 +115,11 @@ $(document).ready(function() {
     if(this.checked) {
       trans();
       document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       trans();
       document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
     }
   });
 
@@ -126,6 +129,13 @@ $(document).ready(function() {
       document.documentElement.classList.remove('transition');
     }, 1000)
   }
+
+  // makes sure the switch is on when we change pages with the dark mode
+  if(localStorage.getItem('theme') === 'dark'){
+    document.documentElement.setAttribute('data-theme', 'dark');
+    $('.dark-mode-switch').checked = true;
+  }
+
 });
 
 
