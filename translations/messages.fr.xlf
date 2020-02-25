@@ -269,6 +269,10 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.header.search.button</source>
         <target>Rechercher</target>
       </trans-unit>
+      <trans-unit id="9vEo.nb" resname="app.dark_mode.activate">
+        <source>app.dark_mode.activate</source>
+        <target>Thème sombre</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

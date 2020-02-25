@@ -268,6 +268,10 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.header.search.button</source>
         <target>Klask</target>
       </trans-unit>
+      <trans-unit id="9vEo.nb" resname="app.dark_mode.activate">
+        <source>app.dark_mode.activate</source>
+        <target>Tem teñval</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

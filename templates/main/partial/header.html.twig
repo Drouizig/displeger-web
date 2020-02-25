@@ -26,14 +26,16 @@
 
       {%import _self as self %}
 
-      <div class="my-2 my-lg-0">
-        <input class="dark-mode-switch" data-toggle="toggle" type="checkbox" data-on="<i class='fa fa-sun-o'></i>" data-off="<i class='fa fa-moon-o'></i>">
-      </div>
+
 
       <div class="my-2 my-lg-0">
-        <a href="{{self.lang_link('br')}}">BR</a> |
-        <a href="{{self.lang_link('fr')}}">FR</a> |
-        <a href="{{self.lang_link('en')}}">EN</a>
+        <div class="custom-switch navbar-nav">
+          <input class="dark-mode-switch custom-control-input mx-2" id="dark-theme-switch" type="checkbox">
+          <label class="custom-control-label mx-2" for="dark-theme-switch">{{ 'app.dark_mode.activate' | trans }}</label>
+          <a class="mx-1" href="{{self.lang_link('br')}}">BR</a>
+          <a class="mx-1" href="{{self.lang_link('fr')}}">FR</a>
+          <a class="mx-1" href="{{self.lang_link('en')}}">EN</a>
+        </div>
       </div>
     </div>
   </nav>
