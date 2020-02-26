@@ -269,10 +269,6 @@ The verb "%verb%" is missing on the website.
         <source>app.header.search.button</source>
         <target>Search</target>
       </trans-unit>
-      <trans-unit id="9vEo.nb" resname="app.dark_mode.activate">
-        <source>app.dark_mode.activate</source>
-        <target>Dark mode</target>
-      </trans-unit>
     </body>
   </file>
 </xliff>
