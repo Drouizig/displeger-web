@@ -12,7 +12,7 @@ require('../css/global.scss');
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 require('webpack-jquery-ui');
 require('bootstrap');
-require('bootstrap-toggle');
+require('bootstrap4-toggle');
 require('webpack-jquery-ui/css');
 $(document).ready(function() {
 

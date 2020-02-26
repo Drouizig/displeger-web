@@ -1,12 +1,13 @@
 
-// customize some Bootstrap variables
-$primary: darken(#428bca, 25%);
-$primary-hover: lighten($primary, 10%);
-$secondary: invert($primary, 100%);
-$secondary-hover: lighten($secondary, 10%);
+// customize some Bootstrap variables, base = #428bca
+$primary: #2D5F8A;
+$primary-hover: #3670A3;
+$secondary: #E0FF91;
+$secondary-hover: #E7FFAB;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap4-toggle/css/bootstrap4-toggle.min.css";
 @import "grayscale/grayscale.scss";
 
 // list colors to switch them easy
@@ -19,9 +20,10 @@ html {
     --title-color: black;
     --text-color: var(--primary);
     --button-color: var(--primary);
-    --button-hover: $primary-hover;
+    --primary-hover : #3670A3;
+    --secondary-hover : #E7FFAB;
+    --button-hover: var(--primary-hover);
     background: var(--background);
-
 }
 
 html[data-theme='dark'] {
@@ -33,9 +35,10 @@ html[data-theme='dark'] {
     --title-color: white;
     --text-color: var(--secondary);
     --button-color: var(--secondary);
-    --button-hover: $secondary-hover;
+    --button-hover: var(--secondary-hover);
 }
 
+// transition for the dark mode, so smooth...
 html.transition,
 html.transition *,
 html.transition *:before,
