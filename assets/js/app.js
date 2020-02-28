@@ -130,12 +130,6 @@ $(document).ready(function() {
     }, 1000)
   }
 
-  // makes sure the switch is on when we change pages with the dark mode
-  if(localStorage.getItem('theme') === 'dark'){
-    document.documentElement.setAttribute('data-theme', 'dark');
-    $('.dark-mode-switch').checked = true;
-  }
-
 });
 
 
