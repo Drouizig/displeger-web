@@ -15,7 +15,7 @@ class VerbTranslationType extends AbstractType
             ->add('translation', null, [
                 'label' => 'app.form.verb.localizations'
             ])
-            ->add('localeCode', null, [
+            ->add('languageCode', null, [
                 'label' => 'app.form.verb.translations'
             ])
             ->add('sources', null, [

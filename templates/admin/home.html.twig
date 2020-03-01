@@ -5,7 +5,7 @@
 {% block content %}
     <h1>{{ 'app.title'|trans }}</h1>
     <p>Lodenn verañ</p>
-    <a href="{{ path('admin') }}" class="btn btn-primary">Roll ar verboù</a>
+    <a href="{{ path('admin_verbs') }}" class="btn btn-primary">Roll ar verboù</a>
     <a href="{{ path('admin_configuration') }}" class="btn btn-primary">Kelfuniadur</a>
     <p>Niver a verboù : {{ statisticsManager.total }}</p>
     {# <p>Dregantad a verboù troet e galleg : {{ (( 1 - statisticsManager.percentage({'galleg': null})) * 100)|round(2) }} %</p>

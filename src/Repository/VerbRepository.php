@@ -51,14 +51,15 @@ class VerbRepository extends ServiceEntityRepository implements AdminRepositoryI
     public function getBackSearchQuery($search, $offset = null, $maxResults = null)
     {
         $qb = $this->createQueryBuilder('v');
+        $qb->select('v verb, l.infinitive li, l.base lb');
         $qb->join('v.localizations', 'l');
         if ($search !== null && $search !== '') {
+            $qb->join('v.translations', 't');
             $qb
-                ->where('v.anvVerb LIKE :term')
-                ->orWhere('v.pennrann LIKE :term')
+                ->where('l.infinitive LIKE :term')
+                ->orWhere('l.base LIKE :term')
                 ->orWhere('v.category LIKE :term')
-                ->orWhere('v.galleg LIKE :term')
-                ->orWhere('v.saozneg LIKE :term')
+                ->orWhere('t.translation LIKE :term')
                 ->setParameter('term', '%'.$search.'%')
             ;
         }
@@ -70,8 +71,8 @@ class VerbRepository extends ServiceEntityRepository implements AdminRepositoryI
         }
         $qb
             ->addOrderBy('v.category')
-            //->addOrderBy('l.infinitive')
-            // ->addOrderBy('v.pennrann')
+            ->addOrderBy('li')
+            ->addOrderBy('lb')
         ;
         return $qb->getQuery();
     }

@@ -13,16 +13,16 @@ class VerbLocalizationType extends AbstractType
     {
         $builder
             ->add('infinitive', null, [
-                'label' => 'app.form.verb.localizations'
+                'label' => 'app.form.verb.infinitive'
             ])
             ->add('base', null, [
-                'label' => 'app.form.verb.localizations'
+                'label' => 'app.form.verb.base'
             ])
             ->add('dialectCode', null, [
-                'label' => 'app.form.verb.translations'
+                'label' => 'app.form.verb.dialectCode'
             ])
             ->add('sources', null, [
-                'label' => 'app.form.verb.category'
+                'label' => 'app.form.verb.souces'
             ])
         ;
     }

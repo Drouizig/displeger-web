@@ -38,16 +38,14 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/verbs", name="admin")
+     * @Route("/admin/verbs", name="admin_verbs")
      */
     public function verbs(Request $request) {
         return $this->adminList($request, Verb::class, 'admin/verbs.html.twig');
     }
 
-
-
     /**
-     * @Route("/admin/sources", name="admin")
+     * @Route("/admin/sources", name="admin_cources")
      */
     public function sources(Request $request) {
         return $this->adminList($request, Source::class, 'admin/soucres.html.twig');    

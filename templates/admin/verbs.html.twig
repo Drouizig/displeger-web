@@ -6,7 +6,7 @@
     <h1>{{ 'app.title'|trans }}</h1>
     <p><a href="{{ path('admin_home') }}">Lodenn verañ</a></p>
 
-    <form action="{{ path('admin') }}" class="search-form form-md">
+    <form action="{{ path('admin_verbs') }}" class="search-form form-md">
         <input type="text" name="search" class="form-control" value="{{ app.request.query.get('search') }}"/>
         <button class="btn btn-primary">{{'app.header.search.button'|trans}}</button>
     </form>
@@ -37,33 +37,33 @@
                 </th>
             </tr>
             </thead><tbody>
-            {% for verb in pagination %}
+            {% for tuple in pagination %}
                 <tr>
                     <td>
-                        {% for localization in verb.localizations %}
+                        {% for localization in tuple.verb.localizations %}
                          {{ (loop.index == 1 ? '' : '; ') ~ localization.infinitive }}
                         {% endfor %}
                     </td>
                     <td>
-                        {% for localization in verb.localizations %}
+                        {% for localization in tuple.verb.localizations %}
                          {{ (loop.index == 1 ? '' : '; ') ~ localization.base }}
                         {% endfor %}
                     </td>
                     <td>
-                        {{ verb.category }}
+                        {{ tuple.verb.category }}
                     </td>
                     <td>
-                        {% for translation in verb.translations %}
+                        {% for translation in tuple.verb.translations %}
                           {{ translation.languageCode == 'fr_FR' ? translation.translation : '' }}
                         {% endfor %}
                     </td>
                     <td>
-                        {% for translation in verb.translations %}
+                        {% for translation in tuple.verb.translations %}
                           {{ translation.languageCode == 'en_GB' ? translation.translation : '' }}
                         {% endfor %}
                     </td>
                     <td>
-                        <a href="{{path('admin_verb', {'id': verb.id, 'params': pagination.params, 'offset' : offset + loop.index})}}">Kemmañ</a>
+                        <a href="{{path('admin_verb', {'id': tuple.verb.id, 'params': pagination.params, 'offset' : offset + loop.index})}}">Kemmañ</a>
                     </td>
                 </tr>
             {% endfor %}
