@@ -7,3 +7,6 @@ parameters:
     br: https://br.wiktionary.org/wiki/Stagadenn:Displegadurioù_brezhonek/
     fr: https://fr.wiktionary.org/wiki/Annexe:Conjugaison_en_breton/
     en: https://en.wiktionary.org/wiki/
+  url_geriafurch:
+    br: https://geriafurch.bzh/br?d=brfr&q=
+    fr: https://geriafurch.bzh/fr?d=brfr&q=

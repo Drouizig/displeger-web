@@ -178,6 +178,12 @@ class MainController extends AbstractController
             }
 
             $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verb->getAnvVerb();
+            $geriafurchUrl = '';
+            if(isset($this->getParameter('url_geriafurch')[$locale])) {
+                $geriafurchUrl = $this->getParameter('url_geriafurch')[$locale].$verb->getAnvVerb();
+            } else {
+                $geriafurchUrl = $this->getParameter('url_geriafurch')['br'].$verb->getAnvVerb();
+            }
             $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verb->getAnvVerb();
             if($print){
                 if(!file_exists(self::PDF_DIR.$verb->getAnvVerb() . '.pdf')) {
@@ -208,6 +214,7 @@ class MainController extends AbstractController
                     'reportErrorForm' => $reportErrorForm->createView(),
                     'print' => $print,
                     'wikeriadur_url' => $wikeriadurUrl,
+                    'geriafurch_url' => $geriafurchUrl,
                     'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl,
                 ]);
             }
