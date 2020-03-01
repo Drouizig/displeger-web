@@ -20,7 +20,7 @@ class VerbTranslation
 
     /**
      * @var Verb
-     * @ORM\ManyToOne(targetEntity="App\Entity\Verb")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Verb", inversedBy="translations")
      * @ORM\JoinColumn(nullable=true)
      */
     private $verb;
@@ -163,5 +163,9 @@ class VerbTranslation
         $this->translation = $translation;
 
         return $this;
+    }
+
+    public function __toString() {
+        return $this->translation;
     }
 }

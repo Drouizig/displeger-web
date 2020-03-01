@@ -19,7 +19,7 @@ class SourceTranslation
 
     /**
      * @var Source
-     * @ORM\ManyToOne(targetEntity="App\Entity\Source")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Source", inversedBy="translations")
      * @ORM\JoinColumn(nullable=true)
      */
     private $source;

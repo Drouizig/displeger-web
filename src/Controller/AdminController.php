@@ -13,6 +13,7 @@ use App\Form\VerbType;
 
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Configuration;
+use App\Entity\Source;
 use App\Form\ConfigurationType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -40,20 +41,34 @@ class AdminController extends AbstractController
      * @Route("/admin/verbs", name="admin")
      */
     public function verbs(Request $request) {
+        return $this->adminList($request, Verb::class, 'admin/verbs.html.twig');
+    }
 
-        $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
+
+
+    /**
+     * @Route("/admin/sources", name="admin")
+     */
+    public function sources(Request $request) {
+        return $this->adminList($request, Source::class, 'admin/soucres.html.twig');    
+    }
+
+    public function adminList(Request $request, string $class,string $twig) {
+        /** @var AdminRepositoryInterface */
+        $repository = $this->getDoctrine()->getRepository($class);
 
         $search = $request->query->get('search', null);
-        $verbsQuery = $verbRepository->getBackSearchQuery($search);
+        $query = $repository->getBackSearchQuery($search);
 
         $pagination = $this->knpPaginator->paginate(
-            $verbsQuery, /* query NOT result */
+            $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             $request->query->getInt('number', 25)/*limit per page*/
         );
         $offset = ($request->query->getInt('page', 1) -1) * $request->query->getInt('number', 25);
 
         return $this->render('admin/verbs.html.twig', ['pagination' => $pagination, 'offset' => $offset]);
+
     }
 
     /**

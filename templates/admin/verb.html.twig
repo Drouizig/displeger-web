@@ -4,25 +4,19 @@
 
 {% block content %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
-    <h1>{{ 'app.title'|trans }}</h1>
     <p>Lodenn verañ</p>
     <a href="{{path('admin')}}">< Distreiñ</a>
 
     {{form_start(form)}}
     <div class="row">
-        <div class="col-md-2">
-            {{form_label(form.anvVerb)}}
-        </div>
-        <div class="col-md-2">
-            {{form_widget(form.anvVerb)}}
-        </div>
+        {{form_widget(form.localizations)}}
     </div>
     <div class="row">
         <div class="col-md-2">
-            {{form_label(form.pennrann)}}
+            {{form_label(form.translations)}}
         </div>
         <div class="col-md-2">
-            {{form_widget(form.pennrann)}}
+            {{form_widget(form.translations)}}
         </div>
     </div>
     <div class="row">
@@ -33,22 +27,7 @@
             {{form_widget(form.category)}}
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-2">
-            {{form_label(form.galleg)}}
-        </div>
-        <div class="col-md-2">
-            {{form_widget(form.galleg)}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            {{form_label(form.saozneg)}}
-        </div>
-        <div class="col-md-2">
-            {{form_widget(form.saozneg)}}
-        </div>
-    </div><br/>
+    <br/>
     <p>
         {{form_widget(form.save)}}
         {{form_widget(form.save_return)}}

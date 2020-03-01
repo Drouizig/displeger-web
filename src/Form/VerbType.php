@@ -13,21 +13,16 @@ class VerbType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('anvVerb', null, [
-                'label' => 'app.form.verb.anvVerb'
+            ->add('localizations', null, [
+                'label' => 'app.form.verb.localizations'
             ])
-            ->add('pennrann', null, [
-                'label' => 'app.form.verb.pennrann'
+            ->add('translations', null, [
+                'label' => 'app.form.verb.translations'
             ])
             ->add('category', null, [
                 'label' => 'app.form.verb.category'
             ])
-            ->add('galleg', null, [
-                'label' => 'app.form.verb.galleg'
-            ])
-            ->add('saozneg', null, [
-                'label' => 'app.form.verb.saozneg'
-            ])->add('save', SubmitType::class, [
+            ->add('save', SubmitType::class, [
                 'label' => 'app.form.verb.save'
             ])
             ->add('save_return', SubmitType::class, [

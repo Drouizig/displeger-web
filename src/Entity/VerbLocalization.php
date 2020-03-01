@@ -20,7 +20,7 @@ class VerbLocalization
 
     /**
      * @var Verb
-     * @ORM\ManyToOne(targetEntity="App\Entity\Verb")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Verb", inversedBy="localizations")
      * @ORM\JoinColumn(nullable=true)
      */
     private $verb;
@@ -213,5 +213,9 @@ class VerbLocalization
         $this->verb = $verb;
 
         return $this;
+    }
+
+    public function __toString() {
+        return $this->infinitive;
     }
 }

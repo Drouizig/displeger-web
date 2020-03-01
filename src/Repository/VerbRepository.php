@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Verb[]    findAll()
  * @method Verb[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class VerbRepository extends ServiceEntityRepository
+class VerbRepository extends ServiceEntityRepository implements AdminRepositoryInterface
 {
     public function __construct(RegistryInterface $registry)
     {
@@ -51,6 +51,7 @@ class VerbRepository extends ServiceEntityRepository
     public function getBackSearchQuery($search, $offset = null, $maxResults = null)
     {
         $qb = $this->createQueryBuilder('v');
+        $qb->join('v.localizations', 'l');
         if ($search !== null && $search !== '') {
             $qb
                 ->where('v.anvVerb LIKE :term')
@@ -69,7 +70,7 @@ class VerbRepository extends ServiceEntityRepository
         }
         $qb
             ->addOrderBy('v.category')
-            // ->addOrderBy('v.anvVerb')
+            //->addOrderBy('l.infinitive')
             // ->addOrderBy('v.pennrann')
         ;
         return $qb->getQuery();
