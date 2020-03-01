@@ -9,14 +9,74 @@
 
     {{form_start(form)}}
     <div class="row">
-        {{form_widget(form.localizations)}}
+
+        <div class="col-md">
+            {{form_label(form.localizations)}}
+            {% for localization in form.localizations %}
+                <div class="row">
+                    <div class="col-md-2">
+                        {{form_label(localization.infinitive)}}
+                    </div>
+                    <div class="col-md-2">
+                        {{form_label(localization.base)}}
+                    </div>
+                    <div class="col-md-2">
+                        {{form_label(localization.dialectCode)}}
+                    </div>
+                    <div class="col-md-4">
+                        {{form_label(localization.sources)}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        {{form_widget(localization.infinitive)}}
+                    </div>
+                    <div class="col-md-2">
+                        {{form_widget(localization.base)}}
+                    </div>
+                    <div class="col-md-2">
+                        {{form_widget(localization.dialectCode)}}
+                    </div>
+                    <div class="col-md-4">
+                        {{form_widget(localization.sources)}}
+                    </div>
+                    <div class="col-md-1">
+                        DELETE
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md">
             {{form_label(form.translations)}}
-        </div>
-        <div class="col-md-2">
-            {{form_widget(form.translations)}}
+            {% for translation in form.translations %}
+                <div class="row">
+                    <div class="col-md-4">
+                        {{form_label(translation.translation)}}
+                    </div>
+                    <div class="col-md-3">
+                        {{form_label(translation.languageCode)}}
+                    </div>
+                    <div class="col-md-4">
+                        {{form_label(translation.sources)}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        {{form_widget(translation.translation)}}
+                    </div>
+                    <div class="col-md-3">
+                        {{form_widget(translation.languageCode)}}
+                    </div>
+                    <div class="col-md-4">
+                        {{form_widget(translation.sources)}}
+                    </div>
+                    <div class="col-md-1">
+                        DELETE
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
     <div class="row">

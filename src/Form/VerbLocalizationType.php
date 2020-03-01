@@ -19,10 +19,10 @@ class VerbLocalizationType extends AbstractType
                 'label' => 'app.form.verb.base'
             ])
             ->add('dialectCode', null, [
-                'label' => 'app.form.verb.dialectCode'
+                'label' => 'app.form.verb.dialect_code'
             ])
             ->add('sources', null, [
-                'label' => 'app.form.verb.souces'
+                'label' => 'app.form.verb.sources'
             ])
         ;
     }

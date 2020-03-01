@@ -13,13 +13,13 @@ class VerbTranslationType extends AbstractType
     {
         $builder
             ->add('translation', null, [
-                'label' => 'app.form.verb.localizations'
+                'label' => 'app.form.verb.translation'
             ])
             ->add('languageCode', null, [
-                'label' => 'app.form.verb.translations'
+                'label' => 'app.form.verb.language_code'
             ])
             ->add('sources', null, [
-                'label' => 'app.form.verb.category'
+                'label' => 'app.form.verb.sources'
             ])
         ;
     }

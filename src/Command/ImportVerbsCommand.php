@@ -59,7 +59,8 @@ class ImportVerbsCommand extends Command
             $verb = new Verb();
             /** @var VerbLocalization */
             $commonBaseVerbLocalization = $verbLocalizationRepository->findOneBy(['base' => $line[self::PENNRANN]]);
-            if(null !== $commonBaseVerbLocalization) {
+            if(null !== $commonBaseVerbLocalization 
+            && $commonBaseVerbLocalization->getVerb()->getCategory() === $line[self::RUMMAD]) {
                 $verb = $commonBaseVerbLocalization->getVerb();
             }
 

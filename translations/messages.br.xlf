@@ -133,6 +133,38 @@
         <source>app.form.verb.save_continue</source>
         <target>Enrollañ ha kenderc'hel</target>
       </trans-unit>
+      <trans-unit id="1" resname="app.form.verb.localizations">
+        <source>app.form.verb.localizations</source>
+        <target>Lec'hiadurioù</target>
+      </trans-unit>
+      <trans-unit id="2" resname="app.form.verb.translations">
+        <source>app.form.verb.translations</source>
+        <target>Troidigezhioù</target>
+      </trans-unit>
+      <trans-unit id="3" resname="app.form.verb.infinitive">
+        <source>app.form.verb.infinitive</source>
+        <target>Anv-verb</target>
+      </trans-unit>
+      <trans-unit id="4" resname="app.form.verb.base">
+        <source>app.form.verb.base</source>
+        <target>Pennrann</target>
+      </trans-unit>
+      <trans-unit id="8" resname="app.form.verb.sources">
+        <source>app.form.verb.sources</source>
+        <target>Mammennoù</target>
+      </trans-unit>
+      <trans-unit id="9" resname="app.form.verb.dialect_code">
+        <source>app.form.verb.dialect_code</source>
+        <target>Rannyezh (diret)</target>
+      </trans-unit>
+      <trans-unit id="7" resname="app.form.verb.language_code">
+        <source>app.form.verb.language_code</source>
+        <target>Yezh</target>
+      </trans-unit>
+      <trans-unit id="4654" resname="app.form.verb.translation">
+        <source>app.form.verb.translation</source>
+        <target>Troidigezh</target>
+      </trans-unit>
       <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_galleg">
         <source>app.form.contact.default.translation_galleg</source>
         <target>Demat deoc'h,
