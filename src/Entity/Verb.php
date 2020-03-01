@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VerbRepository")
- * @ORM\Table(name="Verb",indexes={@ORM\Index(name="verb_idx", columns={"anv_verb"})})
+ * @ORM\Table(name="Verb")
  */
 class Verb
 {
@@ -18,92 +19,210 @@ class Verb
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
-    private $anvVerb;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $pennrann;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToMany(
+     *      targetEntity="App\Entity\VerbTranslation",
+     *      mappedBy="verb",
+     *      cascade={"all"},
+     *      orphanRemoval=true
+     * )
      */
-    private $galleg;
+    private $translations;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToMany(
+     *      targetEntity="App\Entity\VerbLocalization",
+     *      mappedBy="verb",
+     *      cascade={"all"},
+     *      orphanRemoval=true
+     * )
      */
-    private $saozneg;
+    private $localizations;
+
+    /**
+     * Many Verbs have many Verbs.
+     * @ORM\ManyToMany(targetEntity="Verb")
+     * @ORM\JoinTable(name="auxilliaries",
+     *      joinColumns={@ORM\JoinColumn(name="auxilliary_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="verb_id", referencedColumnName="id")}
+     *      )
+     */
+    private $auxilliaries;
+
+
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+        $this->localizations = new ArrayCollection();
+        $this->auxilliaries = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAnvVerb(): ?string
-    {
-        return $this->anvVerb;
-    }
-
-    public function setAnvVerb(string $anvVerb): self
-    {
-        $this->anvVerb = $anvVerb;
-
-        return $this;
-    }
-
-    public function getPennrann(): ?string
-    {
-        return $this->pennrann;
-    }
-
-    public function setPennrann(string $pennrann): self
-    {
-        $this->pennrann = $pennrann;
-
-        return $this;
-    }
-
-    public function getCategory(): ?string
+    /**
+     * Get the value of category
+     */ 
+    public function getCategory()
     {
         return $this->category;
     }
 
-    public function setCategory(string $category): self
+    /**
+     * Set the value of category
+     *
+     * @return  self
+     */ 
+    public function setCategory($category)
     {
         $this->category = $category;
 
         return $this;
     }
 
-    public function getGalleg(): ?string
+    /**
+     * Get many Verbs have many Verbs.
+     */ 
+    public function getAuxilliaries()
     {
-        return $this->galleg;
+        return $this->auxilliaries;
     }
 
-    public function setGalleg(?string $galleg): self
+    /**
+     * Set many Verbs have many Verbs.
+     *
+     * @return  self
+     */ 
+    public function setAuxilliaries($auxilliaries)
     {
-        $this->galleg = $galleg;
+        $this->auxilliaries = $auxilliaries;
+
+        return $this;
+    }
+    /**
+     * Add auxilliary.
+     *
+     * @return  self
+     */ 
+    public function addAuxilliary(Verb $auxilliary)
+    {
+        $this->auxilliaries->add($auxilliary);
+
+        return $this;
+    }
+    /**
+     * Remove auxilliary.
+     *
+     * @return  self
+     */ 
+    public function removeAuxilliary(Verb $auxilliary)
+    {
+        $this->auxilliaries->remove($auxilliary);
 
         return $this;
     }
 
-    public function getSaozneg(): ?string
+    /**
+     * Get targetEntity="App\Entity\VerbLocalization",
+     */ 
+    public function getLocalizations()
     {
-        return $this->saozneg;
+        return $this->localizations;
     }
 
-    public function setSaozneg(?string $saozneg): self
+    /**
+     * Set targetEntity="App\Entity\VerbLocalization",
+     *
+     * @return  self
+     */ 
+    public function setLocalizations($localizations)
     {
-        $this->saozneg = $saozneg;
+        $this->localizations = $localizations;
 
         return $this;
+    }
+    
+    /**
+     * Add localization.
+     *
+     * @return  self
+     */ 
+    public function addLocalization(VerbLocalization $localization)
+    {
+        $this->localizations->add($localization);
+        $localization->setVerb($this);
+
+        return $this;
+    }
+    /**
+     * Remove localization.
+     *
+     * @return  self
+     */ 
+    public function removeLocalization(VerbLocalization $localization)
+    {
+        $this->localizations->remove($localization);
+
+        return $this;
+    }
+
+    /**
+     * Get targetEntity="App\Entity\VerbTranslation",
+     */ 
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * Set targetEntity="App\Entity\VerbTranslation",
+     *
+     * @return  self
+     */ 
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+
+        return $this;
+    }
+    /**
+     * Add translation.
+     *
+     * @return  self
+     */ 
+    public function addTranslation(VerbTranslation $translation)
+    {
+        $this->translations->add($translation);
+        $translation->setVerb($this);
+
+        return $this;
+    }
+    /**
+     * Remove tranlsation.
+     *
+     * @return  self
+     */ 
+    public function removeTranslation(VerbTranslation $translation)
+    {
+        $this->translations->remove($translation);
+
+        return $this;
+    }
+
+    public function hasTranslationInLanguage(string $languageCode) {
+        /** @var VerbTranslation $translation */
+        foreach($this->translations as $translation) {
+            if($translation->getLanguageCode() === $languageCode) {
+                return true;
+            }
+        }
+        return false;
     }
 }

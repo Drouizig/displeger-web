@@ -69,8 +69,8 @@ class VerbRepository extends ServiceEntityRepository
         }
         $qb
             ->addOrderBy('v.category')
-            ->addOrderBy('v.anvVerb')
-            ->addOrderBy('v.pennrann')
+            // ->addOrderBy('v.anvVerb')
+            // ->addOrderBy('v.pennrann')
         ;
         return $qb->getQuery();
     }
@@ -78,7 +78,7 @@ class VerbRepository extends ServiceEntityRepository
     public function findCategoryStatistics()
     {
         return $this->createQueryBuilder('v')
-            ->select('v.category as name, count(v.anvVerb) as y')
+            ->select('v.category as name, count(v.id) as y')
             ->groupBy('v.category')
             ->getQuery()
             ->getResult();

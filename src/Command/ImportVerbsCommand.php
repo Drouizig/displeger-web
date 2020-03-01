@@ -13,16 +13,18 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use App\Entity\Verb;
+use App\Entity\VerbLocalization;
+use App\Entity\VerbTranslation;
 
 class ImportVerbsCommand extends Command
 {
     protected static $defaultName = 'app:import-verbs';
 
     const ANV_VERB = 'anv_verb';
-    const DIAZ_VERB = 'diaz_verb';
+    const PENNRANN = 'diaz_verb';
     const RUMMAD = 'rummad';
     const GALLEG = 'galleg';
-    const SOAZNEG = 'saozneg'; 
+    const SAOZNEG = 'saozneg'; 
 
     /** @var EntityManagerInterface */
     protected $em;
@@ -36,8 +38,8 @@ class ImportVerbsCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add a short description for your command')
-            ->addArgument('file', InputArgument::REQUIRED, 'Argument description')
+            ->setDescription('Import verbs from old csv file')
+            ->addArgument('file', InputArgument::REQUIRED, 'filepath')
         ;
     }
 
@@ -45,37 +47,43 @@ class ImportVerbsCommand extends Command
     {
         $filename = $input->getArgument('file');
 
-
         $serializer = new Serializer([new ObjectNormalizer()], [new CsvEncoder([CsvEncoder::DELIMITER_KEY => ';'])]);
 
-        $deleteCommand = 'DELETE FROM verb';
+        $deleteCommand = 'DELETE FROM verbTranslation;DELETE FROM verbLocalization; DELETE FROM verb';
         $this->em->getConnection()->exec($deleteCommand);
 
-        $c = 0;
-        $bashSize = 10;
+        $verbLocalizationRepository = $this->em->getRepository(VerbLocalization::class);
         $data = $serializer->decode(file_get_contents($filename), 'csv');
         foreach($data as $line) {
-            $c++;
+
             $verb = new Verb();
-            $verb->setAnvVerb($line[self::ANV_VERB]);
-            $verb->setPennrann($line[self::DIAZ_VERB]);
-            $verb->setCategory($line[self::RUMMAD]);
-            if($line[self::GALLEG] !== '#galleg') {
-                $verb->setGalleg($line[self::GALLEG]);
+            /** @var VerbLocalization */
+            $commonBaseVerbLocalization = $verbLocalizationRepository->findOneBy(['base' => $line[self::PENNRANN]]);
+            if(null !== $commonBaseVerbLocalization) {
+                $verb = $commonBaseVerbLocalization->getVerb();
             }
-            if($line[self::SOAZNEG] !== '#saozneg') {
-                $verb->setSaozneg($line[self::SOAZNEG]);
+
+            $verbLocalization = new VerbLocalization();
+            $verbLocalization->setInfinitive($line[self::ANV_VERB]);
+            $verbLocalization->setBase($line[self::PENNRANN]);
+            $verb->addLocalization($verbLocalization);
+            $verb->setCategory($line[self::RUMMAD]);
+            
+            if (!$verb->hasTranslationInLanguage('fr_FR') && $line[self::GALLEG] !== '#galleg') {
+                $verbTranslationFr = new VerbTranslation();
+                $verbTranslationFr->setTranslation($line[self::GALLEG]);
+                $verbTranslationFr->setLanguageCode('fr_FR');
+                $verb->addTranslation($verbTranslationFr);
+            }
+            if (!$verb->hasTranslationInLanguage('en_GB') && $line[self::SAOZNEG] !== '#saozneg') {
+                $verbTranslationFr = new VerbTranslation();
+                $verbTranslationFr->setTranslation($line[self::SAOZNEG]);
+                $verbTranslationFr->setLanguageCode('en_GB');
+                $verb->addTranslation($verbTranslationFr);
             }
             $this->em->persist($verb);
-            if($c == $bashSize) {
-                $c = 0;
-                $this->em->flush();
-            }
+            $this->em->flush();
             
         }
-        $this->em->flush();
-
-        
-        
     }
 }
