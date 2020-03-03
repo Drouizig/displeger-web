@@ -1,9 +1,7 @@
 
 // customize some Bootstrap variables, base = #428bca
 $primary: #2D5F8A;
-$primary-hover: #3670A3;
 $secondary: #E0FF91;
-$secondary-hover: #E7FFAB;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
@@ -18,11 +16,10 @@ html {
     --hover-color: var(--gray-dark);
     --message-color: lightblue;
     --title-color: black;
-    --text-color: var(--primary);
-    --button-color: var(--primary);
-    --primary-hover : #3670A3;
-    --secondary-hover : #E7FFAB;
-    --button-hover: var(--primary-hover);
+    --text-color: $primary;
+    --button-color: $primary;
+    --button-hover: darken($primary, 10%);
+    --button-focus: darken($primary, 15%);
     background: var(--background);
 }
 
@@ -33,9 +30,10 @@ html[data-theme='dark'] {
     --hover-color: var(--gray-dark);
     --message-color: var(--gray-dark);
     --title-color: white;
-    --text-color: var(--secondary);
-    --button-color: var(--secondary);
-    --button-hover: var(--secondary-hover);
+    --text-color: $secondary;
+    --button-color: $secondary;
+    --button-hover: darken($secondary, 10%);
+    --button-focus: darken($secondary, 15%);
 }
 
 // transition for the dark mode, so smooth...
@@ -71,6 +69,12 @@ a {
     background-color: var(--button-color);
     &:hover {
         background-color: var(--button-hover);
+    }
+    &:active {
+        background-color: var(--button-focus);
+    }
+    &:focus {
+        background-color: var(--button-focus);
     }
 }
 
