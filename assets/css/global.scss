@@ -5,6 +5,7 @@ $primary: darken(#428bca, 20%);
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 @import "grayscale/grayscale.scss";
+@import "select2";
 
 
 

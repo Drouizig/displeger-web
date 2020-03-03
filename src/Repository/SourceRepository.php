@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Verb;
+use App\Entity\Source;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -16,21 +16,19 @@ class SourceRepository extends ServiceEntityRepository implements AdminRepositor
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Verb::class);
+        parent::__construct($registry, Source::class);
     }
 
     
     public function getBackSearchQuery($search, $offset = null, $maxResults = null)
     {
-        $qb = $this->createQueryBuilder('v');
-        $qb->join('v.localizations', 'l');
+        $qb = $this->createQueryBuilder('s');
         if ($search !== null && $search !== '') {
+            $qb->join('s.translations', 't');
             $qb
-                ->where('v.anvVerb LIKE :term')
-                ->orWhere('v.pennrann LIKE :term')
-                ->orWhere('v.category LIKE :term')
-                ->orWhere('v.galleg LIKE :term')
-                ->orWhere('v.saozneg LIKE :term')
+                ->where('s.code LIKE :term')
+                ->orWhere('t.label LIKE :term')
+                ->orWhere('t.description LIKE :term')
                 ->setParameter('term', '%'.$search.'%')
             ;
         }
@@ -41,9 +39,7 @@ class SourceRepository extends ServiceEntityRepository implements AdminRepositor
             $qb->setMaxResults($maxResults);
         }
         $qb
-            ->addOrderBy('v.category')
-            //->addOrderBy('l.infinitive')
-            // ->addOrderBy('v.pennrann')
+            ->addOrderBy('s.code')
         ;
         return $qb->getQuery();
     }

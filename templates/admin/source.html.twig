@@ -1,0 +1,68 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Lodenn verañ{% endblock %}
+
+{% block content %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+    <p>Lodenn verañ</p>
+    <a href="{{path('admin_sources')}}">< Distreiñ</a>
+
+    {{form_start(form)}}
+    <div class="row">
+        <div class="col-md-2">
+            {{form_label(form.code)}}
+        </div>
+        <div class="col-md-2">
+            {{form_widget(form.code)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md translations"
+            data-prototype="{{ form_widget(form.translations.vars.prototype)|e }}"
+            data-widget-tags="{{ '<li></li>'|e }}"
+            data-widget-counter="{{ form.translations|length }}">
+            {{form_label(form.translations)}}
+            {% for translation in form.translations %}
+                <div class="row">
+                    <div class="col-md-4">
+                        {{form_label(translation.label)}}
+                    </div>
+                    <div class="col-md-4">
+                        {{form_label(translation.description)}}
+                    </div>
+                    <div class="col-md-3">
+                        {{form_label(translation.languageCode)}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        {{form_widget(translation.label)}}
+                    </div>
+                    <div class="col-md-4">
+                        {{form_widget(translation.description)}}
+                    </div>
+                    <div class="col-md-3">
+                        {{form_widget(translation.languageCode)}}
+                    </div>
+                    <div class="col-md-1">
+                        DELETE
+                    </div>
+                </div>
+            {% endfor %}
+            
+
+        </div>
+        
+    </div>
+    <button type="button"
+                class="add-element"
+                data-list-selector=".translations">Ouzhpennañ</button>
+    <br/>
+    <p>
+        {{form_widget(form.save)}}
+        {{form_widget(form.save_return)}}
+        {{form_widget(form.save_continue)}}
+    </p>
+
+    {{form_end(form)}}
+{% endblock %}

@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\SourceRepository")
  * @ORM\Table(name="Source")
  */
 class Source
@@ -108,5 +108,9 @@ class Source
     public function getId()
     {
         return $this->id;
+    }
+
+    public function __toString() {
+        return $this->code;
     }
 }
