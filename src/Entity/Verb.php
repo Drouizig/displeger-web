@@ -124,7 +124,7 @@ class Verb
      */ 
     public function removeAuxilliary(Verb $auxilliary)
     {
-        $this->auxilliaries->remove($auxilliary);
+        $this->auxilliaries->removeElement($auxilliary);
 
         return $this;
     }
@@ -168,7 +168,7 @@ class Verb
      */ 
     public function removeLocalization(VerbLocalization $localization)
     {
-        $this->localizations->remove($localization);
+        $this->localizations->removeElement($localization);
 
         return $this;
     }
@@ -211,7 +211,7 @@ class Verb
      */ 
     public function removeTranslation(VerbTranslation $translation)
     {
-        $this->translations->remove($translation);
+        $this->translations->removeElement($translation);
 
         return $this;
     }

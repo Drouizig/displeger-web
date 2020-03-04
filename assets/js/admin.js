@@ -2,7 +2,7 @@
 require('select2');
 $(document).ready(function() {
 
-  $('select[multiple="multiple"]').select2();
+  $('select').select2();
 
   jQuery('.add-element').click(function (e) {
     var list = jQuery(jQuery(this).attr('data-list-selector'));
@@ -13,9 +13,18 @@ $(document).ready(function() {
     counter++;
     list.data('widget-counter', counter);
 
-    var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
+    var newElem = jQuery(newWidget);
+    newElem.find('.delete-element').click(function (e) {
+      $(this).parent().parent().parent().remove();
+    });
+
     newElem.appendTo(list);
-});
+    newElem.find('select').select2();
+  });
+
+  jQuery('.delete-element').click(function (e) {
+    $(this).parent().parent().parent().remove();
+  });
 
 });
 

@@ -10,75 +10,41 @@
     {{form_start(form)}}
     <div class="row">
 
-        <div class="col-md">
+        <div class="col-md localizations"
+             data-prototype="{{ include(
+                "admin/partial/verb_localization.html.twig",
+                { localization : form.localizations.vars.prototype}, 
+                with_context = false
+                )|e }}"
+            data-widget-counter="{{ form.translations|length }}">
             {{form_label(form.localizations)}}
             {% for localization in form.localizations %}
-                <div class="row">
-                    <div class="col-md-2">
-                        {{form_label(localization.infinitive)}}
-                    </div>
-                    <div class="col-md-2">
-                        {{form_label(localization.base)}}
-                    </div>
-                    <div class="col-md-2">
-                        {{form_label(localization.dialectCode)}}
-                    </div>
-                    <div class="col-md-4">
-                        {{form_label(localization.sources)}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        {{form_widget(localization.infinitive)}}
-                    </div>
-                    <div class="col-md-2">
-                        {{form_widget(localization.base)}}
-                    </div>
-                    <div class="col-md-2">
-                        {{form_widget(localization.dialectCode)}}
-                    </div>
-                    <div class="col-md-4">
-                        {{form_widget(localization.sources)}}
-                    </div>
-                    <div class="col-md-1">
-                        DELETE
-                    </div>
-                </div>
+                {% include "admin/partial/verb_localization.html.twig"  %}
             {% endfor %}
         </div>
     </div>
-    <div class="row">
+    <button type="button"
+                class="add-element"
+                data-list-selector=".localizations">Ouzhpennañ</button>
+    <br/>
+    <div class="col-md translations"
+             data-prototype="{{ include(
+                "admin/partial/verb_translation.html.twig",
+                { translation : form.translations.vars.prototype}, 
+                with_context = false
+                )|e }}"
+            data-widget-counter="{{ form.translations|length }}">
         <div class="col-md">
             {{form_label(form.translations)}}
             {% for translation in form.translations %}
-                <div class="row">
-                    <div class="col-md-4">
-                        {{form_label(translation.translation)}}
-                    </div>
-                    <div class="col-md-3">
-                        {{form_label(translation.languageCode)}}
-                    </div>
-                    <div class="col-md-4">
-                        {{form_label(translation.sources)}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        {{form_widget(translation.translation)}}
-                    </div>
-                    <div class="col-md-3">
-                        {{form_widget(translation.languageCode)}}
-                    </div>
-                    <div class="col-md-4">
-                        {{form_widget(translation.sources)}}
-                    </div>
-                    <div class="col-md-1">
-                        DELETE
-                    </div>
-                </div>
+                {% include "admin/partial/verb_translation.html.twig" %}
             {% endfor %}
         </div>
     </div>
+    <button type="button"
+                class="add-element"
+                data-list-selector=".translations">Ouzhpennañ</button>
+    <br/>
     <div class="row">
         <div class="col-md-2">
             {{form_label(form.category)}}<a href='https://github.com/Drouizig/displeger-verbou/wiki/Rummado%C3%B9' target="_blank"><sup>[?]</sup></a>

@@ -18,36 +18,15 @@
     </div>
     <div class="row">
         <div class="col-md translations"
-            data-prototype="{{ form_widget(form.translations.vars.prototype)|e }}"
-            data-widget-tags="{{ '<li></li>'|e }}"
+             data-prototype="{{ include(
+                "admin/partial/source_translation.html.twig",
+                { translation : form.translations.vars.prototype}, 
+                with_context = false
+                )|e }}"
             data-widget-counter="{{ form.translations|length }}">
             {{form_label(form.translations)}}
             {% for translation in form.translations %}
-                <div class="row">
-                    <div class="col-md-4">
-                        {{form_label(translation.label)}}
-                    </div>
-                    <div class="col-md-4">
-                        {{form_label(translation.description)}}
-                    </div>
-                    <div class="col-md-3">
-                        {{form_label(translation.languageCode)}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        {{form_widget(translation.label)}}
-                    </div>
-                    <div class="col-md-4">
-                        {{form_widget(translation.description)}}
-                    </div>
-                    <div class="col-md-3">
-                        {{form_widget(translation.languageCode)}}
-                    </div>
-                    <div class="col-md-1">
-                        DELETE
-                    </div>
-                </div>
+                {% include "admin/partial/source_translation.html.twig" %}
             {% endfor %}
             
 

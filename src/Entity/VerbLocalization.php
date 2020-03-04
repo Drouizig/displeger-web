@@ -186,7 +186,7 @@ class VerbLocalization
      */ 
     public function removeSource(Source $source)
     {
-        $this->sources->remove($source);
+        $this->sources->removeElement($source);
 
         return $this;
     }

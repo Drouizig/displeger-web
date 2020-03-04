@@ -16,7 +16,7 @@ class SourceTranslationType extends AbstractType
                 'label' => 'app.form.source.label'
             ])
             ->add('description', null, [
-                'label' => 'app.form.source.desciprtion'
+                'label' => 'app.form.source.description'
             ])
             ->add('languageCode', null, [
                 'label' => 'app.form.source.language_code'

@@ -97,7 +97,7 @@ class Source
      */ 
     public function removeTranslation(SourceTranslation $translation)
     {
-        $this->translations->remove($translation);
+        $this->translations->removeElement($translation);
         
         return $this;
     }

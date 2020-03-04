@@ -22,7 +22,8 @@ class SourceType extends AbstractType
                 'entry_type' => SourceTranslationType::class,
                 'allow_add' => true,
                 'prototype' => true,
-                'allow_delete' => true
+                'allow_delete' => true,
+                'by_reference' => false
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'app.form.verb.save'

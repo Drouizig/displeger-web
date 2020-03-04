@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\VerbTranslation;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Intl\Intl;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class VerbTranslationType extends AbstractType
@@ -15,8 +17,9 @@ class VerbTranslationType extends AbstractType
             ->add('translation', null, [
                 'label' => 'app.form.verb.translation'
             ])
-            ->add('languageCode', null, [
-                'label' => 'app.form.verb.language_code'
+            ->add('languageCode', ChoiceType::class, [
+                'label' => 'app.form.verb.language_code',
+                'choices' => array_flip(Intl::getLocaleBundle()->getLocaleNames()),
             ])
             ->add('sources', null, [
                 'label' => 'app.form.verb.sources'

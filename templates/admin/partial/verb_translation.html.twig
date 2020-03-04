@@ -1,0 +1,28 @@
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            {{form_label(translation.translation)}}
+        </div>
+        <div class="col-md-3">
+            {{form_label(translation.languageCode)}}
+        </div>
+        <div class="col-md-4">
+            {{form_label(translation.sources)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            {{form_widget(translation.translation)}}
+        </div>
+        <div class="col-md-3">
+            {{form_widget(translation.languageCode)}}
+        </div>
+        <div class="col-md-4">
+            {{form_widget(translation.sources)}}
+        </div>
+        <div class="col-md-1">
+            <button type="button"
+                    class="delete-element">Dilemel</button>
+        </div>
+    </div>
+</div>

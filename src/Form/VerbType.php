@@ -19,14 +19,16 @@ class VerbType extends AbstractType
                 'entry_type' => VerbLocalizationType::class,
                 'allow_add' => true,
                 'prototype' => true,
-                'allow_delete' => true
+                'allow_delete' => true,
+                'by_reference' => false,
             ])
             ->add('translations', CollectionType::class, [
                 'label' => 'app.form.verb.translations',
                 'entry_type' => VerbTranslationType::class,
                 'allow_add' => true,
                 'prototype' => true,
-                'allow_delete' => true
+                'allow_delete' => true,
+                'by_reference' => false,
             ])
             ->add('category', null, [
                 'label' => 'app.form.verb.category'

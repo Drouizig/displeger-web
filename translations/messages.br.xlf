@@ -165,6 +165,26 @@
         <source>app.form.verb.translation</source>
         <target>Troidigezh</target>
       </trans-unit>
+      <trans-unit id="46ss54" resname="app.form.source.code">
+        <source>app.form.source.code</source>
+        <target>Bonneg</target>
+      </trans-unit>
+      <trans-unit id="445454545" resname="app.form.source.translations">
+        <source>app.form.source.translations</source>
+        <target>Troidigezhioù</target>
+      </trans-unit>
+      <trans-unit id="8888" resname="app.form.source.label">
+        <source>app.form.source.label</source>
+        <target>Anv</target>
+      </trans-unit>
+      <trans-unit id="465454" resname="app.form.source.description">
+        <source>app.form.source.description</source>
+        <target>Deskrivadur</target>
+      </trans-unit>
+      <trans-unit id="465444" resname="app.form.source.language_code">
+        <source>app.form.source.language_code</source>
+        <target>Yezh</target>
+      </trans-unit>
       <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_galleg">
         <source>app.form.contact.default.translation_galleg</source>
         <target>Demat deoc'h,
