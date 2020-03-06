@@ -123,11 +123,18 @@ $(document).ready(function() {
     }
   });
 
+
+
   let trans = () => {
     document.documentElement.classList.add('transition');
     window.setTimeout(() => {
       document.documentElement.classList.remove('transition');
     }, 1000)
+  }
+
+  // makes sure the button is in the correct state when it's loaded
+  if(localStorage.getItem('theme') === 'dark'){
+    $('.dark-mode-switch').bootstrapToggle('on');
   }
 
 });

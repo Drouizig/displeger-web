@@ -11,7 +11,7 @@ html[data-theme='dark'] {
   --hover-color: var(--gray-dark);
   --message-color: var(--gray-dark);
   --title-color: white;
-  --text-color: #{$secondary};
+  --text-color: white;
   --button-color: #{$secondary};
   --button-hover: #{darken($secondary, 10%)};
   --button-focus: #{darken($secondary, 15%)};
