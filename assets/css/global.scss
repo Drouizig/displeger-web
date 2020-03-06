@@ -1,7 +1,6 @@
 
 // customize some Bootstrap variables, base = #428bca
 $primary: #2D5F8A;
-$secondary: #E0FF91;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
@@ -13,36 +12,14 @@ html {
     --background: white;
     --lighter-background: lightgray;
     --focus-color: white;
-    --hover-color: var(--gray-dark);
+    --hover-color: lightgray;
     --message-color: lightblue;
     --title-color: black;
-    --text-color: $primary;
-    --button-color: $primary;
-    --button-hover: darken($primary, 10%);
-    --button-focus: darken($primary, 15%);
+    --text-color: #{$primary};
+    --button-color: #{$primary};
+    --button-hover: #{darken($primary, 10%)};
+    --button-focus: #{darken($primary, 15%)};
     background: var(--background);
-}
-
-html[data-theme='dark'] {
-    --background: black;
-    --lighter-background: lightgray;
-    --focus-color: black;
-    --hover-color: var(--gray-dark);
-    --message-color: var(--gray-dark);
-    --title-color: white;
-    --text-color: $secondary;
-    --button-color: $secondary;
-    --button-hover: darken($secondary, 10%);
-    --button-focus: darken($secondary, 15%);
-}
-
-// transition for the dark mode, so smooth...
-html.transition,
-html.transition *,
-html.transition *:before,
-html.transition *:after {
-    transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 420ms!important;
-    transition-delay: 0!important;
 }
 
 body {
@@ -70,7 +47,7 @@ a {
     &:hover {
         background-color: var(--button-hover);
     }
-    &:active {
+    &:not(:disabled):not(.disabled):active {
         background-color: var(--button-focus);
     }
     &:focus {

@@ -3,13 +3,6 @@
 @import "global.scss";
 
 $secondary: invert($primary, 100%);
-$secondary-hover: lighten($secondary, 10%);
-
-input[type=checkbox] {
-  height: 0;
-  width: 0;
-  visibility: hidden;
-}
 
 html[data-theme='dark'] {
   --background: black;
@@ -18,7 +11,17 @@ html[data-theme='dark'] {
   --hover-color: var(--gray-dark);
   --message-color: var(--gray-dark);
   --title-color: white;
-  --text-color: var(--secondary);
-  --button-color: var(--secondary);
-  --button-hover: $secondary-hover;
+  --text-color: #{$secondary};
+  --button-color: #{$secondary};
+  --button-hover: #{darken($secondary, 10%)};
+  --button-focus: #{darken($secondary, 15%)};
+}
+
+// transition for the dark mode, so smooth...
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 420ms!important;
+  transition-delay: 0!important;
 }
