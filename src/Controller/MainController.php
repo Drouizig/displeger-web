@@ -24,6 +24,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Configuration;
+use App\Entity\VerbLocalization;
+use App\Entity\VerbTranslation;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 class MainController extends AbstractController
@@ -98,6 +100,7 @@ class MainController extends AbstractController
         if ( null === $term ) {
             return $this->redirectToRoute('main');  
         }
+        /** @var VerbRepository $verbRepository */
         $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
         $searchQuery = $verbRepository->getFrontSearchQuery($term);
         
@@ -142,11 +145,12 @@ class MainController extends AbstractController
 
 
     /**
-     * @Route("/{_locale}/verb/{anvVerb}", name="verb", defaults={"print" : false})
-     * @Entity("verb", expr="repository.findOneByAnvVerb(anvVerb)")
+     * @Route("/{_locale}/verb/{infinitive}", name="verb", defaults={"print" : false})
+     * @Entity("VerbLocalization", expr="repository.findOneByInfinitive(infinitive)")
      */
-    public function verb(Request $request,Verb $verb = null, LoggerInterface $logger, Pdf $pdf)
+    public function verb(Request $request,VerbLocalization $verbLocalization = null, LoggerInterface $logger, Pdf $pdf)
     {
+        $verb = $verbLocalization->getVerb();
         $contactForm = $this->createForm(ContactType::class);
         $reportErrorForm = $this->createForm(ContactType::class);
         $template = 'main/verb.html.twig';
@@ -160,14 +164,14 @@ class MainController extends AbstractController
         if(null !== $verb) {
             $locale = $request->get('_locale', 'br');
             $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
-            if($verb->getAnvVerb() === 'bezañ') {
+            if(in_array($verbLocalization->getInfinitive(), ['bezañ', 'boud'])) {
                 $verbEndings = $this->getParameter('bezan');
                 $template = 'main/irregular/bezan.html.twig';
             }
             $anvGwan = $verbEndings['gwan'];
             unset($verbEndings['gwan']);
             unset($verbEndings['nach']);
-            $mutatedBase = $this->kemmaduriouManager->mutateWord($verb->getPennrann(), KemmaduriouManager::BLOTAAT);
+            $mutatedBase = $this->kemmaduriouManager->mutateWord($verbLocalization->getBase(), KemmaduriouManager::BLOTAAT);
             $nach = [];
             foreach($verbEndings['kadarnaat'] as $ending) {
                 if(count($ending) > 0) {
@@ -177,16 +181,16 @@ class MainController extends AbstractController
                 }
             }
 
-            $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verb->getAnvVerb();
+            $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verbLocalization->getInfinitive();
             $geriafurchUrl = '';
             if(isset($this->getParameter('url_geriafurch')[$locale])) {
-                $geriafurchUrl = $this->getParameter('url_geriafurch')[$locale].$verb->getAnvVerb();
+                $geriafurchUrl = $this->getParameter('url_geriafurch')[$locale].$verbLocalization->getInfinitive();
             } else {
-                $geriafurchUrl = $this->getParameter('url_geriafurch')['br'].$verb->getAnvVerb();
+                $geriafurchUrl = $this->getParameter('url_geriafurch')['br'].$verbLocalization->getInfinitive();
             }
-            $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verb->getAnvVerb();
+            $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verbLocalization->getInfinitive();
             if($print){
-                if(!file_exists(self::PDF_DIR.$verb->getAnvVerb() . '.pdf')) {
+                if(!file_exists(self::PDF_DIR.$verbLocalization->getInfinitive() . '.pdf')) {
                     $html = $this->renderView(
                         $template,
                         array(
@@ -196,17 +200,18 @@ class MainController extends AbstractController
                             'nach' => $nach,
                             'contactForm' => $contactForm->createView(),
                             'print' => $print,
-                            'anvVerb' => $verb->getAnvVerb()
+                            'anvVerb' => $verbLocalization->getInfinitive()
                         )
                     );
                     //TODO will hog the disk in the public folder, maybe we could clean it after. or keep it for cache ?
-                    $pdf->generateFromHtml($html, self::PDF_DIR.$verb->getAnvVerb() . '.pdf', [], true);
+                    $pdf->generateFromHtml($html, self::PDF_DIR.$verbLocalization->getInfinitive() . '.pdf', [], true);
                 }
-                return new BinaryFileResponse(self::PDF_DIR.$verb->getAnvVerb() . '.pdf');
+                return new BinaryFileResponse(self::PDF_DIR.$verbLocalization->getInfinitive() . '.pdf');
 
             } else {
                 return $this->render($template, [
                     'verb' => $verb,
+                    'verbLocalization' => $verbLocalization,
                     'verbEndings' => $verbEndings,
                     'anvGwan' => $anvGwan,
                     'nach' => $nach,
@@ -236,16 +241,17 @@ class MainController extends AbstractController
         if (null === $term) {
             return new JsonResponse();
         }
-        $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
-        $result = $verbRepository->findByTermAutocomplete($term);
+        /** @var VerbLocalizationRepository $verbLocalizationRepository */
+        $verbLocalizationRepository = $this->getDoctrine()->getRepository(VerbLocalization::class);
+        $result = $verbLocalizationRepository->findByTermAutocomplete($term);
         $array = [];
         /** @var Verb $res */
         for ($i = 0; $i < min(5, count($result)); $i++) {
             $res = $result[$i];
-            $array[] = ['value' => $router->generate('verb', ['anvVerb' => $res->getAnvVerb()]), 'label' => $res->getAnvVerb()];
+            $array[] = ['value' => $router->generate('verb', ['infinitive' => $res->getInfinitive()]), 'label' => $res->getInfinitive()];
         }
         if(count($result) > 5) {
-            $array[] = ['value' => $router->generate('search', ['term' => $term]), 'label' => $translator->trans    ('app.autocomplete.more')];
+            $array[] = ['value' => $router->generate('search', ['term' => $term]), 'label' => $translator->trans('app.autocomplete.more')];
         }
         return new JsonResponse($array);
     }

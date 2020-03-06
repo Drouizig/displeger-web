@@ -217,12 +217,25 @@ class Verb
     }
 
     public function hasTranslationInLanguage(string $languageCode) {
+        return $this->getTranslation($languageCode) !== null;
+    }
+
+    public function getTranslation(string $languageCode) {
         /** @var VerbTranslation $translation */
         foreach($this->translations as $translation) {
             if($translation->getLanguageCode() === $languageCode) {
-                return true;
+                return $translation;
             }
         }
-        return false;
+        dump($languageCode);
+        $languageCode = explode('_', $languageCode)[0];
+        foreach($this->translations as $translation) {
+            if(explode('_', $translation->getLanguageCode())[0] === $languageCode) {
+                return $translation;
+            }
+        }
+
+        return null;
     }
+
 }
