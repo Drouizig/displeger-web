@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\VerbLocalizationRepository")
  * @ORM\Table(name="VerbLocalization",indexes={@ORM\Index(name="verb_loc_idx", columns={"infinitive"})})
  */
 class VerbLocalization
@@ -54,6 +54,12 @@ class VerbLocalization
      *      )
      */
     private $sources;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $category;
+
 
     public function __construct()
     {
@@ -211,6 +217,26 @@ class VerbLocalization
     public function setVerb(?Verb $verb)
     {
         $this->verb = $verb;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of category
+     */ 
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     *
+     * @return  self
+     */ 
+    public function setCategory($category)
+    {
+        $this->category = $category;
 
         return $this;
     }

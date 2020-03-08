@@ -7,9 +7,15 @@
     <p>Lodenn verañ</p>
     <a href="{{path('admin_verbs')}}">< Distreiñ</a>
 
+    <h3>
+    {% if form.vars.data.id is defined %}
+        {{ 'app.admin.verb.edit.title'|trans }}
+    {% else %}
+        {{ 'app.admin.verb.create.title'|trans }}
+    {% endif %}
+    </h3>
     {{form_start(form)}}
     <div class="row">
-
         <div class="col-md localizations"
              data-prototype="{{ include(
                 "admin/partial/verb_localization.html.twig",
@@ -17,42 +23,42 @@
                 with_context = false
                 )|e }}"
             data-widget-counter="{{ form.translations|length }}">
-            {{form_label(form.localizations)}}
+            <h4>{{form_label(form.localizations)}}</h4>
             {% for localization in form.localizations %}
                 {% include "admin/partial/verb_localization.html.twig"  %}
             {% endfor %}
         </div>
     </div>
+
+    <p><p/>
     <button type="button"
-                class="add-element"
-                data-list-selector=".localizations">Ouzhpennañ</button>
+            class="btn btn-primary add-element"
+            data-list-selector=".localizations">
+            <i class="fas fa-plus"></i>
+    </button>
     <br/>
-    <div class="col-md translations"
+    <div class="row">
+        <div class="col-md translations"
              data-prototype="{{ include(
                 "admin/partial/verb_translation.html.twig",
                 { translation : form.translations.vars.prototype}, 
                 with_context = false
                 )|e }}"
             data-widget-counter="{{ form.translations|length }}">
-        <div class="col-md">
-            {{form_label(form.translations)}}
+            <h4>{{form_label(form.translations)}}</h4>
+            
             {% for translation in form.translations %}
                 {% include "admin/partial/verb_translation.html.twig" %}
             {% endfor %}
+
         </div>
     </div>
+    <p></p>
     <button type="button"
-                class="add-element"
-                data-list-selector=".translations">Ouzhpennañ</button>
-    <br/>
-    <div class="row">
-        <div class="col-md-2">
-            {{form_label(form.category)}}<a href='https://github.com/Drouizig/displeger-verbou/wiki/Rummado%C3%B9' target="_blank"><sup>[?]</sup></a>
-        </div>
-        <div class="col-md-2">
-            {{form_widget(form.category)}}
-        </div>
-    </div>
+                class="btn btn-primary add-element"
+                data-list-selector=".translations">
+                <i class="fas fa-plus"></i>
+    </button>
     <br/>
     <p>
         {{form_widget(form.save)}}

@@ -33,3 +33,7 @@ services:
     App\Util\KemmaduriouManager:
         arguments:
             - '%kemmaduriou%'
+    App\Util\ListsUtil:
+        arguments:
+            $dialects: '%dialects%'
+            $categories: '%categories%'

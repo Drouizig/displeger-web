@@ -17,12 +17,6 @@ class Verb
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $category;
-
     /**
      * @ORM\OneToMany(
      *      targetEntity="App\Entity\VerbTranslation",
@@ -65,26 +59,6 @@ class Verb
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * Get the value of category
-     */ 
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * Set the value of category
-     *
-     * @return  self
-     */ 
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
     }
 
     /**

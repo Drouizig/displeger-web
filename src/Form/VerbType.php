@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Verb;
+use App\Util\ListsUtil;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -11,6 +13,13 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class VerbType extends AbstractType
 {
+    /** @var ListsUtil $locales */
+    protected $listsUtil;
+
+    public function __construct(ListsUtil $listsUtil) 
+    {
+        $this->listsUtil = $listsUtil;
+    } 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -29,9 +38,6 @@ class VerbType extends AbstractType
                 'prototype' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-            ])
-            ->add('category', null, [
-                'label' => 'app.form.verb.category'
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'app.form.verb.save'

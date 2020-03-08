@@ -269,6 +269,30 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.header.search.button</source>
         <target>Rechercher</target>
       </trans-unit>
+      <trans-unit id="f70H45G" resname="global.gallo">
+        <source>global.gallo</source>
+        <target>Gallo</target>
+      </trans-unit>
+      <trans-unit id="8R3kwUH" resname="app.dialect.kerne">
+        <source>app.dialect.kerne</source>
+        <target>Cornouaillais</target>
+      </trans-unit>
+      <trans-unit id="dRj1_09" resname="app.dialect.leon">
+        <source>app.dialect.leon</source>
+        <target>Léonard</target>
+      </trans-unit>
+      <trans-unit id="ZdD7Zd3" resname="app.dialect.treger">
+        <source>app.dialect.treger</source>
+        <target>Trégorois</target>
+      </trans-unit>
+      <trans-unit id="TF9joci" resname="app.dialect.gwened">
+        <source>app.dialect.gwened</source>
+        <target>Vannetais</target>
+      </trans-unit>
+      <trans-unit id="MDzUI0u" resname="app.dialect.reolad">
+        <source>app.dialect.reolad</source>
+        <target>Standard</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

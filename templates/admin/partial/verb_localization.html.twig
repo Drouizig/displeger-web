@@ -7,9 +7,12 @@
             {{form_label(localization.base)}}
         </div>
         <div class="col-md-2">
+            {{form_label(localization.category)}}
+        </div>
+        <div class="col-md-2">
             {{form_label(localization.dialectCode)}}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             {{form_label(localization.sources)}}
         </div>
     </div>
@@ -21,14 +24,19 @@
             {{form_widget(localization.base)}}
         </div>
         <div class="col-md-2">
+            {{form_widget(localization.category)}}
+        </div>
+        <div class="col-md-2">
             {{form_widget(localization.dialectCode)}}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             {{form_widget(localization.sources)}}
         </div>
         <div class="col-md-1">
             <button type="button"
-                    class="delete-element">Dilemel</button>
+                    class="btn btn-primary delete-element">
+                    <i class="fas fa-minus"></i>
+            </button>
         </div>
     </div>
 </div>

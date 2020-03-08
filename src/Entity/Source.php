@@ -101,6 +101,16 @@ class Source
         
         return $this;
     }
+    
+    public function getTranslation(string $languageCode) {
+        /** @var SourceTranslation $translation */
+        foreach($this->translations as $translation) {
+            if($translation->getLanguageCode() === $languageCode) {
+                return $translation;
+            }
+        }
+        return $translation;
+    }
 
     /**
      * Get the value of id
