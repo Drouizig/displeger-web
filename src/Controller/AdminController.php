@@ -106,7 +106,6 @@ class AdminController extends AbstractController
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()) {
                 $data = $form->getData();
-                dump($data);
                 $this->getDoctrine()->getManager()->persist($data);
                 $this->getDoctrine()->getManager()->flush();
                 if(key_exists('save', $request->request->get($form->getName()))) {

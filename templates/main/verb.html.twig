@@ -37,7 +37,7 @@
             {% endif %}
             {% if verb.hasTranslationInLanguage(language) %}
                 {% set translation = verb.translation(language) %}
-                <p>{{constant('Symfony\\Component\\Intl\\Intl::getLocaleBundle()').localeName(translation.localeCode)}} : <i>{{translation.translation}}</i></p>
+                <p>{{listsUtil.locales[translation.localeCode]}} : <i>{{translation.translation}}</i></p>
             {% elseif print == false %}
                 TODO: extension to get intl get locale
                     {# {% set key = 'saozneg' %}

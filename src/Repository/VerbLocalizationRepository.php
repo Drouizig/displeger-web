@@ -38,4 +38,13 @@ class VerbLocalizationRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findCategoryStatistics()
+    {
+        return $this->createQueryBuilder('vl')
+            ->select('vl.category as name, count(vl.id) as y')
+            ->groupBy('vl.category')
+            ->getQuery()
+            ->getResult();
+    }
+
 }

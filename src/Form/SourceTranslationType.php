@@ -3,12 +3,22 @@
 namespace App\Form;
 
 use App\Entity\SourceTranslation;
+use App\Util\ListsUtil;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SourceTranslationType extends AbstractType
 {
+    /** @var ListsUtil $locales */
+    protected $locales;
+
+    public function __construct(ListsUtil $locales) 
+    {
+        $this->locales = $locales;
+    } 
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -18,8 +28,9 @@ class SourceTranslationType extends AbstractType
             ->add('description', null, [
                 'label' => 'app.form.source.description'
             ])
-            ->add('languageCode', null, [
-                'label' => 'app.form.source.language_code'
+            ->add('languageCode', ChoiceType::class, [
+                'label' => 'app.form.source.language_code',
+                'choices' => array_flip($this->locales->getLocales()),
             ])
         ;
     }

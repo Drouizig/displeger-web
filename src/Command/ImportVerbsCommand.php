@@ -29,6 +29,8 @@ class ImportVerbsCommand extends Command
     /** @var EntityManagerInterface */
     protected $em;
 
+    protected $batchBuffer = [];
+
     public function __construct(EntityManagerInterface $em)
     {
         parent::__construct();
@@ -54,37 +56,75 @@ class ImportVerbsCommand extends Command
 
         $verbLocalizationRepository = $this->em->getRepository(VerbLocalization::class);
         $data = $serializer->decode(file_get_contents($filename), 'csv');
+        $counter = 0;
+        $batchSize = 10;
         foreach($data as $line) {
+            $counter++;
 
             $verb = new Verb();
             /** @var VerbLocalization */
             $commonBaseVerbLocalization = $verbLocalizationRepository->findOneBy(['base' => $line[self::PENNRANN]]);
-            if(null !== $commonBaseVerbLocalization 
-            && $commonBaseVerbLocalization->getVerb()->getCategory() === $line[self::RUMMAD]) {
+            if(null !== $commonBaseVerbLocalization) {
                 $verb = $commonBaseVerbLocalization->getVerb();
+            } else {
+                $batchVerbLocalization = $this->getVerbalBaseInBatchBuffer($line[self::PENNRANN]);
+                if(null !== $batchVerbLocalization) {
+                    $verb = $batchVerbLocalization->getVerb();
+                }
             }
 
+            $newVerb = false;
+            foreach($verb->getLocalizations() as $localization) {
+                if($localization->getCategory() != $line[self::RUMMAD]) {
+                    $newVerb=true;
+                }
+            }
+            if($newVerb) {
+                $verb = new Verb();
+            }
+            
             $verbLocalization = new VerbLocalization();
             $verbLocalization->setInfinitive($line[self::ANV_VERB]);
             $verbLocalization->setBase($line[self::PENNRANN]);
             $verb->addLocalization($verbLocalization);
-            $verb->setCategory($line[self::RUMMAD]);
+            $verbLocalization->setCategory($line[self::RUMMAD]);
+
+            $batchBuffer[] = $verbLocalization;
             
             if (!$verb->hasTranslationInLanguage('fr_FR') && $line[self::GALLEG] !== '#galleg') {
-                $verbTranslationFr = new VerbTranslation();
-                $verbTranslationFr->setTranslation($line[self::GALLEG]);
-                $verbTranslationFr->setLanguageCode('fr_FR');
-                $verb->addTranslation($verbTranslationFr);
+                $verbTranslation = new VerbTranslation();
+                $verbTranslation->setTranslation($line[self::GALLEG]);
+                $verbTranslation->setLanguageCode('fr_FR');
+                $verb->addTranslation($verbTranslation);
             }
             if (!$verb->hasTranslationInLanguage('en_GB') && $line[self::SAOZNEG] !== '#saozneg') {
-                $verbTranslationFr = new VerbTranslation();
-                $verbTranslationFr->setTranslation($line[self::SAOZNEG]);
-                $verbTranslationFr->setLanguageCode('en_GB');
-                $verb->addTranslation($verbTranslationFr);
+                $verbTranslation = new VerbTranslation();
+                $verbTranslation->setTranslation($line[self::SAOZNEG]);
+                $verbTranslation->setLanguageCode('en_GB');
+                $verb->addTranslation($verbTranslation);
             }
             $this->em->persist($verb);
-            $this->em->flush();
-            
+            if ($counter >= $batchSize) {
+                $this->em->flush();
+                $counter = 0;
+                $batchBuffer = [];
+            }
+            $verb = null;
+            $verbLocalization = null;
+            $verbTranslation = null;
+
         }
+        $this->em->flush();
     }
+
+    private function getVerbalBaseInBatchBuffer($verbalBase)
+    {
+        /** @var VerbLocalization $batchVerbLocalization */
+        foreach($this->batchBuffer as $batchVerbLocalization) {
+            if($batchVerbLocalization->getBase() === $verbalBase) {
+                return $batchVerbLocalization;
+            }
+        }
+        return null;
+    } 
 }

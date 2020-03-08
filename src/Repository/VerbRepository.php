@@ -58,7 +58,7 @@ class VerbRepository extends ServiceEntityRepository implements AdminRepositoryI
             $qb
                 ->where('l.infinitive LIKE :term')
                 ->orWhere('l.base LIKE :term')
-                ->orWhere('v.category LIKE :term')
+                ->orWhere('l.category LIKE :term')
                 ->orWhere('t.translation LIKE :term')
                 ->setParameter('term', '%'.$search.'%')
             ;
@@ -70,20 +70,10 @@ class VerbRepository extends ServiceEntityRepository implements AdminRepositoryI
             $qb->setMaxResults($maxResults);
         }
         $qb
-            ->addOrderBy('v.category')
             ->addOrderBy('li')
             ->addOrderBy('lb')
         ;
         return $qb->getQuery();
-    }
-
-    public function findCategoryStatistics()
-    {
-        return $this->createQueryBuilder('v')
-            ->select('v.category as name, count(v.id) as y')
-            ->groupBy('v.category')
-            ->getQuery()
-            ->getResult();
     }
 
     public function findRandomVerb(){

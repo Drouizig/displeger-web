@@ -6,7 +6,7 @@
     <h1>{{ 'app.title'|trans }}</h1>
     <p><a href="{{ path('admin_home') }}">Lodenn verañ</a></p>
 
-    <form action="{{ path('admin_verbs') }}" class="search-form form-md">
+    <form action="{{ path('admin_verbs') }}" class="form-inline search-form form-md">
         <input type="text" name="search" class="form-control" value="{{ app.request.query.get('search') }}"/>
         <button class="btn btn-primary">{{'app.header.search.button'|trans}}</button>
     </form>
@@ -23,9 +23,6 @@
                 </th>
                 <th scope="col">
                     Pennrann
-                </th>
-                <th scope="col">
-                    Rummad<a href='https://github.com/Drouizig/displeger-verbou/wiki/Rummado%C3%B9' target="_blank"><sup>[?]</sup></a>
                 </th>
                 <th scope="col">
                     Galleg
@@ -48,9 +45,6 @@
                         {% for localization in tuple.verb.localizations %}
                          {{ (loop.index == 1 ? '' : '; ') ~ localization.base }}
                         {% endfor %}
-                    </td>
-                    <td>
-                        {{ tuple.verb.category }}
                     </td>
                     <td>
                         {% for translation in tuple.verb.translations %}

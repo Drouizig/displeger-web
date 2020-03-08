@@ -1,7 +1,7 @@
 parameters:
-  diaects:
+  dialects:
     - kerne
     - leon
     - treger
-    - gwenedeg
+    - gwened
     - reolad

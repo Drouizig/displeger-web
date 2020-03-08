@@ -55,6 +55,12 @@ class VerbLocalization
      */
     private $sources;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $category;
+
+
     public function __construct()
     {
         $this->sources = new ArrayCollection();
@@ -211,6 +217,26 @@ class VerbLocalization
     public function setVerb(?Verb $verb)
     {
         $this->verb = $verb;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of category
+     */ 
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     *
+     * @return  self
+     */ 
+    public function setCategory($category)
+    {
+        $this->category = $category;
 
         return $this;
     }
