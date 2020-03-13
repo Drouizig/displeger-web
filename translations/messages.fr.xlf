@@ -269,6 +269,34 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.header.search.button</source>
         <target>Rechercher</target>
       </trans-unit>
+      <trans-unit id="VwokZ0E" resname="app.gour.U1.symbol">
+        <source>app.gour.U1.symbol</source>
+        <target>S1</target>
+      </trans-unit>
+      <trans-unit id="JQuJLEa" resname="app.gour.U2.symbol">
+        <source>app.gour.U2.symbol</source>
+        <target>S2</target>
+      </trans-unit>
+      <trans-unit id="qATMamv" resname="app.gour.U3.symbol">
+        <source>app.gour.U3.symbol</source>
+        <target>S3</target>
+      </trans-unit>
+      <trans-unit id="LUXUzQS" resname="app.gour.L1.symbol">
+        <source>app.gour.L1.symbol</source>
+        <target>P1</target>
+      </trans-unit>
+      <trans-unit id="Ux2dugh" resname="app.gour.L2.symbol">
+        <source>app.gour.L2.symbol</source>
+        <target>P2</target>
+      </trans-unit>
+      <trans-unit id="ELn1TBT" resname="app.gour.L3.symbol">
+        <source>app.gour.L3.symbol</source>
+        <target>P3</target>
+      </trans-unit>
+      <trans-unit id="Pz6MZrr" resname="app.gour.D.symbol">
+        <source>app.gour.D.symbol</source>
+        <target>I</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

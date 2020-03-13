@@ -95,7 +95,7 @@
                     <ul>
                         {% for ending in endings %}
                             <li class="verb-item">
-                                <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
+                                <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans}}</abbr>.
                                 {% if ending|length == 1 %}
                                     <span class="js-verb">{{verb.pennrann}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
                                 {% elseif ending|length > 1%}
