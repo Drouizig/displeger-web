@@ -89,18 +89,18 @@ class ImportVerbsCommand extends Command
             $verb->addLocalization($verbLocalization);
             $verbLocalization->setCategory($line[self::RUMMAD]);
 
-            $batchBuffer[] = $verbLocalization;
+            $this->batchBuffer[] = $verbLocalization;
             
-            if (!$verb->hasTranslationInLanguage('fr_FR') && $line[self::GALLEG] !== '#galleg') {
+            if (!$verb->hasTranslationInLanguage('fr') && $line[self::GALLEG] !== '#galleg') {
                 $verbTranslation = new VerbTranslation();
                 $verbTranslation->setTranslation($line[self::GALLEG]);
-                $verbTranslation->setLanguageCode('fr_FR');
+                $verbTranslation->setLanguageCode('fr');
                 $verb->addTranslation($verbTranslation);
             }
-            if (!$verb->hasTranslationInLanguage('en_GB') && $line[self::SAOZNEG] !== '#saozneg') {
+            if (!$verb->hasTranslationInLanguage('en') && $line[self::SAOZNEG] !== '#saozneg') {
                 $verbTranslation = new VerbTranslation();
                 $verbTranslation->setTranslation($line[self::SAOZNEG]);
-                $verbTranslation->setLanguageCode('en_GB');
+                $verbTranslation->setLanguageCode('en');
                 $verb->addTranslation($verbTranslation);
             }
             $this->em->persist($verb);

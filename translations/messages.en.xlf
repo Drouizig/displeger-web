@@ -83,7 +83,7 @@
       </trans-unit>
       <trans-unit id="s7c3Bcz" resname="app.missing_translation.notice">
         <source>app.missing_translation.notice</source>
-        <target>Sadly, we don't have a translation for this verb. If you know it, you can help us by sending us a message.</target>
+        <target>Sadly, we don't have an english translation for this verb. If you know it, you can help us by sending us a message.</target>
       </trans-unit>
       <trans-unit id="tzmVoeo" resname="app.form.contact.name">
         <source>app.form.contact.name</source>
@@ -133,23 +133,11 @@
         <source>app.form.verb.save_continue</source>
         <target>Save and continue</target>
       </trans-unit>
-      <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_galleg">
-        <source>app.form.contact.default.translation_galleg</source>
-        <target>Greetings,
-The french translation is missing for the verb "%verb%".
-I propose that you add the following translation:</target>
-      </trans-unit>
-      <trans-unit id="dQtAQNJ" resname="app.form.contact.default.translation_saozneg">
-        <source>app.form.contact.default.translation_saozneg</source>
+      <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_missing">
+        <source>app.form.contact.default.translation_missing</source>
         <target>Greetings,
 The english translation is missing for the verb "%verb%".
 I propose that you add the following translation:</target>
-      </trans-unit>
-      <trans-unit id="HTru6jL" resname="app.form.contact.default.translation_both">
-        <source>app.form.contact.default.translation_both</source>
-        <target>Greetings,
-The english and french translation is missing for the verb "%verb%".
-I propose that you add the following translation</target>
       </trans-unit>
       <trans-unit id="aRmbN1f" resname="app.form.contact.default.verb">
         <source>app.form.contact.default.verb</source>

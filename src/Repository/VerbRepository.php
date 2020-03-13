@@ -52,9 +52,9 @@ class VerbRepository extends ServiceEntityRepository implements AdminRepositoryI
     {
         $qb = $this->createQueryBuilder('v');
         $qb->select('v verb, l.infinitive li, l.base lb');
-        $qb->join('v.localizations', 'l');
+        $qb->leftJoin('v.localizations', 'l');
         if ($search !== null && $search !== '') {
-            $qb->join('v.translations', 't');
+            $qb->leftJoin('v.translations', 't');
             $qb
                 ->where('l.infinitive LIKE :term')
                 ->orWhere('l.base LIKE :term')

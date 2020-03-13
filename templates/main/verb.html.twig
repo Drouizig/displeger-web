@@ -37,15 +37,8 @@
             {% endif %}
             {% if verb.hasTranslationInLanguage(language) %}
                 {% set translation = verb.translation(language) %}
-                <p>{{listsUtil.locales[translation.localeCode]}} : <i>{{translation.translation}}</i></p>
+                <p>{{listsUtil.locales[translation.languageCode]}} : <i>{{translation.translation}}</i></p>
             {% elseif print == false %}
-                TODO: extension to get intl get locale
-                    {# {% set key = 'saozneg' %}
-                    {% if verb.galleg is null and verb.saozneg is null %}
-                        {% set key = 'both' %}
-                    {% elseif verb.galleg is null %}
-                        {% set key = 'galleg' %}
-                    {% endif %} #}
                     {% include 'main/partial/contact_form.html.twig' with {
                         'form_class' : 'missing_translation',
                         'form_object' : contactForm,
@@ -57,9 +50,18 @@
                     } %}
             {% endif %}
 
-            {# {% if verb.saozneg is not null or print == false %}
-                <p>{{'app.english'|trans}} : <i>{{verb.saozneg}}</i></p>
-            {% endif %} #}
+            {% if (verb.hasTranslationInLanguage(language) and verb.translations|length > 1)
+            or (not verb.hasTranslationInLanguage(language) and verb.translations|length > 0 )%}
+                ⯆ {{'app.verb.view_more'}}
+                <div class="translations">
+                    <ul>
+                        {% for translation in verb.translations %}
+                            <li>{{listsUtil.locales[translation.languageCode]}} : {{translation.translation}} 
+                            {% if translation.sources|length %}({{'app.verb.source'}} : ){% endif %}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
         </div>
     </div>
     

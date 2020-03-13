@@ -163,7 +163,7 @@ class MainController extends AbstractController
 
         if(null !== $verb) {
             $locale = $request->get('_locale', 'br');
-            $verbEndings = $this->verbouManager->getEndings($verb->getCategory());
+            $verbEndings = $this->verbouManager->getEndings($verbLocalization->getCategory());
             if(in_array($verbLocalization->getInfinitive(), ['bezañ', 'boud'])) {
                 $verbEndings = $this->getParameter('bezan');
                 $template = 'main/irregular/bezan.html.twig';

@@ -83,7 +83,7 @@
       </trans-unit>
       <trans-unit id="s7c3Bcz" resname="app.missing_translation.notice">
         <source>app.missing_translation.notice</source>
-        <target>Chaous, mankout a ra un droidigezh deomp! Mard anavezit anezhi e c'hallit hor skoazellañ en ur gas deomp ur gemennadenn.</target>
+        <target>Chaous, mankout a ra un droidigezh c'hallek deomp! Mard anavezit anezhi e c'hallit hor skoazellañ en ur gas deomp ur gemennadenn.</target>
       </trans-unit>
       <trans-unit id="tzmVoeo" resname="app.form.contact.name">
         <source>app.form.contact.name</source>
@@ -185,22 +185,10 @@
         <source>app.form.source.language_code</source>
         <target>Yezh</target>
       </trans-unit>
-      <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_galleg">
-        <source>app.form.contact.default.translation_galleg</source>
+      <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_missing">
+        <source>app.form.contact.default.translation</source>
         <target>Demat deoc'h,
 Evit ar verb "%verb%" e vank un droidigezh c'hallek.
-Kinnig a ran deoc'h lakaat :</target>
-      </trans-unit>
-      <trans-unit id="dQtAQNJ" resname="app.form.contact.default.translation_saozneg">
-        <source>app.form.contact.default.translation_saozneg</source>
-        <target>Demat deoc'h,
-Evit ar verb "%verb%" e vank un droidigezh saoznek.
-Kinnig a ran deoc'h lakaat :</target>
-      </trans-unit>
-      <trans-unit id="HTru6jL" resname="app.form.contact.default.translation_both">
-        <source>app.form.contact.default.translation_both</source>
-        <target>Demat deoc'h,
-Evit ar verb "%verb%" e vank an troidigezhioù e galleg hag e saozneg.
 Kinnig a ran deoc'h lakaat :</target>
       </trans-unit>
       <trans-unit id="aRmbN1f" resname="app.form.contact.default.verb">

@@ -83,7 +83,7 @@
       </trans-unit>
       <trans-unit id="s7c3Bcz" resname="app.missing_translation.notice">
         <source>app.missing_translation.notice</source>
-        <target>Malheureusement, il nous manque la traduction pour ce verbe. Si vous la connaissez, vous pouvez nous aider en nous envoyant un message.</target>
+        <target>Malheureusement, il nous manque la traduction française pour ce verbe. Si vous la connaissez, vous pouvez nous aider en nous envoyant un message.</target>
       </trans-unit>
       <trans-unit id="tzmVoeo" resname="app.form.contact.name">
         <source>app.form.contact.name</source>
@@ -133,23 +133,11 @@
         <source>app.form.verb.save_continue</source>
         <target>Enregistrer et continuer</target>
       </trans-unit>
-      <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_galleg">
+      <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_missing">
         <source>app.form.contact.default.translation_galleg</source>
         <target>Bonjour,
 Pour le verbe "%verb%", il manque la traduction française.
 Je vous propose de mettre :</target>
-      </trans-unit>
-      <trans-unit id="dQtAQNJ" resname="app.form.contact.default.translation_saozneg">
-        <source>app.form.contact.default.translation_saozneg</source>
-        <target>Bonjour,
-Pour le verbe "%verb%", il manque la traduction anglaise.
-Je vous propose de mettre :</target>
-      </trans-unit>
-      <trans-unit id="HTru6jL" resname="app.form.contact.default.translation_both">
-        <source>app.form.contact.default.translation_both</source>
-        <target>Bonjour,
-Pour le verbe "%verb%", il manque la traduction française et anglaise.
-Je vous propose de mettre </target>
       </trans-unit>
       <trans-unit id="aRmbN1f" resname="app.form.contact.default.verb">
         <source>app.form.contact.default.verb</source>
