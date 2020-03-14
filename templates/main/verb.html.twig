@@ -28,6 +28,13 @@
 {% endblock %}
 {% if verb is not null %}
     <h2>{{verbLocalization.infinitive}}</h2>
+    <p class="subtitle">{{'app.verb.other_forms'|trans}} :
+    {% for other_localization in verb.localizations if other_localization != verbLocalization %}
+        <a href={{path('verb', {'infinitive': other_localization.infinitive})}}>{{other_localization.infinitive}}</a>
+        {% if other_localization.dialectCode != null %}({{('app.dialect.'~other_localization.dialectCode)|trans}}){% endif %}
+        {% if loop.index +1 != verb.localizations|length %},{% endif %}
+    {% endfor %}
+    </p>
 
     <div class="row">
         <div class="col-md">
@@ -52,10 +59,10 @@
 
             {% if (verb.hasTranslationInLanguage(language) and verb.translations|length > 1)
             or (not verb.hasTranslationInLanguage(language) and verb.translations|length > 0 )%}
-                ⯆ {{'app.verb.view_more'}}
-                <div class="translations">
+                <p><a class="js-view_more" href="javascript:;">⯆ {{'app.verb.view_more'|trans}}</a></p>
+                <div class="js-translations" style="display:none;">
                     <ul>
-                        {% for translation in verb.translations %}
+                        {% for translation in verb.translations if translation.languageCode != language %}
                             <li>{{listsUtil.locales[translation.languageCode]}} : {{translation.translation}} 
                             {% if translation.sources|length %}({{'app.verb.source'}} : ){% endif %}</li>
                         {% endfor %}

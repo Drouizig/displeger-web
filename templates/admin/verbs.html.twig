@@ -48,12 +48,12 @@
                     </td>
                     <td>
                         {% for translation in tuple.verb.translations %}
-                          {{ translation.languageCode == 'fr_FR' ? translation.translation : '' }}
+                          {{ translation.languageCode == 'fr' ? translation.translation : '' }}
                         {% endfor %}
                     </td>
                     <td>
                         {% for translation in tuple.verb.translations %}
-                          {{ translation.languageCode == 'en_GB' ? translation.translation : '' }}
+                          {{ translation.languageCode == 'en' ? translation.translation : '' }}
                         {% endfor %}
                     </td>
                     <td>
