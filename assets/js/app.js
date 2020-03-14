@@ -94,6 +94,10 @@ $(document).ready(function() {
     );
     return false;
   });
+
+  $('.js-view_more').click(function() {
+    $('.js-translations').slideToggle();
+  });
 });
 
 

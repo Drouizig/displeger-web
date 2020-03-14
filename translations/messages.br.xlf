@@ -185,8 +185,8 @@
         <source>app.form.source.language_code</source>
         <target>Yezh</target>
       </trans-unit>
-      <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_missing">
-        <source>app.form.contact.default.translation</source>
+      <trans-unit id="rq9ZIs8" resname="app.form.contact.default.translation_missing">
+        <source>app.form.contact.default.translation_missing</source>
         <target>Demat deoc'h,
 Evit ar verb "%verb%" e vank un droidigezh c'hallek.
 Kinnig a ran deoc'h lakaat :</target>
@@ -418,6 +418,14 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       <trans-unit id="Pz6MZrr" resname="app.gour.D.symbol">
         <source>app.gour.D.symbol</source>
         <target>D</target>
+      </trans-unit>
+      <trans-unit id="7swrT8u" resname="app.verb.view_more">
+        <source>app.verb.view_more</source>
+        <target>Muioc'h a yezhoù</target>
+      </trans-unit>
+      <trans-unit id="I0qZ5tR" resname="app.verb.other_forms">
+        <source>app.verb.other_forms</source>
+        <target>Stummoù all</target>
       </trans-unit>
     </body>
   </file>

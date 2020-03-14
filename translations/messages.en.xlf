@@ -133,7 +133,7 @@
         <source>app.form.verb.save_continue</source>
         <target>Save and continue</target>
       </trans-unit>
-      <trans-unit id="Iyae57W" resname="app.form.contact.default.translation_missing">
+      <trans-unit id="rq9ZIs8" resname="app.form.contact.default.translation_missing">
         <source>app.form.contact.default.translation_missing</source>
         <target>Greetings,
 The english translation is missing for the verb "%verb%".
@@ -307,6 +307,38 @@ The verb "%verb%" is missing on the website.
       <trans-unit id="Pz6MZrr" resname="app.gour.D.symbol">
         <source>app.gour.D.symbol</source>
         <target>I</target>
+      </trans-unit>
+      <trans-unit id="7swrT8u" resname="app.verb.view_more">
+        <source>app.verb.view_more</source>
+        <target>More languages</target>
+      </trans-unit>
+      <trans-unit id="Ho5ycNZ" resname="app.admin.verb.edit.title">
+        <source>app.admin.verb.edit.title</source>
+        <target>__app.admin.verb.edit.title</target>
+      </trans-unit>
+      <trans-unit id="SOo0Sxy" resname="app.admin.verb.create.title">
+        <source>app.admin.verb.create.title</source>
+        <target>__app.admin.verb.create.title</target>
+      </trans-unit>
+      <trans-unit id="t8B2K_Y" resname="app.admin.source.edit.title">
+        <source>app.admin.source.edit.title</source>
+        <target>__app.admin.source.edit.title</target>
+      </trans-unit>
+      <trans-unit id="VXqMm0w" resname="app.admin.source.create.title">
+        <source>app.admin.source.create.title</source>
+        <target>__app.admin.source.create.title</target>
+      </trans-unit>
+      <trans-unit id="I0qZ5tR" resname="app.verb.other_forms">
+        <source>app.verb.other_forms</source>
+        <target>__app.verb.other_forms</target>
+      </trans-unit>
+      <trans-unit id="O8JcWGW" resname="app.geriafurch.alt">
+        <source>app.geriafurch.alt</source>
+        <target>__app.geriafurch.alt</target>
+      </trans-unit>
+      <trans-unit id="UnfOmys" resname="app.geriafurch">
+        <source>app.geriafurch</source>
+        <target>__app.geriafurch</target>
       </trans-unit>
     </body>
   </file>
