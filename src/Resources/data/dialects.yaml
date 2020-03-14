@@ -1,0 +1,7 @@
+parameters:
+  dialects:
+    - kerne
+    - leon
+    - treger
+    - gwened
+    - reolad

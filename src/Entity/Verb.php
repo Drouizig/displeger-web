@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VerbRepository")
- * @ORM\Table(name="Verb",indexes={@ORM\Index(name="verb_idx", columns={"anv_verb"})})
+ * @ORM\Table(name="Verb")
  */
 class Verb
 {
@@ -16,94 +17,198 @@ class Verb
      * @ORM\Column(type="integer")
      */
     private $id;
+    /**
+     * @ORM\OneToMany(
+     *      targetEntity="App\Entity\VerbTranslation",
+     *      mappedBy="verb",
+     *      cascade={"all"},
+     *      orphanRemoval=true
+     * )
+     */
+    private $translations;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\OneToMany(
+     *      targetEntity="App\Entity\VerbLocalization",
+     *      mappedBy="verb",
+     *      cascade={"all"},
+     *      orphanRemoval=true
+     * )
      */
-    private $anvVerb;
+    private $localizations;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * Many Verbs have many Verbs.
+     * @ORM\ManyToMany(targetEntity="Verb")
+     * @ORM\JoinTable(name="auxilliaries",
+     *      joinColumns={@ORM\JoinColumn(name="auxilliary_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="verb_id", referencedColumnName="id")}
+     *      )
      */
-    private $pennrann;
+    private $auxilliaries;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $category;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $galleg;
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+        $this->localizations = new ArrayCollection();
+        $this->auxilliaries = new ArrayCollection();
+    }
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $saozneg;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAnvVerb(): ?string
+    /**
+     * Get many Verbs have many Verbs.
+     */ 
+    public function getAuxilliaries()
     {
-        return $this->anvVerb;
+        return $this->auxilliaries;
     }
 
-    public function setAnvVerb(string $anvVerb): self
+    /**
+     * Set many Verbs have many Verbs.
+     *
+     * @return  self
+     */ 
+    public function setAuxilliaries($auxilliaries)
     {
-        $this->anvVerb = $anvVerb;
+        $this->auxilliaries = $auxilliaries;
+
+        return $this;
+    }
+    /**
+     * Add auxilliary.
+     *
+     * @return  self
+     */ 
+    public function addAuxilliary(Verb $auxilliary)
+    {
+        $this->auxilliaries->add($auxilliary);
+
+        return $this;
+    }
+    /**
+     * Remove auxilliary.
+     *
+     * @return  self
+     */ 
+    public function removeAuxilliary(Verb $auxilliary)
+    {
+        $this->auxilliaries->removeElement($auxilliary);
 
         return $this;
     }
 
-    public function getPennrann(): ?string
+    /**
+     * Get targetEntity="App\Entity\VerbLocalization",
+     */ 
+    public function getLocalizations()
     {
-        return $this->pennrann;
+        return $this->localizations;
     }
 
-    public function setPennrann(string $pennrann): self
+    /**
+     * Set targetEntity="App\Entity\VerbLocalization",
+     *
+     * @return  self
+     */ 
+    public function setLocalizations($localizations)
     {
-        $this->pennrann = $pennrann;
+        $this->localizations = $localizations;
+
+        return $this;
+    }
+    
+    /**
+     * Add localization.
+     *
+     * @return  self
+     */ 
+    public function addLocalization(VerbLocalization $localization)
+    {
+        $this->localizations->add($localization);
+        $localization->setVerb($this);
+
+        return $this;
+    }
+    /**
+     * Remove localization.
+     *
+     * @return  self
+     */ 
+    public function removeLocalization(VerbLocalization $localization)
+    {
+        $this->localizations->removeElement($localization);
 
         return $this;
     }
 
-    public function getCategory(): ?string
+    /**
+     * Get targetEntity="App\Entity\VerbTranslation",
+     */ 
+    public function getTranslations()
     {
-        return $this->category;
+        return $this->translations;
     }
 
-    public function setCategory(string $category): self
+    /**
+     * Set targetEntity="App\Entity\VerbTranslation",
+     *
+     * @return  self
+     */ 
+    public function setTranslations($translations)
     {
-        $this->category = $category;
+        $this->translations = $translations;
+
+        return $this;
+    }
+    /**
+     * Add translation.
+     *
+     * @return  self
+     */ 
+    public function addTranslation(VerbTranslation $translation)
+    {
+        $this->translations->add($translation);
+        $translation->setVerb($this);
+
+        return $this;
+    }
+    /**
+     * Remove tranlsation.
+     *
+     * @return  self
+     */ 
+    public function removeTranslation(VerbTranslation $translation)
+    {
+        $this->translations->removeElement($translation);
 
         return $this;
     }
 
-    public function getGalleg(): ?string
-    {
-        return $this->galleg;
+    public function hasTranslationInLanguage(string $languageCode) {
+        return $this->getTranslation($languageCode) !== null;
     }
 
-    public function setGalleg(?string $galleg): self
-    {
-        $this->galleg = $galleg;
+    public function getTranslation(string $languageCode) {
+        /** @var VerbTranslation $translation */
+        foreach($this->translations as $translation) {
+            if($translation->getLanguageCode() === $languageCode) {
+                return $translation;
+            }
+        }
+        $languageCode = explode('_', $languageCode)[0];
+        foreach($this->translations as $translation) {
+            if(explode('_', $translation->getLanguageCode())[0] === $languageCode) {
+                return $translation;
+            }
+        }
 
-        return $this;
+        return null;
     }
 
-    public function getSaozneg(): ?string
-    {
-        return $this->saozneg;
-    }
-
-    public function setSaozneg(?string $saozneg): self
-    {
-        $this->saozneg = $saozneg;
-
-        return $this;
-    }
 }

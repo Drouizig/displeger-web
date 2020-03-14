@@ -1,0 +1,50 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Lodenn verañ{% endblock %}
+
+{% block content %}
+    <h1>{{ 'app.title'|trans }}</h1>
+    <p><a href="{{ path('admin_home') }}">Lodenn verañ</a></p>
+
+    <form action="{{ path('admin_sources') }}" class="search-form form-md form-inline">
+        <input type="text" name="search" class="form-control" value="{{ app.request.query.get('search') }}"/>
+        <button class="btn btn-primary">{{'app.header.search.button'|trans}}</button>
+    </form>
+    <a href="{{ path('admin_source') }}" class="btn btn-primary">Ouzhpennañ ur vammenn</a>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">
+                    Bonneg
+                </th>
+                <th scope="col">
+                    Anv
+                </th>
+                <th>
+                </th>
+            </tr>
+            </thead><tbody>
+            {% for source in pagination %}
+                <tr>
+                    <td>
+                        {{source.code}}
+                    </td>
+                    <td>
+                        {{ source.translation('br').label }}
+                    </td>
+                    <td>
+                        <a href="{{path('admin_source', {'id': source.id, 'params': pagination.params, 'offset' : offset + loop.index})}}">Kemmañ</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Displeger verboù brezhonek - {{verb.anvVerb}}{% endblock %}
+{% block title %}Displeger verboù brezhonek - {{verbLocalization.infinitive}}{% endblock %}
 
 {% block content %}
 
@@ -27,19 +27,44 @@
     <a class = "hidden-print print-button" alt="{{ 'app.button.print'|trans }}" href="#" onclick="print()"><i class="fas fa-print"></i></a>
 {% endblock %}
 {% if verb is not null %}
-    <h2>{{verb.anvVerb}}</h2>
+    <h2>{{verbLocalization.infinitive}}</h2>
 
     <div class="row">
         <div class="col-md">
-            {% if verb.galleg is not null or print == false %}
-                <p>{{'app.french'|trans}} : <i>{{verb.galleg}}</i></p>
+            {% set language = app.request.locale %}
+            {% if language == 'br' or language == 'br_FR' %}
+                {% set language = 'fr' %}
+            {% endif %}
+            {% if verb.hasTranslationInLanguage(language) %}
+                {% set translation = verb.translation(language) %}
+                <p>{{listsUtil.locales[translation.languageCode]}} : <i>{{translation.translation}}</i></p>
+            {% elseif print == false %}
+                    {% include 'main/partial/contact_form.html.twig' with {
+                        'form_class' : 'missing_translation',
+                        'form_object' : contactForm,
+                        'notice_msg' : 'app.missing_translation.notice' |trans,
+                        'default_msg' : ('app.form.contact.default.translation_missing')|trans({'%verb%': verbLocalization.infinitive}),
+                        'form_attr_class' : 'js-contact-form',
+                        'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
+                        'name_placeholder' : 'app.form.contact.name.placeholder' | trans
+                    } %}
             {% endif %}
 
-            {% if verb.saozneg is not null or print == false %}
-                <p>{{'app.english'|trans}} : <i>{{verb.saozneg}}</i></p>
+            {% if (verb.hasTranslationInLanguage(language) and verb.translations|length > 1)
+            or (not verb.hasTranslationInLanguage(language) and verb.translations|length > 0 )%}
+                ⯆ {{'app.verb.view_more'}}
+                <div class="translations">
+                    <ul>
+                        {% for translation in verb.translations %}
+                            <li>{{listsUtil.locales[translation.languageCode]}} : {{translation.translation}} 
+                            {% if translation.sources|length %}({{'app.verb.source'}} : ){% endif %}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
         </div>
     </div>
+    
     {% if print == false %}
         <div class="row">
             <div class="col-md">
@@ -55,37 +80,20 @@
                 {{'app.geriafurch'|trans}}</a></p>
             </div>
         </div>
-
         {% include 'main/partial/contact_form.html.twig' with {
-            'form_class' : 'report_error',
-            'form_object' : reportErrorForm,
-            'notice_msg' : 'app.report_error.notice' |trans,
-            'default_msg' : ('app.form.contact.report_error.translation')|trans({'%verb%': verb.anvVerb}),
-            'form_attr_class' : 'js-contact-form',
-            'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
-            'name_placeholder' : 'app.form.contact.name.placeholder' | trans
-        } %}
-        {% if verb.galleg is null or verb.saozneg is null %}
-            {% set key = 'saozneg' %}
-            {% if verb.galleg is null and verb.saozneg is null %}
-                {% set key = 'both' %}
-            {% elseif verb.galleg is null %}
-                {% set key = 'galleg' %}
-            {% endif %}
-            {% include 'main/partial/contact_form.html.twig' with {
-                'form_class' : 'missing_translation',
-                'form_object' : contactForm,
-                'notice_msg' : 'app.missing_translation.notice' |trans,
-                'default_msg' : ('app.form.contact.default.translation_' ~ key)|trans({'%verb%': verb.anvVerb}),
-                'form_attr_class' : 'js-contact-form',
-                'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
-                'name_placeholder' : 'app.form.contact.name.placeholder' | trans
-            } %}
-            {% endif %}
-        <div class="row">
-            <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verb.pennrann ~ anvGwan}}</div>
-        </div>
+                    'form_class' : 'report_error',
+                    'form_object' : reportErrorForm,
+                    'notice_msg' : 'app.report_error.notice' |trans,
+                    'default_msg' : ('app.form.contact.report_error.translation')|trans({'%verb%': verbLocalization.infinitive}),
+                    'form_attr_class' : 'js-contact-form',
+                    'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
+                    'name_placeholder' : 'app.form.contact.name.placeholder' | trans
+                } %}
     {% endif %}
+    <div class="row">
+        <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verbLocalization.base ~ anvGwan}}</div>
+    </div>
+    
 
     {% block verbContentTable %}
         <div class="row verb-items">
@@ -97,10 +105,10 @@
                             <li class="verb-item">
                                 <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans}}</abbr>.
                                 {% if ending|length == 1 %}
-                                    <span class="js-verb">{{verb.pennrann}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
+                                    <span class="js-verb">{{verbLocalization.base}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
                                 {% elseif ending|length > 1%}
                                     {% for end in ending %}
-                                        {{verb.pennrann}}<strong>{{end}}</strong> <i class="far fa-copy copy hidden-print"></i>
+                                        {{verbLocalization.base}}<strong>{{end}}</strong> <i class="far fa-copy copy hidden-print"></i>
                                         {% if loop.index < ending|length %}
                                             <i>pe</i>
                                         {% endif %}

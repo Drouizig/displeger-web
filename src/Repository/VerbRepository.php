@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Verb[]    findAll()
  * @method Verb[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class VerbRepository extends ServiceEntityRepository
+class VerbRepository extends ServiceEntityRepository implements AdminRepositoryInterface
 {
     public function __construct(RegistryInterface $registry)
     {
@@ -51,13 +51,15 @@ class VerbRepository extends ServiceEntityRepository
     public function getBackSearchQuery($search, $offset = null, $maxResults = null)
     {
         $qb = $this->createQueryBuilder('v');
+        $qb->select('v verb, l.infinitive li, l.base lb');
+        $qb->leftJoin('v.localizations', 'l');
         if ($search !== null && $search !== '') {
+            $qb->leftJoin('v.translations', 't');
             $qb
-                ->where('v.anvVerb LIKE :term')
-                ->orWhere('v.pennrann LIKE :term')
-                ->orWhere('v.category LIKE :term')
-                ->orWhere('v.galleg LIKE :term')
-                ->orWhere('v.saozneg LIKE :term')
+                ->where('l.infinitive LIKE :term')
+                ->orWhere('l.base LIKE :term')
+                ->orWhere('l.category LIKE :term')
+                ->orWhere('t.translation LIKE :term')
                 ->setParameter('term', '%'.$search.'%')
             ;
         }
@@ -68,20 +70,10 @@ class VerbRepository extends ServiceEntityRepository
             $qb->setMaxResults($maxResults);
         }
         $qb
-            ->addOrderBy('v.category')
-            ->addOrderBy('v.anvVerb')
-            ->addOrderBy('v.pennrann')
+            ->addOrderBy('li')
+            ->addOrderBy('lb')
         ;
         return $qb->getQuery();
-    }
-
-    public function findCategoryStatistics()
-    {
-        return $this->createQueryBuilder('v')
-            ->select('v.category as name, count(v.anvVerb) as y')
-            ->groupBy('v.category')
-            ->getQuery()
-            ->getResult();
     }
 
     public function findRandomVerb(){

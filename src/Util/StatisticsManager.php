@@ -2,32 +2,32 @@
 
 namespace App\Util;
 
-use App\Repository\VerbRepository;
+use App\Repository\VerbLocalizationRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 
 class StatisticsManager
 {
-    /** @var VerbRepository */
-    protected $verbRepository;
+    /** @var VerbLocalizationRepository */
+    protected $verbLocalizationRepository;
 
-    public function __construct(VerbRepository $verbRepository)
+    public function __construct(VerbLocalizationRepository $verbLocalizationRepository)
     {
-        $this->verbRepository = $verbRepository;
+        $this->verbLocalizationRepository = $verbLocalizationRepository;
     }
 
     public function getTotal() {
-        return $this->verbRepository->count([]);
+        return $this->verbLocalizationRepository->count([]);
     }
 
 
     public function getPercentage($criteria) {
-        return $this->verbRepository->count($criteria)/$this->getTotal();
+        return $this->verbLocalizationRepository->count($criteria)/$this->getTotal();
     }
 
     public function getCategoryData()
     {
-        $stats = $this->verbRepository->findCategoryStatistics();
+        $stats = $this->verbLocalizationRepository->findCategoryStatistics();
         $names = [];
         $total = 0;
         foreach($stats as $key => $stat) {
