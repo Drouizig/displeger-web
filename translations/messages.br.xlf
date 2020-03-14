@@ -391,6 +391,7 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       <trans-unit id="Uj6jnJ5" resname="app.category.gouzout">
         <source>app.category.gouzout</source>
         <target>Gouzout</target>
+      </trans-unit>
       <trans-unit id="VwokZ0E" resname="app.gour.U1.symbol">
         <source>app.gour.U1.symbol</source>
         <target>U1</target>
