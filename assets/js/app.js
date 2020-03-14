@@ -1,9 +1,11 @@
 
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/global.scss');
+require('../css/dark-theme.scss');
 
 require('webpack-jquery-ui');
 require('bootstrap');
+require('bootstrap4-toggle');
 require('webpack-jquery-ui/css');
 $(document).ready(function() {
 
@@ -94,6 +96,39 @@ $(document).ready(function() {
     );
     return false;
   });
+
+
+  /*
+   * ***********************
+   *   SWITCH TO DARK MODE
+   * ***********************
+   */
+  $('.dark-mode-switch').on('change', function() {
+    if(this.checked) {
+      trans();
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      trans();
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+    }
+  });
+
+
+
+  let trans = () => {
+    document.documentElement.classList.add('transition');
+    window.setTimeout(() => {
+      document.documentElement.classList.remove('transition');
+    }, 1000)
+  }
+
+  // makes sure the button is in the correct state when it's loaded
+  if(localStorage.getItem('theme') === 'dark'){
+    $('.dark-mode-switch').bootstrapToggle('on');
+  }
+
 });
 
 

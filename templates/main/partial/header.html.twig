@@ -26,10 +26,26 @@
 
       {%import _self as self %}
 
-      <div class="my-2 my-lg-0">
-        <a href="{{self.lang_link('br')}}">BR</a> |
-        <a href="{{self.lang_link('fr')}}">FR</a> |
-        <a href="{{self.lang_link('en')}}">EN</a>
+
+      <div>
+        <input class="dark-mode-switch custom-control-input mx-1" data-toggle="toggle"
+               data-on="<i class='fa fa-moon'></i>&nbsp;" data-off="&nbsp;<i class='fa fa-sun'></i> "
+               id="dark-theme-switch" type="checkbox" data-size="xs"
+               data-offstyle="primary">
+      </div>
+
+      <div class="my-2 my-lg-0 navbar-nav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{self.lang_link('br')}}">BR</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{self.lang_link('fr')}}">FR</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{self.lang_link('en')}}">EN</a>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>

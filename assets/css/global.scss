@@ -1,26 +1,75 @@
 
-// customize some Bootstrap variables
-$primary: darken(#428bca, 20%);
+// customize some Bootstrap variables, base = #428bca
+$primary: #2D5F8A;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap4-toggle/css/bootstrap4-toggle.min.css";
 @import "grayscale/grayscale.scss";
 @import "select2";
 
+// list colors to switch them easy
+html {
+    --background: white;
+    --lighter-background: lightgray;
+    --focus-color: white;
+    --hover-color: lightgray;
+    --message-color: lightblue;
+    --title-color: black;
+    --text-color: black;
+    --button-color: #{$primary};
+    --button-hover: #{darken($primary, 10%)};
+    --button-focus: #{darken($primary, 15%)};
+    background: var(--background);
+}
 
+body {
+    background: var(--background);
+    color: var(--text-color);
+}
 
 h1 {
-    color: black;
+    color: var(--title-color);
+}
+
+a {
+    color: var(--button-color);
+    &:hover {
+        color: var(--lighter-background);
+    }
 }
 
 .print-button, .report-button, .export-button {
     float:right;
 }
 
+.btn-primary {
+    background-color: var(--button-color);
+    &:hover {
+        background-color: var(--button-hover);
+    }
+    &:not(:disabled):not(.disabled):active {
+        background-color: var(--button-focus);
+    }
+    &:focus {
+        background-color: var(--button-focus);
+    }
+}
+
 .form-control {
     //display: inline;
     width: 243px;
+    background: var(--background);
+    color: var(--title-color);
+    &:focus {
+        background: var(--focus-color);
+        color: var(--title-color);
+    }
+    &:placeholder {
+        color: var(--lighter-background);
+    }
 }
+
 
 .verb-items {
     ul {
@@ -37,7 +86,7 @@ h1 {
     }
     &:hover {
         opacity: 1.0;
-        background-color: #e6ecf0;
+        background-color: var(--hover-color);
         .copy {
             display:inline;
         }
@@ -69,7 +118,7 @@ h1 {
 }
 
 .missing_translation, .report_error {
-    background-color: lightblue;
+    background-color: var(--message-color);
     border-radius: 10px;
     margin: 4px;
 
@@ -84,7 +133,7 @@ h1 {
 
 .admin-verb_row {
     &:hover {
-        background-color: lightgray;
+        background-color: var(--hover-color);
     }
 }
 
