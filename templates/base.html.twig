@@ -15,6 +15,13 @@
             crossorigin="anonymous"
             />
     </head>
+    <script>
+        // makes sure the switch is on when we change pages with the dark mode
+        // we put it here so it doesn't "blink" when the user change pages
+        if(localStorage.getItem('theme') === 'dark'){
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
     <body>
         {% block body %}
 

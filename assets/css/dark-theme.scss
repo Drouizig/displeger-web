@@ -1,0 +1,27 @@
+@import "~bootstrap/scss/bootstrap";
+@import "grayscale/grayscale.scss";
+@import "global.scss";
+
+$secondary: invert($primary, 100%);
+
+html[data-theme='dark'] {
+  --background: black;
+  --lighter-background: lightgray;
+  --focus-color: black;
+  --hover-color: var(--gray-dark);
+  --message-color: var(--gray-dark);
+  --title-color: white;
+  --text-color: white;
+  --button-color: #{$secondary};
+  --button-hover: #{darken($secondary, 10%)};
+  --button-focus: #{darken($secondary, 15%)};
+}
+
+// transition for the dark mode, so smooth...
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 420ms!important;
+  transition-delay: 0!important;
+}

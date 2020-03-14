@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "bootstrap": "^4.3.1",
+        "bootstrap4-toggle": "^3.6.1",
         "highcharts": "^7.0.1",
         "popper.js": "^1.14.7",
         "select2": "^4.0.13",

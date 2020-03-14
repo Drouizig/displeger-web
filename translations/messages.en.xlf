@@ -280,6 +280,7 @@ The verb "%verb%" is missing on the website.
       <trans-unit id="MDzUI0u" resname="app.dialect.reolad">
         <source>app.dialect.reolad</source>
         <target>Standard</target>
+      </trans-unit>
       <trans-unit id="VwokZ0E" resname="app.gour.U1.symbol">
         <source>app.gour.U1.symbol</source>
         <target>S1</target>
