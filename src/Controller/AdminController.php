@@ -111,7 +111,7 @@ class AdminController extends AbstractController
                 if(key_exists('save', $request->request->get($form->getName()))) {
                     return $this->redirect($request->getUri());
                 } elseif(key_exists('save_return', $request->request->get($form->getName()))) {
-                    return $this->redirectToRoute('admin', $request->query->get('params', []));
+                    return $this->redirectToRoute('admin_verbs', $request->query->get('params', []));
                 } else {
                     /** @var AdminRepositoryInterface $repository */
                     $repository = $this->getDoctrine()->getRepository($class);
@@ -130,7 +130,7 @@ class AdminController extends AbstractController
                     $result = $query->getOneOrNullResult();
                     return $this->redirectToRoute($redirect_to,
                         [
-                            'id' => $result->getId(),
+                            'id' => $result['verb']->getId(),
                             'params' => $params,
                             'offset' => $offset +1
                         ]
