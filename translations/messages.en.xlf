@@ -277,6 +277,10 @@ The verb "%verb%" is missing on the website.
         <source>app.dialect.gwened</source>
         <target>Gwenedeg</target>
       </trans-unit>
+      <trans-unit id="TF9jociaa" resname="app.dialect.goelo">
+        <source>app.dialect.goelo</source>
+        <target>Goelo</target>
+      </trans-unit>
       <trans-unit id="MDzUI0u" resname="app.dialect.reolad">
         <source>app.dialect.reolad</source>
         <target>Standard</target>
