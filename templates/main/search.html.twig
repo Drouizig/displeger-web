@@ -10,7 +10,7 @@
   </div>
   <ul>
     {% for result in pagination %}
-      <li><a href="{{ path('verb', {'anvVerb': result.anvVerb}) }}">{{ result.anvVerb }}</a></li>
+      <li><a href="{{ path('verb', {'infinitive': result.infinitive}) }}">{{ result.infinitive }}</a></li>
     {% endfor %}
   </ul>
 

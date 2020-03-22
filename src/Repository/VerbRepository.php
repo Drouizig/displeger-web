@@ -29,15 +29,6 @@ class VerbRepository extends ServiceEntityRepository implements AdminRepositoryI
         ;
     }
 
-    public function getFrontSearchQuery($term)
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('UPPER(v.anvVerb) LIKE UPPER(:term)')
-            ->setParameter('term', '%'.$term.'%')
-            ->getQuery()
-        ;
-    }
-
     public function findOneByAnvVerb($anvVerb)
     {
         return $this->createQueryBuilder('v')

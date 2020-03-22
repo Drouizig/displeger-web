@@ -100,9 +100,9 @@ class MainController extends AbstractController
         if ( null === $term ) {
             return $this->redirectToRoute('main');  
         }
-        /** @var VerbRepository $verbRepository */
-        $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
-        $searchQuery = $verbRepository->getFrontSearchQuery($term);
+        /** @var VerbLocalizationRepository $verbRepository */
+        $verbLocalizationRepository = $this->getDoctrine()->getRepository(VerbLocalization::class);
+        $searchQuery = $verbLocalizationRepository->getFrontSearchQuery($term);
         
         $pagination = $knpPaginator->paginate(
             $searchQuery,
@@ -114,7 +114,7 @@ class MainController extends AbstractController
             if($pagination->getTotalItemCount() === 1) {
                 $term = $pagination->getItems()[0]->getAnvVerb();
             }
-            return $this->redirectToRoute('verb', ['anvVerb' => $term]);
+            return $this->redirectToRoute('verb', ['infinitive' => $term]);
         }
 
         return $this->render('main/search.html.twig', [
@@ -150,7 +150,6 @@ class MainController extends AbstractController
      */
     public function verb(Request $request,VerbLocalization $verbLocalization = null, LoggerInterface $logger, Pdf $pdf)
     {
-        $verb = $verbLocalization->getVerb();
         $contactForm = $this->createForm(ContactType::class);
         $reportErrorForm = $this->createForm(ContactType::class);
         $template = 'main/verb.html.twig';
@@ -161,7 +160,8 @@ class MainController extends AbstractController
             $template = 'main/verb.print.html.twig';
         }
 
-        if(null !== $verb) {
+        if(null !== $verbLocalization) {
+            $verb = $verbLocalization->getVerb();
             $locale = $request->get('_locale', 'br');
             $verbEndings = $this->verbouManager->getEndings($verbLocalization->getCategory());
             if(in_array($verbLocalization->getInfinitive(), ['bezañ', 'boud'])) {
@@ -225,7 +225,7 @@ class MainController extends AbstractController
             }
         }
 
-        $searchTerm = $request->attributes->get('anvVerb');
+        $searchTerm = $request->attributes->get('infinitive');
         return $this->render('main/error.html.twig', [
             'verb' => $searchTerm,
             'contactForm' => $contactForm->createView()
