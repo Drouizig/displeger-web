@@ -105,12 +105,16 @@ a {
     display:none;
 }
 
+.verb-container {
+    display: inline;
+}
+
 .verb-item {
     opacity: 0.9;
     width: 70%;
     .copy {
         display:none;
-        float:right;
+        //float:right;
         cursor: pointer;
     }
     &:hover {

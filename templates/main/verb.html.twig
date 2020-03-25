@@ -112,10 +112,14 @@
                             <li class="verb-item">
                                 <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans}}</abbr>.
                                 {% if ending|length == 1 %}
-                                    <span class="js-verb">{{verbLocalization.base}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
+                                    <div class="verb-container">
+                                        <span class="js-verb">{{verbLocalization.base}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
+                                    </div>
                                 {% elseif ending|length > 1%}
                                     {% for end in ending %}
-                                        {{verbLocalization.base}}<strong>{{end}}</strong> <i class="far fa-copy copy hidden-print"></i>
+                                        <div class="verb-container">
+                                            <span class="js-verb">{{verbLocalization.base}}<strong>{{end}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
+                                        </div>
                                         {% if loop.index < ending|length %}
                                             <i>pe</i>
                                         {% endif %}
@@ -135,7 +139,7 @@
                                     {% for end in ending %}
                                     {% set content = content ~ verbLocalization.base ~ end %}
                                         {% if loop.index < ending|length %}
-                                            {% set content = content ~ 'pe' %}
+                                            {% set content = content ~ ' pe ' %}
                                         {% endif %}
                                     {% endfor %}
                                 {% endif %}
