@@ -76,10 +76,39 @@ a {
         list-style: none;
     }
 }
+
+.js-tense {
+    .copy-tense {
+        display:none;
+        float:right;
+        cursor: pointer;
+    }
+
+    h3 {
+        &:hover {
+            ~ ul {
+                opacity: 1.0;
+                background-color: var(--hover-color);
+            }
+
+            opacity: 1.0;
+            background-color: var(--hover-color);
+
+            .copy-tense {
+                display: inline;
+            }
+        }
+    }
+}
+
+.js-tense-content{
+    display:none;
+}
+
 .verb-item {
     opacity: 0.9;
     width: 70%;
-    .copy { 
+    .copy {
         display:none;
         float:right;
         cursor: pointer;

@@ -58,6 +58,30 @@ $(document).ready(function() {
     });
   });
 
+  $('.copy-tense').click(function() {
+    var text = $(this).closest('.js-tense').find('.js-tense-content').text().trim();
+    console.log("text to be copied: " + text);
+    if (!navigator.clipboard) {
+      $(this).closest('.js-tense').find('.js-tense-content').focus().select();
+      try {
+        var successful = document.execCommand('copy');
+        if(successful) {
+          displayMessage('Eilet eo bet ar verb displeget er golver!', 'ok');
+        } else {
+          displayMessage('Fazi en ur eilañ ar verb displeget er golver', 'error');
+        }
+      } catch (err) {
+        displayMessage('Fazi en ur eilañ ar verb displeget er golver', 'error');
+      }
+      return;
+    }
+    navigator.clipboard.writeText(text).then(function() {
+      displayMessage('Eilet eo bet ar verb displeget er golver!', 'ok');
+    }, function(err) {
+      displayMessage('Fazi en ur eilañ ar verb displeget er golver', 'error');
+    });
+  });
+
   /*
    * ***********
    *   MESSAGE

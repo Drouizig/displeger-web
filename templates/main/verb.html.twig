@@ -105,8 +105,8 @@
     {% block verbContentTable %}
         <div class="row verb-items">
             {% for amzer, endings in verbEndings %}
-                <div class="col-md">
-                    <h3>{{ ('app.amzer.' ~ amzer)|trans }}</h3>
+                <div class="col-md js-tense">
+                    <h3>{{ ('app.amzer.' ~ amzer)|trans }} <i class="far fa-copy copy-tense hidden-print"></i></h3>
                     <ul>
                         {% for ending in endings %}
                             <li class="verb-item">
@@ -124,15 +124,34 @@
                             </li>
                         {% endfor %}
                     </ul>
+                    <div class="js-tense-content">
+                        {% set content = ('app.amzer.' ~ amzer)|trans ~ '\n\n'%}
+
+                        {% for ending in endings %}
+                        {% set content = content ~ ('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans ~ '. ' %}
+                                {% if ending|length == 1 %}
+                                    {% set content = content ~ verbLocalization.base ~ ending.0 %}
+                                {% elseif ending|length > 1%}
+                                    {% for end in ending %}
+                                    {% set content = content ~ verbLocalization.base ~ end %}
+                                        {% if loop.index < ending|length %}
+                                            {% set content = content ~ 'pe' %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% set content = content ~ '\n' %}
+                        {% endfor %}
+                        {{~ content ~}}
+                    </div>
                 </div>
                 {% if loop.index%2 == 0 %}
                     </div>
-                    <div class="row">
+                    <div class="row verb-items">
                 {% endif %}
             {% endfor %}
 
-            <div class="col-md">
-                <h3>{{ ('app.amzer.nach')|trans }}</h3>
+            <div class="col-md js-tense">
+                <h3>{{ ('app.amzer.nach')|trans }} <i class="far fa-copy copy-tense hidden-print"></i></h3>
                 <ul>
                     {% for conjugation in nach %}
                         <li class="verb-item">
@@ -141,6 +160,13 @@
                         </li>
                     {% endfor %}
                 </ul>
+                <div class="js-tense-content">
+                    {% set content = ('app.amzer.nach')|trans ~ '\n\n'%}
+                    {% for conjugation in nach %}
+                        {% set content = content ~ ('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans ~ '. ' ~  conjugation|striptags ~ '\n' %}<br>
+                    {% endfor %}
+                    {{~ content ~}}
+                </div>
             </div>
         </div>
     {% endblock %}
