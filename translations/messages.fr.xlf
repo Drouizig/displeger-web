@@ -277,7 +277,7 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.dialect.gwened</source>
         <target>Vannetais</target>
       </trans-unit>
-      <trans-unit id="TF9jociaa" resname="app.dialect.goelo">
+      <trans-unit id="WQ77eab" resname="app.dialect.goelo">
         <source>app.dialect.goelo</source>
         <target>Goëlo</target>
       </trans-unit>
@@ -344,6 +344,14 @@ Il manque le verbe "%verb%" sur le site.
       <trans-unit id="UnfOmys" resname="app.geriafurch">
         <source>app.geriafurch</source>
         <target>__app.geriafurch</target>
+      </trans-unit>
+      <trans-unit id="DesWvMt" resname="app.copy.tense">
+        <source>app.copy.tense</source>
+        <target>Copier tout ce temps</target>
+      </trans-unit>
+      <trans-unit id="N.k3Ndy" resname="app.copy.form">
+        <source>app.copy.form</source>
+        <target>Copier cette forme</target>
       </trans-unit>
     </body>
   </file>

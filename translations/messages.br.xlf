@@ -344,7 +344,7 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.dialect.gwened</source>
         <target>Gwenedeg</target>
       </trans-unit>
-      <trans-unit id="TF9jociaa" resname="app.dialect.goelo">
+      <trans-unit id="WQ77eab" resname="app.dialect.goelo">
         <source>app.dialect.goelo</source>
         <target>Goueloù</target>
       </trans-unit>
@@ -431,6 +431,14 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       <trans-unit id="I0qZ5tR" resname="app.verb.other_forms">
         <source>app.verb.other_forms</source>
         <target>Stummoù all</target>
+      </trans-unit>
+      <trans-unit id="DesWvMt" resname="app.copy.tense">
+        <source>app.copy.tense</source>
+        <target>Eilañ an amzer-mañ</target>
+      </trans-unit>
+      <trans-unit id="N.k3Ndy" resname="app.copy.form">
+        <source>app.copy.form</source>
+        <target>Eilañ ar stumm verb-mañ</target>
       </trans-unit>
     </body>
   </file>

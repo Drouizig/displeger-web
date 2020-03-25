@@ -277,7 +277,7 @@ The verb "%verb%" is missing on the website.
         <source>app.dialect.gwened</source>
         <target>Gwenedeg</target>
       </trans-unit>
-      <trans-unit id="TF9jociaa" resname="app.dialect.goelo">
+      <trans-unit id="WQ77eab" resname="app.dialect.goelo">
         <source>app.dialect.goelo</source>
         <target>Goelo</target>
       </trans-unit>
@@ -344,6 +344,14 @@ The verb "%verb%" is missing on the website.
       <trans-unit id="UnfOmys" resname="app.geriafurch">
         <source>app.geriafurch</source>
         <target>__app.geriafurch</target>
+      </trans-unit>
+      <trans-unit id="DesWvMt" resname="app.copy.tense">
+        <source>app.copy.tense</source>
+        <target>Copy this whole tense</target>
+      </trans-unit>
+      <trans-unit id="N.k3Ndy" resname="app.copy.form">
+        <source>app.copy.form</source>
+        <target>Copy this form</target>
       </trans-unit>
     </body>
   </file>

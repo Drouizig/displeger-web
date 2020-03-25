@@ -22,9 +22,9 @@
 {% endblock %}
 
 {% block printButton %}
-    <a class = "hidden-print report-button" alt="{{ 'app.button.report'|trans }}" href="#"><i class="fas fa-flag"></i></a>
-    <a class = "hidden-print export-button" alt="{{ 'app.button.export'|trans }}" href="?print=true"><i class="fas fa-file-pdf"></i></a>
-    <a class = "hidden-print print-button" alt="{{ 'app.button.print'|trans }}" href="#" onclick="print()"><i class="fas fa-print"></i></a>
+    <a class = "hidden-print report-button" alt="{{ 'app.button.report'|trans }}" href="#"><i class="fas fa-flag" title="{{'app.button.report' | trans}}"></i></a>
+    <a class = "hidden-print export-button" alt="{{ 'app.button.export'|trans }}" href="?print=true"><i class="fas fa-file-pdf" title="{{'app.button.export' | trans}}"></i></a>
+    <a class = "hidden-print print-button" alt="{{ 'app.button.print'|trans }}" href="#" onclick="print()"><i class="fas fa-print" title="{{'app.button.print' | trans}}"></i></a>
 {% endblock %}
 {% if verb is not null %}
     <h2>{{verbLocalization.infinitive}}</h2>
@@ -106,19 +106,19 @@
         <div class="row verb-items">
             {% for amzer, endings in verbEndings %}
                 <div class="col-md js-tense">
-                    <h3>{{ ('app.amzer.' ~ amzer)|trans }} <i class="far fa-copy copy-tense hidden-print"></i></h3>
+                    <h3>{{ ('app.amzer.' ~ amzer)|trans }} <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i></h3>
                     <ul>
                         {% for ending in endings %}
                             <li class="verb-item">
                                 <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans}}</abbr>.
                                 {% if ending|length == 1 %}
                                     <div class="verb-container">
-                                        <span class="js-verb">{{verbLocalization.base}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
+                                        <span class="js-verb">{{verbLocalization.base}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
                                     </div>
                                 {% elseif ending|length > 1%}
                                     {% for end in ending %}
                                         <div class="verb-container">
-                                            <span class="js-verb">{{verbLocalization.base}}<strong>{{end}}</strong></span> <i class="far fa-copy copy hidden-print"></i>
+                                            <span class="js-verb">{{verbLocalization.base}}<strong>{{end}}</strong></span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
                                         </div>
                                         {% if loop.index < ending|length %}
                                             <i>pe</i>
@@ -155,12 +155,12 @@
             {% endfor %}
 
             <div class="col-md js-tense">
-                <h3>{{ ('app.amzer.nach')|trans }} <i class="far fa-copy copy-tense hidden-print"></i></h3>
+                <h3>{{ ('app.amzer.nach')|trans }} <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i></h3>
                 <ul>
                     {% for conjugation in nach %}
                         <li class="verb-item">
                             <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans}}</abbr>.
-                            <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print"></i>
+                            <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
                         </li>
                     {% endfor %}
                 </ul>
