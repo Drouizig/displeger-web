@@ -82,6 +82,7 @@ class AdminController extends AbstractController
             VerbType::class, 
             Verb::class, 
             'admin_verb', 
+            'admin_verbs', 
             'admin/verb.html.twig',
             $verb);
     }
@@ -94,12 +95,13 @@ class AdminController extends AbstractController
             $request, 
             SourceType::class, 
             Source::class, 
-            'admin_source', 
+            'admin_source',
+            'admin_sources', 
             'admin/source.html.twig',
             $source);
     }
 
-    public function adminEdit(Request $request,string $form, string $class, $redirect_to, $twig, $editable = null)
+    public function adminEdit(Request $request,string $form, string $class, $redirect_to_single,$redirect_to_list, $twig, $editable = null)
     {
         $form = $this->createForm($form, $editable);
         if ($request->isMethod('POST')) {
@@ -111,7 +113,7 @@ class AdminController extends AbstractController
                 if(key_exists('save', $request->request->get($form->getName()))) {
                     return $this->redirect($request->getUri());
                 } elseif(key_exists('save_return', $request->request->get($form->getName()))) {
-                    return $this->redirectToRoute('admin', $request->query->get('params', []));
+                    return $this->redirectToRoute($redirect_to_list, $request->query->get('params', []));
                 } else {
                     /** @var AdminRepositoryInterface $repository */
                     $repository = $this->getDoctrine()->getRepository($class);
@@ -128,9 +130,9 @@ class AdminController extends AbstractController
                     /** @var Query $query */
                     $query = $repository->getBackSearchQuery($search, $offset, 1);
                     $result = $query->getOneOrNullResult();
-                    return $this->redirectToRoute($redirect_to,
+                    return $this->redirectToRoute($redirect_to_single,
                         [
-                            'id' => $result->getId(),
+                            'id' => $result['verb']->getId(),
                             'params' => $params,
                             'offset' => $offset +1
                         ]

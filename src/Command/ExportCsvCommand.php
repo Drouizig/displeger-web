@@ -13,6 +13,11 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use App\Entity\Verb;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 class ExportCsvCommand extends Command
 {
@@ -39,21 +44,62 @@ class ExportCsvCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         
-        $serializer = new Serializer([new ObjectNormalizer()], [new CsvEncoder([CsvEncoder::DELIMITER_KEY => ';'])]);
-
         $data=[];
-        foreach ($this->em->getRepository(Verb::class)->findBy([], ['category' => 'ASC', 'anvVerb' => 'ASC', 'pennrann' => 'ASC']) as $verb) {
-            $rowdata['anv_verb'] = $verb->getAnvVerb() ? $verb->getAnvVerb() : '#anv-verb';
-            $rowdata['diaz_verb'] = $verb->getPennrann();
-            $rowdata['rummad'] = $verb->getCategory();
-            $rowdata['galleg'] = $verb->getGalleg() ? $verb->getGalleg() : '#galleg';
-            $rowdata['saozneg'] = $verb->getSaozneg() ? $verb->getSaozneg() : '#saozneg';
-            $data[] = $rowdata;
-        }
+        $verbou = $this->em->getRepository(Verb::class)->findBy([], []);
+        // foreach ( as $verb) {
+        //     $rowdata['anv_verb'] = $verb->getAnvVerb() ? $verb->getAnvVerb() : '#anv-verb';
+        //     $rowdata['diaz_verb'] = $verb->getPennrann();
+        //     $rowdata['rummad'] = $verb->getCategory();
+        //     $rowdata['galleg'] = $verb->getGalleg() ? $verb->getGalleg() : '#galleg';
+        //     $rowdata['saozneg'] = $verb->getSaozneg() ? $verb->getSaozneg() : '#saozneg';
+        //     $data[] = $rowdata;
+        // }
+
+
+        $manytomanyCallback = function ($innerObject, $outerObject, string $attributeName, string $format = null, array $context = []) {
+            return $innerObject instanceof Verb ? $innerObject->getId() : '';
+        };
         
+        $defaultContext = [
+            AbstractNormalizer::CALLBACKS => [
+                'auxilliaries' => $manytomanyCallback,
+            ],
+        ];
+        
+        $sourceCallback = function ($innerObject, $outerObject, string $attributeName, string $format = null, array $context = []) {
+            $ret = [];
+            foreach($innerObject as $source) {
+                $ret[] = $source->getCode();
+            }
+            return $ret;
+        };
+        
+        $defaultContext = [
+            AbstractNormalizer::CALLBACKS => [
+                'sources' => $sourceCallback,
+            ],
+        ];
+
+
+        $normalizer = new GetSetMethodNormalizer(null, null, null, null, null, $defaultContext);
+
+        $encoders = [new JsonEncoder(new JsonEncode(JSON_PRETTY_PRINT))];
+        // $normalizers = [new ObjectNormalizer()];
+        $normalizers = [$normalizer];
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $data = $serializer->serialize($verbou, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        
+            ]
+        );
+                
         file_put_contents(
             $input->getArgument('file'),
-            $serializer->encode($data, 'csv')
+            $data
         );
 
 
