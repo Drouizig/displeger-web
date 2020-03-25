@@ -189,6 +189,27 @@ textarea {
     }
 }
 
+.table {
+    color: var(--text-color);
+
+    tbody tr:nth-of-type(2n+1) {
+        background-color: var(--hover-color);
+    }
+}
+
+.select2-container {
+    .select2-dropdown {
+        background-color: var(--background);
+    }
+
+    .select2-results {
+        li[aria-selected="true"] {
+            //color: var(--background);
+            background-color: var(--hover-color);
+        }
+    }
+}
+
 @media print {
 
     .print-button,  .search-form, .missing_translation .report_error {
