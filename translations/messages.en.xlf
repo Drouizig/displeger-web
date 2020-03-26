@@ -335,15 +335,15 @@ The verb "%verb%" is missing on the website.
       </trans-unit>
       <trans-unit id="I0qZ5tR" resname="app.verb.other_forms">
         <source>app.verb.other_forms</source>
-        <target>__app.verb.other_forms</target>
+        <target>Other forms</target>
       </trans-unit>
       <trans-unit id="O8JcWGW" resname="app.geriafurch.alt">
         <source>app.geriafurch.alt</source>
-        <target>__app.geriafurch.alt</target>
+        <target>Geriafurch.alt</target>
       </trans-unit>
       <trans-unit id="UnfOmys" resname="app.geriafurch">
         <source>app.geriafurch</source>
-        <target>__app.geriafurch</target>
+        <target>Geriafurch</target>
       </trans-unit>
       <trans-unit id="DesWvMt" resname="app.copy.tense">
         <source>app.copy.tense</source>

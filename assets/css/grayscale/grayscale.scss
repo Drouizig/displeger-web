@@ -15,14 +15,14 @@ body {
   letter-spacing: 0.0625em;
 }
 
-a {
-  color: $primary;
-  &:focus,
-  &:hover {
-    text-decoration: none;
-    color: darken($primary, 20%);
-  }
-}
+//a {
+//  color: $primary;
+//  &:focus,
+//  &:hover {
+//    text-decoration: none;
+//    color: darken($primary, 20%);
+//  }
+//}
 
 .bg-black {
   background-color: $black !important;

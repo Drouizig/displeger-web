@@ -331,19 +331,19 @@ Il manque le verbe "%verb%" sur le site.
       </trans-unit>
       <trans-unit id="I0qZ5tR" resname="app.verb.other_forms">
         <source>app.verb.other_forms</source>
-        <target>__app.verb.other_forms</target>
+        <target>Autres formes</target>
       </trans-unit>
       <trans-unit id="7swrT8u" resname="app.verb.view_more">
         <source>app.verb.view_more</source>
-        <target>__app.verb.view_more</target>
+        <target>Voir plus</target>
       </trans-unit>
       <trans-unit id="O8JcWGW" resname="app.geriafurch.alt">
         <source>app.geriafurch.alt</source>
-        <target>__app.geriafurch.alt</target>
+        <target>Geriafurch.alt</target>
       </trans-unit>
       <trans-unit id="UnfOmys" resname="app.geriafurch">
         <source>app.geriafurch</source>
-        <target>__app.geriafurch</target>
+        <target>Geriafurch</target>
       </trans-unit>
       <trans-unit id="DesWvMt" resname="app.copy.tense">
         <source>app.copy.tense</source>
