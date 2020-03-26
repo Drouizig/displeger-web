@@ -22,7 +22,7 @@
                 { localization : form.localizations.vars.prototype}, 
                 with_context = false
                 )|e }}"
-            data-widget-counter="{{ form.translations|length }}">
+            data-widget-counter="{{ form.localizations|length }}">
             <h4>{{form_label(form.localizations)}}</h4>
             {% for localization in form.localizations %}
                 {% include "admin/partial/verb_localization.html.twig"  %}
