@@ -36,7 +36,7 @@ class VerbLocalizationType extends AbstractType
                 'label' => 'app.form.verb.dialect_code',
                 'required' => false,
                 'choices' => array_flip($this->listsUtil->getDialects()),
-
+                'multiple' => true
             ])
             ->add('sources', null, [
                 'label' => 'app.form.verb.sources'

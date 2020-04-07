@@ -41,7 +41,7 @@ class VerbLocalization
     private $base;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
     private $dialectCode;
 
@@ -141,11 +141,8 @@ class VerbLocalization
     {
         return $this->dialectCode;
     }
-
     /**
      * Set the value of dialectCode
-     *
-     * @return  self
      */ 
     public function setDialectCode($dialectCode)
     {
