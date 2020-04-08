@@ -2,17 +2,20 @@
 
 namespace App\Util;
 
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
 class VerbouManager
 {
-    protected $verbConfig;
+    /** @var ParameterBagInterface */
+    protected $parameterBag;
 
-    public function __construct($verbConfig)
+    public function __construct(ParameterBagInterface $parameterBag)
     {
-        $this->verbConfig = $verbConfig;
+        $this->parameterBag = $parameterBag;
     }
 
     public function getEndings($category)
     {
-        return $this->verbConfig[$category];
+        return $this->parameterBag->get('verbou.'.$category);
     }
 }
