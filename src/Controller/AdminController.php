@@ -14,6 +14,8 @@ use App\Form\VerbType;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Configuration;
 use App\Entity\Source;
+use App\Entity\VerbLocalization;
+use App\Entity\VerbTranslation;
 use App\Form\ConfigurationType;
 use App\Form\SourceType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -77,6 +79,11 @@ class AdminController extends AbstractController
      */
     public function verb(Request $request,Verb $verb = null)
     {
+        if($verb == null) {
+            $verb = new Verb();
+            $verb->addLocalization(new VerbLocalization());
+            $verb->addTranslation(new VerbTranslation());
+        }
         return $this->adminEdit(
             $request, 
             VerbType::class, 
