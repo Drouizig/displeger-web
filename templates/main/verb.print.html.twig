@@ -20,10 +20,10 @@
                         <li class="verb-item">
                             <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
                             {% if ending|length == 1 %}
-                                <span class="js-verb">{{verb.pennrann}}<strong>{{ending.0}}</strong></span>
+                                <span class="js-verb">{{verbLocalization.base}}<strong>{{ending.0}}</strong></span>
                             {% elseif ending|length > 1%}
                                 {% for end in ending %}
-                                    {{verb.pennrann}}<strong>{{end}}</strong>
+                                    {{verbLocalization.base}}<strong>{{end}}</strong>
                                     {% if loop.index < ending|length %}
                                         <i>pe</i>
                                     {% endif %}

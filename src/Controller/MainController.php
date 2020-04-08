@@ -195,6 +195,7 @@ class MainController extends AbstractController
                         $template,
                         array(
                             'verb' => $verb,
+                            'verbLocalization' => $verbLocalization,
                             'verbEndings' => $verbEndings,
                             'anvGwan' => $anvGwan,
                             'nach' => $nach,
