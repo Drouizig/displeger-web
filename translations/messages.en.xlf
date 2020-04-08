@@ -353,6 +353,22 @@ The verb "%verb%" is missing on the website.
         <source>app.copy.form</source>
         <target>Copy this form</target>
       </trans-unit>
+      <trans-unit id="sQE4aYk" resname="app.message.copy.success">
+        <source>app.message.copy.success</source>
+        <target>The conjugation has been copied in the clipboard.</target>
+      </trans-unit>
+      <trans-unit id="Y__DXvr" resname="app.message.copy.error">
+        <source>app.message.copy.error</source>
+        <target>An error occured during the copy in the clipboard.</target>
+      </trans-unit>
+      <trans-unit id="e_85FyD" resname="app.message.email.success">
+        <source>app.message.email.success</source>
+        <target>Message sent successfuly.</target>
+      </trans-unit>
+      <trans-unit id="nf_l7.9" resname="app.message.email.error">
+        <source>app.message.email.error</source>
+        <target>An error occured while sending the message. Please try again.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

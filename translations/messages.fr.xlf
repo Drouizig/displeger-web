@@ -353,6 +353,22 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.copy.form</source>
         <target>Copier cette forme</target>
       </trans-unit>
+      <trans-unit id="sQE4aYk" resname="app.message.copy.success">
+        <source>app.message.copy.success</source>
+        <target>La conjugaison a été copiée dans le presse-papier.</target>
+      </trans-unit>
+      <trans-unit id="Y__DXvr" resname="app.message.copy.error">
+        <source>app.message.copy.error</source>
+        <target>Erreur lors de la copie dans le presse-papier.</target>
+      </trans-unit>
+      <trans-unit id="e_85FyD" resname="app.message.email.success">
+        <source>app.message.email.success</source>
+        <target>Le message a été envoyé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="nf_l7.9" resname="app.message.email.error">
+        <source>app.message.email.error</source>
+        <target>Erreur lors de l'envoi du message. Veuillez réessayer.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

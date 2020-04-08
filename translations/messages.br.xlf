@@ -440,6 +440,22 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.copy.form</source>
         <target>Eilañ ar stumm verb-mañ</target>
       </trans-unit>
+      <trans-unit id="sQE4aYk" resname="app.message.copy.success">
+        <source>app.message.copy.success</source>
+        <target>Eilet eo bet ar verb displeget er golver!</target>
+      </trans-unit>
+      <trans-unit id="Y__DXvr" resname="app.message.copy.error">
+        <source>app.message.copy.error</source>
+        <target>Fazi en ur eilañ ar verb displeget er golver.</target>
+      </trans-unit>
+      <trans-unit id="e_85FyD" resname="app.message.email.success">
+        <source>app.message.email.success</source>
+        <target>Kaset eo bet ar gemennadenn gant berzh!</target>
+      </trans-unit>
+      <trans-unit id="nf_l7.9" resname="app.message.email.error">
+        <source>app.message.email.error</source>
+        <target>Degouezhet ez eus bet ur fazi en ur gas ar gemennadenn, klaskit en-dro mar plij.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

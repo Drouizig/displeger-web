@@ -50,6 +50,11 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-        <div class="message"></div>
+        <div class="message"
+        data-copy-success="{{'app.message.copy.success'|trans}}"
+        data-copy-error="{{'app.message.copy.error'|trans}}"
+        data-email-success="{{'app.message.email.success'|trans}}"
+        data-email-error="{{'app.message.email.error'|trans}}"
+        ></div>
     </body>
 </html>
