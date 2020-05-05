@@ -100,7 +100,7 @@ class MainController extends AbstractController
 
         if($pagination->getTotalItemCount() <= 1) {
             if($pagination->getTotalItemCount() === 1) {
-                $term = $pagination->getItems()[0]->getAnvVerb();
+                $term = $pagination->getItems()[0]->getInfinitive();
             }
             return $this->redirectToRoute('verb', ['infinitive' => $term]);
         }
