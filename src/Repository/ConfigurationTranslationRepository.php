@@ -19,32 +19,16 @@ class ConfigurationTranslationRepository extends ServiceEntityRepository
         parent::__construct($registry, ConfigurationTranslation::class);
     }
 
-    // /**
-    //  * @return ConfigurationTranslation[] Returns an array of ConfigurationTranslation objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByCodeAndLocale($code, $locale)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('ct')
+            ->leftJoin('ct.configuration', 'c')
+            ->where('c.code = :code')
+            ->andWhere('ct.locale = :locale')
+            ->setParameter('code', $code)
+            ->setParameter('locale', $locale)
             ->getQuery()
-            ->getResult()
+            ->getSingleResult()
         ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?ConfigurationTranslation
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

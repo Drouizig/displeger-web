@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Configuration[]    findAll()
  * @method Configuration[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ConfigurationRepository extends ServiceEntityRepository
+class ConfigurationRepository extends ServiceEntityRepository implements AdminRepositoryInterface
 {
     public function __construct(RegistryInterface $registry)
     {
@@ -28,5 +28,27 @@ class ConfigurationRepository extends ServiceEntityRepository
         ;
     }
     
+    public function getBackSearchQuery($search, $offset = null, $maxResults = null)
+    {
+        $qb = $this->createQueryBuilder('c');
+        if ($search !== null && $search !== '') {
+            $qb->join('c.translations', 't');
+            $qb
+                ->where('c.code LIKE :term')
+                ->orWhere('t.text LIKE :term')
+                ->setParameter('term', '%'.$search.'%')
+            ;
+        }
+        if ($offset !== null) {
+            $qb->setFirstResult($offset);
+        }
+        if ($maxResults !== null) {
+            $qb->setMaxResults($maxResults);
+        }
+        $qb
+            ->addOrderBy('c.code')
+        ;
+        return $qb->getQuery();
+    }
 
 }

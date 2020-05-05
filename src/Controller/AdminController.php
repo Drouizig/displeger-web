@@ -53,6 +53,12 @@ class AdminController extends AbstractController
     public function sources(Request $request) {
         return $this->adminList($request, Source::class, 'admin/sources.html.twig');    
     }
+    /**
+     * @Route("/admin/configurations", name="admin_configurations")
+     */
+    public function configurations(Request $request) {
+        return $this->adminList($request, Configuration::class, 'admin/configurations.html.twig');    
+    }
 
     public function adminList(Request $request, string $class,string $twig) {
         /** @var AdminRepositoryInterface */
@@ -108,6 +114,20 @@ class AdminController extends AbstractController
             $source);
     }
 
+    /**
+     * @Route("/admin/configuration/{id?}", name="admin_configuration")
+     */
+    public function configuration(Request $request,Configuration $configuration = null)
+    {
+        return $this->adminEdit(
+            $request, 
+            ConfigurationType::class, 
+            Configuration::class, 
+            'admin_conifguration',
+            'admin_configurations', 
+            'admin/configuration.html.twig',
+            $configuration);
+    }
     public function adminEdit(Request $request,string $form, string $class, $redirect_to_single,$redirect_to_list, $twig, $editable = null)
     {
         $form = $this->createForm($form, $editable);
@@ -150,34 +170,6 @@ class AdminController extends AbstractController
         return $this->render($twig, [
             'form' => $form->createView(),
         ]);
-    }
-
-
-    /**
-     * @Route("/admin/configuration", name="admin_configuration")
-     */
-    public function configurationEdit(Request $request, SessionInterface $session, TranslatorInterface $translator)
-    {
-        $configurationObject = $this->getDoctrine()->getRepository(Configuration::class)->findFirst();
-        $form = $this->createForm(ConfigurationType::class, $configurationObject);
-
-        if ($request->getMethod() === 'POST') {
-            $form->handleRequest($request);
-            if($form->isSubmitted() && $form->isValid()) {
-                $configuration = $form->getData();
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($configuration);
-                $em->flush();
-                $session->getFlashBag()->set('message', $translator->trans('app.configuration.saved'));
-                return $this->redirectToRoute('admin_configuration');
-            }
-        }
-
-        return $this->render('admin/configuration.html.twig', [
-            'form' => $form->createView()
-        ]);
-        
-
     }
 
 }

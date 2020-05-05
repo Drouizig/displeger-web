@@ -6,34 +6,36 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
     <h1>{{ 'app.title'|trans }}</h1>
     <p>Lodenn verañ</p>
-    <a href="{{path('admin_home')}}">< Distreiñ</a>
+    <a href="{{path('admin_configurations')}}">< Distreiñ</a>
 
     {{form_start(form)}}
-    {% for translation in form.translations%}
-        <h2>{{ ('app.locale.' ~translation.vars.data.locale)|trans }}</h2>
-        <div class="row">
-            <div class="col-md-2">
-                {{ form_label(translation.intro) }}
-            </div>
-        </div>
+    {{form_row(form.code)}}
 
-        <div class="row">
-            <div class="col-md-12">
-                {{ form_widget(translation.intro) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                {{ form_label(translation.thanks) }}
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                {{ form_widget(translation.thanks) }}
-            </div>
+    <br/>
+    Yezhoù :
+    <div class="row">
+        <div class="col-md translations"
+             data-prototype="{{ include(
+                "admin/partial/configuration_translation.html.twig",
+                { translation : form.translations.vars.prototype}, 
+                with_context = false
+                )|e }}"
+            data-widget-counter="{{ form.translations|length }}">
+            <h4>{{form_label(form.translations)}}</h4>
+            
+            {% for translation in form.translations %}
+                {% include "admin/partial/configuration_translation.html.twig" %}
+            {% endfor %}
+
         </div>
-    {% endfor %}
+    </div>
+    <p></p>
+    <button type="button"
+                class="btn btn-primary add-element"
+                data-list-selector=".translations">
+                <i class="fas fa-plus"></i>
+    </button>
     {{form_widget(form.save)}}
 
 

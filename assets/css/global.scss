@@ -213,6 +213,11 @@ textarea {
     }
 }
 
+.translations textarea {
+    width: 100%;
+    height: 500px;
+}
+
 @media print {
 
     .print-button,  .search-form, .missing_translation .report_error {

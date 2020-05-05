@@ -10,6 +10,13 @@ Encore
     .copyFiles({
         from: './assets/img',
     })
+    .copyFiles(
+    {
+        from: './node_modules/tinymce/skins/',
+        to: './skins/[path][name].[ext]',
+        includeSubdirectories: true,
+        pattern: /.*/
+    })
     /*
      * ENTRY CONFIG
      *

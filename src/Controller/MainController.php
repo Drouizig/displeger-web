@@ -77,19 +77,7 @@ class MainController extends AbstractController
             return $this->redirectToRoute('verb', ['anvVerb' => $request->query->get('verb')]);
         }
 
-        $intro = '';
-        /** @var Configuration $config */
-        $config = $this->getDoctrine()->getRepository(Configuration::class)->findFirst();
-        if($config) {
-            $configTranslation = $config->getTranslation($request->get('_locale', 'br'));
-            if($configTranslation) {
-                $intro = $configTranslation->getIntro();
-            }
-        }
-
-        return $this->render('main/index.html.twig', [
-            'intro' => $intro
-        ]);
+        return $this->render('main/index.html.twig');
     }
 
     /**
@@ -331,16 +319,12 @@ class MainController extends AbstractController
      *      "_locale": "br|fr|en"
      * })
      */
-    public function thanks(Request $request) {
-         /** @var Configuration $config */
-         $config = $this->getDoctrine()->getRepository(Configuration::class)->findFirst();
-         if($config) {
-             $configTranslation = $config->getTranslation($request->get('_locale', 'br'));
-             if($configTranslation) {
-                 $thanks = $configTranslation->getThanks();
-             }
-         }
-        return $this->render('misc/thanks.html.twig', ['thanks' => $thanks]);
+    public function thanks() {
+         return $this->CMSPage('thanks');
+    }
+
+    public function CMSPage($code) {
+        return $this->render('misc/cms.html.twig', ['code' => $code]);
     }
 
     /**

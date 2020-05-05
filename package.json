@@ -19,6 +19,7 @@
         "highcharts": "^7.0.1",
         "popper.js": "^1.14.7",
         "select2": "^4.0.13",
+        "tinymce": "^5.2.1",
         "webpack-jquery-ui": "^2.0"
     }
 }

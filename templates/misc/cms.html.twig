@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Displeger verboù brezhonek - {{'app.thanks'|trans}}{% endblock %}
+{% block title %}Displeger verboù brezhonek - {{('app.'~code)|trans}}{% endblock %}
 
 {% block content %}
     {% include 'main/partial/header.html.twig' %}
 
     <p>
-        {{thanks|raw}}
+        {{configuration(code)|raw}}
     </p>
 
 {% endblock %}

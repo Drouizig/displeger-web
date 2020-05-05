@@ -1,8 +1,15 @@
 
 require('select2');
+require('tinymce');
+require('tinymce/themes/silver');
 $(document).ready(function() {
 
   $('select').select2();
+  tinymce.init(
+    {
+      selector: '.tinymce'
+    }
+  );
 
   jQuery('.add-element').click(function (e) {
     var list = jQuery(jQuery(this).attr('data-list-selector'));
@@ -20,6 +27,13 @@ $(document).ready(function() {
 
     newElem.appendTo(list);
     newElem.find('select').select2();
+    tinymce.remove();
+    tinymce.init(
+      {
+        selector: '.tinymce'
+      }
+    );
+
   });
 
   jQuery('.delete-element').click(function (e) {

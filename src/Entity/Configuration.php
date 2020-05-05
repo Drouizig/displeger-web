@@ -19,6 +19,12 @@ class Configuration
     private $id;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $code;
+
+    /**
      * @ORM\OneToMany(
      *      targetEntity="App\Entity\ConfigurationTranslation",
      *      mappedBy="configuration",
@@ -69,5 +75,39 @@ class Configuration
     public function setTranslations($translations): void
     {
         $this->translations = $translations;
+    }
+
+    /**
+     * Add translation.
+     *
+     * @return  self
+     */ 
+    public function addTranslation(ConfigurationTranslation $translation)
+    {
+        $this->translations->add($translation);
+        $translation->setConfiguration($this);
+
+        return $this;
+    }
+    /**
+     * Remove tranlsation.
+     *
+     * @return  self
+     */ 
+    public function removeTranslation(ConfigurationTranslation $translation)
+    {
+        $this->translations->removeElement($translation);
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code)
+    {
+        $this->code = $code;
     }
 }
