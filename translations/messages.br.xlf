@@ -456,6 +456,10 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.message.email.error</source>
         <target>Degouezhet ez eus bet ur fazi en ur gas ar gemennadenn, klaskit en-dro mar plij.</target>
       </trans-unit>
+      <trans-unit id="bSWqAzf" resname="app.sources.title">
+        <source>app.sources.title</source>
+        <target>Mammennoù:</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

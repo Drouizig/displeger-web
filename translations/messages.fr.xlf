@@ -369,6 +369,10 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.message.email.error</source>
         <target>Erreur lors de l'envoi du message. Veuillez réessayer.</target>
       </trans-unit>
+      <trans-unit id="bSWqAzf" resname="app.sources.title">
+        <source>app.sources.title</source>
+        <target>Sources :</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

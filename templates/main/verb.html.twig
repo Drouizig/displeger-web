@@ -27,7 +27,17 @@
     <a class = "hidden-print print-button" alt="{{ 'app.button.print'|trans }}" href="#" onclick="print()"><i class="fas fa-print" title="{{'app.button.print' | trans}}"></i></a>
 {% endblock %}
 {% if verb is not null %}
-    <h2>{{verbLocalization.infinitive}}</h2>
+    {% if verbLocalization.sources|length > 0 %}
+        <abbr title="{{'app.sources.title'|trans}}
+{% for source in verbLocalization.sources %}
+- {{source.getTranslation(app.request.locale).label}}
+        {% endfor %}
+        ">
+    {% endif %}
+        <h2>{{verbLocalization.infinitive}}</h2>
+    {% if verbLocalization.sources|length > 0 %}
+        </abbr>
+    {% endif %}
     {% if verb.localizations|length > 1 %}
         <p class="subtitle">{{'app.verb.other_forms'|trans}} :
         {% for other_localization in verb.localizations if other_localization != verbLocalization %}
@@ -46,7 +56,18 @@
             {% endif %}
             {% if verb.hasTranslationInLanguage(language) %}
                 {% set translation = verb.translation(language) %}
-                <p>{{listsUtil.locales[translation.languageCode]}} : <i>{{translation.translation}}</i></p>
+                <p>{{listsUtil.locales[translation.languageCode]}} : 
+                {% if translation.sources|length > 0 %}
+                    <abbr title="{{'app.sources.title'|trans}}
+{% for source in translation.sources %}
+- {{source.getTranslation(app.request.locale).label}}
+                    {% endfor %}
+                    ">
+                {% endif %}
+                <i>{{translation.translation}}</i></p>
+                {% if translation.sources|length > 0 %}
+                    </abbr>
+                {% endif %}
             {% elseif print == false %}
                     {% include 'main/partial/contact_form.html.twig' with {
                         'form_class' : 'missing_translation',
@@ -65,8 +86,19 @@
                 <div class="js-translations" style="display:none;">
                     <ul>
                         {% for translation in verb.translations if translation.languageCode != language %}
-                            <li>{{listsUtil.locales[translation.languageCode]}} : {{translation.translation}} 
-                            {% if translation.sources|length %}({{'app.verb.source'}} : ){% endif %}</li>
+                            <li>{{listsUtil.locales[translation.languageCode]}} : 
+                            {% if translation.sources|length > 0 %}
+                                <abbr title="{{'app.sources.title'|trans}}
+{% for source in translation.sources %}
+- {{source.getTranslation(app.request.locale).label}}
+                                {% endfor %}
+                                ">
+                            {% endif %}
+                            {{translation.translation}} 
+                            {% if translation.sources|length > 0 %}
+                                </abbr>
+                            {% endif %}
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
