@@ -1,0 +1,10 @@
+parameters:
+  verbou.d4.treger:
+      da_zont:
+      - ["in"]
+      - ["i"]
+      - ["io"]
+      - ["ifomp"]
+      - ["ifet"]
+      - ["ifont"]
+      - ["ior"]

@@ -1,22 +1,7 @@
 
-        <form action="{{ path('search_advanced') }}" class="search-form form-md">
-            <div>
-              <input
-                data-url="{{path('autocomplete')}}"
-                type="search"
-                name="term"
-                placeholder="{{'app.header.search.placeholder'|trans}}"
-                class="autocomplete form-control"
-                value="{{app.request.get('term', '')}}"
-              />
-            </div>
-            <div>
-            <ul>
-              <li><input id="field_breton" type="radio" name="field" value="breton"> <label for="field_breton">{{'app.search_advanced.field.breton'|trans}}</label></li>
-              <li><input id="field_french" type="radio" name="field" value="french"> <label for="field_french">{{'app.search_advanced.field.french'|trans}}</label></li>
-              <li><input id="field_english" type="radio" name="field" value="english"> <label for="field_english">{{'app.search_advanced.field.english'|trans}}</label></li>
-            <ul>
-            </div>
-
-            <button class="btn btn-primary">{{'app.header.search.button'|trans}}</button>
-        </form>
+{{form_start(form)}}
+{{form_row(form.term)}}
+{{form_row(form.language)}}
+{{form_row(form.conjugated)}}
+<button>submit</button>
+{{form_end(form)}}

@@ -26,6 +26,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Configuration;
 use App\Entity\VerbLocalization;
 use App\Entity\VerbTranslation;
+use App\Form\AdvancedSearchType;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 class MainController extends AbstractController
@@ -114,21 +115,30 @@ class MainController extends AbstractController
      * @Route("/{_locale}/search_advanced", name="search_advanced")
      */
     public function searchAdvanced(Request $request, PaginatorInterface $knpPaginator) {
-        $term = $request->query->get('term', null);
-
-        /** @var erbRepository VerbRepository */
-        $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
-        $searchQuery = $verbRepository->getFrontSearchQuery($term);
         
-        $pagination = $knpPaginator->paginate(
-            $searchQuery,
-            $request->query->getInt('page', 1)/*page number*/,
-            $request->query->getInt('number', 25)/*limit per page*/
-        );
+        $form = $this->createForm(AdvancedSearchType::class);
 
-        return $this->render('main/search_advanced.html.twig', [
-            'pagination' => $pagination
-        ]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var erbRepository VerbRepository */
+            $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
+            // $searchQuery = $verbRepository->getFrontSearchQuery($term);
+            
+            $pagination = $knpPaginator->paginate(
+                $searchQuery,
+                $request->query->getInt('page', 1)/*page number*/,
+                $request->query->getInt('number', 25)/*limit per page*/
+            );
+
+            return $this->render('main/search_advanced.html.twig', [
+                'pagination' => $pagination
+            ]);
+        } else {
+            return $this->render('main/search_advanced.html.twig', [
+                'form' => $form->createView()
+            ]);
+        }
     }
 
 

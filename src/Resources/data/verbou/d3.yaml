@@ -1,30 +1,5 @@
 parameters:
   verbou.d3:
-      gwan: et
-      bremañ:
-      - ["an"]
-      - ["ez"]
-      - ["a"]
-      - ["omp"]
-      - ["it"]
-      - ["ont"]
-      - ["er"]
-      tremenet_ledan:
-      - ["en"]
-      - ["es"]
-      - ["e"]
-      - ["emp"]
-      - ["ec'h"]
-      - ["ent"]
-      - ["ed"]
-      tremenet_strizh:
-      - ['is', 'jon']
-      - ["jout"]
-      - ["as"]
-      - ["jomp"]
-      - ["joc'h"]
-      - ["jont"]
-      - ["jod"]
       da_zont:
       - ["in"]
       - ["i"]
@@ -33,22 +8,6 @@ parameters:
       - ['ot', "oc'h"]
       - ["int"]
       - ["or"]
-      gallus:
-      - ["fen"]
-      - ["fes"]
-      - ["fe"]
-      - ["femp"]
-      - ["fec'h"]
-      - ["fent"]
-      - ["fed"]
-      dichallus:
-      - ["jen"]
-      - ["jes"]
-      - ["je"]
-      - ["jemp"]
-      - ["jec'h"]
-      - ["jent"]
-      - ["jed"]
       kadarnaat:
       - []
       - ["a"]
@@ -56,12 +15,4 @@ parameters:
       - ["omp"]
       - ["it"]
       - ["ent"]
-      - []
-      nach:
-      - []
-      - []
-      - []
-      - []
-      - []
-      - []
       - []

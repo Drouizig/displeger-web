@@ -6,7 +6,7 @@
   <a href="{{ path('main') }}"><h1>{{ 'app.title'|trans }}</h1></a> 
   {% include 'main/partial/search_advanced_form.html.twig' %}
 
-  {% if pagination.count > 0 %}
+  {% if pagination is defined and pagination.count > 0 %}
     <h2>{{'app.search.title'|trans}}</h2>
 
     <div class="navigation">
