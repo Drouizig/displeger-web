@@ -1,0 +1,20 @@
+
+{% for ending in endings %}
+    <li class="verb-item">
+        <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans}}</abbr>.
+        {% if ending|length == 1 %}
+            <div class="verb-container">
+                <span class="js-verb">{{verbLocalization.base}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
+            </div>
+        {% elseif ending|length > 1%}
+            {% for end in ending %}
+                <div class="verb-container">
+                    <span class="js-verb">{{verbLocalization.base}}<strong>{{end}}</strong></span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
+                </div>
+                {% if loop.index < ending|length %}
+                    <i>pe</i>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </li>
+{% endfor %}

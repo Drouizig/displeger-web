@@ -21,7 +21,9 @@ class VerbouManager
      */
     public function getEndings($category, $dialects)
     {
-        $endings = [];
+        if($dialects === null) {
+            $dialects = [];
+        }
         $conjugationGroups = $this->parameterBag->get('conjugation_groups');
         $allDialects = $this->parameterBag->get('dialects');
 
@@ -42,11 +44,23 @@ class VerbouManager
             }
         }
 
+        $baseEndings = $this->parameterBag->get('verbou.regular');
+        $categoryEndings = $this->parameterBag->get('verbou.'.$category);
+        $standardEndings = array_merge($baseEndings, $categoryEndings ?? []);
+
+        $localizedEndings = [];
+        dump($selectedDialects);
         foreach($selectedDialects as $dialect) {
-            
-            
+            if($this->parameterBag->has('verbou.regular.'.$dialect)) {
+                $baseLocalizedEndings = $this->parameterBag->get('verbou.regular.'.$dialect);
+                $categoryLocalizedEndings = [];
+                if($this->parameterBag->has('verbou.'.$category.'.'.$dialect)) {
+                    $categoryLocalizedEndings = $this->parameterBag->get('verbou.'.$category.'.'.$dialect);
+                }
+                $localizedEndings[$dialect] = array_merge($baseLocalizedEndings, $categoryLocalizedEndings);
+            }
         }
 
-        return $this->parameterBag->get('verbou.'.$category);
+        return ['standard' => $standardEndings, 'localized' => $localizedEndings];
     }
 }

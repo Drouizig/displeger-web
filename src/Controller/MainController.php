@@ -161,23 +161,23 @@ class MainController extends AbstractController
         if(null !== $verbLocalization) {
             $verb = $verbLocalization->getVerb();
             $locale = $request->get('_locale', 'br');
-            $verbEndings = $this->verbouManager->getEndings($verbLocalization->getCategory());
+            $verbEndings = $this->verbouManager->getEndings($verbLocalization->getCategory(), $verbLocalization->getDialectCode());
             if(in_array($verbLocalization->getInfinitive(), ['bezañ', 'boud'])) {
                 $verbEndings = $this->getParameter('bezan');
                 $template = 'main/irregular/bezan.html.twig';
             }
-            $anvGwan = $verbEndings['gwan'];
-            unset($verbEndings['gwan']);
-            unset($verbEndings['nach']);
-            $mutatedBase = $this->kemmaduriouManager->mutateWord($verbLocalization->getBase(), KemmaduriouManager::BLOTAAT);
+            $anvGwan = $verbEndings['standard']['gwan'];
+            unset($verbEndings['standard']['gwan']);
+            unset($verbEndings['standard']['nach']);
+            // $mutatedBase = $this->kemmaduriouManager->mutateWord($verbLocalization->getBase(), KemmaduriouManager::BLOTAAT);
             $nach = [];
-            foreach($verbEndings['kadarnaat'] as $ending) {
-                if(count($ending) > 0) {
-                    $nach[] = 'na '.$mutatedBase.'<strong>'.$ending[0].'</strong> ket';
-                } else {
-                    $nach[] = null;
-                }
-            }
+            // foreach($verbEndings['kadarnaat'] as $ending) {
+            //     if(count($ending) > 0) {
+            //         $nach[] = 'na '.$mutatedBase.'<strong>'.$ending[0].'</strong> ket';
+            //     } else {
+            //         $nach[] = null;
+            //     }
+            // }
 
             $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verbLocalization->getInfinitive();
             $geriafurchUrl = '';
@@ -195,7 +195,7 @@ class MainController extends AbstractController
                             'verb' => $verb,
                             'verbLocalization' => $verbLocalization,
                             'verbEndings' => $verbEndings,
-                            'anvGwan' => $anvGwan,
+                            'anvGwasn' => $anvGwan,
                             'nach' => $nach,
                             'contactForm' => $contactForm->createView(),
                             'print' => $print,
@@ -211,7 +211,8 @@ class MainController extends AbstractController
                 return $this->render($template, [
                     'verb' => $verb,
                     'verbLocalization' => $verbLocalization,
-                    'verbEndings' => $verbEndings,
+                    'verbEndings' => $verbEndings['standard'],
+                    'localizedVerbEndings' => $verbEndings['localized'],
                     'anvGwan' => $anvGwan,
                     'nach' => $nach,
                     'contactForm' => $contactForm->createView(),

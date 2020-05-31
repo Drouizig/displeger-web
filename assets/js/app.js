@@ -156,6 +156,19 @@ $(document).ready(function() {
     $('.dark-mode-switch').bootstrapToggle('on');
   }
 
+
+  /*
+   * ***********************
+   *   SWITCH DIALECT
+   * ***********************
+   */
+  $('.dialect-button-group button').click(function() {
+    var dialect = $(this).data('dialect');
+    $(this).parent().parent().find('ul.endings.active').removeClass('active');
+    $(this).parent().parent().find('ul.endings[data-dialect="'+dialect+'"]').addClass('active');
+    
+  });
+
 });
 
 

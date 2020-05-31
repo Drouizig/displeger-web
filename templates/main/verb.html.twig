@@ -30,7 +30,7 @@
     {% if verbLocalization.sources|length > 0 %}
         <abbr title="{{'app.sources.title'|trans}}
 {% for source in verbLocalization.sources %}
-- {{source.getTranslation(app.request.locale).label}}
+    - {{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}
         {% endfor %}
         ">
     {% endif %}
@@ -60,8 +60,8 @@
                 {% if translation.sources|length > 0 %}
                     <abbr title="{{'app.sources.title'|trans}}
 {% for source in translation.sources %}
-- {{source.getTranslation(app.request.locale).label}}
-                    {% endfor %}
+    - {{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}
+                        {% endfor %}
                     ">
                 {% endif %}
                 <i>{{translation.translation}}</i></p>
@@ -140,28 +140,32 @@
         <div class="row verb-items">
             {% for amzer, endings in verbEndings %}
                 <div class="col-md js-tense">
-                    <h3>{{ ('app.amzer.' ~ amzer)|trans }} <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i></h3>
-                    <ul>
-                        {% for ending in endings %}
-                            <li class="verb-item">
-                                <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans}}</abbr>.
-                                {% if ending|length == 1 %}
-                                    <div class="verb-container">
-                                        <span class="js-verb">{{verbLocalization.base}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
-                                    </div>
-                                {% elseif ending|length > 1%}
-                                    {% for end in ending %}
-                                        <div class="verb-container">
-                                            <span class="js-verb">{{verbLocalization.base}}<strong>{{end}}</strong></span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
-                                        </div>
-                                        {% if loop.index < ending|length %}
-                                            <i>pe</i>
-                                        {% endif %}
-                                    {% endfor %}
+                    <h3>
+                        {{ ('app.amzer.' ~ amzer)|trans }}
+                        <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i>
+                    </h3>
+                    <div class="btn-group dialect-button-group" role="group">
+                        {% set firstItem = true %}
+                        {% for dialect, times in localizedVerbEndings %}
+                            {% if times[amzer] is defined %}
+                                {% if firstItem %}
+                                    <button type="button" class="btn btn-primary" disabled="disabled" data-dialect="reolad">{{ 'app.dialect.reolad'|trans }}</button>
+                                    {% set firstItem = false %}
                                 {% endif %}
-                            </li>
+                                <button type="button" class="btn btn-secondary" data-dialect="{{dialect}}">{{ ('app.dialect.' ~ dialect)|trans }}</button>
+                            {% endif %}
                         {% endfor %}
+                    </div>
+                    <ul class="endings active" data-dialect="reolad">
+                        {% include "main/partial/endings.html.twig" %}
                     </ul>
+                    {% for dialect, times in localizedVerbEndings %}
+                        {% if times[amzer] is defined %}
+                            <ul class="endings" data-dialect="{{dialect}}">
+                                {% include "main/partial/endings.html.twig" with {'endings' : times[amzer]}%}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
                     <div class="js-tense-content">
                         {% set content = ('app.amzer.' ~ amzer)|trans ~ '\n\n'%}
 
