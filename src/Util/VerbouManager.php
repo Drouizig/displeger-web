@@ -49,7 +49,6 @@ class VerbouManager
         $standardEndings = array_merge($baseEndings, $categoryEndings ?? []);
 
         $localizedEndings = [];
-        dump($selectedDialects);
         foreach($selectedDialects as $dialect) {
             if($this->parameterBag->has('verbou.regular.'.$dialect)) {
                 $baseLocalizedEndings = $this->parameterBag->get('verbou.regular.'.$dialect);
