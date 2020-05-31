@@ -29,9 +29,9 @@ parameters:
       - ["in"]
       - ["i"]
       - ["ay", "yelo"]
-      - ["aimp", "afomp"]
-      - ["eot", "eoc'h", "afet"]
-      - ["aint", "afont"]
+      - ["aimp"]
+      - ["eot", "eoc'h"]
+      - ["aint"]
       - ["eor", "afer"]
       gallus:
       - ["afen"]

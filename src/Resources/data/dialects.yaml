@@ -6,3 +6,8 @@ parameters:
     - gwened
     - goelo
     - reolad
+  conjugation_groups:
+    - [ 'kerne', 'leon', 'reolad' ]
+    - [ 'treger' ]
+    - [ 'gwened' ]
+    - [ 'goelo' ]

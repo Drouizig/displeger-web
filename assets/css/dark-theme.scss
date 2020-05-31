@@ -2,7 +2,8 @@
 @import "grayscale/grayscale.scss";
 @import "global.scss";
 
-$secondary: invert($primary, 100%);
+$primary-dark: invert($primary, 100%);
+$secondary-dark: invert($secondary, 100%);
 
 html[data-theme='dark'] {
   --background: black;
@@ -12,9 +13,12 @@ html[data-theme='dark'] {
   --message-color: var(--gray-dark);
   --title-color: white;
   --text-color: white;
-  --button-color: #{$secondary};
-  --button-hover: #{darken($secondary, 10%)};
-  --button-focus: #{darken($secondary, 15%)};
+  --button-color: #{$primary-dark};
+  --button-hover: #{darken($primary-dark, 10%)};
+  --button-focus: #{darken($primary-dark, 15%)};
+  --button-s-color: #{$secondary-dark};
+  --button-s-hover: #{lighten($secondary-dark, 10%)};
+  --button-s-focus: #{lighten($secondary-dark, 15%)};
 }
 
 // transition for the dark mode, so smooth...

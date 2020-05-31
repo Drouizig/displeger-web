@@ -109,7 +109,7 @@ class Source
                 return $translation;
             }
         }
-        return $translation;
+        return null;
     }
 
     /**

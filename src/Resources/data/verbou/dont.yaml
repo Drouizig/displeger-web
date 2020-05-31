@@ -1,21 +1,5 @@
 parameters:
   verbou.dont:
-      bremañ:
-      - ["an"]
-      - ["ez"]
-      - ''
-      - ["omp"]
-      - ["it"]
-      - ["ont"]
-      - ["er"]
-      tremenet_ledan:
-      - ["en"]
-      - ["es"]
-      - ["e"]
-      - ["emp"]
-      - ["ec'h"]
-      - ["ent"]
-      - ["ed"]
       tremenet_strizh:
       - ["is"]
       - ["jout"]
@@ -32,22 +16,6 @@ parameters:
       - ['ot', "oc'h"]
       - ["int"]
       - ["or"]
-      gallus:
-      - ["fen"]
-      - ["fes"]
-      - ["fe"]
-      - ["femp"]
-      - ["fec'h"]
-      - ["fent"]
-      - ["fed"]
-      dichallus:
-      - ["jen"]
-      - ["jes"]
-      - ["je"]
-      - ["jemp"]
-      - ["jec'h"]
-      - ["jent"]
-      - ["jed"]
       kadarnaat:
       - []
       - ["s"]
@@ -55,12 +23,4 @@ parameters:
       - ["omp"]
       - ["it"]
       - ["ent"]
-      - []
-      nach:
-      - []
-      - []
-      - []
-      - []
-      - []
-      - []
       - []

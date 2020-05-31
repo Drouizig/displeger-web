@@ -156,6 +156,26 @@ $(document).ready(function() {
     $('.dark-mode-switch').bootstrapToggle('on');
   }
 
+
+  /*
+   * ***********************
+   *   SWITCH DIALECT
+   * ***********************
+   */
+  $('.dialect-button-group button').click(function() {
+    var dialect = $(this).data('dialect');
+    $(this).parent().parent().find('ul.endings.active').removeClass('active');
+    $(this).parent().parent().find('ul.endings[data-dialect="'+dialect+'"]').addClass('active');
+    var previousPrimary = $(this).parent().find('.btn-primary');
+    previousPrimary.remove('btn-primary');
+    previousPrimary.addClass('btn-secondary');
+    previousPrimary.prop("disabled", false);
+    $(this).addClass('btn-primary');
+    $(this).removeClass('btn-secondary');
+    $(this).prop("disabled", true);
+    
+  });
+
 });
 
 
