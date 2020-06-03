@@ -1,13 +1,13 @@
 parameters:
   verbou.regular.gwened:
       gallus:
-      - ["hen"]
-      - ["hes"]
-      - ["he"]
-      - ["hemp"]
-      - ["hec'h"]
-      - ["hent"]
-      - ["hed"]
+      - ["ahen"]
+      - ["ahes"]
+      - ["ahe"]
+      - ["ahemp"]
+      - ["ahec'h"]
+      - ["ahent"]
+      - ["ahed"]
       dichallus:
       - ["zen"]
       - ["zes"]

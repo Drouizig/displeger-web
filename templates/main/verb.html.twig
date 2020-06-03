@@ -42,7 +42,11 @@
         <p class="subtitle">{{'app.verb.other_forms'|trans}} :
         {% for other_localization in verb.localizations if other_localization != verbLocalization %}
             <a href={{path('verb', {'infinitive': other_localization.infinitive})}}>{{other_localization.infinitive}}</a>
-            {% if other_localization.dialectCode != null %}({{('app.dialect.'~other_localization.dialectCode)|trans}}){% endif %}
+            {% if other_localization.dialectCode != null %}
+                ({%- for dialect in other_localization.dialectCode -%}
+                        {%if loop.index != 1%}, {%endif%}{{('app.dialect.'~dialect)|trans}}
+                    {%- endfor -%})
+            {% endif %}
             {% if loop.index +1 != verb.localizations|length %},{% endif %}
         {% endfor %}
         </p>

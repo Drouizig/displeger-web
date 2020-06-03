@@ -1,13 +1,13 @@
 parameters:
   verbou.d6.gwened:
       gallus:
-      - ["gnhen"]
-      - ["gnhes"]
-      - ["gnhe"]
-      - ["gnhemp"]
-      - ["gnhec'h"]
-      - ["gnhent"]
-      - ["gnhed"]
+      - ["gnahen"]
+      - ["gnahes"]
+      - ["gnahe"]
+      - ["gnahemp"]
+      - ["gnahec'h"]
+      - ["gnahent"]
+      - ["gnahed"]
       dichallus:
       - ["gnzen"]
       - ["gnzes"]

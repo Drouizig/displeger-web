@@ -162,10 +162,9 @@ class MainController extends AbstractController
             $verb = $verbLocalization->getVerb();
             $locale = $request->get('_locale', 'br');
             $verbEndings = $this->verbouManager->getEndings($verbLocalization->getCategory(), $verbLocalization->getDialectCode());
-            if(in_array($verbLocalization->getInfinitive(), ['bezañ', 'boud'])) {
-                $verbEndings = $this->getParameter('bezan');
-                $template = 'main/irregular/bezan.html.twig';
-            }
+            // if(in_array($verbLocalization->getInfinitive(), ['bezañ', 'boud'])) {
+            //     $template = 'main/irregular/bezan.html.twig';
+            // }
             $anvGwan = $verbEndings['standard']['gwan'];
             unset($verbEndings['standard']['gwan']);
             unset($verbEndings['standard']['nach']);
