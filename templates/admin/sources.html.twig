@@ -34,7 +34,7 @@
                         {{source.code}}
                     </td>
                     <td>
-                        {{ source.translation('br').label }}
+                        {% if source.translation('br') is not null %}{{ source.translation('br').label }}{% endif %}
                     </td>
                     <td>
                         <a href="{{path('admin_source', {'id': source.id, 'params': pagination.params, 'offset' : offset + loop.index})}}">Kemmañ</a>

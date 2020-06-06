@@ -1,0 +1,16 @@
+<h4>{{title}}</h4>
+<ul>
+    {% for source in sourceList %}
+        {% if source.hasTranslationInLanguage(app.request.locale) %}
+            <li>
+                {% if source.url is not null %}
+                    <a href="{{source.url}}">
+                {% endif %}
+                    {{source.translation(app.request.locale).label}}
+                {% if source.url is not null %}
+                    </a>
+                {% endif %} :
+                {{source.translation(app.request.locale).description}}</li>
+        {% endif %}
+    {% endfor %}
+</ul>

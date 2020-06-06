@@ -24,6 +24,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Configuration;
+use App\Entity\Source;
+use App\Entity\SourceTypeEnum;
 use App\Entity\VerbLocalization;
 use App\Entity\VerbTranslation;
 use App\Form\AdvancedSearchType;
@@ -331,6 +333,30 @@ class MainController extends AbstractController
      */
     public function thanks() {
          return $this->CMSPage('thanks');
+    }
+
+    /**
+     * @Route("/{_locale}/sources", name="sources", requirements= {
+     *      "_locale": "br|fr|en"
+     * })
+     */
+    public function sources() {
+        $sourceRepo = $this->getDoctrine()->getRepository(Source::class);
+        $sourceEntities = $sourceRepo->findAll();
+        $sources = [
+            SourceTypeEnum::GRAMMAR => [],
+            SourceTypeEnum::VERB => [],
+            SourceTypeEnum::TRADUCTION => [],
+        ];
+        /** @var $sourceEntity Source */
+        foreach($sourceEntities as $sourceEntity) {
+            if(SourceTypeEnum::TRADUCTION === $sourceEntity->getType()) {
+                $sources[$sourceEntity->getType()][$sourceEntity->getLocale()][] = $sourceEntity;
+            } elseif (null !== $sourceEntity->getType()) {
+                $sources[$sourceEntity->getType()][] = $sourceEntity;
+            }
+        }
+        return $this->render('misc/sources.html.twig', ['sources' => $sources]);
     }
 
     public function CMSPage($code) {

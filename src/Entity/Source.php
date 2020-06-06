@@ -25,6 +25,24 @@ class Source
     private $code;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $locale;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $url;
+
+    /**
      * @var Collection<SourceTranslation>
      * @ORM\OneToMany(
      *      targetEntity="App\Entity\SourceTranslation",
@@ -102,6 +120,11 @@ class Source
         return $this;
     }
     
+
+    public function hasTranslationInLanguage(string $languageCode) {
+        return $this->getTranslation($languageCode) !== null;
+    }
+    
     public function getTranslation(string $languageCode) {
         /** @var SourceTranslation $translation */
         foreach($this->translations as $translation) {
@@ -122,5 +145,77 @@ class Source
 
     public function __toString() {
         return $this->code;
+    }
+
+    /**
+     * Get the value of type
+     *
+     * @return  string
+     */ 
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set the value of type
+     *
+     * @param  string  $type
+     *
+     * @return  self
+     */ 
+    public function setType(string $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of locale
+     *
+     * @return  string
+     */ 
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * Set the value of locale
+     *
+     * @param  string  $locale
+     *
+     * @return  self
+     */ 
+    public function setLocale(string $locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of url
+     *
+     * @return  string
+     */ 
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set the value of url
+     *
+     * @param  string  $url
+     *
+     * @return  self
+     */ 
+    public function setUrl(string $url)
+    {
+        $this->url = $url;
+
+        return $this;
     }
 }

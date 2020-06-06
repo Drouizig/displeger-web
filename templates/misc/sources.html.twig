@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Displeger verboù brezhonek - {{'app.page.sources'|trans}}{% endblock %}
+
+{% block content %}
+    {% include 'main/partial/header.html.twig' %}
+
+    <h2>{{'app.page.sources'|trans}}
+    
+
+    {% for type, sourceList in sources %}
+        {% if type == 'traduction' %}
+            {% for language, realSourceList in sourceList %}
+                {% include 'misc/partial/source_list.html.twig' with {'sourceList' : realSourceList, 'title' : ('app.source.type.'~type~'.'~language)|trans} %}
+            {% endfor %}
+        {% else %}
+                {% include 'misc/partial/source_list.html.twig' with {'title' : ('app.source.type.'~type)|trans} %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

@@ -19,8 +19,31 @@
         <div class="col-md-2">
             {{form_label(form.code)}}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
             {{form_widget(form.code)}}
+        </div>
+    </div><div class="row">
+        <div class="col-md-2">
+            {{form_label(form.type)}}
+        </div>
+        <div class="col-md-4">
+            {{form_widget(form.type)}}
+        </div>
+    </div><div class="row">
+        <div class="col-md-2">
+            {{form_label(form.locale)}}
+        </div>
+        <div class="col-md-4">
+            {{form_widget(form.locale)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            {{form_label(form.url)}}
+        </div>
+        <div class="col-md-4">
+            {{form_widget(form.url)}}
+            {{form_help(form.url)}}
         </div>
     </div>
     <div class="row">

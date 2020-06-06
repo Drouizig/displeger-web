@@ -181,6 +181,42 @@
         <source>app.form.source.description</source>
         <target>Deskrivadur</target>
       </trans-unit>
+      <trans-unit id="pXQA4XF" resname="app.form.source.type">
+        <source>app.form.source.type</source>
+        <target>Doare</target>
+      </trans-unit>
+      <trans-unit id="5JCwPVG" resname="app.form.source.locale">
+        <source>app.form.source.locale</source>
+        <target>Yezh</target>
+      </trans-unit>
+      <trans-unit id="jdAgJ4F" resname="app.form.source.url">
+        <source>app.form.source.url</source>
+        <target>URL</target>
+      </trans-unit>
+      <trans-unit id="OXA1Xnf" resname="app.form.source.url.help">
+        <source>app.form.source.url.help</source>
+        <target>Laoskit goullo ma n'eo ket ul lec'hienn</target>
+      </trans-unit>
+      <trans-unit id="FiYcqzv" resname="app.source.type.grammar">
+        <source>app.source.type.grammar</source>
+        <target>Yezhadur</target>
+      </trans-unit>
+      <trans-unit id=".69HyCB" resname="app.source.type.traduction">
+        <source>app.source.type.traduction</source>
+        <target>Troidigezh</target>
+      </trans-unit>
+      <trans-unit id=".6f9HyCB" resname="app.source.type.traduction.fr">
+        <source>app.source.type.traduction.fr</source>
+        <target>Troidigezh e galleg</target>
+      </trans-unit>
+      <trans-unit id=".69HyfCB" resname="app.source.type.traduction.en">
+        <source>app.source.type.traduction.en</source>
+        <target>Troidigezh e soazneg</target>
+      </trans-unit>
+      <trans-unit id="Akd1OXK" resname="app.source.type.verb">
+        <source>app.source.type.verb</source>
+        <target>Verboù</target>
+      </trans-unit>
       <trans-unit id="TDXevYT" resname="app.form.source.language_code">
         <source>app.form.source.language_code</source>
         <target>Yezh</target>
@@ -459,6 +495,10 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       <trans-unit id="bSWqAzf" resname="app.sources.title">
         <source>app.sources.title</source>
         <target>Mammennoù:</target>
+      </trans-unit>
+      <trans-unit id="PCpcKwJ" resname="app.page.sources">
+        <source>app.page.sources</source>
+        <target>Mammennoù</target>
       </trans-unit>
     </body>
   </file>

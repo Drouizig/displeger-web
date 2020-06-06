@@ -373,6 +373,30 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.sources.title</source>
         <target>Sources :</target>
       </trans-unit>
+      <trans-unit id="PCpcKwJ" resname="app.page.sources">
+        <source>app.page.sources</source>
+        <target>Sources</target>
+      </trans-unit>
+      <trans-unit id="FiYcqzv" resname="app.source.type.grammar">
+        <source>app.source.type.grammar</source>
+        <target>Grammaire</target>
+      </trans-unit>
+      <trans-unit id=".69HyCB" resname="app.source.type.traduction">
+        <source>app.source.type.traduction</source>
+        <target>Traduction</target>
+      </trans-unit>
+      <trans-unit id=".6f9HyCB" resname="app.source.type.traduction.fr">
+        <source>app.source.type.traduction.fr</source>
+        <target>Traduction en français</target>
+      </trans-unit>
+      <trans-unit id=".69HyfCB" resname="app.source.type.traduction.en">
+        <source>app.source.type.traduction.en</source>
+        <target>Traduction en anglais</target>
+      </trans-unit>
+      <trans-unit id="Akd1OXK" resname="app.source.type.verb">
+        <source>app.source.type.verb</source>
+        <target>Verbes</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
