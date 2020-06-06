@@ -141,17 +141,20 @@
     
 
     {% block verbContentTable %}
+        {% for category, times in organisation %}
         <div class="row verb-items">
-            {% for amzer, endings in verbEndings %}
+            <h2>{{ ('app.time_category.' ~ category)|trans }}</h2>
+            {% for time in times %}
+                {% set endings = verbEndings[time]%}
                 <div class="col-md js-tense">
                     <h3>
-                        {{ ('app.amzer.' ~ amzer)|trans }}
+                        {{ ('app.amzer.' ~ time)|trans }}
                         <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i>
                     </h3>
                     <div class="btn-group dialect-button-group" role="group">
                         {% set firstItem = true %}
-                        {% for dialect, times in localizedVerbEndings %}
-                            {% if times[amzer] is defined %}
+                        {% for dialect, localizedTimes in localizedVerbEndings %}
+                            {% if localizedTimes[time] is defined %}
                                 {% if firstItem %}
                                     <button type="button" class="btn btn-primary" disabled="disabled" data-dialect="reolad">{{ 'app.dialect.reolad'|trans }}</button>
                                     {% set firstItem = false %}
@@ -163,15 +166,15 @@
                     <ul class="endings active" data-dialect="reolad">
                         {% include "main/partial/endings.html.twig" %}
                     </ul>
-                    {% for dialect, times in localizedVerbEndings %}
-                        {% if times[amzer] is defined %}
+                    {% for dialect, localizedTimes in localizedVerbEndings %}
+                        {% if localizedTimes[time] is defined %}
                             <ul class="endings" data-dialect="{{dialect}}">
-                                {% include "main/partial/endings.html.twig" with {'endings' : times[amzer]}%}
+                                {% include "main/partial/endings.html.twig" with {'endings' : localizedTimes[time]}%}
                             </ul>
                         {% endif %}
                     {% endfor %}
                     <div class="js-tense-content">
-                        {% set content = ('app.amzer.' ~ amzer)|trans ~ '\n\n'%}
+                        {% set content = ('app.amzer.' ~ time)|trans ~ '\n\n'%}
 
                         {% for ending in endings %}
                         {% set content = content ~ ('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans ~ '. ' %}
@@ -196,7 +199,10 @@
                 {% endif %}
             {% endfor %}
 
-            <div class="col-md js-tense">
+            
+        </div>
+        {% endfor %}
+        <div class="col-md js-tense">
                 <h3>{{ ('app.amzer.nach')|trans }} <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i></h3>
                 <ul>
                     {% for conjugation in nach %}
@@ -214,7 +220,6 @@
                     {{~ content ~}}
                 </div>
             </div>
-        </div>
     {% endblock %}
 {% endif %}
 
