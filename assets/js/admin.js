@@ -1,13 +1,17 @@
 
 require('select2');
 require('tinymce');
+require('tinymce/plugins/link');
 require('tinymce/themes/silver');
 $(document).ready(function() {
 
   $('select').select2();
   tinymce.init(
     {
-      selector: '.tinymce'
+      selector: '.tinymce',
+      plugins: "link",
+      menubar: "insert",
+      toolbar: "link"
     }
   );
 
