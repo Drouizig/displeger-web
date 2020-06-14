@@ -29,6 +29,50 @@
         <source>app.amzer.da_zont</source>
         <target>Futur</target>
       </trans-unit>
+      <trans-unit id="HFAZ1hC" resname="app.amzer.da_zont_hir">
+        <source>app.amzer.da_zont_hir</source>
+        <target>Future, long form</target>
+      </trans-unit>
+      <trans-unit id="IAzEfvk" resname="app.amzer.da_zont_berr">
+        <source>app.amzer.da_zont_berr</source>
+        <target>Futur, forme longue</target>
+      </trans-unit>
+      <trans-unit id="o5To6qe" resname="app.amzer.lechian_breman">
+        <source>app.amzer.lechian_breman</source>
+        <target>Présent</target>
+      </trans-unit>
+      <trans-unit id="o.c5rP0" resname="app.amzer.lechian_tremenet">
+        <source>app.amzer.lechian_tremenet</source>
+        <target>Imparfait</target>
+      </trans-unit>
+      <trans-unit id="ZkES5La" resname="app.amzer.boaz_breman">
+        <source>app.amzer.boaz_breman</source>
+        <target>Présent</target>
+      </trans-unit>
+      <trans-unit id="fs_Gri9" resname="app.amzer.boaz_tremenet">
+        <source>app.amzer.boaz_tremenet</source>
+        <target>Imparfait</target>
+      </trans-unit>
+      <trans-unit id="9jf.QOM" resname="app.time_category.diskleriañ">
+        <source>app.time_category.diskleriañ</source>
+        <target>Indicatif</target>
+      </trans-unit>
+      <trans-unit id="vPN4upg" resname="app.time_category.divizout">
+        <source>app.time_category.divizout</source>
+        <target>Conditionel</target>
+      </trans-unit>
+      <trans-unit id="baY3TFT" resname="app.time_category.gourchemenn">
+        <source>app.time_category.gourchemenn</source>
+        <target>Imperatif</target>
+      </trans-unit>
+      <trans-unit id="xPxl5Id" resname="app.time_category.diskleriañ_lechiañ">
+        <source>app.time_category.diskleriañ_lechiañ</source>
+        <target>Indicatif - form de localisation</target>
+      </trans-unit>
+      <trans-unit id="6PJXic9" resname="app.time_category.diskleriañ_boaz">
+        <source>app.time_category.diskleriañ_boaz</source>
+        <target>Indicatif - forme d'habitude</target>
+      </trans-unit>
       <trans-unit id="T5ilb9H" resname="app.amzer.gallus">
         <source>app.amzer.gallus</source>
         <target>Conditionnel potentiel (présent)</target>
@@ -39,11 +83,11 @@
       </trans-unit>
       <trans-unit id="gdjmmRP" resname="app.amzer.kadarnaat">
         <source>app.amzer.kadarnaat</source>
-        <target>Impératif (affirmatif)</target>
+        <target>Affirmatif</target>
       </trans-unit>
       <trans-unit id="E.k_SsB" resname="app.amzer.nach">
         <source>app.amzer.nach</source>
-        <target>Impératif (négatif)</target>
+        <target>Négatif</target>
       </trans-unit>
       <trans-unit id="NdH4ADz" resname="app.gour.U1">
         <source>app.gour.U1</source>

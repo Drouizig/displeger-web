@@ -29,6 +29,50 @@
         <source>app.amzer.da_zont</source>
         <target>Future</target>
       </trans-unit>
+      <trans-unit id="HFAZ1hC" resname="app.amzer.da_zont_hir">
+        <source>app.amzer.da_zont_hir</source>
+        <target>Future, long form</target>
+      </trans-unit>
+      <trans-unit id="IAzEfvk" resname="app.amzer.da_zont_berr">
+        <source>app.amzer.da_zont_berr</source>
+        <target>Future, short form</target>
+      </trans-unit>
+      <trans-unit id="o5To6qe" resname="app.amzer.lechian_breman">
+        <source>app.amzer.lechian_breman</source>
+        <target>Present</target>
+      </trans-unit>
+      <trans-unit id="o.c5rP0" resname="app.amzer.lechian_tremenet">
+        <source>app.amzer.lechian_tremenet</source>
+        <target>Imperfect</target>
+      </trans-unit>
+      <trans-unit id="ZkES5La" resname="app.amzer.boaz_breman">
+        <source>app.amzer.boaz_breman</source>
+        <target>Present</target>
+      </trans-unit>
+      <trans-unit id="fs_Gri9" resname="app.amzer.boaz_tremenet">
+        <source>app.amzer.boaz_tremenet</source>
+        <target>Imperfect</target>
+      </trans-unit>
+      <trans-unit id="9jf.QOM" resname="app.time_category.diskleriañ">
+        <source>app.time_category.diskleriañ</source>
+        <target>Indicative</target>
+      </trans-unit>
+      <trans-unit id="vPN4upg" resname="app.time_category.divizout">
+        <source>app.time_category.divizout</source>
+        <target>Conditional</target>
+      </trans-unit>
+      <trans-unit id="baY3TFT" resname="app.time_category.gourchemenn">
+        <source>app.time_category.gourchemenn</source>
+        <target>Imperative</target>
+      </trans-unit>
+      <trans-unit id="xPxl5Id" resname="app.time_category.diskleriañ_lechiañ">
+        <source>app.time_category.diskleriañ_lechiañ</source>
+        <target>Indicative - localisation form</target>
+      </trans-unit>
+      <trans-unit id="6PJXic9" resname="app.time_category.diskleriañ_boaz">
+        <source>app.time_category.diskleriañ_boaz</source>
+        <target>Indicative - habit form</target>
+      </trans-unit>
       <trans-unit id="T5ilb9H" resname="app.amzer.gallus">
         <source>app.amzer.gallus</source>
         <target>Potential conditional (present)</target>

@@ -1,5 +1,5 @@
 parameters:
-  verbou.bezan:
+  verbou.kaout:
     gwan: "bet"
     bremañ:
     - ["am eus", "em eus"]
@@ -33,7 +33,7 @@ parameters:
     - ["ho po"]
     - ["o do"]
     - ["e vo"]
-    da_zon_hir:
+    da_zont_hir:
     - ["em bezo", "em bezo"]
     - ["ez pezo", "az pezo"]
     - ["en devo", "en devezo", "he devo", "he devezo"]

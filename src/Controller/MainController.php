@@ -186,6 +186,10 @@ class MainController extends AbstractController
                 $geriafurchUrl = $this->getParameter('url_geriafurch')['br'].$verbLocalization->getInfinitive();
             }
             $organisation = $this->getParameter('organisation');
+            if( null != $this->get('parameter_bag')->has('organisation.'.$verbLocalization->getInfinitive())) {
+                $organisation = $this->getParameter('organisation.'.$verbLocalization->getInfinitive());
+            }
+
             $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verbLocalization->getInfinitive();
             if($print){
                 if(!file_exists(self::PDF_DIR.$verbLocalization->getInfinitive() . '.pdf')) {
