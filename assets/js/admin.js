@@ -10,8 +10,8 @@ $(document).ready(function() {
     {
       selector: '.tinymce',
       plugins: "link",
-      menubar: "insert",
-      toolbar: "link"
+      menubar: "edit view format insert",
+      toolbar: "undo redo | styleselect | bold italic | align | link image"
     }
   );
 
