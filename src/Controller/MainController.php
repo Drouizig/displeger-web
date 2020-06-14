@@ -214,8 +214,6 @@ class MainController extends AbstractController
                 return new BinaryFileResponse(self::PDF_DIR.$verbLocalization->getInfinitive() . '.pdf');
 
             } else {
-                dump($verbEndings['standard']);
-                dump($organisation);
                 return $this->render($template, [
                     'verb' => $verb,
                     'verbLocalization' => $verbLocalization,
