@@ -29,13 +29,65 @@
         <source>app.amzer.da_zont</source>
         <target>Amzer da zont</target>
       </trans-unit>
+      <trans-unit id="HFAZ1hC" resname="app.amzer.da_zont_hir">
+        <source>app.amzer.da_zont_hir</source>
+        <target>Amzer da zont, stumm hir</target>
+      </trans-unit>
+      <trans-unit id="IAzEfvk" resname="app.amzer.da_zont_berr">
+        <source>app.amzer.da_zont_berr</source>
+        <target>Amzer da zont, stumm berr</target>
+      </trans-unit>
+      <trans-unit id="o5To6qe" resname="app.amzer.lechian_breman">
+        <source>app.amzer.lechian_breman</source>
+        <target>Amzer a-vremañ</target>
+      </trans-unit>
+      <trans-unit id="o.c5rP0" resname="app.amzer.lechian_tremenet">
+        <source>app.amzer.lechian_tremenet</source>
+        <target>Amzer dremenet</target>
+      </trans-unit>
+      <trans-unit id="ZkES5La" resname="app.amzer.boaz_breman">
+        <source>app.amzer.boaz_breman</source>
+        <target>Amzer a-vremañ</target>
+      </trans-unit>
+      <trans-unit id="fs_Gri9" resname="app.amzer.boaz_tremenet">
+        <source>app.amzer.boaz_tremenet</source>
+        <target>Amzer dremenet</target>
+      </trans-unit>
+      <trans-unit id="9jf.QOM" resname="app.time_category.diskleriañ">
+        <source>app.time_category.diskleriañ</source>
+        <target>Doare-diskleriañ</target>
+      </trans-unit>
+      <trans-unit id="vPN4upg" resname="app.time_category.divizout">
+        <source>app.time_category.divizout</source>
+        <target>Doare-divizout</target>
+      </trans-unit>
+      <trans-unit id="baY3TFT" resname="app.time_category.gourchemenn">
+        <source>app.time_category.gourchemenn</source>
+        <target>Doare-gourc'hemenn</target>
+      </trans-unit>
+      <trans-unit id="xPxl5Id" resname="app.time_category.diskleriañ_lechiañ">
+        <source>app.time_category.diskleriañ_lechiañ</source>
+        <target>Doare-diskleriañ - stumm lec'hiañ</target>
+      </trans-unit>
+      <trans-unit id="6PJXic9" resname="app.time_category.diskleriañ_boaz">
+        <source>app.time_category.diskleriañ_boaz</source>
+        <target>Doare-diskleriañ - stumm boaz</target>
+      </trans-unit>
       <trans-unit id="T5ilb9H" resname="app.amzer.gallus">
         <source>app.amzer.gallus</source>
-        <target>Doare divizout gallus</target>
+        <target>Gallus</target>
+      </trans-unit>
+      <trans-unit id="4gd2UWr" resname="app.amzer.gallus_hir">
+        <source>app.amzer.gallus_hir</source>
+        <target>Gallus - stumm hir</target>
+      </trans-unit>
+      <trans-unit id="VLiIei0" resname="app.amzer.gallus_berr">
+        <source>app.amzer.gallus_berr</source>
+        <target>Gallus - stumm berr</target>
       </trans-unit>
       <trans-unit id="PBznQAB" resname="app.amzer.dichallus">
         <source>app.amzer.dichallus</source>
-        <target>Doare divizout dic'hallus</target>
+        <target>Dic'hallus</target>
       </trans-unit>
       <trans-unit id="gdjmmRP" resname="app.amzer.kadarnaat">
         <source>app.amzer.kadarnaat</source>
@@ -431,6 +483,18 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       <trans-unit id="Uj6jnJ5" resname="app.category.gouzout">
         <source>app.category.gouzout</source>
         <target>Gouzout</target>
+      </trans-unit>
+      <trans-unit id="wpg5z3F" resname="app.category.bezan">
+        <source>app.category.bezan</source>
+        <target>Bezañ</target>
+      </trans-unit>
+      <trans-unit id="JQRupym" resname="app.category.kaout">
+        <source>app.category.kaout</source>
+        <target>Kaout</target>
+      </trans-unit>
+      <trans-unit id="qNH3zaZ" resname="app.category.mont">
+        <source>app.category.mont</source>
+        <target>Mont</target>
       </trans-unit>
       <trans-unit id="VwokZ0E" resname="app.gour.U1.symbol">
         <source>app.gour.U1.symbol</source>

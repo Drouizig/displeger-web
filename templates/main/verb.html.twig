@@ -141,62 +141,63 @@
     
 
     {% block verbContentTable %}
-        <div class="row verb-items">
-            {% for amzer, endings in verbEndings %}
-                <div class="col-md js-tense">
-                    <h3>
-                        {{ ('app.amzer.' ~ amzer)|trans }}
-                        <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i>
-                    </h3>
-                    <div class="btn-group dialect-button-group" role="group">
-                        {% set firstItem = true %}
-                        {% for dialect, times in localizedVerbEndings %}
-                            {% if times[amzer] is defined %}
-                                {% if firstItem %}
-                                    <button type="button" class="btn btn-primary" disabled="disabled" data-dialect="reolad">{{ 'app.dialect.reolad'|trans }}</button>
-                                    {% set firstItem = false %}
-                                {% endif %}
-                                <button type="button" class="btn btn-secondary" data-dialect="{{dialect}}">{{ ('app.dialect.' ~ dialect)|trans }}</button>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <ul class="endings active" data-dialect="reolad">
-                        {% include "main/partial/endings.html.twig" %}
-                    </ul>
-                    {% for dialect, times in localizedVerbEndings %}
-                        {% if times[amzer] is defined %}
-                            <ul class="endings" data-dialect="{{dialect}}">
-                                {% include "main/partial/endings.html.twig" with {'endings' : times[amzer]}%}
-                            </ul>
-                        {% endif %}
-                    {% endfor %}
-                    <div class="js-tense-content">
-                        {% set content = ('app.amzer.' ~ amzer)|trans ~ '\n\n'%}
-
-                        {% for ending in endings %}
-                        {% set content = content ~ ('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans ~ '. ' %}
-                                {% if ending|length == 1 %}
-                                    {% set content = content ~ verbLocalization.base ~ ending.0 %}
-                                {% elseif ending|length > 1%}
-                                    {% for end in ending %}
-                                    {% set content = content ~ verbLocalization.base ~ end %}
-                                        {% if loop.index < ending|length %}
-                                            {% set content = content ~ ' pe ' %}
+        {% for category, times in organisation %}
+                <div class="row"><h2><i>{{ ('app.time_category.' ~ category)|trans }}</i></h2></div>
+                <div class="row verb-items">
+                    {% for time in times %}
+                        {% set endings = verbEndings[time]%}
+                        <div class="col-md-6 js-tense">
+                            <h3>
+                                {{ ('app.amzer.' ~ time)|trans }}
+                                <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i>
+                            </h3>
+                            <div class="btn-group dialect-button-group" role="group">
+                                {% set firstItem = true %}
+                                {% for dialect, localizedTimes in localizedVerbEndings %}
+                                    {% if localizedTimes[time] is defined %}
+                                        {% if firstItem %}
+                                            <button type="button" class="btn btn-primary" disabled="disabled" data-dialect="reolad">{{ 'app.dialect.reolad'|trans }}</button>
+                                            {% set firstItem = false %}
                                         {% endif %}
-                                    {% endfor %}
+                                        <button type="button" class="btn btn-secondary" data-dialect="{{dialect}}">{{ ('app.dialect.' ~ dialect)|trans }}</button>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <ul class="endings active" data-dialect="reolad">
+                                {% include "main/partial/endings.html.twig" %}
+                            </ul>
+                            {% for dialect, localizedTimes in localizedVerbEndings %}
+                                {% if localizedTimes[time] is defined %}
+                                    <ul class="endings" data-dialect="{{dialect}}">
+                                        {% include "main/partial/endings.html.twig" with {'endings' : localizedTimes[time]}%}
+                                    </ul>
                                 {% endif %}
-                            {% set content = content ~ '\n' %}
-                        {% endfor %}
-                        {{~ content ~}}
-                    </div>
-                </div>
-                {% if loop.index%2 == 0 %}
-                    </div>
-                    <div class="row verb-items">
-                {% endif %}
-            {% endfor %}
+                            {% endfor %}
+                            <div class="js-tense-content">
+                                {% set content = ('app.amzer.' ~ time)|trans ~ '\n\n'%}
 
-            <div class="col-md js-tense">
+                                {% for ending in endings %}
+                                {% set content = content ~ ('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans ~ '. ' %}
+                                        {% if ending|length == 1 %}
+                                            {% set content = content ~ verbLocalization.base ~ ending.0 %}
+                                        {% elseif ending|length > 1%}
+                                            {% for end in ending %}
+                                            {% set content = content ~ verbLocalization.base ~ end %}
+                                                {% if loop.index < ending|length %}
+                                                    {% set content = content ~ ' pe ' %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% set content = content ~ '\n' %}
+                                {% endfor %}
+                                {{~ content ~}}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    </div>
+        {% endfor %}
+        <div class="col-md js-tense">
                 <h3>{{ ('app.amzer.nach')|trans }} <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i></h3>
                 <ul>
                     {% for conjugation in nach %}
@@ -214,7 +215,6 @@
                     {{~ content ~}}
                 </div>
             </div>
-        </div>
     {% endblock %}
 {% endif %}
 
