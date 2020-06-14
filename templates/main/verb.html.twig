@@ -38,6 +38,9 @@
     {% if verbLocalization.sources|length > 0 %}
         </abbr>
     {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('admin_verb', {'id' : verbLocalization.verb.id}) }}">Kemmañ</a>
+    {% endif %}
     {% if verb.localizations|length > 1 %}
         <p class="subtitle">{{'app.verb.other_forms'|trans}} :
         {% for other_localization in verb.localizations if other_localization != verbLocalization %}
