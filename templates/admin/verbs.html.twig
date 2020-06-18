@@ -19,6 +19,9 @@
             <thead>
             <tr>
                 <th scope="col">
+                    Naoudi
+                </th>
+                <th scope="col">
                     Anv-verb
                 </th>
                 <th scope="col">
@@ -36,6 +39,9 @@
             </thead><tbody>
             {% for tuple in pagination %}
                 <tr>
+                    <td>
+                        {{tuple.verb.id}}
+                    </td>
                     <td>
                         {% for localization in tuple.verb.localizations %}
                          {{ (loop.index == 1 ? '' : '; ') ~ localization.infinitive }}
