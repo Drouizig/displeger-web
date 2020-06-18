@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ConfigurationTranslationType extends AbstractType
 {
@@ -26,6 +27,7 @@ class ConfigurationTranslationType extends AbstractType
                 'label' => 'app.form.verb.language_code',
                 'choices' => array_flip($this->listsUtil->getLocales()),
             ])
+            ->add('title', TextType::class)
             ->add('text')
         ;
     }

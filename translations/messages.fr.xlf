@@ -429,17 +429,25 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.source.type.traduction</source>
         <target>Traduction</target>
       </trans-unit>
-      <trans-unit id=".6f9HyCB" resname="app.source.type.traduction.fr">
+      <trans-unit id="tF8ytn6" resname="app.source.type.traduction.fr">
         <source>app.source.type.traduction.fr</source>
         <target>Traduction en français</target>
       </trans-unit>
-      <trans-unit id=".69HyfCB" resname="app.source.type.traduction.en">
+      <trans-unit id="2CpGFmH" resname="app.source.type.traduction.en">
         <source>app.source.type.traduction.en</source>
         <target>Traduction en anglais</target>
       </trans-unit>
       <trans-unit id="Akd1OXK" resname="app.source.type.verb">
         <source>app.source.type.verb</source>
         <target>Verbes</target>
+      </trans-unit>
+      <trans-unit id="HzXEzV6" resname="app.page.yezhadur">
+        <source>app.page.yezhadur</source>
+        <target>Cours de grammaire</target>
+      </trans-unit>
+      <trans-unit id="ZSnKs6h" resname="app.source_code">
+        <source>app.source_code</source>
+        <target>Code source</target>
       </trans-unit>
     </body>
   </file>
