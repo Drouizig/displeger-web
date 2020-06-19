@@ -27,6 +27,11 @@ class ConfigurationTranslation
     private $text;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $title;
+
+    /**
      * @var Configuration
      * @ORM\ManyToOne(targetEntity="App\Entity\Configuration")
      * @ORM\JoinColumn(nullable=true)
@@ -58,6 +63,18 @@ class ConfigurationTranslation
     public function setText(?string $text): self
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }

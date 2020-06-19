@@ -29,6 +29,7 @@ use App\Entity\SourceTypeEnum;
 use App\Entity\VerbLocalization;
 use App\Entity\VerbTranslation;
 use App\Form\AdvancedSearchType;
+use App\Repository\ConfigurationTranslationRepository;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 class MainController extends AbstractController
@@ -340,15 +341,6 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/thanks", name="thanks", requirements= {
-     *      "_locale": "br|fr|en"
-     * })
-     */
-    public function thanks() {
-         return $this->CMSPage('thanks');
-    }
-
-    /**
      * @Route("/{_locale}/sources", name="sources", requirements= {
      *      "_locale": "br|fr|en"
      * })
@@ -372,8 +364,19 @@ class MainController extends AbstractController
         return $this->render('misc/sources.html.twig', ['sources' => $sources]);
     }
 
-    public function CMSPage($code) {
-        return $this->render('misc/cms.html.twig', ['code' => $code]);
+    /**
+     * @Route("/{_locale}/page/{code}", name="page", requirements= {
+     *      "_locale": "br|fr|en"
+     * })
+     */
+    public function CMSPage(
+        Request $request, 
+        $code, 
+        ConfigurationTranslationRepository $configurationTranslationRepository) {
+        /** @var ConfigurationTranslation $configurationTranslation  */
+        $configurationTranslation = $configurationTranslationRepository->findByCodeAndLocale($code, $request->getLocale());
+        
+        return $this->render('misc/cms.html.twig', ['configurationTranslation' => $configurationTranslation]);
     }
 
     /**
