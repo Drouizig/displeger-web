@@ -21,12 +21,31 @@
     {% endif %}
 {% endblock %}
 
-{% block printButton %}
-    <a class = "hidden-print report-button" alt="{{ 'app.button.report'|trans }}" href="#"><i class="fas fa-flag" title="{{'app.button.report' | trans}}"></i></a>
-    <a class = "hidden-print export-button" alt="{{ 'app.button.export'|trans }}" href="?print=true"><i class="fas fa-file-pdf" title="{{'app.button.export' | trans}}"></i></a>
-    <a class = "hidden-print print-button" alt="{{ 'app.button.print'|trans }}" href="#" onclick="print()"><i class="fas fa-print" title="{{'app.button.print' | trans}}"></i></a>
-{% endblock %}
 {% if verb is not null %}
+    {% if previousVerb is not null or nextVerb is not null %}
+        <div class="row justify-content-between">
+            <div class="previous-verb float-left">
+                {% if previousVerb is not null %}
+                    <a href={{ path('verb', {'infinitive': previousVerb.infinitive}) }}><i class="fas fa-angle-double-left"></i> {{ previousVerb.infinitive }}</a>
+                {% endif %}
+            </div>
+
+            <div class="next-verb float-right">
+                {% if nextVerb is not null %}
+                <a href={{ path('verb', {'infinitive': nextVerb.infinitive}) }}>{{ nextVerb.infinitive }} <i class="fas fa-angle-double-right"></i></a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% block printButton %}
+        <div class="row justify-content-end">
+            <a class = "hidden-print report-button" alt="{{ 'app.button.report'|trans }}" href="#"><i class="fas fa-flag" title="{{'app.button.report' | trans}}"></i></a>
+            <a class = "hidden-print export-button" alt="{{ 'app.button.export'|trans }}" href="?print=true"><i class="fas fa-file-pdf" title="{{'app.button.export' | trans}}"></i></a>
+            <a class = "hidden-print print-button" alt="{{ 'app.button.print'|trans }}" href="#" onclick="print()"><i class="fas fa-print" title="{{'app.button.print' | trans}}"></i></a>
+        </div>
+    {% endblock %}
+
     {% if verbLocalization.sources|length > 0 %}
         <abbr title="{{'app.sources.title'|trans}}
 {% for source in verbLocalization.sources %}
