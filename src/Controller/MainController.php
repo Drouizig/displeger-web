@@ -123,7 +123,7 @@ class MainController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            /** @var erbRepository VerbRepository */
+            /** @var verbRepository VerbRepository */
             $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
             // $searchQuery = $verbRepository->getFrontSearchQuery($term);
             
@@ -162,6 +162,11 @@ class MainController extends AbstractController
 
         if(null !== $verbLocalization) {
             $verb = $verbLocalization->getVerb();
+
+            /** @var verbLocalizationRepository VerbLocalizationRepository */
+            $verbLocalizationRepository = $this->getDoctrine()->getRepository(VerbLocalization::class);
+            $previousVerb = $verbLocalizationRepository->getPreviousVerb($verbLocalization->getInfinitive());
+            $nextVerb = $verbLocalizationRepository->getNextVerb($verbLocalization->getInfinitive());
             $locale = $request->get('_locale', 'br');
             $verbEndings = $this->verbouManager->getEndings($verbLocalization->getCategory(), $verbLocalization->getDialectCode());
             // if(in_array($verbLocalization->getInfinitive(), ['bezañ', 'boud'])) {
@@ -228,6 +233,8 @@ class MainController extends AbstractController
                     'geriafurch_url' => $geriafurchUrl,
                     'organisation' => $organisation,
                     'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl,
+                    'previousVerb' => $previousVerb,
+                    'nextVerb' => $nextVerb
                 ]);
             }
         }

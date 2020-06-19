@@ -64,4 +64,28 @@ class VerbLocalizationRepository extends ServiceEntityRepository
         return $verb;
     }
 
+    public function getNextVerb($infinitive)
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('UPPER(v.infinitive) > UPPER(:infinitive)')
+            ->setParameter('infinitive', $infinitive)
+            ->addOrderBy('v.infinitive', 'ASC')
+            ->getQuery()
+            ->setMaxResults(1)
+            ->getOneOrNullResult()
+            ;
+    }
+
+    public function getPreviousVerb($infinitive)
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('UPPER(v.infinitive) < UPPER(:infinitive)')
+            ->setParameter('infinitive', $infinitive)
+            ->orderBy('v.infinitive', 'DESC')
+            ->getQuery()
+            ->setMaxResults(1)
+            ->getOneOrNullResult()
+            ;
+    }
+
 }
