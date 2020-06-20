@@ -1,7 +1,20 @@
 
-{{form_start(form)}}
-{{form_row(form.term)}}
-{{form_row(form.language)}}
-{{form_row(form.conjugated)}}
-<button>submit</button>
+{{form_start(form,{'method': 'GET'})}}
+<div class="row">
+        <div class="col-md-2">
+            {{form_label(form.term_advanced)}}
+        </div>
+        <div class="col-md-4">
+            {{form_widget(form.term_advanced)}}
+        </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        {{form_label(form.language)}}
+    </div>
+    <div class="col-md-4">
+        {{form_widget(form.language)}}
+    </div>
+</div>
+<button class="btn btn-primary">{{'app.header.search.button'|trans}}</button>
 {{form_end(form)}}

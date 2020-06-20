@@ -31,6 +31,7 @@ class SourceTranslationType extends AbstractType
             ->add('languageCode', ChoiceType::class, [
                 'label' => 'app.form.source.language_code',
                 'choices' => array_flip($this->locales->getLocales()),
+                'preferred_choices' => ['br', 'fr', 'en'],
             ])
         ;
     }

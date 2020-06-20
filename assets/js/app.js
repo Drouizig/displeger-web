@@ -3,12 +3,14 @@
 require('../css/global.scss');
 require('../css/dark-theme.scss');
 
+require('select2');
 require('webpack-jquery-ui');
 require('bootstrap');
 require('bootstrap4-toggle');
 require('webpack-jquery-ui/css');
 $(document).ready(function() {
 
+  $('select').select2();
   /*
    * ****************
    *   AUTOCOMPLETE

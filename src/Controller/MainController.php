@@ -119,14 +119,27 @@ class MainController extends AbstractController
      */
     public function searchAdvanced(Request $request, PaginatorInterface $knpPaginator) {
         
-        $form = $this->createForm(AdvancedSearchType::class);
+        $form = $this->createForm(AdvancedSearchType::class, 
+            [
+                'term_advanced' => $request->query->get('term_advanced', null),
+                'language' => $request->query->get('language', null),
+                'conjugated' => $request->query->get('conjugated', null)
+            ]
+        );
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-
+        if ($request->query->has('term_advanced')) {
             /** @var verbRepository VerbRepository */
-            $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
-            // $searchQuery = $verbRepository->getFrontSearchQuery($term);
+            $searchQuery = null;
+            $type = 'localization';
+            $term = $request->query->get('term_advanced');
+            if($request->query->get('language') == 'br') {
+                $verbRepository = $this->getDoctrine()->getRepository(VerbLocalization::class);
+                $searchQuery = $verbRepository->getFrontSearchQuery($term);
+            } else {
+                $type = 'translation';
+                $verbRepository = $this->getDoctrine()->getRepository(VerbTranslation::class);
+                $searchQuery = $verbRepository->getFrontSearchQuery($term, $request->query->get('language'));
+            }
             
             $pagination = $knpPaginator->paginate(
                 $searchQuery,
@@ -135,7 +148,10 @@ class MainController extends AbstractController
             );
 
             return $this->render('main/search_advanced.html.twig', [
-                'pagination' => $pagination
+                'pagination' => $pagination,
+                'form' => $form->createView(),
+                'type' => $type,
+                'term' => $term
             ]);
         } else {
             return $this->render('main/search_advanced.html.twig', [

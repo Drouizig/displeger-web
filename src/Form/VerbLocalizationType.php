@@ -31,6 +31,7 @@ class VerbLocalizationType extends AbstractType
             ->add('category', ChoiceType::class, [
                 'label' => 'app.form.verb.category',
                 'choices' => array_flip($this->listsUtil->getCategories()),
+                'preferred_choices' => ['fr', 'en'],
             ])
             ->add('dialectCode', ChoiceType::class, [
                 'label' => 'app.form.verb.dialect_code',

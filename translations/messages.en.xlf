@@ -449,6 +449,22 @@ The verb "%verb%" is missing on the website.
         <source>app.source_code</source>
         <target>Source code</target>
       </trans-unit>
+      <trans-unit id="gV0kdCS" resname="app.form.search.term">
+        <source>app.form.search.term</source>
+        <target>Searched term</target>
+      </trans-unit>
+      <trans-unit id=".mQqWei" resname="app.form.search.language_code">
+        <source>app.form.search.language_code</source>
+        <target>Language</target>
+      </trans-unit>
+      <trans-unit id="DhjQNwG" resname="app.email.error">
+        <source>app.email.error</source>
+        <target>__app.email.error</target>
+      </trans-unit>
+      <trans-unit id="LFE8SfI" resname="app.email.sent">
+        <source>app.email.sent</source>
+        <target>__app.email.sent</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

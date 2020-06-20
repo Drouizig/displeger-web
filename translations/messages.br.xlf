@@ -249,7 +249,7 @@
         <source>app.form.source.url.help</source>
         <target>Laoskit goullo ma n'eo ket ul lec'hienn</target>
       </trans-unit>
-      <trans-unit id="56" resname="app.form.source.active">
+      <trans-unit id="yrbtyyz" resname="app.form.source.active">
         <source>app.form.source.active</source>
         <target>Diskouez war bajenn ar mammennoù</target>
       </trans-unit>
@@ -306,7 +306,7 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       </trans-unit>
       <trans-unit id="g8JD8uC" resname="app.search.advanced">
         <source>app.search.advanced</source>
-        <target>Klask kemplezhoc'h</target>
+        <target>Klask araoket</target>
       </trans-unit>
       <trans-unit id="zrFahLZ" resname="app.home">
         <source>app.home</source>
@@ -575,6 +575,22 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       <trans-unit id="ZSnKs6h" resname="app.source_code">
         <source>app.source_code</source>
         <target>Boneg tarzh</target>
+      </trans-unit>
+      <trans-unit id="gV0kdCS" resname="app.form.search.term">
+        <source>app.form.search.term</source>
+        <target>Termen klasket</target>
+      </trans-unit>
+      <trans-unit id=".mQqWei" resname="app.form.search.language_code">
+        <source>app.form.search.language_code</source>
+        <target>Yezh</target>
+      </trans-unit>
+      <trans-unit id="DhjQNwG" resname="app.email.error">
+        <source>app.email.error</source>
+        <target>__app.email.error</target>
+      </trans-unit>
+      <trans-unit id="LFE8SfI" resname="app.email.sent">
+        <source>app.email.sent</source>
+        <target>__app.email.sent</target>
       </trans-unit>
     </body>
   </file>

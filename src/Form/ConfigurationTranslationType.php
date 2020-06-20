@@ -26,6 +26,7 @@ class ConfigurationTranslationType extends AbstractType
             ->add('locale', ChoiceType::class, [
                 'label' => 'app.form.verb.language_code',
                 'choices' => array_flip($this->listsUtil->getLocales()),
+                'preferred_choices' => ['br', 'fr', 'en'],
             ])
             ->add('title', TextType::class)
             ->add('text')

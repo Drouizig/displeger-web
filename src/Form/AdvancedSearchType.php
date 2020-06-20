@@ -23,19 +23,25 @@ class AdvancedSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('term', TextType::class)
+        ->add('term_advanced', TextType::class, [
+            'label' => 'app.form.search.term',
+        ])
         ->add('language', ChoiceType::class, [
-                'label' => 'app.form.source.language_code',
+                'label' => 'app.form.search.language_code',
                 'choices' => array_flip($this->locales->getLocales()),
+                'preferred_choices' => ['br', 'fr', 'en'],
             ])
-        ->add('conjugated', CheckboxType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'csrf_protection' => false
         ]);
+    }
+    public function getBlockPrefix()
+    {
+        return "";
     }
 }

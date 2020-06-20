@@ -3,7 +3,6 @@
 {% block title %}Displeger verboù brezhonek{% endblock %}
 
 {% block content %}
-  <a href="{{ path('main') }}"><h1>{{ 'app.title'|trans }}</h1></a> 
   {% include 'main/partial/search_advanced_form.html.twig' %}
 
   {% if pagination is defined and pagination.count > 0 %}
@@ -14,7 +13,19 @@
     </div>
     <ul>
       {% for result in pagination %}
-        <li><a href="{{ path('verb', {'anvVerb': result.anvVerb}) }}">{{ result.anvVerb }}</a></li>
+        {% if type == 'localization' %}
+          <li><a href="{{ path('verb', {'infinitive': result.infinitive}) }}">{{ result.infinitive }}</a></li>
+        {% else %}
+          <li>{{result.translation|replace({ (term) : '<b>' ~ term ~ '</b>'})|raw}} : 
+          {% for localization in result.verb.localizations %}
+            {% if loop.index != 1 %};{% endif %}
+            <b>
+              <a href="{{ path('verb', {'infinitive': localization.infinitive}) }}">{{ localization.infinitive }}</a>
+            </b>
+          {% endfor %}
+          </li>
+        {% endif %}
+
       {% endfor %}
     </ul>
 
