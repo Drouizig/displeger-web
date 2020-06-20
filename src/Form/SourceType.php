@@ -47,6 +47,9 @@ class SourceType extends AbstractType
                 'label' => 'app.form.source.url',
                 'help' => 'app.form.source.url.help'
             ])
+            ->add('active', null, [
+                'label' => 'app.form.source.active',
+            ])
             ->add('translations', CollectionType::class, [
                 'label' => 'app.form.source.translations',
                 'entry_type' => SourceTranslationType::class,

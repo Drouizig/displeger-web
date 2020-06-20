@@ -347,7 +347,7 @@ class MainController extends AbstractController
      */
     public function sources() {
         $sourceRepo = $this->getDoctrine()->getRepository(Source::class);
-        $sourceEntities = $sourceRepo->findAll();
+        $sourceEntities = $sourceRepo->findBy(['active'=>true]);
         $sources = [
             SourceTypeEnum::GRAMMAR => [],
             SourceTypeEnum::VERB => [],

@@ -43,6 +43,12 @@ class Source
     private $url;
 
     /**
+     * @var bool
+     * @ORM\Column(type="boolean", length=255, nullable=true)
+     */
+    private $active;
+
+    /**
      * @var Collection<SourceTranslation>
      * @ORM\OneToMany(
      *      targetEntity="App\Entity\SourceTranslation",
@@ -215,6 +221,30 @@ class Source
     public function setUrl(string $url)
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of active
+     *
+     * @return  bool
+     */ 
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set the value of active
+     *
+     * @param  bool  $active
+     *
+     * @return  self
+     */ 
+    public function setActive(string $active)
+    {
+        $this->active = $active;
 
         return $this;
     }

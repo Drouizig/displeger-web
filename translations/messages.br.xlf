@@ -249,6 +249,10 @@
         <source>app.form.source.url.help</source>
         <target>Laoskit goullo ma n'eo ket ul lec'hienn</target>
       </trans-unit>
+      <trans-unit id="56" resname="app.form.source.active">
+        <source>app.form.source.active</source>
+        <target>Diskouez war bajenn ar mammennoù</target>
+      </trans-unit>
       <trans-unit id="FiYcqzv" resname="app.source.type.grammar">
         <source>app.source.type.grammar</source>
         <target>Yezhadur</target>
