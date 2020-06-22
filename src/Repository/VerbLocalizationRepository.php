@@ -20,9 +20,10 @@ class VerbLocalizationRepository extends ServiceEntityRepository
 
     public function findByTermAutocomplete($term)
     {
+        $escapedTerm = str_replace('n', '_', $term);
         return $this->createQueryBuilder('vt')
             ->andWhere('UPPER(vt.infinitive) LIKE UPPER(:term)')
-            ->setParameter('term', $term.'%')
+            ->setParameter('term', $escapedTerm.'%')
             ->getQuery()
             ->getResult()
         ;
@@ -30,9 +31,10 @@ class VerbLocalizationRepository extends ServiceEntityRepository
 
     public function getFrontSearchQuery($term)
     {
+        $escapedTerm = str_replace('n', '_', $term);
         return $this->createQueryBuilder('vt')
             ->andWhere('UPPER(vt.infinitive) LIKE UPPER(:term)')
-            ->setParameter('term', '%'.$term.'%')
+            ->setParameter('term', '%'.$escapedTerm.'%')
             ->getQuery()
         ;
     }
