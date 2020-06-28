@@ -2,10 +2,10 @@
 {% for ending in endings %}
     <li class="verb-item">
         <div class="row">
-            <div class="col-md-1">
+            <div class="col-sm-1">
                 <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans}}</abbr>.
             </div>
-            <div class="col-md-11">
+            <div class="col-sm-11">
                 {% if ending|length == 1 %}
                     <div class="verb-container">
                         <span class="js-verb">{{verbLocalization.base}}<strong>{{ending.0}}</strong></span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
