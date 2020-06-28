@@ -9,7 +9,11 @@
 @import 'contact.scss';
 @import 'footer.scss';
 @import 'header.scss';
-
+@font-face 
+{
+    font-family: "Nunito";
+    src: url('/build/NunitoSans-Regular.ttf') format('truetype');
+}
 body {
   font-family: 'Nunito';
   letter-spacing: 0.0625em;

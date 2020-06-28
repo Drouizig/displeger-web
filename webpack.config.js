@@ -10,6 +10,9 @@ Encore
     .copyFiles({
         from: './assets/img',
     })
+    .copyFiles({
+        from: './assets/fonts',
+    })
     .copyFiles(
     {
         from: './node_modules/tinymce/skins/',
