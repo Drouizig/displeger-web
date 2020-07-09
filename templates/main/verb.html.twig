@@ -87,7 +87,7 @@
                     <abbr title="{{'app.sources.title'|trans}}
 {% for source in translation.sources %}
     - {{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}
-                        {% endfor %}
+{% endfor %}
                     ">
                 {% endif %}
                 <i>{{translation.translation}}</i></p>
@@ -117,7 +117,7 @@
                                 <abbr title="{{'app.sources.title'|trans}}
 {% for source in translation.sources %}
 - {{source.getTranslation(app.request.locale).label}}
-                                {% endfor %}
+{% endfor %}
                                 ">
                             {% endif %}
                             {{translation.translation}} 
