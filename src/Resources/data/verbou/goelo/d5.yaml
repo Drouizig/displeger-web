@@ -1,10 +1,10 @@
 parameters:
   verbou.d5.goelo:
       gallus:
-      - ["ilhen"]
-      - ["ilhes"]
-      - ["ilhe"]
-      - ["ilhemp"]
-      - ["ilhec'h"]
-      - ["ilhent"]
-      - ["ilhed"]
+        s1: ["ilhen"]
+        s2: ["ilhes"]
+        s3: ["ilhe"]
+        p1: ["ilhemp"]
+        p2: ["ilhec'h"]
+        p3: ["ilhent"]
+        i: ["ilhed"]

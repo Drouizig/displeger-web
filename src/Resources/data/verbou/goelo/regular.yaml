@@ -1,10 +1,10 @@
 parameters:
   verbou.regular.goelo:
       gallus:
-      - ["hen"]
-      - ["hes"]
-      - ["he"]
-      - ["hemp"]
-      - ["hec'h"]
-      - ["hent"]
-      - ["hed"]
+        s1: ["hen"]
+        s2: ["hes"]
+        s3: ["he"]
+        p1: ["hemp"]
+        p2: ["hec'h"]
+        p3: ["hent"]
+        i: ["hed"]

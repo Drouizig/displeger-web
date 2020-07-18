@@ -89,32 +89,40 @@
         <source>app.amzer.nach</source>
         <target>Imperative (negative)</target>
       </trans-unit>
-      <trans-unit id="NdH4ADz" resname="app.gour.U1">
-        <source>app.gour.U1</source>
+      <trans-unit id="A4nFME6" resname="app.gour.s1">
+        <source>app.gour.s1</source>
         <target>First person singular</target>
       </trans-unit>
-      <trans-unit id="_t_pnh4" resname="app.gour.U2">
-        <source>app.gour.U2</source>
+      <trans-unit id="NxsSRmV" resname="app.gour.s2">
+        <source>app.gour.s2</source>
         <target>Second person singular</target>
       </trans-unit>
-      <trans-unit id=".63HC0o" resname="app.gour.U3">
-        <source>app.gour.U3</source>
+      <trans-unit id="0lFKtYT" resname="app.gour.s3">
+        <source>app.gour.s3</source>
         <target>Third person singular</target>
       </trans-unit>
-      <trans-unit id="U9xbTtf" resname="app.gour.L1">
-        <source>app.gour.L1</source>
+      <trans-unit id="obm9hlq" resname="app.gour.s3f">
+        <source>app.gour.s3f</source>
+        <target>Third person singular feminine</target>
+      </trans-unit>
+      <trans-unit id="EBq18Ni" resname="app.gour.s3m">
+        <source>app.gour.s3m</source>
+        <target>Third person singular masculine</target>
+      </trans-unit>
+      <trans-unit id="AY9IYWJ" resname="app.gour.p1">
+        <source>app.gour.p1</source>
         <target>First person plural</target>
       </trans-unit>
-      <trans-unit id="mNl2CZc" resname="app.gour.L2">
-        <source>app.gour.L2</source>
+      <trans-unit id="lBEG2YM" resname="app.gour.p2">
+        <source>app.gour.p2</source>
         <target>Second person plural</target>
       </trans-unit>
-      <trans-unit id="44foO5n" resname="app.gour.L3">
-        <source>app.gour.L3</source>
+      <trans-unit id="xPjEC5M" resname="app.gour.p3">
+        <source>app.gour.p3</source>
         <target>Third person plural</target>
       </trans-unit>
-      <trans-unit id="2S2YsXb" resname="app.gour.D">
-        <source>app.gour.D</source>
+      <trans-unit id=".4WcQEA" resname="app.gour.i">
+        <source>app.gour.i</source>
         <target>Impersonal</target>
       </trans-unit>
       <trans-unit id="nRpehHf" resname="app.french">
@@ -329,32 +337,40 @@ The verb "%verb%" is missing on the website.
         <source>app.dialect.reolad</source>
         <target>Standard</target>
       </trans-unit>
-      <trans-unit id="VwokZ0E" resname="app.gour.U1.symbol">
-        <source>app.gour.U1.symbol</source>
+      <trans-unit id="GEYPo7S" resname="app.gour.s1.symbol">
+        <source>app.gour.s1.symbol</source>
         <target>S1</target>
       </trans-unit>
-      <trans-unit id="JQuJLEa" resname="app.gour.U2.symbol">
-        <source>app.gour.U2.symbol</source>
+      <trans-unit id="G.Cj6oJ" resname="app.gour.s2.symbol">
+        <source>app.gour.s2.symbol</source>
         <target>S2</target>
       </trans-unit>
-      <trans-unit id="qATMamv" resname="app.gour.U3.symbol">
-        <source>app.gour.U3.symbol</source>
+      <trans-unit id="YYBYQZs" resname="app.gour.s3.symbol">
+        <source>app.gour.s3.symbol</source>
         <target>S3</target>
       </trans-unit>
-      <trans-unit id="LUXUzQS" resname="app.gour.L1.symbol">
-        <source>app.gour.L1.symbol</source>
+      <trans-unit id="ioqez8e" resname="app.gour.s3f.symbol">
+        <source>app.gour.s3f.symbol</source>
+        <target>S3f</target>
+      </trans-unit>
+      <trans-unit id="bD9L_Jb" resname="app.gour.s3m.symbol">
+        <source>app.gour.s3m.symbol</source>
+        <target>S3m</target>
+      </trans-unit>
+      <trans-unit id="3ys4Stz" resname="app.gour.p1.symbol">
+        <source>app.gour.p1.symbol</source>
         <target>P1</target>
       </trans-unit>
-      <trans-unit id="Ux2dugh" resname="app.gour.L2.symbol">
-        <source>app.gour.L2.symbol</source>
+      <trans-unit id="QbHCTCr" resname="app.gour.p2.symbol">
+        <source>app.gour.p2.symbol</source>
         <target>P2</target>
       </trans-unit>
-      <trans-unit id="ELn1TBT" resname="app.gour.L3.symbol">
-        <source>app.gour.L3.symbol</source>
+      <trans-unit id="YbNCYhv" resname="app.gour.p3.symbol">
+        <source>app.gour.p3.symbol</source>
         <target>P3</target>
       </trans-unit>
-      <trans-unit id="Pz6MZrr" resname="app.gour.D.symbol">
-        <source>app.gour.D.symbol</source>
+      <trans-unit id="djpvb1O" resname="app.gour.i.symbol">
+        <source>app.gour.i.symbol</source>
         <target>I</target>
       </trans-unit>
       <trans-unit id="7swrT8u" resname="app.verb.view_more">

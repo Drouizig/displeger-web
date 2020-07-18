@@ -1,10 +1,10 @@
 parameters:
   verbou.bezan.treger:
     da_zont_hir:
-    - ["bezin"]
-    - ["bezi"]
-    - ["bezo"]
-    - ["befomp"]
-    - ["befet"]
-    - ["befont"]
-    - ["befer"]
+      s1: ["bezin"]
+      s2: ["bezi"]
+      s3: ["bezo"]
+      p1: ["befomp"]
+      p2: ["befet"]
+      p3: ["befont"]
+      i: ["befer"]

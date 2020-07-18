@@ -1,10 +1,10 @@
 parameters:
   verbou.d6.goelo:
       gallus:
-      - ["gnhen"]
-      - ["gnhes"]
-      - ["gnhe"]
-      - ["gnhemp"]
-      - ["gnhec'h"]
-      - ["gnhent"]
-      - ["gnhed"]
+        s1: ["gnhen"]
+        s2: ["gnhes"]
+        s3: ["gnhe"]
+        p1: ["gnhemp"]
+        p2: ["gnhec'h"]
+        p3: ["gnhent"]
+        i: ["gnhed"]

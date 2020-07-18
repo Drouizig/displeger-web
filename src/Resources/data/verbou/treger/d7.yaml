@@ -1,10 +1,10 @@
 parameters:
   verbou.d7.treger:
       da_zont:
-      - ["in"]
-      - ["i"]
-      - ['aio', 'ay']
-      - ["efomp"]
-      - ["efet"]
-      - ["efont"]
-      - ["efer"]
+        s1: ["in"]
+        s2: ["i"]
+        s3: ['aio', 'ay']
+        p1: ["efomp"]
+        p2: ["efet"]
+        p3: ["efont"]
+        i: ["efer"]

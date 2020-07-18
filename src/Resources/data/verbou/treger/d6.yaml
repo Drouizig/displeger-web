@@ -1,10 +1,10 @@
 parameters:
   verbou.d6.treger:
       da_zont:
-      - ["gnin"]
-      - ["gni"]
-      - ["nio"]
-      - ["gnfomp"]
-      - ["gnfet"]
-      - ["gnfont"]
-      - ["gnfer"]
+        s1: ["gnin"]
+        s2: ["gni"]
+        s3: ["nio"]
+        p1: ["gnfomp"]
+        p2: ["gnfet"]
+        p3: ["gnfont"]
+        i: ["gnfer"]

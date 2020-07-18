@@ -1,10 +1,10 @@
 parameters:
   verbou.gouzout.treger:
       da_zont:
-      - ["in"]
-      - ["i"]
-      - ["ay", "yelo"]
-      - ["afomp"]
-      - ["afet"]
-      - ["afont"]
-      - ["eor", "afer"]
+        s1: ["in"]
+        s2: ["i"]
+        s3: ["ay", "yelo"]
+        p1: ["afomp"]
+        p2: ["afet"]
+        p3: ["afont"]
+        i: ["eor", "afer"]

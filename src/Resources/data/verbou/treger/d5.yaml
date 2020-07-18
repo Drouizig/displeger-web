@@ -1,10 +1,10 @@
 parameters:
   verbou.d5.treger:
       da_zont:
-      - ["ilhin"]
-      - ["ilhi"]
-      - ["lio"]
-      - ["ilhfomp"]
-      - ["ilhfet"]
-      - ["ilhfont"]
-      - ["ilhfer"]
+        s1: ["ilhin"]
+        s2: ["ilhi"]
+        s3: ["lio"]
+        p1: ["ilhfomp"]
+        p2: ["ilhfet"]
+        p3: ["ilhfont"]
+        i: ["ilhfer"]
