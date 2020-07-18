@@ -28,6 +28,9 @@
                     Pennrann
                 </th>
                 <th scope="col">
+                    Rummadoù
+                </th>
+                <th scope="col">
                     Galleg
                 </th>
                 <th scope="col">
@@ -50,6 +53,11 @@
                     <td>
                         {% for localization in tuple.verb.localizations %}
                          {{ (loop.index == 1 ? '' : '; ') ~ localization.base }}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for localization in tuple.verb.localizations %}
+                         {{ (loop.index == 1 ? '' : '; ') ~ localization.category }}
                         {% endfor %}
                     </td>
                     <td>
