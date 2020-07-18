@@ -19,15 +19,20 @@ class KemmaduriouManager
         $this->kemmaduriou = $kemmaduriou;
     }
 
-    public function mutateWord($word, $mutationType)
+    public function mutateWord($word, $mutationType, $gouMutation = false)
     {
         $mutations = $this->kemmaduriou[$mutationType];
         $newLetter = '';
         $origin = '';
-        foreach ($mutations as $original => $result) {
-            if (substr($word, 0, strlen($original)) === $original) {
-                $newLetter = $result;
-                $origin = $original;
+        if($gouMutation && ($mutationType === self::BLOTAAT || $mutationType === self::KEMMESKET || $mutationType === self::DIGLOK)) {
+            $newLetter = 'ou';
+            $origin = 'gou';
+        } else {
+            foreach ($mutations as $original => $result) {
+                if (substr($word, 0, strlen($original)) === $original) {
+                    $newLetter = $result;
+                    $origin = $original;
+                }
             }
         }
         return $newLetter.substr($word, strlen($origin));

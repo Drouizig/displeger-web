@@ -60,6 +60,11 @@ class VerbLocalization
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="boolean", length=255, nullable=true)
+     */
+    private $gouMutation;
+
 
     public function __construct()
     {
@@ -234,6 +239,26 @@ class VerbLocalization
     public function setCategory($category)
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of gouMutation
+     */ 
+    public function getGouMutation()
+    {
+        return $this->gouMutation;
+    }
+
+    /**
+     * Set the value of gouMutation
+     *
+     * @return  self
+     */ 
+    public function setGouMutation($gouMutation)
+    {
+        $this->gouMutation = $gouMutation;
 
         return $this;
     }

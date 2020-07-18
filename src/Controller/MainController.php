@@ -186,21 +186,23 @@ class MainController extends AbstractController
             $nextVerb = $verbLocalizationRepository->getNextVerb($verbLocalization->getInfinitive());
             $locale = $request->get('_locale', 'br');
             $verbEndings = $this->verbouManager->getEndings($verbLocalization->getCategory(), $verbLocalization->getDialectCode());
-            // if(in_array($verbLocalization->getInfinitive(), ['bezañ', 'boud'])) {
-            //     $template = 'main/irregular/bezan.html.twig';
-            // }
+
             $anvGwan = $verbEndings['standard']['gwan'];
             unset($verbEndings['standard']['gwan']);
             unset($verbEndings['standard']['nach']);
-            // $mutatedBase = $this->kemmaduriouManager->mutateWord($verbLocalization->getBase(), KemmaduriouManager::BLOTAAT);
+            $softMutatedBase = $this->kemmaduriouManager->mutateWord($verbLocalization->getBase(), KemmaduriouManager::BLOTAAT, $verbLocalization->getGouMutation());
             $nach = [];
-            // foreach($verbEndings['kadarnaat'] as $ending) {
-            //     if(count($ending) > 0) {
-            //         $nach[] = 'na '.$mutatedBase.'<strong>'.$ending[0].'</strong> ket';
-            //     } else {
-            //         $nach[] = null;
-            //     }
-            // }
+            foreach($verbEndings['standard']['kadarnaat'] as $person => $ending) {
+                if(count($ending) > 0) {
+                    $nach[$person] = 'na '.$softMutatedBase.'<strong>'.$ending[0].'</strong> ket';
+                } else {
+                    $nach[$person] = null;
+                }
+            }
+            $mixedMutatedInfinitive = $this->kemmaduriouManager->mutateWord($verbLocalization->getInfinitive(), KemmaduriouManager::KEMMESKET, $verbLocalization->getGouMutation());
+            $stummOber = 'bezañ o '.$mixedMutatedInfinitive;
+            $softMutatedInfinitive = $this->kemmaduriouManager->mutateWord($verbLocalization->getInfinitive(), KemmaduriouManager::KEMMESKET, $verbLocalization->getGouMutation());
+            $stummEnUr = 'en ur '.$softMutatedInfinitive;
 
             $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verbLocalization->getInfinitive();
             $geriafurchUrl = '';
@@ -251,7 +253,9 @@ class MainController extends AbstractController
                     'organisation' => $organisation,
                     'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl,
                     'previousVerb' => $previousVerb,
-                    'nextVerb' => $nextVerb
+                    'nextVerb' => $nextVerb,
+                    'enur' => $stummEnUr,
+                    'ober' => $stummOber
                 ]);
             }
         }

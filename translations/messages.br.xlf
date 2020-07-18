@@ -225,6 +225,10 @@
         <source>app.form.verb.translation</source>
         <target>Troidigezh</target>
       </trans-unit>
+      <trans-unit id="I5Xg4gZ" resname="app.form.verb.gouMutation">
+        <source>app.form.verb.gouMutation</source>
+        <target>gou a gemm evel gw</target>
+      </trans-unit>
       <trans-unit id="8zNUEDA" resname="app.form.source.code">
         <source>app.form.source.code</source>
         <target>Bonneg</target>
@@ -607,6 +611,14 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       <trans-unit id="LFE8SfI" resname="app.email.sent">
         <source>app.email.sent</source>
         <target>__app.email.sent</target>
+      </trans-unit>
+      <trans-unit id="pcLKhMk" resname="app.amzer.ober">
+        <source>app.amzer.ober</source>
+        <target>Stumm ober</target>
+      </trans-unit>
+      <trans-unit id="VPTyDLA" resname="app.amzer.enur">
+        <source>app.amzer.enur</source>
+        <target>Stumm "en ur"</target>
       </trans-unit>
     </body>
   </file>

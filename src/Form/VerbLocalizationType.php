@@ -7,6 +7,8 @@ use App\Util\ListsUtil;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class VerbLocalizationType extends AbstractType
@@ -43,6 +45,17 @@ class VerbLocalizationType extends AbstractType
                 'label' => 'app.form.verb.sources'
             ])
         ;
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $verbLocalisation = $event->getData();
+            $form = $event->getForm();
+
+            if(null !== $verbLocalisation && substr($verbLocalisation->getBase(), 0, 3) === 'gou') {
+                $form->add('gouMutation', null, [
+                    'label' => 'app.form.verb.gouMutation'
+                ]);
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver)

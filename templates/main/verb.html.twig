@@ -158,7 +158,13 @@
                 } %}
     {% endif %}
     <div class="row">
-        <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verbLocalization.base ~ anvGwan}}</div>
+        <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verbLocalization.base }}<strong>{{anvGwan}}</strong></div>
+    </div>
+    <div class="row">
+        <div class="col-md"> {{ 'app.amzer.ober'|trans }} : <strong>{{ober}}</strong></div>
+    </div>
+    <div class="row">
+        <div class="col-md"> {{ 'app.amzer.enur'|trans }} : <strong>{{enur}}</strong></div>
     </div>
     
 
@@ -216,27 +222,29 @@
                             </div>
                         </div>
                     {% endfor %}
-
+                    {% if category == 'gourchemenn'%}
+                        <div class="col-md js-tense">
+                            <h3>{{ ('app.amzer.nach')|trans }} <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i></h3>
+                            <ul>
+                                {% for person, conjugation in nach %}
+                                    <li class="verb-item">
+                                        <abbr title="{{ ('app.gour.' ~ person)|trans}}">{{('app.gour.' ~ person ~ '.symbol')|trans}}</abbr>.
+                                        <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="js-tense-content">
+                                {% set content = ('app.amzer.nach')|trans ~ '\n\n'%}
+                                {% for person,conjugation in nach %}
+                                    {% set content = content ~ ('app.gour.' ~ person ~ '.symbol')|trans ~ '. ' ~  conjugation|striptags ~ '\n' %}<br>
+                                {% endfor %}
+                                {{~ content ~}}
+                            </div>
+                        </div>
+                    {% endif %}
                     </div>
         {% endfor %}
-        {#<div class="col-md js-tense">
-                <h3>{{ ('app.amzer.nach')|trans }} <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i></h3>
-                <ul>
-                    {% for conjugation in nach %}
-                        <li class="verb-item">
-                            <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans}}</abbr>.
-                            <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <div class="js-tense-content">
-                    {% set content = ('app.amzer.nach')|trans ~ '\n\n'%}
-                    {% for conjugation in nach %}
-                        {% set content = content ~ ('app.gour.' ~ gour[loop.index-1] ~ '.symbol')|trans ~ '. ' ~  conjugation|striptags ~ '\n' %}<br>
-                    {% endfor %}
-                    {{~ content ~}}
-                </div>
-            </div> #}
+                
     {% endblock %}
 {% endif %}
 

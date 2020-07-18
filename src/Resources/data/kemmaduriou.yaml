@@ -7,7 +7,6 @@ parameters:
       "p": "b"
       "g": "c'h"
       "gw": "w"
-      "gou": "ou"
       "d": "z"
       "b": "v"
       "m": "v"
@@ -17,7 +16,6 @@ parameters:
       "p": "b"
       "g": "c'h"
       "gw": "w"
-      "gou": "ou"
       "b": "v"
       "m": "v"
     chwezhan:
@@ -31,7 +29,6 @@ parameters:
     kemmesket:
       "g": "c'h"
       "gw": "w"
-      "gou": "ou"
       "d": "t"
       "b": "v"
       "m": "v"
