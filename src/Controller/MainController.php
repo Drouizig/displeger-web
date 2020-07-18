@@ -201,7 +201,7 @@ class MainController extends AbstractController
             }
             $mixedMutatedInfinitive = $this->kemmaduriouManager->mutateWord($verbLocalization->getInfinitive(), KemmaduriouManager::KEMMESKET, $verbLocalization->getGouMutation());
             $stummOber = 'bezañ o '.$mixedMutatedInfinitive;
-            $softMutatedInfinitive = $this->kemmaduriouManager->mutateWord($verbLocalization->getInfinitive(), KemmaduriouManager::KEMMESKET, $verbLocalization->getGouMutation());
+            $softMutatedInfinitive = $this->kemmaduriouManager->mutateWord($verbLocalization->getInfinitive(), KemmaduriouManager::BLOTAAT, $verbLocalization->getGouMutation());
             $stummEnUr = 'en ur '.$softMutatedInfinitive;
 
             $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verbLocalization->getInfinitive();
