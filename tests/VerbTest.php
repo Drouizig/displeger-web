@@ -21,4 +21,16 @@ class VerbTest extends PantherTestCase
         $this->assertSame($response->getHeader('Content-Type'), 'application/pdf');
         $this->assertPageTitleContains('debriñ');
     }
+
+
+    /** Test d1: debriñ */
+    public function textRegularVerb() : void
+    {
+        $client = static::createPantherClient();
+        $crawler = $client->request('GET', '/br/verb/debriñ');
+        $this->assertPageTitleContains('debriñ');
+        $this->assertSelectorTextContains('.verb-items', 'debran');
+
+
+    }
 }

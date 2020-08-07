@@ -3,7 +3,7 @@ parameters:
     gwan: "bet"
     bremañ:
       s1: ["am eus", "em eus"]
-      s2: ["ac'h eus", "ec'h eus", "az peus", "ez peus", "az teuz"]
+      s2: ["ac'h eus", "ec'h eus", "az peus", "ez peus", "az teus"]
       s3m: ["en deus"]
       s3f: ["he deus"]
       p1: ["hon eus", "hor beus"]
