@@ -19,6 +19,8 @@ Simply execute the following commands:
 To compile the assets when you change them, execute :
  `make assets`
 
+ The website is then accessible at `http://localhost:8000`
+
 
 Set up the project without docker
 =================================
