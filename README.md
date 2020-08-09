@@ -8,8 +8,20 @@ This project is an interface for the data in the displeger-verbou project : http
 
 It uses Symfony 4, with yarn, bootstrap and jquery as front technologies. It has a backoffice for easy editing.
 
-Set up the project
-==================
+Set up the project with Docker
+==============================
+
+Simply execute the following commands:
+
+`make start`
+`make install`
+
+To compile the assets when you change them, execute :
+ `make assets`
+
+
+Set up the project without docker
+=================================
 
 Clone the repo and execute :
 
@@ -23,11 +35,4 @@ Set up you databse info in the .env file and execute :
  
  `bin/console doc:sc:cr`
  
- 
-displeger_format.csv is the file containing all the verb data in the displeger-verbou project. You need to download that file. You can do so by executing this command :
-
- `wget https://raw.githubusercontent.com/Drouizig/displeger-verbou/master/data/displeger_format.csv`
- 
-Then import the data with this command :
-
- `bin/console app:import-verbs displeger_format.csv`
+You can then import the database dump that is located at `docker/database/displeger_dump.sql.gz`
