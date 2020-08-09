@@ -81,12 +81,6 @@ cache-warmup: vendor ## Warmup caches
 cache-clear: vendor ## Clear caches
 	$(SYMFONY) cache:clear --env=dev
 
-fix-permissions: ## Fix file permissions
-	$(DOCKER_COMPOSE) exec -T php mkdir -p var/cache var/cache/dev var/cache/test var/log var/sessions web/assets web/bundles web/css web/js web/upload
-	$(DOCKER_COMPOSE) exec -T php touch var/log/dev.log var/log/test.log var/log/pi_history.log var/log/salesforce.log var/log/import.log
-	$(DOCKER_COMPOSE) exec -T php chown -R foo:bar var/cache var/cache/dev var/cache/test var/log var/sessions web/assets web/bundles web/css web/js web/upload
-	$(DOCKER_COMPOSE) exec -T php chmod -R 777 var/cache var/log var/sessions web/assets web/bundles web/css web/js web/upload
-
 database: vendor ## Build the database
 	$(SYMFONY) doctrine:database:drop --if-exists --force
 	$(SYMFONY) doctrine:database:create --if-not-exists
