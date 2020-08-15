@@ -85,9 +85,22 @@ database: vendor ## Build the database
 	$(SYMFONY) doctrine:database:drop --if-exists --force
 	$(SYMFONY) doctrine:database:create --if-not-exists
 	$(EXEC_DATABASE) sh -c "gunzip -k -c /database/displeger_dump.sql.gz > /database/displeger_dump.sql" 
-	$(EXEC_DATABASE) sh -c "psql -U postgres displeger < /database/displeger_dump.sql"
+	$(EXEC_DATABASE) sh -c "psql -Upostgres displeger < /database/displeger_dump.sql"
 	rm -f docker/database/displeger_dump.sql
+	$(SYMFONY) doctrine:migrations:migrate --no-interaction
 
+dump-database:
+	$(EXEC_DATABASE) sh -c "pg_dump -Upostgres displeger > /database/displeger_dump.sql"
+	$(EXEC_DATABASE) gzip -f /database/displeger_dump.sql
+
+migration: database
+	$(SYMFONY) doctrine:migrations:diff
+
+migrate:
+	$(SYMFONY) doctrine:migrations:migrate --no-interaction
+
+shell-database:
+	$(DOCKER_COMPOSE) exec database psql -Upostgres displeger
 
 translations: vendor ## Update the translation files
 	$(SYMFONY) tran:up br --output-format=xlf --force
