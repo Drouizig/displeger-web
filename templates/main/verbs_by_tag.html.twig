@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Displeger verboù brezhonek{% endblock %}
+
+{% block content %}
+    <h2>{{'app.search.title'|trans}}</h2>
+    <h3>{{'app.search.tag'|trans }} "{{ search_tag }}"</h3>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    <ul>
+        {% for verb in pagination %}
+            <li><a href="{{ path('verb', {'infinitive': verb.infinitive}) }}">{{ verb.infinitive }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

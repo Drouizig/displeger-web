@@ -489,6 +489,14 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.amzer.enur</source>
         <target>Forme "en ur"</target>
       </trans-unit>
+      <trans-unit id="GijDdCP" resname="app.verb.tags">
+        <source>app.verb.tags</source>
+        <target>Tags du verbe</target>
+      </trans-unit>
+      <trans-unit id="mK510Lg" resname="app.search.tag">
+        <source>app.search.tag</source>
+        <target>Recherche par le tag</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

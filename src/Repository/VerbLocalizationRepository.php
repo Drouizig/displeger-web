@@ -89,4 +89,15 @@ class VerbLocalizationRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findOneByVerbId($verbId)
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.verb = :verbId')
+            ->setParameter('verbId', $verbId)
+            ->getQuery()
+            ->setMaxResults(1)
+            ->getOneOrNullResult()
+            ;
+    }
+
 }

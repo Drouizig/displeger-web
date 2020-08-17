@@ -19,32 +19,27 @@ class TagRepository extends ServiceEntityRepository
         parent::__construct($registry, Tag::class);
     }
 
-    // /**
-    //  * @return Tag[] Returns an array of Tag objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getBackSearchQuery($search, $offset = null, $maxResults = null)
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        $qb = $this->createQueryBuilder('s');
+        if ($search !== null && $search !== '') {
+            $qb->join('s.translations', 't');
+            $qb
+                ->where('s.code LIKE :term')
+                ->orWhere('t.label LIKE :term')
+                ->orWhere('t.description LIKE :term')
+                ->setParameter('term', '%'.$search.'%')
+            ;
+        }
+        if ($offset !== null) {
+            $qb->setFirstResult($offset);
+        }
+        if ($maxResults !== null) {
+            $qb->setMaxResults($maxResults);
+        }
+        $qb
+            ->addOrderBy('s.code')
         ;
+        return $qb->getQuery();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Tag
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

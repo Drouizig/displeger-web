@@ -60,6 +60,29 @@
                 <i class="fas fa-plus"></i>
     </button>
     <br/>
+    <div class="row">
+        <div class="col-md tags"
+             data-prototype="{{ include(
+                 "admin/partial/verb_tag.html.twig",
+                 { tag : form.tags.vars.prototype },
+                 with_context = false
+             )|e }}"
+             data-widget-counter="{{ form.tags | length }}">
+            <h4>{{ form_label(form.tags) }}</h4>
+
+            {% for tag in form.tags %}
+                {% include "admin/partial/verb_tag.html.twig" %}
+            {% endfor %}
+
+        </div>
+    </div>
+    <p></p>
+    <button type="button"
+            class="btn btn-primary add-element"
+            data-list-selector=".tags">
+        <i class="fas fa-plus"></i>
+    </button>
+    <br/>
     <p>
         {{form_widget(form.save)}}
         {{form_widget(form.save_return)}}

@@ -1,0 +1,50 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Lodenn verañ{% endblock %}
+
+{% block content %}
+    <h1>{{ 'app.title'|trans }}</h1>
+    <p><a href="{{ path('admin_home') }}">Lodenn verañ</a></p>
+
+    <form action="{{ path('admin_tags') }}" class="search-form form-md form-inline">
+        <input type="text" name="search" class="form-control" value="{{ app.request.query.get('search') }}"/>
+        <button class="btn btn-primary">{{'app.header.search.button'|trans}}</button>
+    </form>
+    <a href="{{ path('admin_tag') }}" class="btn btn-primary">Ouzhpennañ un dikedenn</a>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">
+                Bonneg
+            </th>
+            <th scope="col">
+                Anv
+            </th>
+            <th>
+            </th>
+        </tr>
+        </thead><tbody>
+        {% for tag in pagination %}
+            <tr>
+                <td>
+                    {{tag.code}}
+                </td>
+                <td>
+                    {% if tag.translation('br') is not null %}{{ tag.translation('br').label }}{% endif %}
+                </td>
+                <td>
+                    <a href="{{path('admin_tag', {'id': tag.id, 'params': pagination.params, 'offset' : offset + loop.index})}}">Kemmañ</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

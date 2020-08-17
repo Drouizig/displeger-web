@@ -166,6 +166,30 @@
     <div class="row">
         <div class="col-md"> {{ 'app.amzer.enur'|trans }} : <strong>{{enur}}</strong></div>
     </div>
+
+    {% if verb.tags | length > 0 %}
+        <div class="row">
+            <div class="col-md">{{ 'app.verb.tags'|trans }}
+            {% for tag in verb.tags %}
+                {% set tagDisplay = tag.code %}
+                {% set tagDescription = '' %}
+                {% if tag.translation(app.request.locale) is not null %}
+                    {% set tagDisplay = tag.translation(app.request.locale).label %}
+                    {% set tagDescription = tag.translation(app.request.locale).description %}
+                {% endif %}
+                <span class="badge badge-dark">
+                    <a href={{ path('verbs_by_tag', {'tag' : tag.code}) }}>
+                        {% if tagDescription is not empty %}
+                            <abbr title="{{ tagDescription }}">{{ tagDisplay }}</abbr>
+                        {% else %}
+                            {{ tagDisplay }}
+                        {% endif %}
+                    </a>
+                </span>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
     
 
     {% block verbContentTable %}

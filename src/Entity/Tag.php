@@ -8,7 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=TagRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
+ * @ORM\Table(name="Tag")
  */
 class Tag
 {
@@ -20,12 +21,17 @@ class Tag
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $code;
 
     /**
-     * @ORM\OneToMany(targetEntity=TagTranslation::class, mappedBy="tag")
+     * @ORM\OneToMany(targetEntity=TagTranslation::class,
+     *     mappedBy="tag",
+     *     cascade={"all"},
+     *     orphanRemoval=true
+     *     )
      */
     private $translations;
 
@@ -43,6 +49,10 @@ class Tag
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function __toString() {
+        return $this->code;
     }
 
     public function getCode(): ?string
@@ -88,12 +98,32 @@ class Tag
         return $this;
     }
 
+    public function getTranslation(string $languageCode) {
+        /** @var TagTranslation $translation */
+        foreach($this->translations as $translation) {
+            if($translation->getLanguageCode() === $languageCode) {
+                return $translation;
+            }
+        }
+        return null;
+    }
+
     /**
      * @return Collection|Verb[]
      */
     public function getVerbs(): Collection
     {
         return $this->verbs;
+    }
+
+    public function getVerb(string $verbId) {
+        /** @var Verb $verb */
+        foreach($this->verbs as $verb) {
+            if($verb->getId() === $verbId) {
+                return $verb;
+            }
+        }
+        return null;
     }
 
     public function addVerb(Verb $verb): self

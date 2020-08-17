@@ -49,7 +49,12 @@ class Verb
     private $auxilliaries;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="verbs")
+     * @ORM\ManyToMany(
+     *     targetEntity="App\Entity\Tag",
+     *     inversedBy="verbs",
+     *     cascade={"all"},
+     *     orphanRemoval=true
+     *     )
      */
     private $tags;
 
