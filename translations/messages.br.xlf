@@ -526,11 +526,11 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       </trans-unit>
       <trans-unit id="ioqez8e" resname="app.gour.s3f.symbol">
         <source>app.gour.s3f.symbol</source>
-        <target>U3f</target>
+        <target>U3b</target>
       </trans-unit>
       <trans-unit id="bD9L_Jb" resname="app.gour.s3m.symbol">
         <source>app.gour.s3m.symbol</source>
-        <target>U3m</target>
+        <target>U3g</target>
       </trans-unit>
       <trans-unit id="3ys4Stz" resname="app.gour.p1.symbol">
         <source>app.gour.p1.symbol</source>
