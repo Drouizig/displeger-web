@@ -31,9 +31,6 @@ final class Version20200728144957 extends AbstractMigration
         $this->addSql('ALTER TABLE verb_tag ADD CONSTRAINT FK_1C2DDDBEC1D03483 FOREIGN KEY (verb_id) REFERENCES Verb (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE verb_tag ADD CONSTRAINT FK_1C2DDDBEBAD26311 FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE tag_translation ADD CONSTRAINT FK_A8A03F8FBAD26311 FOREIGN KEY (tag_id) REFERENCES tag (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('DROP TABLE migration_versions');
-        $this->addSql('ALTER TABLE verblocalization ADD gou_mutation BOOLEAN DEFAULT NULL');
-        $this->addSql('ALTER TABLE configuration_translation RENAME COLUMN thanks TO title');
     }
 
     public function down(Schema $schema) : void
@@ -44,12 +41,8 @@ final class Version20200728144957 extends AbstractMigration
         $this->addSql('ALTER TABLE tag_translation DROP CONSTRAINT FK_A8A03F8FBAD26311');
         $this->addSql('DROP SEQUENCE tag_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE tag_translation_id_seq CASCADE');
-        $this->addSql('CREATE TABLE migration_versions (version VARCHAR(14) NOT NULL, executed_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(version))');
-        $this->addSql('COMMENT ON COLUMN migration_versions.executed_at IS \'(DC2Type:datetime_immutable)\'');
         $this->addSql('DROP TABLE verb_tag');
         $this->addSql('DROP TABLE tag');
         $this->addSql('DROP TABLE tag_translation');
-        $this->addSql('ALTER TABLE configuration_translation RENAME COLUMN title TO thanks');
-        $this->addSql('ALTER TABLE VerbLocalization DROP gou_mutation');
     }
 }
