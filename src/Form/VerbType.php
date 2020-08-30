@@ -36,15 +36,10 @@ class VerbType extends AbstractType
                 'allow_add' => true,
                 'prototype' => true,
                 'allow_delete' => true,
-                'by_reference' => false,
+                'by_reference' => false
             ])
-            ->add('tags', CollectionType::class, [
-                'label' => 'app.form.verb.tags',
-                'entry_type' => VerbTagType::class,
-                'allow_add' => true,
-                'prototype' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
+            ->add('tags', null, [
+                'label' => 'app.verb.tags'
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'app.form.verb.save'
