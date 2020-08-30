@@ -27,7 +27,8 @@ class VerbTranslationType extends AbstractType
             ])
             ->add('languageCode', ChoiceType::class, [
                 'label' => 'app.form.verb.language_code',
-                'choices' => array_flip($this->listsUtil->getLocales())
+                'choices' => array_flip($this->listsUtil->getLocales()),
+                'preferred_choices' => ['br', 'fr', 'en'],
             ])
             ->add('sources', null, [
                 'label' => 'app.form.verb.sources'
