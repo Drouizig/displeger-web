@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Verb;
+use App\Entity\Tag;
 use App\Util\ListsUtil;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -10,36 +10,29 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class VerbType extends AbstractType
+class TagType extends AbstractType
 {
     /** @var ListsUtil $locales */
-    protected $listsUtil;
+    protected $locales;
 
-    public function __construct(ListsUtil $listsUtil) 
+    public function __construct(ListsUtil $locales)
     {
-        $this->listsUtil = $listsUtil;
-    } 
+        $this->locales = $locales;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('localizations', CollectionType::class, [
-                'label' => 'app.form.verb.localizations',
-                'entry_type' => VerbLocalizationType::class,
-                'allow_add' => true,
-                'prototype' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
+            ->add('code', null, [
+                'label' => 'app.form.source.code'
             ])
             ->add('translations', CollectionType::class, [
-                'label' => 'app.form.verb.translations',
-                'entry_type' => VerbTranslationType::class,
+                'label' => 'app.form.source.translations',
+                'entry_type' => TagTranslationType::class,
                 'allow_add' => true,
                 'prototype' => true,
                 'allow_delete' => true,
                 'by_reference' => false
-            ])
-            ->add('tags', null, [
-                'label' => 'app.verb.tags'
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'app.form.verb.save'
@@ -56,7 +49,7 @@ class VerbType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Verb::class,
+            'data_class' => Tag::class,
         ]);
     }
 }

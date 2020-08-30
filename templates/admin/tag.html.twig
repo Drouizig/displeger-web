@@ -1,0 +1,54 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Lodenn verañ{% endblock %}
+
+{% block content %}
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    <p>Lodenn verañ</p>
+    <a href="{{path('admin_tags')}}">< Distreiñ</a>
+
+    <h3>
+        {% if form.vars.data.id is defined %}
+            {{ 'app.admin.source.edit.title'|trans }}
+        {% else %}
+            {{ 'app.admin.source.create.title'|trans }}
+        {% endif %}
+    </h3>
+    {{form_start(form)}}
+    <div class="row">
+        <div class="col-md-2">
+            {{form_label(form.code)}}
+        </div>
+        <div class="col-md-4">
+            {{form_widget(form.code)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md translations"
+             data-prototype="{{ include(
+                 "admin/partial/source_translation.html.twig",
+                 { translation : form.translations.vars.prototype},
+                 with_context = false
+             )|e }}"
+             data-widget-counter="{{ form.translations|length }}">
+            <h4>{{form_label(form.translations)}} </h4>
+            {% for translation in form.translations %}
+                {% include "admin/partial/source_translation.html.twig" %}
+            {% endfor %}
+        </div>
+    </div>
+    <p>
+        <button type="button"
+                class="btn-primary btn add-element"
+                data-list-selector=".translations">
+            <i class="fas fa-plus"></i>
+        </button>
+    </p>
+    <p>
+        {{form_widget(form.save)}}
+        {{form_widget(form.save_return)}}
+        {{form_widget(form.save_continue)}}
+    </p>
+
+    {{form_end(form)}}
+{% endblock %}

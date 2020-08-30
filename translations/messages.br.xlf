@@ -620,6 +620,14 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.amzer.enur</source>
         <target>Stumm "en ur"</target>
       </trans-unit>
+      <trans-unit id="GijDdCP" resname="app.verb.tags">
+        <source>app.verb.tags</source>
+        <target>Tikedennoù verb</target>
+      </trans-unit>
+      <trans-unit id="mK510Lg" resname="app.search.tag">
+        <source>app.search.tag</source>
+        <target>Klask gant un dikedenn</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

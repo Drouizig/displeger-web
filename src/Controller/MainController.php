@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Tag;
 use Knp\Snappy\Pdf;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -414,5 +415,39 @@ class MainController extends AbstractController
         }
 
         return $this->redirectToRoute($route, $args);
+    }
+
+    /**
+     * @Route("/{_locale}/verbs_by_tag", name="verbs_by_tag")
+     */
+    public function verbsByTag(Request $request, PaginatorInterface $knpPaginator)
+    {
+        $result = [];
+        $tag = $request->get('tag', null);
+        $tagRepo = $this->getDoctrine()->getRepository(Tag::class);
+        $verbLocalizationRepo = $this->getDoctrine()->getRepository(VerbLocalization::class);
+
+        $tagObject = $tagRepo->findOneBy(['code' => $tag]);
+        if($tagObject != null)
+        {
+            foreach($tagObject->getVerbs() as $verb)
+            {
+                $currentLocalization = $verbLocalizationRepo->findOneByVerbId($verb->getId());
+                if($currentLocalization != null) {
+                    array_push($result, $currentLocalization);
+                }
+            }
+        }
+
+        $pagination = $knpPaginator->paginate(
+            $result,
+            $request->query->getInt('page', 1), //page number,
+            $request->query->getInt('number', 25) //limit per page
+        );
+
+        return $this->render('main/verbs_by_tag.html.twig', [
+            'pagination' => $pagination,
+            'search_tag' => $tag
+            ]);
     }
 }

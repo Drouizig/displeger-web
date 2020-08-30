@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Tag;
+use App\Form\TagType;
 use App\Util\StatisticsManager;
 use Doctrine\ORM\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,6 +55,14 @@ class AdminController extends AbstractController
     public function sources(Request $request) {
         return $this->adminList($request, Source::class, 'admin/sources.html.twig');    
     }
+
+    /**
+     * @Route("/admin/tags", name="admin_tags")
+     */
+    public function tags(Request $request){
+        return $this->adminList($request, Tag::class, 'admin/tags.html.twig');
+    }
+
     /**
      * @Route("/admin/configurations", name="admin_configurations")
      */
@@ -115,6 +125,21 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/tag/{id?}", name="admin_tag")
+     */
+    public function tag(Request $request,Tag $tag = null)
+    {
+        return $this->adminEdit(
+            $request,
+            TagType::class,
+            Tag::class,
+            'admin_tag',
+            'admin_tags',
+            'admin/tag.html.twig',
+            $tag);
+    }
+
+    /**
      * @Route("/admin/configuration/{id?}", name="admin_configuration")
      */
     public function configuration(Request $request,Configuration $configuration = null)
@@ -123,7 +148,7 @@ class AdminController extends AbstractController
             $request, 
             ConfigurationType::class, 
             Configuration::class, 
-            'admin_conifguration',
+            'admin_configuration',
             'admin_configurations', 
             'admin/configuration.html.twig',
             $configuration);

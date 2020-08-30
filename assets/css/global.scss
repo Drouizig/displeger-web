@@ -33,6 +33,23 @@ body {
     color: var(--text-color);
 }
 
+.badge-primary {
+    background-color: var(--button-color);
+    &:hover {
+        background-color: var(--button-hover);
+    }
+    &:not(:disabled):not(.disabled):active {
+        background-color: var(--button-focus);
+    }
+    &:focus {
+        background-color: var(--button-focus);
+    }
+}
+
+a.badge abbr {
+    cursor: pointer;
+}
+
 h1 {
     color: var(--title-color);
 }

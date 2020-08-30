@@ -57,6 +57,26 @@
     {% if verbLocalization.sources|length > 0 %}
         </abbr>
     {% endif %}
+
+    {% if verb.tags | length > 0 %}
+        <div class="row">
+            {% for tag in verb.tags %}
+                {% set tagDisplay = tag.code %}
+                {% set tagDescription = '' %}
+                {% if tag.translation(app.request.locale) is not null %}
+                    {% set tagDisplay = tag.translation(app.request.locale).label %}
+                    {% set tagDescription = tag.translation(app.request.locale).description %}
+                {% endif %}
+                    <a href={{ path('verbs_by_tag', {'tag' : tag.code}) }} class="badge badge-pill badge-primary">
+                        {% if tagDescription is not empty %}
+                            <abbr title="{{ tagDescription }}">{{ tagDisplay }}</abbr>
+                        {% else %}
+                            {{ tagDisplay }}
+                        {% endif %}
+                    </a>
+            {% endfor %}
+        </div>
+    {% endif %}
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('admin_verb', {'id' : verbLocalization.verb.id}) }}">Kemmañ</a>
     {% endif %}

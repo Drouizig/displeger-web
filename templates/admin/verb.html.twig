@@ -59,7 +59,21 @@
                 data-list-selector=".translations">
                 <i class="fas fa-plus"></i>
     </button>
-    <br/>
+    <br/><br/>
+    <div class="row">
+        <div class="col-md-8">
+            <h4>{{form_label(form.tags)}}</h4>
+        </div>
+        <div class="col-md-8">
+            {{form_widget(form.tags)}}
+        </div>
+
+        {% for tag in form.tags %}
+            {% include "admin/partial/verb_tag.html.twig" %}
+        {% endfor %}
+
+    </div>
+    <br/><br/>
     <p>
         {{form_widget(form.save)}}
         {{form_widget(form.save_return)}}

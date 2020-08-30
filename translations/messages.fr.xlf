@@ -31,7 +31,7 @@
       </trans-unit>
       <trans-unit id="HFAZ1hC" resname="app.amzer.da_zont_hir">
         <source>app.amzer.da_zont_hir</source>
-        <target>Future, long form</target>
+        <target>Future, forme longue</target>
       </trans-unit>
       <trans-unit id="IAzEfvk" resname="app.amzer.da_zont_berr">
         <source>app.amzer.da_zont_berr</source>
@@ -63,11 +63,11 @@
       </trans-unit>
       <trans-unit id="baY3TFT" resname="app.time_category.gourchemenn">
         <source>app.time_category.gourchemenn</source>
-        <target>Imperatif</target>
+        <target>Impératif</target>
       </trans-unit>
       <trans-unit id="xPxl5Id" resname="app.time_category.diskleriañ_lechiañ">
         <source>app.time_category.diskleriañ_lechiañ</source>
-        <target>Indicatif - form de localisation</target>
+        <target>Indicatif - forme de localisation</target>
       </trans-unit>
       <trans-unit id="6PJXic9" resname="app.time_category.diskleriañ_boaz">
         <source>app.time_category.diskleriañ_boaz</source>
@@ -488,6 +488,14 @@ Il manque le verbe "%verb%" sur le site.
       <trans-unit id="VPTyDLA" resname="app.amzer.enur">
         <source>app.amzer.enur</source>
         <target>Forme "en ur"</target>
+      </trans-unit>
+      <trans-unit id="GijDdCP" resname="app.verb.tags">
+        <source>app.verb.tags</source>
+        <target>Tags du verbe</target>
+      </trans-unit>
+      <trans-unit id="mK510Lg" resname="app.search.tag">
+        <source>app.search.tag</source>
+        <target>Recherche par le tag</target>
       </trans-unit>
     </body>
   </file>
