@@ -249,7 +249,9 @@
                                 {% for person, conjugation in nach %}
                                     <li class="verb-item">
                                         <abbr title="{{ ('app.gour.' ~ person)|trans}}">{{('app.gour.' ~ person ~ '.symbol')|trans}}</abbr>.
-                                        <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
+                                        {% if conjugation != '' %}
+                                            <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
+                                        {% endif %}
                                     </li>
                                 {% endfor %}
                             </ul>
