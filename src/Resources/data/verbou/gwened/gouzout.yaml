@@ -1,0 +1,18 @@
+parameters:
+  verbou.gouzout.gwened:
+      gallus:
+        s1: ["uahen"]
+        s2: ["uahes"]
+        s3: ["uahe"]
+        p1: ["uahemp"]
+        p2: ["uahec'h"]
+        p3: ["uahent"]
+        i: ["uahed"]
+      dichallus:
+        s1: ["uazen"]
+        s2: ["uazes"]
+        s3: ["uaze"]
+        p1: ["uazemp"]
+        p2: ["uazec'h"]
+        p3: ["uazent"]
+        i: ["uazed"]

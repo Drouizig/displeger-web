@@ -50,7 +50,7 @@ class VerbLocalizationType extends AbstractType
             $verbLocalisation = $event->getData();
             $form = $event->getForm();
 
-            if(null !== $verbLocalisation && substr($verbLocalisation->getBase(), 0, 3) === 'gou') {
+            if(null !== $verbLocalisation && substr($verbLocalisation->getBase(), 0, 1) === 'g') {
                 $form->add('gouMutation', null, [
                     'label' => 'app.form.verb.gouMutation'
                 ]);

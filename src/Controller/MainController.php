@@ -202,8 +202,21 @@ class MainController extends AbstractController
             }
             $mixedMutatedInfinitive = $this->kemmaduriouManager->mutateWord($verbLocalization->getInfinitive(), KemmaduriouManager::KEMMESKET, $verbLocalization->getGouMutation());
             $stummOber = 'bezañ o '.$mixedMutatedInfinitive;
+            if(in_array(substr($mixedMutatedInfinitive, 0,1), ['a', 'e', 'i', 'o', 'u'])) {
+                $stummOber = 'bezañ oc\'h '.$mixedMutatedInfinitive;  
+            }
+            if($verbLocalization->getInfinitive() ==='gouzout') {
+                $stummOber = 'bezañ o c\'houzout';
+            } elseif($verbLocalization->getInfinitive() ==='ober') {
+                $stummOber = 'bezañ oc\'h ober';
+            }
             $softMutatedInfinitive = $this->kemmaduriouManager->mutateWord($verbLocalization->getInfinitive(), KemmaduriouManager::BLOTAAT, $verbLocalization->getGouMutation());
             $stummEnUr = 'en ur '.$softMutatedInfinitive;
+            if($verbLocalization->getInfinitive() ==='gouzout') {
+                $stummEnUr = 'en ur c\'houzout';
+            } elseif($verbLocalization->getInfinitive() ==='ober') {
+                $stummEnUr = 'en ur ober';
+            }
 
             $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verbLocalization->getInfinitive();
             $geriafurchUrl = '';

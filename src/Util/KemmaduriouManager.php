@@ -25,8 +25,8 @@ class KemmaduriouManager
         $newLetter = '';
         $origin = '';
         if($gouMutation && ($mutationType === self::BLOTAAT || $mutationType === self::KEMMESKET || $mutationType === self::DIGLOK)) {
-            $newLetter = 'ou';
-            $origin = 'gou';
+            $newLetter = '';
+            $origin = 'g';
         } else {
             foreach ($mutations as $original => $result) {
                 if (substr($word, 0, strlen($original)) === $original) {
