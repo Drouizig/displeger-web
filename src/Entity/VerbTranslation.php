@@ -26,7 +26,7 @@ class VerbTranslation
     private $verb;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $translation;
 
