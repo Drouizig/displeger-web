@@ -107,6 +107,15 @@ a {
     &:placeholder {
         color: var(--lighter-background);
     }
+
+    .select2-container {
+        background: var(--background);
+        color: var(--title-color);
+        &:focus {
+            background: var(--focus-color);
+            color: var(--title-color);
+        }
+    }
 }
 
 
@@ -247,7 +256,35 @@ textarea {
             background-color: var(--hover-color);
         }
     }
+
+    .select2-search__field {
+        background-color: var(--background);
+        color: var(--text-color);
+
+        &:focus {
+            background-color: var(--hover-color);
+        }
+    }
+
+    &--default.select2-container--focus .select2-selection--multiple {
+        border-color: #80bdff; //from form scss
+    }
+
+
+    .select2-selection {
+        background-color: var(--background);
+        color: var(--text-color);
+
+        &--multiple .select2-selection__choice {
+            background-color: var(--hover-color);
+        }
+
+        &--single .select2-selection__rendered {
+            color: var(--text-color);
+        }
+    }
 }
+
 
 .translations textarea {
     width: 100%;
