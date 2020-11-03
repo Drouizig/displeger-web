@@ -182,9 +182,12 @@ class AdminController extends AbstractController
                     /** @var Query $query */
                     $query = $repository->getBackSearchQuery($search, $offset, 1);
                     $result = $query->getOneOrNullResult();
+                    if(is_array($result)) {
+                        $result = $result['verb'];
+                    }
                     return $this->redirectToRoute($redirect_to_single,
                         [
-                            'id' => $result['verb']->getId(),
+                            'id' => $result->getId(),
                             'params' => $params,
                             'offset' => $offset +1
                         ]
