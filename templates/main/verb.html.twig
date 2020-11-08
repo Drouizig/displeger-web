@@ -63,14 +63,18 @@
             {% for tag in verb.tags %}
                 {% set tagDisplay = tag.code %}
                 {% set tagDescription = '' %}
+                {% set tagCategoryName = '' %}
                 {% if tag.translation(app.request.locale) is not null %}
                     {% set tagDisplay = tag.translation(app.request.locale).label %}
                     {% set tagDescription = tag.translation(app.request.locale).description %}
                 {% endif %}
+                {% if tag.category and tag.category.translation(app.request.locale) is not null %}
+                    {% set tagCategoryName = tag.category.translation(app.request.locale).label %}
+                {% endif %}
                     <a href={{ path('verbs_by_tag', {'tag' : tag.code}) }} class="badge badge-pill badge-primary"
                     {% if tag.category != null %}style="background-color:{{tag.category.color}}"{% endif %}>
                         {% if tagDescription is not empty %}
-                            <abbr title="{{ tagDescription }}">{{ tagDisplay }}</abbr>
+                            <abbr title="{{ tagCategoryName }} : {{ tagDescription }}">{{ tagDisplay }}</abbr>
                         {% else %}
                             {{ tagDisplay }}
                         {% endif %}
