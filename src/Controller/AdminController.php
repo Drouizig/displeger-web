@@ -16,10 +16,12 @@ use App\Form\VerbType;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Configuration;
 use App\Entity\Source;
+use App\Entity\TagCategory;
 use App\Entity\VerbLocalization;
 use App\Entity\VerbTranslation;
 use App\Form\ConfigurationType;
 use App\Form\SourceType;
+use App\Form\TagCategoryType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -63,6 +65,12 @@ class AdminController extends AbstractController
         return $this->adminList($request, Tag::class, 'admin/tags.html.twig');
     }
 
+    /**
+     * @Route("/admin/tagCategories", name="admin_tagCategories")
+     */
+    public function tagCategories(Request $request){
+        return $this->adminList($request, TagCategory::class, 'admin/tagCategories.html.twig');
+    }
     /**
      * @Route("/admin/configurations", name="admin_configurations")
      */
@@ -137,6 +145,21 @@ class AdminController extends AbstractController
             'admin_tags',
             'admin/tag.html.twig',
             $tag);
+    }
+
+    /**
+     * @Route("/admin/tagCategory/{id?}", name="admin_tagCategory")
+     */
+    public function tagCategory(Request $request,TagCategory $tagCategory = null)
+    {
+        return $this->adminEdit(
+            $request,
+            TagCategoryType::class,
+            TagCategory::class,
+            'admin_tagCategory',
+            'admin_tagCategories',
+            'admin/tagCategory.html.twig',
+            $tagCategory);
     }
 
     /**

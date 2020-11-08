@@ -2,17 +2,16 @@
 
 namespace App\Form;
 
-use App\Entity\Tag;
 use App\Entity\TagCategory;
 use App\Util\ListsUtil;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class TagType extends AbstractType
+class TagCategoryType extends AbstractType
 {
     /** @var ListsUtil $locales */
     protected $locales;
@@ -26,16 +25,14 @@ class TagType extends AbstractType
     {
         $builder
             ->add('code', null, [
-                'label' => 'app.form.source.code'
+                'label' => 'Bonneg'
             ])
-            ->add('category', EntityType::class, [
-                'label' => 'Rummad',
-                'class' => TagCategory::class,
-                'required' => false
+            ->add('color', ColorType::class, [
+                'label' => 'Liv'
             ])
             ->add('translations', CollectionType::class, [
                 'label' => 'app.form.source.translations',
-                'entry_type' => TagTranslationType::class,
+                'entry_type' => TagCategoryTranslationType::class,
                 'allow_add' => true,
                 'prototype' => true,
                 'allow_delete' => true,
@@ -56,7 +53,7 @@ class TagType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Tag::class,
+            'data_class' => TagCategory::class,
         ]);
     }
 }

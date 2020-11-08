@@ -5,13 +5,13 @@
 {% block content %}
     {% form_theme form 'bootstrap_4_layout.html.twig' %}
     <p>Lodenn verañ</p>
-    <a href="{{path('admin_tags')}}">< Distreiñ</a>
+    <a href="{{path('admin_tagCategories')}}">< Distreiñ</a>
 
     <h3>
         {% if form.vars.data.id is defined %}
-            {{ 'app.admin.source.edit.title'|trans }}
+            Embann ur rummad tikedennoù
         {% else %}
-            {{ 'app.admin.source.create.title'|trans }}
+            Krouiñ ur rummad tikedennoù
         {% endif %}
     </h3>
     {{form_start(form)}}
@@ -25,10 +25,10 @@
     </div>
     <div class="row">
         <div class="col-md-2">
-            {{form_label(form.category)}}
+            {{form_label(form.color)}}
         </div>
         <div class="col-md-4">
-            {{form_widget(form.category)}}
+            {{form_widget(form.color)}}
         </div>
     </div>
     <div class="row">

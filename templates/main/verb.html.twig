@@ -67,7 +67,8 @@
                     {% set tagDisplay = tag.translation(app.request.locale).label %}
                     {% set tagDescription = tag.translation(app.request.locale).description %}
                 {% endif %}
-                    <a href={{ path('verbs_by_tag', {'tag' : tag.code}) }} class="badge badge-pill badge-primary">
+                    <a href={{ path('verbs_by_tag', {'tag' : tag.code}) }} class="badge badge-pill badge-primary"
+                    {% if tag.category != null %}style="background-color:{{tag.category.color}}"{% endif %}>
                         {% if tagDescription is not empty %}
                             <abbr title="{{ tagDescription }}">{{ tagDisplay }}</abbr>
                         {% else %}

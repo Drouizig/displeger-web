@@ -87,7 +87,7 @@ database: vendor ## Build the database
 	$(EXEC_DATABASE) sh -c "gunzip -k -c /database/displeger_dump.sql.gz > /database/displeger_dump.sql" 
 	$(EXEC_DATABASE) sh -c "psql -Upostgres displeger < /database/displeger_dump.sql"
 	rm -f docker/database/displeger_dump.sql
-	$(SYMFONY) doctrine:migrations:migrate --no-interaction
+	$(SYMFONY) doctrine:migrations:migrate --no-interaction --allow-no-migration
 
 dump-database:
 	$(EXEC_DATABASE) sh -c "pg_dump -Upostgres displeger > /database/displeger_dump.sql"
@@ -97,7 +97,7 @@ migration: database
 	$(SYMFONY) doctrine:migrations:diff
 
 migrate:
-	$(SYMFONY) doctrine:migrations:migrate --no-interaction
+	$(SYMFONY) doctrine:migrations:migrate --no-interaction --allow-no-migration
 
 shell-database:
 	$(DOCKER_COMPOSE) exec database psql -Upostgres displeger

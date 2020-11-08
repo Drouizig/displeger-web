@@ -40,6 +40,12 @@ class Tag
      */
     private $verbs;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TagCategory::class, inversedBy="tags")
+     */
+    private $category;
+
     public function __construct()
     {
         $this->translations = new ArrayCollection();
@@ -142,6 +148,18 @@ class Tag
             $this->verbs->removeElement($verb);
             $verb->removeTag($this);
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?TagCategory
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?TagCategory $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
