@@ -8,8 +8,13 @@ require('webpack-jquery-ui');
 require('bootstrap');
 require('bootstrap4-toggle');
 require('webpack-jquery-ui/css');
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
 $(document).ready(function() {
 
+  tippy('.abbr', {
+   content: (reference) => reference.getAttribute('data-tooltip'),
+  });
   $('select').select2();
   /*
    * ****************

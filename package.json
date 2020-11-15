@@ -20,6 +20,7 @@
         "popper.js": "^1.14.7",
         "select2": "^4.0.13",
         "tinymce": "^5.2.1",
+        "tippy.js": "^6.2.7",
         "webpack-jquery-ui": "^2.0"
     }
 }

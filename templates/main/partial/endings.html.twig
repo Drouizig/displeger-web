@@ -3,7 +3,7 @@
     <li class="verb-item">
         <div class="row">
             <div class="col-2">
-                <abbr title="{{ ('app.gour.' ~ person)|trans}}">{{('app.gour.' ~ person ~ '.symbol')|trans}}</abbr>.
+                <span class="abbr" data-tooltip="{{ ('app.gour.' ~ person)|trans}}">{{('app.gour.' ~ person ~ '.symbol')|trans}}</span>.
             </div>
             <div class="col">
                 {% if ending|length == 1 %}
