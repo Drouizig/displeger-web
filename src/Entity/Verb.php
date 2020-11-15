@@ -51,9 +51,7 @@ class Verb
     /**
      * @ORM\ManyToMany(
      *     targetEntity="App\Entity\Tag",
-     *     inversedBy="verbs",
-     *     cascade={"all"},
-     *     orphanRemoval=true
+     *     inversedBy="verbs"
      *     )
      */
     private $tags;
