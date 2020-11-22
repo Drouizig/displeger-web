@@ -443,9 +443,9 @@ class MainController extends AbstractController
         $tagObject = $tagRepo->findOneBy(['code' => $tag]);
         if($tagObject != null)
         {
-            foreach($tagObject->getVerbs() as $verb)
+            foreach($tagObject->getVerbs() as $verbTag)
             {
-                $currentLocalization = $verbLocalizationRepo->findOneByVerbId($verb->getId());
+                $currentLocalization = $verbLocalizationRepo->findOneByVerbId($verbTag->getVerb()->getId());
                 if($currentLocalization != null) {
                     array_push($result, $currentLocalization);
                 }

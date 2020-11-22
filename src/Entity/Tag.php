@@ -36,7 +36,7 @@ class Tag
     private $translations;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Verb::class, mappedBy="tags")
+     * @ORM\OneToMany(targetEntity=VerbTag::class, mappedBy="tag")
      */
     private $verbs;
 
@@ -115,7 +115,7 @@ class Tag
     }
 
     /**
-     * @return Collection|Verb[]
+     * @return Collection|VerbTag[]
      */
     public function getVerbs(): Collection
     {
@@ -123,30 +123,30 @@ class Tag
     }
 
     public function getVerb(string $verbId) {
-        /** @var Verb $verb */
+        /** @var VerbTag $verb */
         foreach($this->verbs as $verb) {
-            if($verb->getId() === $verbId) {
+            if($verb->getVerb()->getId() === $verbId) {
                 return $verb;
             }
         }
         return null;
     }
 
-    public function addVerb(Verb $verb): self
+    public function addVerb(VerbTag $verb): self
     {
         if (!$this->verbs->contains($verb)) {
             $this->verbs[] = $verb;
-            $verb->addTag($this);
+            $verb->setTag($this);
         }
 
         return $this;
     }
 
-    public function removeVerb(Verb $verb): self
+    public function removeVerb(VerbTag $verb): self
     {
         if ($this->verbs->contains($verb)) {
             $this->verbs->removeElement($verb);
-            $verb->removeTag($this);
+            $verb->setTag(null);
         }
 
         return $this;

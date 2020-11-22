@@ -1,17 +1,23 @@
 <div>
     <div class="row">
-        <div class="col-md-8">
-            {{form_label(tag.id)}}
+        <div class="col-md-2">
+            {{form_label(tag.tag)}}
+        </div>
+        <div class="col-md">
+            {{form_label(tag.sources)}}
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8">
-            {{form_widget(tag.id)}}
+        <div class="col-md-2">
+            {{form_widget(tag.tag)}}
+        </div>
+        <div class="col-md">
+            {{form_widget(tag.sources)}}
         </div>
         <div class="col-md-1">
             <button type="button"
                     class="btn btn-primary delete-element">
-                <i class="fas fa-minus"></i>
+                    <i class="fas fa-minus"></i>
             </button>
         </div>
     </div>

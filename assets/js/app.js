@@ -14,6 +14,7 @@ $(document).ready(function() {
 
   tippy('.abbr', {
    content: (reference) => reference.getAttribute('data-tooltip'),
+    allowHTML: true,
   });
   $('select').select2();
   /*

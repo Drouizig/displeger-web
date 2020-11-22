@@ -49,10 +49,10 @@
         <h2>
         
     {% if verbLocalization.sources|length > 0 %}
-        <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}
+        <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
 {% for source in verbLocalization.sources %}
-    - {{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}
-        {% endfor %}
+    <li>{{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}</li>
+        {% endfor %}</ul>
         ">
     {% endif %}
         {{verbLocalization.infinitive}}
@@ -65,20 +65,26 @@
     {% if verb.tags | length > 0 %}
         <div class="row">
             {% for tag in verb.tags %}
-                {% set tagDisplay = tag.code %}
+                {% set tagDisplay = tag.tag.code %}
                 {% set tagDescription = '' %}
                 {% set tagCategoryName = '' %}
-                {% if tag.translation(app.request.locale) is not null %}
-                    {% set tagDisplay = tag.translation(app.request.locale).label %}
-                    {% set tagDescription = tag.translation(app.request.locale).description %}
+                {% if tag.tag.translation(app.request.locale) is not null %}
+                    {% set tagDisplay = tag.tag.translation(app.request.locale).label %}
+                    {% set tagDescription = tag.tag.translation(app.request.locale).description %}
                 {% endif %}
-                {% if tag.category and tag.category.translation(app.request.locale) is not null %}
-                    {% set tagCategoryName = tag.category.translation(app.request.locale).label %}
+                {% if tag.tag.category and tag.tag.category.translation(app.request.locale) is not null %}
+                    {% set tagCategoryName = tag.tag.category.translation(app.request.locale).label %}
                 {% endif %}
-                    <a href={{ path('verbs_by_tag', {'tag' : tag.code}) }} class="badge badge-pill badge-primary"
-                    {% if tag.category != null %}style="background-color:{{tag.category.color}}"{% endif %}>
+                    <a href={{ path('verbs_by_tag', {'tag' : tag.tag.code}) }} class="badge badge-pill badge-primary"
+                    {% if tag.tag.category != null %}style="background-color:{{tag.tag.category.color}}"{% endif %}>
                         {% if tagDescription is not empty %}
-                            <span class="abbr" data-tooltip="{{ tagCategoryName }} : {{ tagDescription }}">{{ tagDisplay }}</span>
+                            <span class="abbr" data-tooltip="{{ tagCategoryName }} : {{ tagDescription }}
+                            <br/>{{'app.sources.title'|trans}}
+                            <ul>
+                            {% for source in tag.sources %}
+                            <li>{{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}</li>
+                            {% endfor %}</ul>
+                            ">{{ tagDisplay }}</span>
                         {% else %}
                             {{ tagDisplay }}
                         {% endif %}
@@ -113,10 +119,10 @@
                 {% set translation = verb.translation(language) %}
                 <p>{{listsUtil.locales[translation.languageCode]}} : 
                 {% if translation.sources|length > 0 %}
-                   <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}
-{% for source in translation.sources %}
-    - {{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}
-{% endfor %}
+                   <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
+                    {% for source in translation.sources %}
+                        <li>{{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}</li>
+                    {% endfor %}
                     ">
                 {% endif %}
                 <i>{{translation.translation}}</i></p>
@@ -143,11 +149,11 @@
                         {% for translation in verb.translations if translation.languageCode != language %}
                             <li>{{listsUtil.locales[translation.languageCode]}} : 
                             {% if translation.sources|length > 0 %}
-                                <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}
-{% for source in translation.sources %}
-- {{source.getTranslation(app.request.locale).label}}
-{% endfor %}
-                                ">
+                                <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
+                                {% for source in translation.sources %}
+                                <li>{{source.getTranslation(app.request.locale).label}}</li>
+                                {% endfor %}
+                               ">
                             {% endif %}
                             {{translation.translation}} 
                             {% if translation.sources|length > 0 %}
