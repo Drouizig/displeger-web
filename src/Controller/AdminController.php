@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\SourceTranslation;
 use App\Entity\Tag;
+use App\Entity\TagCategoryTranslation;
+use App\Entity\TagTranslation;
 use App\Form\TagType;
 use App\Util\StatisticsManager;
 use Doctrine\ORM\Query;
@@ -122,6 +125,10 @@ class AdminController extends AbstractController
      */
     public function source(Request $request,Source $source = null)
     {
+        if($source == null){
+            $source = new Source();
+            $source->addTranslation(new SourceTranslation());
+        }
         return $this->adminEdit(
             $request, 
             SourceType::class, 
@@ -137,6 +144,10 @@ class AdminController extends AbstractController
      */
     public function tag(Request $request,Tag $tag = null)
     {
+        if($tag == null){
+            $tag = new Tag();
+            $tag->addTranslation(new TagTranslation());
+        }
         return $this->adminEdit(
             $request,
             TagType::class,
@@ -152,6 +163,10 @@ class AdminController extends AbstractController
      */
     public function tagCategory(Request $request,TagCategory $tagCategory = null)
     {
+        if($tagCategory == null){
+            $tagCategory = new TagCategory();
+            $tagCategory->addTranslation(new TagCategoryTranslation());
+        }
         return $this->adminEdit(
             $request,
             TagCategoryType::class,
