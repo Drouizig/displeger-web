@@ -162,12 +162,24 @@ a {
     width: 70%;
     .copy {
         display:none;
-        //float:right;
         cursor: pointer;
     }
     &:hover {
         opacity: 1.0;
         background-color: var(--hover-color);
+        .copy {
+            display:inline;
+        }
+    }
+}
+
+.alt-item {
+    .copy {
+        margin-left: 3px;
+        cursor: pointer;
+        display:none;
+    }
+    &:hover {
         .copy {
             display:inline;
         }
