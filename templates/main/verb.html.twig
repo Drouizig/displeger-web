@@ -143,7 +143,7 @@
 
             {% if (verb.hasTranslationInLanguage(language) and verb.translations|length > 1)
             or (not verb.hasTranslationInLanguage(language) and verb.translations|length > 0 )%}
-                <p><a class="js-view_more" href="javascript:;">⯆ {{'app.verb.view_more'|trans}}</a></p>
+                <p><a class="js-view_more" href="javascript:;">⯆ {{'app.verb.view_more'|trans}} ({{(verb.translations|length)-1}}) </a></p>
                 <div class="js-translations" style="display:none;">
                     <ul>
                         {% for translation in verb.translations if translation.languageCode != language %}
