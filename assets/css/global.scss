@@ -321,6 +321,10 @@ textarea {
     }
 }
 
+.select2-container .select2-results li[aria-selected="true"] {
+    color: red;
+}
+
 @media print {
 
     .print-button,  .search-form, .missing_translation .report_error {
