@@ -102,6 +102,7 @@
             {% if other_localization.dialectCode != null %}
                 ({%- for dialect in other_localization.dialectCode -%}
                         {%if loop.index != 1%}, {%endif%}{{('app.dialect.'~dialect)|trans}}
+                        <a href="{{('app.dialect.'~dialect~'.url')|trans}}"><img src="{{ asset('build/wiki.webp') }}"/></a>
                     {%- endfor -%})
             {% endif %}
             {% if loop.index +1 != verb.localizations|length %},{% endif %}

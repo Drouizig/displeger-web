@@ -337,6 +337,26 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.dialect.reolad</source>
         <target>Standard</target>
       </trans-unit>
+      <trans-unit id="8R3kqsdwUH" resname="app.dialect.kerne.url">
+        <source>app.dialect.kerne.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_cornouaillais</target>
+      </trans-unit>
+      <trans-unit id="dzeRj1_09" resname="app.dialect.leon.url">
+        <source>app.dialect.leon.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_l%C3%A9onard</target>
+      </trans-unit>
+      <trans-unit id="ZdD7azZd3" resname="app.dialect.treger.url">
+        <source>app.dialect.treger.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_tr%C3%A9gorrois</target>
+      </trans-unit>
+      <trans-unit id="TF9sdjoci" resname="app.dialect.gwened.url">
+        <source>app.dialect.gwened.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_vannetais</target>
+      </trans-unit>
+      <trans-unit id="WQ7sd7eab" resname="app.dialect.goelo.url">
+        <source>app.dialect.goelo.url</source>
+        <target>https://fr.wikipedia.org/wiki/Go%C3%ABlo#Articles_connexes</target>
+      </trans-unit>
       <trans-unit id="GEYPo7S" resname="app.gour.s1.symbol">
         <source>app.gour.s1.symbol</source>
         <target>S1</target>

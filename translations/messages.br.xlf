@@ -456,6 +456,26 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.dialect.reolad</source>
         <target>Reolad</target>
       </trans-unit>
+      <trans-unit id="8R3kqsdwUH" resname="app.dialect.kerne.url">
+        <source>app.dialect.kerne.url</source>
+        <target>https://br.wikipedia.org/wiki/Brezhoneg_Kerne</target>
+      </trans-unit>
+      <trans-unit id="dzeRj1_09" resname="app.dialect.leon.url">
+        <source>app.dialect.leon.url</source>
+        <target>https://br.wikipedia.org/wiki/Brezhoneg_Leon</target>
+      </trans-unit>
+      <trans-unit id="ZdD7azZd3" resname="app.dialect.treger.url">
+        <source>app.dialect.treger.url</source>
+        <target>https://br.wikipedia.org/wiki/Brezhoneg_Treger</target>
+      </trans-unit>
+      <trans-unit id="TF9sdjoci" resname="app.dialect.gwened.url">
+        <source>app.dialect.gwened.url</source>
+        <target>https://br.wikipedia.org/wiki/Brezhoneg_Gwened</target>
+      </trans-unit>
+      <trans-unit id="WQ7sd7eab" resname="app.dialect.goelo.url">
+        <source>app.dialect.goelo.url</source>
+        <target>https://br.wikipedia.org/wiki/Gouelo%C3%B9</target>
+      </trans-unit>
       <trans-unit id="O8JcWGW" resname="app.geriafurch.alt">
         <source>app.geriafurch.alt</source>
         <target>Geriafurch.alt</target>
