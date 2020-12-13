@@ -67,10 +67,10 @@ $(document).ready(function() {
   });
 
   $('.copy-tense').click(function() {
-    var text = $(this).closest('.js-tense').find('.js-tense-content').text().trim();
-    console.log("text to be copied: " + text);
+    var text = $(this).closest('.js-tense').find('.endings:visible .js-tense-content').text().trim();
+    console.log($(this).closest('.js-tense').find('.endings:visible .js-tense-content'));
     if (!navigator.clipboard) {
-      $(this).closest('.js-tense').find('.js-tense-content').focus().select();
+      $(this).closest('.js-tense').find('.endings:visible .js-tense-content').focus().select();
       try {
         var successful = document.execCommand('copy');
         if(successful) {
