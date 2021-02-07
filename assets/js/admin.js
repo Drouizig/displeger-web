@@ -2,6 +2,7 @@
 require('tinymce');
 require('tinymce/plugins/link');
 require('tinymce/themes/silver');
+require('tinymce/icons/default');
 $(document).ready(function() {
 
   tinymce.init(

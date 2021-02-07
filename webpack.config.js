@@ -19,6 +19,11 @@ Encore
         to: './skins/[path][name].[ext]',
         includeSubdirectories: true,
         pattern: /.*/
+    },{
+        from: './node_modules/tinymce/icons/default',
+        to: './icons/default',
+        includeSubdirectories: true,
+        pattern: /.*/
     })
     /*
      * ENTRY CONFIG
