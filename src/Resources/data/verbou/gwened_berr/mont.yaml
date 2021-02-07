@@ -1,0 +1,18 @@
+parameters:
+  verbou.mont.gwened_berr:
+      gallus:
+        s1: ["hen"]
+        s2: ["hes"]
+        s3: ["he"]
+        p1: ["hemp"]
+        p2: ["hec'h"]
+        p3: ["hent"]
+        i: ["hed"]
+      dichallus:
+        s1: ["zen"]
+        s2: ["zes"]
+        s3: ["ze"]
+        p1: ["zemp"]
+        p2: ["zec'h"]
+        p3: ["zent"]
+        i: ["zed"]

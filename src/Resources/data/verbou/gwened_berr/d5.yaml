@@ -1,0 +1,18 @@
+parameters:
+  verbou.d5.gwened_berr:
+      gallus:
+        s1: ["ilhen"]
+        s2: ["ilhes"]
+        s3: ["ilhe"]
+        p1: ["ilhemp"]
+        p2: ["ilhec'h"]
+        p3: ["ilhent"]
+        i: ["ilhed"]
+      dichallus:
+        s1: ["ilhzen"]
+        s2: ["ilhzes"]
+        s3: ["ilhze"]
+        p1: ["ilhzemp"]
+        p2: ["ilhzec'h"]
+        p3: ["ilhzent"]
+        i: ["ilhzed"]

@@ -1,0 +1,18 @@
+parameters:
+  verbou.d5.gwened_hir:
+      gallus:
+        s1: ["ilhehen", "ilhahen"]
+        s2: ["ilhehes", "ilhahes"]
+        s3: ["ilhehe", "ilhahe"]
+        p1: ["ilhehemp", "ilhahemp"]
+        p2: ["ilhehec'h", "ilhahec'h"]
+        p3: ["ilhehent", "ilhahent"]
+        i: ["ilhehed", "ilhahed"]
+      dichallus:
+        s1: ["ilhezen", "ilhazen"]
+        s2: ["ilhezes", "ilhazes"]
+        s3: ["ilheze", "ilhaze"]
+        p1: ["ilhezemp", "ilhazemp"]
+        p2: ["ilhezec'h", "ilhazec'h"]
+        p3: ["ilhezent", "ilhazent"]
+        i: ["ilhezed", "ilhazed"]

@@ -1,0 +1,18 @@
+parameters:
+  verbou.d6.gwened_berr:
+      gallus:
+        s1: ["gnhen"]
+        s2: ["gnhes"]
+        s3: ["gnhe"]
+        p1: ["gnhemp"]
+        p2: ["gnhec'h"]
+        p3: ["gnhent"]
+        i: ["gnhed"]
+      dichallus:
+        s1: ["gnzen"]
+        s2: ["gnzes"]
+        s3: ["gnze"]
+        p1: ["gnzemp"]
+        p2: ["gnzec'h"]
+        p3: ["gnzent"]
+        i: ["gnzed"]

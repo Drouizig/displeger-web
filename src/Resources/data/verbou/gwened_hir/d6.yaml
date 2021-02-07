@@ -1,0 +1,18 @@
+parameters:
+  verbou.d6.gwened_hir:
+      gallus:
+        s1: ["gnehen", "gnahen"]
+        s2: ["gnehes", "gnahes"]
+        s3: ["gnehe", "gnahe"]
+        p1: ["gnehemp", "gnahemp"]
+        p2: ["gnehec'h", "gnahec'h"]
+        p3: ["gnehent", "gnahent"]
+        i: ["gnehed", "gnahed"]
+      dichallus:
+        s1: ["gnezen", "gnazen"]
+        s2: ["gnezes", "gnazes"]
+        s3: ["gneze", "gnaze"]
+        p1: ["gnezemp", "gnazemp"]
+        p2: ["gnezec'h", "gnazec'h"]
+        p3: ["gnezent", "gnazent"]
+        i: ["gnezed", "gnazed"]
