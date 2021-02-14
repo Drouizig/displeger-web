@@ -329,6 +329,14 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.dialect.gwened</source>
         <target>Vannetais</target>
       </trans-unit>
+      <trans-unit id="jAdAV0R" resname="app.dialect.gwened_berr">
+        <source>app.dialect.gwened_berr</source>
+        <target>Vannetais (court)</target>
+      </trans-unit>
+      <trans-unit id="h3roVBz" resname="app.dialect.gwened_hir">
+        <source>app.dialect.gwened_hir</source>
+        <target>Vannetais (long)</target>
+      </trans-unit>
       <trans-unit id="WQ77eab" resname="app.dialect.goelo">
         <source>app.dialect.goelo</source>
         <target>Goëlo</target>
@@ -336,6 +344,26 @@ Il manque le verbe "%verb%" sur le site.
       <trans-unit id="MDzUI0u" resname="app.dialect.reolad">
         <source>app.dialect.reolad</source>
         <target>Standard</target>
+      </trans-unit>
+      <trans-unit id="qRJzFDh" resname="app.dialect.kerne.url">
+        <source>app.dialect.kerne.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_cornouaillais</target>
+      </trans-unit>
+      <trans-unit id="sfZfJi8" resname="app.dialect.leon.url">
+        <source>app.dialect.leon.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_l%C3%A9onard</target>
+      </trans-unit>
+      <trans-unit id="ziTWbCQ" resname="app.dialect.treger.url">
+        <source>app.dialect.treger.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_tr%C3%A9gorrois</target>
+      </trans-unit>
+      <trans-unit id="oeCclbP" resname="app.dialect.gwened.url">
+        <source>app.dialect.gwened.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_vannetais</target>
+      </trans-unit>
+      <trans-unit id="gjSS1u3" resname="app.dialect.goelo.url">
+        <source>app.dialect.goelo.url</source>
+        <target>https://fr.wikipedia.org/wiki/Go%C3%ABlo#Articles_connexes</target>
       </trans-unit>
       <trans-unit id="GEYPo7S" resname="app.gour.s1.symbol">
         <source>app.gour.s1.symbol</source>

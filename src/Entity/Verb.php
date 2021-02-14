@@ -49,11 +49,9 @@ class Verb
     private $auxilliaries;
 
     /**
-     * @ORM\ManyToMany(
-     *     targetEntity="App\Entity\Tag",
-     *     inversedBy="verbs",
-     *     cascade={"all"},
-     *     orphanRemoval=true
+     * @ORM\OneToMany(
+     *     targetEntity="App\Entity\VerbTag",
+     *     mappedBy="verb"
      *     )
      */
     private $tags;
@@ -224,14 +222,14 @@ class Verb
     }
 
     /**
-     * @return Collection|Tag[]
+     * @return Collection|VerbTag[]
      */
     public function getTags(): Collection
     {
         return $this->tags;
     }
 
-    public function addTag(Tag $tag): self
+    public function addTag(VerbTag $tag): self
     {
         if (!$this->tags->contains($tag)) {
             $this->tags[] = $tag;
@@ -240,7 +238,7 @@ class Verb
         return $this;
     }
 
-    public function removeTag(Tag $tag): self
+    public function removeTag(VerbTag $tag): self
     {
         if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);

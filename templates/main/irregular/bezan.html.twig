@@ -102,7 +102,7 @@
                 <ul>
                     {% for ending in endings %}
                         <li class="verb-item">
-                            <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
+                            <span class="abbr" data-tooltip="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</span>.
                             {% if ending|length == 1 %}
                                 <span class="js-verb"><strong>{{ending.0}}</strong></span> <i class="far fa-copy copy"></i>
                             {% elseif ending|length > 1%} 

@@ -18,7 +18,7 @@
                 <ul>
                     {% for ending in endings %}
                         <li class="verb-item">
-                            <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
+                            <span class="abbr" data-tooltip="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</span>.
                             {% if ending|length == 1 %}
                                 <span class="js-verb">{{verbLocalization.base}}<strong>{{ending.0}}</strong></span>
                             {% elseif ending|length > 1%}
@@ -44,7 +44,7 @@
                 <ul>
                     {% for conjugation in nach %}
                         <li class="verb-item">
-                            <abbr title="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</abbr>.
+                            <span class="abbr" data-tooltip="{{ ('app.gour.' ~ gour[loop.index-1])|trans}}">{{gour[loop.index-1]}}</span>.
                         </li>
                     {% endfor %}
                 </ul>

@@ -1,0 +1,18 @@
+parameters:
+  verbou.d7.gwened_hir:
+      gallus:
+        s1: ["ehen", "ahen"]
+        s2: ["ehes", "ahes"]
+        s3: ["ehe", "ahe"]
+        p1: ["ehemp", "ahemp"]
+        p2: ["ehec'h", "ahec'h"]
+        p3: ["ehent", "ahent"]
+        i: ["ehed", "ahed"]
+      dichallus:
+        s1: ["ezen", "azen"]
+        s2: ["ezes", "azes"]
+        s3: ["eze", "aze"]
+        p1: ["ezemp", "azemp"]
+        p2: ["ezec'h", "azec'h"]
+        p3: ["ezent", "azent"]
+        i: ["ezed", "azed"]

@@ -8,8 +8,14 @@ require('webpack-jquery-ui');
 require('bootstrap');
 require('bootstrap4-toggle');
 require('webpack-jquery-ui/css');
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
 $(document).ready(function() {
 
+  tippy('.abbr', {
+   content: (reference) => reference.getAttribute('data-tooltip'),
+    allowHTML: true,
+  });
   $('select').select2();
   /*
    * ****************
@@ -61,10 +67,10 @@ $(document).ready(function() {
   });
 
   $('.copy-tense').click(function() {
-    var text = $(this).closest('.js-tense').find('.js-tense-content').text().trim();
-    console.log("text to be copied: " + text);
+    var text = $(this).closest('.js-tense').find('.endings:visible .js-tense-content').text().trim();
+    console.log($(this).closest('.js-tense').find('.endings:visible .js-tense-content'));
     if (!navigator.clipboard) {
-      $(this).closest('.js-tense').find('.js-tense-content').focus().select();
+      $(this).closest('.js-tense').find('.endings:visible .js-tense-content').focus().select();
       try {
         var successful = document.execCommand('copy');
         if(successful) {

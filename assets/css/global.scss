@@ -107,6 +107,15 @@ a {
     &:placeholder {
         color: var(--lighter-background);
     }
+
+    .select2-container {
+        background: var(--background);
+        color: var(--title-color);
+        &:focus {
+            background: var(--focus-color);
+            color: var(--title-color);
+        }
+    }
 }
 
 
@@ -153,12 +162,24 @@ a {
     width: 70%;
     .copy {
         display:none;
-        //float:right;
         cursor: pointer;
     }
     &:hover {
         opacity: 1.0;
         background-color: var(--hover-color);
+        .copy {
+            display:inline;
+        }
+    }
+}
+
+.alt-item {
+    .copy {
+        margin-left: 3px;
+        cursor: pointer;
+        display:none;
+    }
+    &:hover {
         .copy {
             display:inline;
         }
@@ -247,6 +268,39 @@ textarea {
             background-color: var(--hover-color);
         }
     }
+
+    .select2-search__field {
+        background-color: var(--background);
+        color: var(--text-color);
+
+        &:focus {
+            background-color: var(--hover-color);
+        }
+    }
+
+    &--default.select2-container--focus .select2-selection--multiple {
+        border-color: #80bdff; //from form scss
+    }
+
+
+    .select2-selection {
+        background-color: var(--background);
+        color: var(--text-color);
+
+        &--multiple .select2-selection__choice {
+            background-color: var(--hover-color);
+        }
+
+        &--single .select2-selection__rendered {
+            color: var(--text-color);
+        }
+    }
+}
+
+
+
+.abbr {
+    border-bottom: 3px black dotted;
 }
 
 .translations textarea {
@@ -265,6 +319,10 @@ textarea {
     &.active {
         display: block;
     }
+}
+
+.select2-container .select2-results li[aria-selected="true"] {
+    color: red;
 }
 
 @media print {

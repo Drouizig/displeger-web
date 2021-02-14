@@ -1,13 +1,13 @@
 parameters:
-  verbou.regular.gwened:
+  verbou.d7.gwened_berr:
       gallus:
-        s1: ["ahen"]
-        s2: ["ahes"]
-        s3: ["ahe"]
-        p1: ["ahemp"]
-        p2: ["ahec'h"]
-        p3: ["ahent"]
-        i: ["ahed"]
+        s1: ["hen"]
+        s2: ["hes"]
+        s3: ["he"]
+        p1: ["hemp"]
+        p2: ["hec'h"]
+        p3: ["hent"]
+        i: ["hed"]
       dichallus:
         s1: ["zen"]
         s2: ["zes"]

@@ -24,6 +24,18 @@
             <th scope="col">
                 Anv
             </th>
+            <th scope="col">
+                Rummad
+            </th>
+            <th scope="col">
+                Brezhoneg
+            </th>
+            <th scope="col">
+                Galleg
+            </th>
+            <th scope="col">
+                Saozneg
+            </th>
             <th>
             </th>
         </tr>
@@ -35,6 +47,18 @@
                 </td>
                 <td>
                     {% if tag.translation('br') is not null %}{{ tag.translation('br').label }}{% endif %}
+                </td>
+                <td>
+                    {{tag.category ? tag.category.code : ''}}
+                </td>
+                <td>
+                    {{tag.translation('br') ? tag.translation('br').label }}
+                </td>
+                <td>
+                    {{tag.translation('fr') ? tag.translation('fr').label }}
+                </td>
+                <td>
+                    {{tag.translation('en') ? tag.translation('en').label }}
                 </td>
                 <td>
                     <a href="{{path('admin_tag', {'id': tag.id, 'params': pagination.params, 'offset' : offset + loop.index})}}">Kemmañ</a>

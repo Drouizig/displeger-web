@@ -6,6 +6,7 @@ use App\Entity\VerbTranslation;
 use App\Util\ListsUtil;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,7 +23,7 @@ class VerbTranslationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('translation', null, [
+            ->add('translation', TextType::class, [
                 'label' => 'app.form.verb.translation'
             ])
             ->add('languageCode', ChoiceType::class, [

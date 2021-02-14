@@ -46,30 +46,45 @@
         </div>
     {% endblock %}
 
+        <h2>
+        
     {% if verbLocalization.sources|length > 0 %}
-        <abbr title="{{'app.sources.title'|trans}}
+        <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
 {% for source in verbLocalization.sources %}
-    - {{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}
-        {% endfor %}
+    <li>{{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}</li>
+        {% endfor %}</ul>
         ">
     {% endif %}
-        <h2>{{verbLocalization.infinitive}}</h2>
+        {{verbLocalization.infinitive}}
+        
     {% if verbLocalization.sources|length > 0 %}
-        </abbr>
+        </span>
     {% endif %}
+        </h2>
 
     {% if verb.tags | length > 0 %}
         <div class="row">
             {% for tag in verb.tags %}
-                {% set tagDisplay = tag.code %}
+                {% set tagDisplay = tag.tag.code %}
                 {% set tagDescription = '' %}
-                {% if tag.translation(app.request.locale) is not null %}
-                    {% set tagDisplay = tag.translation(app.request.locale).label %}
-                    {% set tagDescription = tag.translation(app.request.locale).description %}
+                {% set tagCategoryName = '' %}
+                {% if tag.tag.translation(app.request.locale) is not null %}
+                    {% set tagDisplay = tag.tag.translation(app.request.locale).label %}
+                    {% set tagDescription = tag.tag.translation(app.request.locale).description %}
                 {% endif %}
-                    <a href={{ path('verbs_by_tag', {'tag' : tag.code}) }} class="badge badge-pill badge-primary">
+                {% if tag.tag.category and tag.tag.category.translation(app.request.locale) is not null %}
+                    {% set tagCategoryName = tag.tag.category.translation(app.request.locale).label %}
+                {% endif %}
+                    <a href={{ path('verbs_by_tag', {'tag' : tag.tag.code}) }} class="badge badge-pill badge-primary"
+                    {% if tag.tag.category != null %}style="background-color:{{tag.tag.category.color}}"{% endif %}>
                         {% if tagDescription is not empty %}
-                            <abbr title="{{ tagDescription }}">{{ tagDisplay }}</abbr>
+                            <span class="abbr" data-tooltip="{{ tagCategoryName }} : {{ tagDescription }}
+                            <br/>{{'app.sources.title'|trans}}
+                            <ul>
+                            {% for source in tag.sources %}
+                            <li>{{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}</li>
+                            {% endfor %}</ul>
+                            ">{{ tagDisplay }}</span>
                         {% else %}
                             {{ tagDisplay }}
                         {% endif %}
@@ -87,6 +102,7 @@
             {% if other_localization.dialectCode != null %}
                 ({%- for dialect in other_localization.dialectCode -%}
                         {%if loop.index != 1%}, {%endif%}{{('app.dialect.'~dialect)|trans}}
+                        <a href="{{('app.dialect.'~dialect~'.url')|trans}}"><img src="{{ asset('build/wiki.webp') }}"/></a>
                     {%- endfor -%})
             {% endif %}
             {% if loop.index +1 != verb.localizations|length %},{% endif %}
@@ -104,15 +120,15 @@
                 {% set translation = verb.translation(language) %}
                 <p>{{listsUtil.locales[translation.languageCode]}} : 
                 {% if translation.sources|length > 0 %}
-                    <abbr title="{{'app.sources.title'|trans}}
-{% for source in translation.sources %}
-    - {{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}
-{% endfor %}
+                   <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
+                    {% for source in translation.sources %}
+                        <li>{{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}</li>
+                    {% endfor %}
                     ">
                 {% endif %}
                 <i>{{translation.translation}}</i></p>
                 {% if translation.sources|length > 0 %}
-                    </abbr>
+                    </span>
                 {% endif %}
             {% elseif print == false %}
                     {% include 'main/partial/contact_form.html.twig' with {
@@ -128,21 +144,21 @@
 
             {% if (verb.hasTranslationInLanguage(language) and verb.translations|length > 1)
             or (not verb.hasTranslationInLanguage(language) and verb.translations|length > 0 )%}
-                <p><a class="js-view_more" href="javascript:;">⯆ {{'app.verb.view_more'|trans}}</a></p>
+                <p><a class="js-view_more" href="javascript:;">⯆ {{'app.verb.view_more'|trans}} ({{(verb.translations|length)-1}}) </a></p>
                 <div class="js-translations" style="display:none;">
                     <ul>
                         {% for translation in verb.translations if translation.languageCode != language %}
                             <li>{{listsUtil.locales[translation.languageCode]}} : 
                             {% if translation.sources|length > 0 %}
-                                <abbr title="{{'app.sources.title'|trans}}
-{% for source in translation.sources %}
-- {{source.getTranslation(app.request.locale).label}}
-{% endfor %}
-                                ">
+                                <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
+                                {% for source in translation.sources %}
+                                <li>{{source.getTranslation(app.request.locale).label}}</li>
+                                {% endfor %}
+                               ">
                             {% endif %}
                             {{translation.translation}} 
                             {% if translation.sources|length > 0 %}
-                                </abbr>
+                                </span>
                             {% endif %}
                             </li>
                         {% endfor %}
@@ -178,13 +194,13 @@
                 } %}
     {% endif %}
     <div class="row">
-        <div class="col-md"> {{ 'app.amzer.gwan'|trans }} : {{verbLocalization.base }}<strong>{{anvGwan}}</strong></div>
+        <div class="col-md alt-item"> {{ 'app.amzer.gwan'|trans }} : <span class="js-verb">{{verbLocalization.base }}<strong>{{anvGwan}}</strong></span><i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i></div>
     </div>
     <div class="row">
-        <div class="col-md"> {{ 'app.amzer.ober'|trans }} : <strong>{{ober}}</strong></div>
+        <div class="col-md alt-item"> {{ 'app.amzer.ober'|trans }} : <strong><span class="js-verb">{{ober}}</span><i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i></strong></div>
     </div>
     <div class="row">
-        <div class="col-md"> {{ 'app.amzer.enur'|trans }} : <strong>{{enur}}</strong></div>
+        <div class="col-md alt-item"> {{ 'app.amzer.enur'|trans }} : <strong><span class="js-verb">{{enur}}</span><i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i></strong></div>
     </div>
     
 
@@ -221,25 +237,6 @@
                                     </ul>
                                 {% endif %}
                             {% endfor %}
-                            <div class="js-tense-content">
-                                {% set content = ('app.amzer.' ~ time)|trans ~ '\n\n'%}
-
-                                {% for person, ending in endings %}
-                                {% set content = content ~ ('app.gour.' ~ person ~ '.symbol')|trans ~ '. ' %}
-                                        {% if ending|length == 1 %}
-                                            {% set content = content ~ verbLocalization.base ~ ending.0 %}
-                                        {% elseif ending|length > 1%}
-                                            {% for end in ending %}
-                                            {% set content = content ~ verbLocalization.base ~ end %}
-                                                {% if loop.index < ending|length %}
-                                                    {% set content = content ~ ' pe ' %}
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% endif %}
-                                    {% set content = content ~ '\n' %}
-                                {% endfor %}
-                                {{~ content ~}}
-                            </div>
                         </div>
                     {% endfor %}
                     {% if category == 'gourchemenn'%}
@@ -248,8 +245,10 @@
                             <ul>
                                 {% for person, conjugation in nach %}
                                     <li class="verb-item">
-                                        <abbr title="{{ ('app.gour.' ~ person)|trans}}">{{('app.gour.' ~ person ~ '.symbol')|trans}}</abbr>.
-                                        <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
+                                        <span class="abbr" data-tooltip="{{ ('app.gour.' ~ person)|trans}}">{{('app.gour.' ~ person ~ '.symbol')|trans}}</span>.
+                                        {% if conjugation != '' %}
+                                            <span class="js-verb">{{ conjugation|raw }}</span> <i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i>
+                                        {% endif %}
                                     </li>
                                 {% endfor %}
                             </ul>

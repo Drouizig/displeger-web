@@ -24,6 +24,14 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-2">
+            {{form_label(form.category)}}
+        </div>
+        <div class="col-md-4">
+            {{form_widget(form.category)}}
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md translations"
              data-prototype="{{ include(
                  "admin/partial/source_translation.html.twig",

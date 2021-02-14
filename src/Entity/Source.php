@@ -63,6 +63,7 @@ class Source
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+        $this->active = false;
     }
 
     /**

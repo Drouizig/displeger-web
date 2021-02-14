@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\SourceTranslation;
 use App\Entity\Tag;
+use App\Entity\TagCategoryTranslation;
+use App\Entity\TagTranslation;
 use App\Form\TagType;
 use App\Util\StatisticsManager;
 use Doctrine\ORM\Query;
@@ -16,10 +19,12 @@ use App\Form\VerbType;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Configuration;
 use App\Entity\Source;
+use App\Entity\TagCategory;
 use App\Entity\VerbLocalization;
 use App\Entity\VerbTranslation;
 use App\Form\ConfigurationType;
 use App\Form\SourceType;
+use App\Form\TagCategoryType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -63,6 +68,12 @@ class AdminController extends AbstractController
         return $this->adminList($request, Tag::class, 'admin/tags.html.twig');
     }
 
+    /**
+     * @Route("/admin/tagCategories", name="admin_tagCategories")
+     */
+    public function tagCategories(Request $request){
+        return $this->adminList($request, TagCategory::class, 'admin/tagCategories.html.twig');
+    }
     /**
      * @Route("/admin/configurations", name="admin_configurations")
      */
@@ -114,6 +125,10 @@ class AdminController extends AbstractController
      */
     public function source(Request $request,Source $source = null)
     {
+        if($source == null){
+            $source = new Source();
+            $source->addTranslation(new SourceTranslation());
+        }
         return $this->adminEdit(
             $request, 
             SourceType::class, 
@@ -129,6 +144,10 @@ class AdminController extends AbstractController
      */
     public function tag(Request $request,Tag $tag = null)
     {
+        if($tag == null){
+            $tag = new Tag();
+            $tag->addTranslation(new TagTranslation());
+        }
         return $this->adminEdit(
             $request,
             TagType::class,
@@ -137,6 +156,25 @@ class AdminController extends AbstractController
             'admin_tags',
             'admin/tag.html.twig',
             $tag);
+    }
+
+    /**
+     * @Route("/admin/tagCategory/{id?}", name="admin_tagCategory")
+     */
+    public function tagCategory(Request $request,TagCategory $tagCategory = null)
+    {
+        if($tagCategory == null){
+            $tagCategory = new TagCategory();
+            $tagCategory->addTranslation(new TagCategoryTranslation());
+        }
+        return $this->adminEdit(
+            $request,
+            TagCategoryType::class,
+            TagCategory::class,
+            'admin_tagCategory',
+            'admin_tagCategories',
+            'admin/tagCategory.html.twig',
+            $tagCategory);
     }
 
     /**
@@ -182,9 +220,12 @@ class AdminController extends AbstractController
                     /** @var Query $query */
                     $query = $repository->getBackSearchQuery($search, $offset, 1);
                     $result = $query->getOneOrNullResult();
+                    if(is_array($result)) {
+                        $result = $result['verb'];
+                    }
                     return $this->redirectToRoute($redirect_to_single,
                         [
-                            'id' => $result['verb']->getId(),
+                            'id' => $result->getId(),
                             'params' => $params,
                             'offset' => $offset +1
                         ]

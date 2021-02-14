@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Tag;
+use App\Entity\TagCategory;
 use App\Util\ListsUtil;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,6 +27,11 @@ class TagType extends AbstractType
         $builder
             ->add('code', null, [
                 'label' => 'app.form.source.code'
+            ])
+            ->add('category', EntityType::class, [
+                'label' => 'Rummad',
+                'class' => TagCategory::class,
+                'required' => false
             ])
             ->add('translations', CollectionType::class, [
                 'label' => 'app.form.source.translations',

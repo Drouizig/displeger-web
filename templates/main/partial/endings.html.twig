@@ -1,9 +1,28 @@
 
+<div class="js-tense-content">
+    {% set content = ('app.amzer.' ~ time)|trans ~ '\n\n'%}
+
+    {% for person, ending in endings %}
+    {% set content = content ~ ('app.gour.' ~ person ~ '.symbol')|trans ~ '. ' %}
+            {% if ending|length == 1 %}
+                {% set content = content ~ verbLocalization.base ~ ending.0 %}
+            {% elseif ending|length > 1%}
+                {% for end in ending %}
+                {% set content = content ~ verbLocalization.base ~ end %}
+                    {% if loop.index < ending|length %}
+                        {% set content = content ~ ' pe ' %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% set content = content ~ '\n' %}
+    {% endfor %}
+    {{~ content ~}}
+</div>
 {% for person, ending in endings %}
     <li class="verb-item">
         <div class="row">
             <div class="col-2">
-                <abbr title="{{ ('app.gour.' ~ person)|trans}}">{{('app.gour.' ~ person ~ '.symbol')|trans}}</abbr>.
+                <span class="abbr" data-tooltip="{{ ('app.gour.' ~ person)|trans}}">{{('app.gour.' ~ person ~ '.symbol')|trans}}</span>.
             </div>
             <div class="col">
                 {% if ending|length == 1 %}

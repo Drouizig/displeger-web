@@ -329,6 +329,14 @@ The verb "%verb%" is missing on the website.
         <source>app.dialect.gwened</source>
         <target>Gwenedeg</target>
       </trans-unit>
+      <trans-unit id="jAdAV0R" resname="app.dialect.gwened_berr">
+        <source>app.dialect.gwened_berr</source>
+        <target>Gwenedeg (short)</target>
+      </trans-unit>
+      <trans-unit id="h3roVBz" resname="app.dialect.gwened_hir">
+        <source>app.dialect.gwened_hir</source>
+        <target>Gwenedeg (long)</target>
+      </trans-unit>
       <trans-unit id="WQ77eab" resname="app.dialect.goelo">
         <source>app.dialect.goelo</source>
         <target>Goelo</target>
@@ -336,6 +344,26 @@ The verb "%verb%" is missing on the website.
       <trans-unit id="MDzUI0u" resname="app.dialect.reolad">
         <source>app.dialect.reolad</source>
         <target>Standard</target>
+      </trans-unit>
+      <trans-unit id="qRJzFDh" resname="app.dialect.kerne.url">
+        <source>app.dialect.kerne.url</source>
+        <target>https://en.wikipedia.org/wiki/Cornouaille</target>
+      </trans-unit>
+      <trans-unit id="sfZfJi8" resname="app.dialect.leon.url">
+        <source>app.dialect.leon.url</source>
+        <target>https://en.wikipedia.org/wiki/Viscounty_of_L%C3%A9on</target>
+      </trans-unit>
+      <trans-unit id="ziTWbCQ" resname="app.dialect.treger.url">
+        <source>app.dialect.treger.url</source>
+        <target>https://en.wikipedia.org/wiki/Tr%C3%A9gorrois_Breton_dialect</target>
+      </trans-unit>
+      <trans-unit id="oeCclbP" resname="app.dialect.gwened.url">
+        <source>app.dialect.gwened.url</source>
+        <target>https://en.wikipedia.org/wiki/Bro_Gwened#Dialect</target>
+      </trans-unit>
+      <trans-unit id="gjSS1u3" resname="app.dialect.goelo.url">
+        <source>app.dialect.goelo.url</source>
+        <target>https://en.wikipedia.org/wiki/Breton_language#Geographic_distribution_and_dialects</target>
       </trans-unit>
       <trans-unit id="GEYPo7S" resname="app.gour.s1.symbol">
         <source>app.gour.s1.symbol</source>

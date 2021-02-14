@@ -448,6 +448,14 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.dialect.gwened</source>
         <target>Gwenedeg</target>
       </trans-unit>
+      <trans-unit id="jAdAV0R" resname="app.dialect.gwened_berr">
+        <source>app.dialect.gwened_berr</source>
+        <target>Gwenedeg (berr)</target>
+      </trans-unit>
+      <trans-unit id="h3roVBz" resname="app.dialect.gwened_hir">
+        <source>app.dialect.gwened_hir</source>
+        <target>Gwenedeg (hir)</target>
+      </trans-unit>
       <trans-unit id="WQ77eab" resname="app.dialect.goelo">
         <source>app.dialect.goelo</source>
         <target>Goueloù</target>
@@ -455,6 +463,26 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       <trans-unit id="MDzUI0u" resname="app.dialect.reolad">
         <source>app.dialect.reolad</source>
         <target>Reolad</target>
+      </trans-unit>
+      <trans-unit id="qRJzFDh" resname="app.dialect.kerne.url">
+        <source>app.dialect.kerne.url</source>
+        <target>https://br.wikipedia.org/wiki/Brezhoneg_Kerne</target>
+      </trans-unit>
+      <trans-unit id="sfZfJi8" resname="app.dialect.leon.url">
+        <source>app.dialect.leon.url</source>
+        <target>https://br.wikipedia.org/wiki/Brezhoneg_Leon</target>
+      </trans-unit>
+      <trans-unit id="ziTWbCQ" resname="app.dialect.treger.url">
+        <source>app.dialect.treger.url</source>
+        <target>https://br.wikipedia.org/wiki/Brezhoneg_Treger</target>
+      </trans-unit>
+      <trans-unit id="oeCclbP" resname="app.dialect.gwened.url">
+        <source>app.dialect.gwened.url</source>
+        <target>https://br.wikipedia.org/wiki/Brezhoneg_Gwened</target>
+      </trans-unit>
+      <trans-unit id="gjSS1u3" resname="app.dialect.goelo.url">
+        <source>app.dialect.goelo.url</source>
+        <target>https://br.wikipedia.org/wiki/Gouelo%C3%B9</target>
       </trans-unit>
       <trans-unit id="O8JcWGW" resname="app.geriafurch.alt">
         <source>app.geriafurch.alt</source>
