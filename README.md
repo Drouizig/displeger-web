@@ -38,3 +38,9 @@ Set up you databse info in the .env file and execute :
  `bin/console doc:sc:cr`
  
 You can then import the database dump that is located at `docker/database/displeger_dump.sql.gz`
+
+Translation
+===========
+
+Translation is managed by Weblate https://hosted.weblate.org/projects/displeger-verbou/
+Please contact the developers to add a language.
