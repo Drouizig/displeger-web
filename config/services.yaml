@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'br'
+    email.from: '%env(EMAIL_FROM)%'
+    email.to: '%env(EMAIL_TO)%'
 
 services:
     # default configuration for services in *this* file

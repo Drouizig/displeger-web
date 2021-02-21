@@ -318,8 +318,8 @@ class MainController extends AbstractController
             $email = $contactForm->get('email')->getData();
             $text = $contactForm->get('message')->getData();
             $message = (new \Swift_Message('[Displeger verboù] Kemennadenn digant '.$name))
-            ->setFrom('drouizig@drouizig.org')
-            ->setTo('drouizig@drouizig.org')
+            ->setFrom($this->getParameter('email.from'))
+            ->setTo($this->getParameter('email.to'))
             ->setBody(
                 $this->renderView(
                     'emails/contact.html.twig',
