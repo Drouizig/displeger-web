@@ -45,7 +45,7 @@ parameters:
       i: ["bezor"]
     lechian_breman:
       s1: ["emaon"]
-      s2: ["emoaut"]
+      s2: ["emaout"]
       s3: ["emañ"]
       p1: ["emaomp"]
       p2: ["emaoc'h"]
