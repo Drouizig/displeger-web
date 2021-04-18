@@ -148,7 +148,7 @@
     {% if verb.hasDescriptionInLanguage(app.request.locale) %}
 <i>
         <p>
-            {{verb.getDescription(app.request.locale).content | raw}}
+            <strong>{{'app.description'|trans}}</strong> {{verb.getDescription(app.request.locale).content | raw}}
         </p></i>
     {% endif %}
 

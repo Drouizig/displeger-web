@@ -525,6 +525,10 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.search.tag</source>
         <target>Recherche par le tag</target>
       </trans-unit>
+      <trans-unit id="fsrtHZB" resname="app.description">
+        <source>app.description</source>
+        <target>Commentaire :</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
