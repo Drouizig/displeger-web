@@ -298,7 +298,7 @@ class Verb
     {
         return $this->tags;
     }
-
+    
     public function addTag(VerbTag $tag): self
     {
         if (!$this->tags->contains($tag)) {

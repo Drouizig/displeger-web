@@ -39,36 +39,38 @@
     {% endif %}
         </h2>
 
-    {% if verb.tags | length > 0 %}
-        <div class="row">
-            {% for tag in verb.tags %}
-                {% set tagDisplay = tag.tag.code %}
-                {% set tagDescription = '' %}
-                {% set tagCategoryName = '' %}
-                {% if tag.tag.translation(app.request.locale) is not null %}
-                    {% set tagDisplay = tag.tag.translation(app.request.locale).label %}
-                    {% set tagDescription = tag.tag.translation(app.request.locale).description %}
-                {% endif %}
-                {% if tag.tag.category and tag.tag.category.translation(app.request.locale) is not null %}
-                    {% set tagCategoryName = tag.tag.category.translation(app.request.locale).label %}
-                {% endif %}
-                    <a href={{ path('verbs_by_tag', {'tag' : tag.tag.code}) }} class="badge badge-pill badge-primary"
-                    {% if tag.tag.category != null %}style="background-color:{{tag.tag.category.color}}"{% endif %}>
-                        {% if tagDescription is not empty %}
-                            <span class="abbr" data-tooltip="{{ tagCategoryName }} : {{ tagDescription }}
-                            <br/>{{'app.sources.title'|trans}}
-                            <ul>
-                            {% for source in tag.sources %}
-                            <li>{{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}</li>
-                            {% endfor %}</ul>
-                            ">{{ tagDisplay }}</span>
-                        {% else %}
-                            {{ tagDisplay }}
-                        {% endif %}
-                    </a>
-            {% endfor %}
-        </div>
-    {% endif %}
+    <div class="row">
+        <a href="{{ path('verbs_by_category', {'category' : verbLocalization.category}) }}" class="badge badge-pill badge-primary"
+                style="background-color:#00aa00">
+            {{('app.category.' ~ verbLocalization.category)|trans}}
+        </a>
+        {% for tag in verb.tags %}
+            {% set tagDisplay = tag.tag.code %}
+            {% set tagDescription = '' %}
+            {% set tagCategoryName = '' %}
+            {% if tag.tag.translation(app.request.locale) is not null %}
+                {% set tagDisplay = tag.tag.translation(app.request.locale).label %}
+                {% set tagDescription = tag.tag.translation(app.request.locale).description %}
+            {% endif %}
+            {% if tag.tag.category and tag.tag.category.translation(app.request.locale) is not null %}
+                {% set tagCategoryName = tag.tag.category.translation(app.request.locale).label %}
+            {% endif %}
+                <a href="{{ path('verbs_by_tag', {'tag' : tag.tag.code}) }}" class="badge badge-pill badge-primary"
+                {% if tag.tag.category != null %}style="background-color:{{tag.tag.category.color}}"{% endif %}>
+                    {% if tagDescription is not empty %}
+                        <span class="abbr" data-tooltip="{{ tagCategoryName }} : {{ tagDescription }}
+                        <br/>{{'app.sources.title'|trans}}
+                        <ul>
+                        {% for source in tag.sources %}
+                        <li>{{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}</li>
+                        {% endfor %}</ul>
+                        ">{{ tagDisplay }}</span>
+                    {% else %}
+                        {{ tagDisplay }}
+                    {% endif %}
+                </a>
+        {% endfor %}
+    </div>
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('admin_verb', {'id' : verbLocalization.verb.id}) }}">Kemmañ</a>
     {% endif %}

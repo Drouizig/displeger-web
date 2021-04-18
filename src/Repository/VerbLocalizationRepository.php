@@ -31,11 +31,17 @@ class VerbLocalizationRepository extends ServiceEntityRepository
 
     public function getFrontSearchQuery($term)
     {
+        return $this->getFrontSearchQueryBuilder($term)
+            ->getQuery()
+        ;
+    }
+    
+    public function getFrontSearchQueryBuilder($term)
+    {
         $escapedTerm = str_replace('n', '_', $term);
         return $this->createQueryBuilder('vt')
             ->andWhere('UPPER(vt.infinitive) LIKE UPPER(:term)')
             ->setParameter('term', '%'.$escapedTerm.'%')
-            ->getQuery()
         ;
     }
 
@@ -47,6 +53,7 @@ class VerbLocalizationRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
 
 
     public function findRandomVerb(){

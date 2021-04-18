@@ -135,15 +135,15 @@ class MainController extends AbstractController
             $term = $request->query->get('term_advanced');
             if($request->query->get('language') == 'br') {
                 $verbRepository = $this->getDoctrine()->getRepository(VerbLocalization::class);
-                $searchQuery = $verbRepository->getFrontSearchQuery($term);
+                $searchQuery = $verbRepository->getFrontSearchQueryBuilder($term);
             } else {
                 $type = 'translation';
                 $verbRepository = $this->getDoctrine()->getRepository(VerbTranslation::class);
-                $searchQuery = $verbRepository->getFrontSearchQuery($term, $request->query->get('language'));
+                $searchQuery = $verbRepository->getFrontSearchQueryBuilder($term, $request->query->get('language'));
             }
             
             $pagination = $knpPaginator->paginate(
-                $searchQuery,
+                $searchQuery->getQuery(),
                 $request->query->getInt('page', 1)/*page number*/,
                 $request->query->getInt('number', 25)/*limit per page*/
             );
@@ -160,7 +160,6 @@ class MainController extends AbstractController
             ]);
         }
     }
-
 
     /**
      * @Route("/{_locale}/verb/{infinitive}", name="verb", defaults={"print" : false})
@@ -461,6 +460,26 @@ class MainController extends AbstractController
         return $this->render('main/verbs_by_tag.html.twig', [
             'pagination' => $pagination,
             'search_tag' => $tag
+            ]);
+    }
+
+    /**
+     * @Route("/{_locale}/verbs_by_category", name="verbs_by_category")
+     */
+    public function verbsByCategory(Request $request, PaginatorInterface $knpPaginator, TranslatorInterface $translator)
+    {
+        $category = $request->get('category', null);
+        $verbLocalizationRepo = $this->getDoctrine()->getRepository(VerbLocalization::class);
+
+        $pagination = $knpPaginator->paginate(
+            $verbLocalizationRepo->findBy(['category' => $category]),
+            $request->query->getInt('page', 1), //page number,
+            $request->query->getInt('number', 25) //limit per page
+        );
+
+        return $this->render('main/verbs_by_tag.html.twig', [
+            'pagination' => $pagination,
+            'search_tag' => $translator->trans('app.category.'.$category)
             ]);
     }
 }
