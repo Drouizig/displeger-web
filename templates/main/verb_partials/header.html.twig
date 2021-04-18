@@ -1,0 +1,180 @@
+
+    {% if previousVerb is not null or nextVerb is not null %}
+        <div class="row justify-content-between">
+            <div class="previous-verb float-left">
+                {% if previousVerb is not null %}
+                    <a href={{ path('verb', {'infinitive': previousVerb.infinitive}) }}><i class="fas fa-angle-double-left"></i> {{ previousVerb.infinitive }}</a>
+                {% endif %}
+            </div>
+
+            <div class="next-verb float-right">
+                {% if nextVerb is not null %}
+                <a href={{ path('verb', {'infinitive': nextVerb.infinitive}) }}>{{ nextVerb.infinitive }} <i class="fas fa-angle-double-right"></i></a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% block printButton %}
+        <div class="row justify-content-end">
+            <a class = "hidden-print report-button" alt="{{ 'app.button.report'|trans }}" href="#"><i class="fas fa-flag" title="{{'app.button.report' | trans}}"></i></a>
+            <a class = "hidden-print export-button" alt="{{ 'app.button.export'|trans }}" href="?print=true"><i class="fas fa-file-pdf" title="{{'app.button.export' | trans}}"></i></a>
+            <a class = "hidden-print print-button" alt="{{ 'app.button.print'|trans }}" href="#" onclick="print()"><i class="fas fa-print" title="{{'app.button.print' | trans}}"></i></a>
+        </div>
+    {% endblock %}
+
+        <h2>
+        
+    {% if verbLocalization.sources|length > 0 %}
+        <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
+{% for source in verbLocalization.sources %}
+    <li>{{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}</li>
+        {% endfor %}</ul>
+        ">
+    {% endif %}
+        {{verbLocalization.infinitive}}
+        
+    {% if verbLocalization.sources|length > 0 %}
+        </span>
+    {% endif %}
+        </h2>
+
+    {% if verb.tags | length > 0 %}
+        <div class="row">
+            {% for tag in verb.tags %}
+                {% set tagDisplay = tag.tag.code %}
+                {% set tagDescription = '' %}
+                {% set tagCategoryName = '' %}
+                {% if tag.tag.translation(app.request.locale) is not null %}
+                    {% set tagDisplay = tag.tag.translation(app.request.locale).label %}
+                    {% set tagDescription = tag.tag.translation(app.request.locale).description %}
+                {% endif %}
+                {% if tag.tag.category and tag.tag.category.translation(app.request.locale) is not null %}
+                    {% set tagCategoryName = tag.tag.category.translation(app.request.locale).label %}
+                {% endif %}
+                    <a href={{ path('verbs_by_tag', {'tag' : tag.tag.code}) }} class="badge badge-pill badge-primary"
+                    {% if tag.tag.category != null %}style="background-color:{{tag.tag.category.color}}"{% endif %}>
+                        {% if tagDescription is not empty %}
+                            <span class="abbr" data-tooltip="{{ tagCategoryName }} : {{ tagDescription }}
+                            <br/>{{'app.sources.title'|trans}}
+                            <ul>
+                            {% for source in tag.sources %}
+                            <li>{{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}</li>
+                            {% endfor %}</ul>
+                            ">{{ tagDisplay }}</span>
+                        {% else %}
+                            {{ tagDisplay }}
+                        {% endif %}
+                    </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('admin_verb', {'id' : verbLocalization.verb.id}) }}">Kemmañ</a>
+    {% endif %}
+    {% if verb.localizations|length > 1 %}
+        <p class="subtitle">{{'app.verb.other_forms'|trans}} :
+        {% for other_localization in verb.localizations if other_localization != verbLocalization %}
+            <a href={{path('verb', {'infinitive': other_localization.infinitive})}}>{{other_localization.infinitive}}</a>
+            {% if other_localization.dialectCode != null %}
+                ({%- for dialect in other_localization.dialectCode -%}
+                        {%if loop.index != 1%}, {%endif%}{{('app.dialect.'~dialect)|trans}}
+                        <a href="{{('app.dialect.'~dialect~'.url')|trans}}"><img src="{{ asset('build/wiki.webp') }}"/></a>
+                    {%- endfor -%})
+            {% endif %}
+            {% if loop.index +1 != verb.localizations|length %},{% endif %}
+        {% endfor %}
+        </p>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md">
+            {% set language = app.request.locale %}
+            {% if (language == 'br' or language == 'br_FR') and not verb.hasTranslationInLanguage(language) %}
+                {% set language = 'fr' %}
+            {% endif %}
+            {% if verb.hasTranslationInLanguage(language) %}
+                {% set translation = verb.translation(language) %}
+                <p>{% if language == 'br' %}Termenadur{% else %}{{listsUtil.locales[translation.languageCode]|capitalize}}{% endif %} : 
+                
+                <i>{{translation.translation}}</i>
+                {% if translation.sources|length > 0 %}
+                   <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
+                    {% for source in translation.sources %}
+                        <li>{{source.getTranslation(app.request.locale) ? source.getTranslation(app.request.locale).label : source.code}}</li>
+                    {% endfor %}
+                    ">
+                    <i class="fa fa-book"></i>
+                    </span>
+                {% endif %}
+                </p>
+            {% elseif print == false %}
+                    {% include 'main/partial/contact_form.html.twig' with {
+                        'form_class' : 'missing_translation',
+                        'form_object' : contactForm,
+                        'notice_msg' : 'app.missing_translation.notice' |trans,
+                        'default_msg' : ('app.form.contact.default.translation_missing')|trans({'%verb%': verbLocalization.infinitive}),
+                        'form_attr_class' : 'js-contact-form',
+                        'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
+                        'name_placeholder' : 'app.form.contact.name.placeholder' | trans
+                    } %}
+            {% endif %}
+
+            {% if (verb.hasTranslationInLanguage(language) and verb.translations|length > 1)
+            or (not verb.hasTranslationInLanguage(language) and verb.translations|length > 0 )%}
+                <p><a class="js-view_more" href="javascript:;">⯆ {{'app.verb.view_more'|trans}} ({{(verb.translations|length)-1}}) </a></p>
+                <div class="js-translations" style="display:none;">
+                    <ul>
+                        {% for translation in verb.translations if translation.languageCode != language %}
+                            <li>{{listsUtil.locales[translation.languageCode]|capitalize}} : 
+                            {{translation.translation}} 
+                            {% if translation.sources|length > 0 %}
+                                <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
+                                {% for source in translation.sources %}
+                                    <li>{{source.getNearestTranslation(app.request.locale).label}}</li>
+                                {% endfor %}
+                               ">
+                                <i class="fa fa-book"></i>
+                                </span>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if verb.hasDescriptionInLanguage(app.request.locale) %}
+<i>
+        <p>
+            {{verb.getDescription(app.request.locale).content | raw}}
+        </p></i>
+    {% endif %}
+
+    
+    {% if print == false %}
+        <div class="row">
+            <div class="col-md">
+                <p><a href="{{wikeriadur_url}}" target="_blank">
+                <img class="icon" src="{{ asset('build/wikeriadur.ico') }}" alt="{{'app.wiktionnary.alt'|trans}}" />
+                {{'app.wiktionnary'|trans}}</a> (<a href="{{wikeriadur_conjugation_url}}" target="_blank">{{'app.wiktionnary.conjugation'|trans}}</a>)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <p><a href="{{geriafurch_url}}" target="_blank">
+                <img class="icon" src="{{ asset('build/geriafurch.png') }}" alt="{{'app.geriafurch.alt'|trans}}" />
+                {{'app.geriafurch'|trans}}</a></p>
+            </div>
+        </div>
+        {% include 'main/partial/contact_form.html.twig' with {
+                    'form_class' : 'report_error',
+                    'form_object' : reportErrorForm,
+                    'notice_msg' : 'app.report_error.notice' |trans,
+                    'default_msg' : ('app.form.contact.report_error.translation')|trans({'%verb%': verbLocalization.infinitive}),
+                    'form_attr_class' : 'js-contact-form',
+                    'email_placeholder' : 'app.form.contact.email.placeholder' | trans,
+                    'name_placeholder' : 'app.form.contact.name.placeholder' | trans
+                } %}
+    {% endif %}

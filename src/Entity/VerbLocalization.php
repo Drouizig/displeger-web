@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -65,10 +66,16 @@ class VerbLocalization
      */
     private $gouMutation;
 
+    /**
+     * @ORM\OneToMany(targetEntity=DescriptionTranslation::class, mappedBy="verbLocalization")
+     */
+    private $descriptionTranslations;
+
 
     public function __construct()
     {
         $this->sources = new ArrayCollection();
+        $this->descriptionTranslations = new ArrayCollection();
     }    
 
     /**
@@ -265,5 +272,36 @@ class VerbLocalization
 
     public function __toString() {
         return $this->infinitive;
+    }
+
+    /**
+     * @return Collection|DescriptionTranslation[]
+     */
+    public function getDescriptionTranslations(): Collection
+    {
+        return $this->descriptionTranslations;
+    }
+
+    public function addDescriptionTranslation(DescriptionTranslation $descriptionTranslation): self
+    {
+        if (!$this->descriptionTranslations->contains($descriptionTranslation)) {
+            $this->descriptionTranslations[] = $descriptionTranslation;
+            $descriptionTranslation->setVerbLocalization($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDescriptionTranslation(DescriptionTranslation $descriptionTranslation): self
+    {
+        if ($this->descriptionTranslations->contains($descriptionTranslation)) {
+            $this->descriptionTranslations->removeElement($descriptionTranslation);
+            // set the owning side to null (unless already changed)
+            if ($descriptionTranslation->getVerbLocalization() === $this) {
+                $descriptionTranslation->setVerbLocalization(null);
+            }
+        }
+
+        return $this;
     }
 }

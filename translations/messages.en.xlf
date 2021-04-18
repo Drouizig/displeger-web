@@ -271,7 +271,7 @@ The verb "%verb%" is missing on the website.
       </trans-unit>
       <trans-unit id="VQVcOIW" resname="app.wiktionnary.conjugation">
         <source>app.wiktionnary.conjugation</source>
-        <target>Conjugationn</target>
+        <target>Conjugation</target>
       </trans-unit>
       <trans-unit id="plc0R6e" resname="app.report_error.notice">
         <source>app.report_error.notice</source>

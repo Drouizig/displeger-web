@@ -1,0 +1,30 @@
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            {{form_label(description.content)}}
+        </div>
+        <div class="col-md-3">
+            {{form_label(description.languageCode)}}
+        </div>
+        <div class="col-md-4">
+            {{form_label(description.sources)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            {{form_widget(description.content)}}
+        </div>
+        <div class="col-md-3">
+            {{form_widget(description.languageCode)}}
+        </div>
+        <div class="col-md-4">
+            {{form_widget(description.sources)}}
+        </div>
+        <div class="col-md-1">
+            <button type="button"
+                    class="btn btn-primary delete-element">
+                    <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+</div>

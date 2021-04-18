@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use App\Form\DescriptionTranslationType;
 
 class VerbType extends AbstractType
 {
@@ -29,6 +30,14 @@ class VerbType extends AbstractType
                 'prototype' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
+            ])
+            ->add('descriptionTranslations', CollectionType::class, [
+                'label' => 'app.form.verb.descriptions',
+                'entry_type' => DescriptionTranslationType::class,
+                'allow_add' => true,
+                'prototype' => true,
+                'allow_delete' => true,
+                'by_reference' => false
             ])
             ->add('translations', CollectionType::class, [
                 'label' => 'app.form.verb.translations',

@@ -18,6 +18,7 @@ class Verb
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
      * @ORM\OneToMany(
      *      targetEntity="App\Entity\VerbTranslation",
@@ -57,12 +58,23 @@ class Verb
     private $tags;
 
 
+    /**
+     * @ORM\OneToMany(targetEntity=DescriptionTranslation::class, 
+     *      mappedBy="verb",
+     *      cascade={"all"},
+     *      orphanRemoval=true
+     * )
+     */
+    private $descriptionTranslations;
+
+
     public function __construct()
     {
         $this->translations = new ArrayCollection();
         $this->localizations = new ArrayCollection();
         $this->auxilliaries = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->descriptionTranslations = new ArrayCollection();
     }
 
 
@@ -200,11 +212,69 @@ class Verb
         return $this;
     }
 
-    public function hasTranslationInLanguage(string $languageCode) {
+    /**
+     * @return Collection|DescriptionTranslation[]
+     */
+    public function getDescriptionTranslations(): Collection
+    {
+        return $this->descriptionTranslations;
+    }
+
+    public function addDescriptionTranslation(DescriptionTranslation $descriptionTranslation): self
+    {
+        if (!$this->descriptionTranslations->contains($descriptionTranslation)) {
+            $this->descriptionTranslations[] = $descriptionTranslation;
+            $descriptionTranslation->setVerb($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDescriptionTranslation(DescriptionTranslation $descriptionTranslation): self
+    {
+        if ($this->descriptionTranslations->contains($descriptionTranslation)) {
+            $this->descriptionTranslations->removeElement($descriptionTranslation);
+            // set the owning side to null (unless already changed)
+            if ($descriptionTranslation->getVerb() === $this) {
+                $descriptionTranslation->setVerb(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    public function getDescription(string $languageCode) 
+    {
+
+        /** @var descriptionTranslations $description */
+        foreach($this->descriptionTranslations as $description) {
+            if($description->getLanguageCode() === $languageCode) {
+                return $description;
+            }
+        }
+        $languageCode = explode('_', $languageCode)[0];
+        foreach($this->descriptionTranslations as $description) {
+            if(explode('_', $description->getLanguageCode())[0] === $languageCode) {
+                return $description;
+            }
+        }
+
+        return null;
+    }
+
+    public function hasDescriptionInLanguage(string $languageCode) 
+    {
+        return $this->getDescription($languageCode) !== null;
+    }
+
+    public function hasTranslationInLanguage(string $languageCode) 
+    {
         return $this->getTranslation($languageCode) !== null;
     }
 
-    public function getTranslation(string $languageCode) {
+    public function getTranslation(string $languageCode) 
+    {
         /** @var VerbTranslation $translation */
         foreach($this->translations as $translation) {
             if($translation->getLanguageCode() === $languageCode) {

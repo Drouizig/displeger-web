@@ -142,6 +142,17 @@ class Source
         return null;
     }
 
+    
+    public function getNearestTranslation(string $languageCode) {
+        /** @var SourceTranslation $translation */
+        foreach($this->translations as $translation) {
+            if($translation->getLanguageCode() === $languageCode) {
+                return $translation;
+            }
+        }
+        return $this->translations->first();
+    }
+
     /**
      * Get the value of id
      */ 
