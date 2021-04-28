@@ -161,6 +161,10 @@
         <source>app.form.contact.submit</source>
         <target>Kas</target>
       </trans-unit>
+      <trans-unit id="oUqwEYh" resname="app.form.contact.captcha">
+        <source>app.form.contact.captcha</source>
+        <target>Skrivit an arouezennoù er skeudenn</target>
+      </trans-unit>
       <trans-unit id="LBAy94c" resname="app.form.verb.anvVerb">
         <source>app.form.verb.anvVerb</source>
         <target>Anv-verb</target>
@@ -659,6 +663,10 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       <trans-unit id="fsrtHZB" resname="app.description">
         <source>app.description</source>
         <target>Evezhiadenn:</target>
+      </trans-unit>
+      <trans-unit id="gk1RJt." resname="app.category.">
+        <source>app.category.</source>
+        <target>__app.category.</target>
       </trans-unit>
     </body>
   </file>

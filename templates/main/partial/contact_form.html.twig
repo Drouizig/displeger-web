@@ -45,6 +45,16 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-2">
+                            {{form_label(form_object.captcha)}}
+                        </div><div class="col-md">
+                            {{form_widget(
+                                form_object.captcha
+                            )
+                            }}
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md">
                             {{form_widget(form_object.submit)}}
                         </div>

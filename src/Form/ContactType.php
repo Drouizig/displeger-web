@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,6 +22,9 @@ class ContactType extends AbstractType
             ])
             ->add('message', TextareaType::class, [
                 'label' => 'app.form.contact.message'
+            ])
+            ->add('captcha', CaptchaType::class, [
+                'label' => 'app.form.contact.captcha'
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'app.form.contact.submit'

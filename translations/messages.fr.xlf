@@ -149,6 +149,10 @@
         <source>app.form.contact.message</source>
         <target>Message</target>
       </trans-unit>
+      <trans-unit id="oUqwEYh" resname="app.form.contact.captcha">
+        <source>app.form.contact.captcha</source>
+        <target>Écrivez les caractères sur l'image</target>
+      </trans-unit>
       <trans-unit id="BHHgCIS" resname="app.form.contact.submit">
         <source>app.form.contact.submit</source>
         <target>Envoyer</target>
@@ -528,6 +532,10 @@ Il manque le verbe "%verb%" sur le site.
       <trans-unit id="fsrtHZB" resname="app.description">
         <source>app.description</source>
         <target>Commentaire :</target>
+      </trans-unit>
+      <trans-unit id="gk1RJt." resname="app.category.">
+        <source>app.category.</source>
+        <target>__app.category.</target>
       </trans-unit>
     </body>
   </file>
