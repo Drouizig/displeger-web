@@ -59,7 +59,7 @@
       </trans-unit>
       <trans-unit id="vPN4upg" resname="app.time_category.divizout">
         <source>app.time_category.divizout</source>
-        <target>Conditionel</target>
+        <target>Conditionnel</target>
       </trans-unit>
       <trans-unit id="baY3TFT" resname="app.time_category.gourchemenn">
         <source>app.time_category.gourchemenn</source>
