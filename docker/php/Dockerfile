@@ -34,6 +34,7 @@ RUN echo "realpath_cache_size=4096K" >> /usr/local/etc/php/conf.d/symfony.ini
 RUN echo "realpath_cache_ttl=600" >> /usr/local/etc/php/conf.d/symfony.ini
 RUN echo "memory_limit = 3G" >> /usr/local/etc/php/conf.d/symfony.ini
 RUN apk del .build-deps
+RUN apk add --no-cache nodejs yarn
 RUN apk add gosu --update --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
 RUN addgroup bar
 RUN adduser -D -h /home -s /bin/sh -G bar foo
