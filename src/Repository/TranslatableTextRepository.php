@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\TranslatableText;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 /**
  * @method TranslatableText|null find($id, $lockMode = null, $lockVersion = null)
  * @method TranslatableText|null findOneBy(array $criteria, array $orderBy = null)

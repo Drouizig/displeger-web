@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\VerbLocalization;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 /**
  * @method Verb|null find($id, $lockMode = null, $lockVersion = null)
  * @method Verb|null findOneBy(array $criteria, array $orderBy = null)
