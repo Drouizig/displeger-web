@@ -66,4 +66,27 @@ class VerbRepository extends ServiceEntityRepository implements AdminRepositoryI
         return $qb->getQuery();
     }
 
+
+    public function getLocalizationSearchBuilder($term)
+    {
+        $escapedTerm = str_replace('n', '_', $term);
+        return $this->createQueryBuilder('v')
+            ->leftJoin('v.localizations', 'vl')
+            ->andWhere('UPPER(vl.infinitive) LIKE UPPER(:term)')
+            ->setParameter('term', '%'.$escapedTerm.'%')
+        ;
+    }
+
+    public function getTranslationSearchBuilder($term, $language)
+    {
+        $escapedTerm = str_replace('n', '_', $term);
+        return $this->createQueryBuilder('v')
+            ->leftJoin('v.translations', 'vt')
+            ->where('UPPER(vt.translation) LIKE UPPER(:term)')
+            ->andWhere('vt.languageCode = :language')
+            ->setParameter('language', $language)
+            ->setParameter('term', '%'.$escapedTerm.'%')
+        ;
+    }
+
 }

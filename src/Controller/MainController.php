@@ -93,7 +93,7 @@ class MainController extends AbstractController
         if ( null === $term ) {
             return $this->redirectToRoute('main');  
         }
-        /** @var VerbLocalizationRepository $verbRepository */
+        /** @var $verbRepository VerbLocalizationRepository */
         $verbLocalizationRepository = $this->getDoctrine()->getRepository(VerbLocalization::class);
         $searchQuery = $verbLocalizationRepository->getFrontSearchQuery($term);
         
@@ -129,17 +129,16 @@ class MainController extends AbstractController
         );
 
         if ($request->query->has('term_advanced')) {
-            /** @var verbRepository VerbRepository */
             $searchQuery = null;
             $type = 'localization';
             $term = $request->query->get('term_advanced');
+            /**  @var verbRepository VerbRepository  */
+            $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
             if($request->query->get('language') == 'br') {
-                $verbRepository = $this->getDoctrine()->getRepository(VerbLocalization::class);
-                $searchQuery = $verbRepository->getFrontSearchQueryBuilder($term);
+                $searchQuery = $verbRepository->getLocalizationSearchBuilder($term);
             } else {
                 $type = 'translation';
-                $verbRepository = $this->getDoctrine()->getRepository(VerbTranslation::class);
-                $searchQuery = $verbRepository->getFrontSearchQueryBuilder($term, $request->query->get('language'));
+                $searchQuery = $verbRepository->getTranslationSearchBuilder($term, $request->query->get('language'));
             }
             
             $pagination = $knpPaginator->paginate(
@@ -152,7 +151,8 @@ class MainController extends AbstractController
                 'pagination' => $pagination,
                 'form' => $form->createView(),
                 'type' => $type,
-                'term' => $term
+                'term' => $term,
+                'language' => $request->query->get('language', null)
             ]);
         } else {
             return $this->render('main/search_advanced.html.twig', [
@@ -363,16 +363,7 @@ class MainController extends AbstractController
             ]);
         }
     }
-
-    /**
-     * @Route("/{_locale}/notice", name="notice", requirements= {
-     *      "_locale": "br|fr|en"
-     * })
-     */
-    public function notice(Request $request) {
-        return $this->render('misc/notice.html.twig');
-    }
-
+    
     /**
      * @Route("/{_locale}/sources", name="sources", requirements= {
      *      "_locale": "br|fr|en"
