@@ -39,8 +39,8 @@ class VerbLocalizationRepository extends ServiceEntityRepository
     public function getFrontSearchQueryBuilder($term)
     {
         $escapedTerm = str_replace('n', '_', $term);
-        return $this->createQueryBuilder('vt')
-            ->andWhere('UPPER(vt.infinitive) LIKE UPPER(:term)')
+        return $this->createQueryBuilder('vl')
+            ->andWhere('UPPER(vl.infinitive) LIKE UPPER(:term)')
             ->setParameter('term', '%'.$escapedTerm.'%')
         ;
     }
