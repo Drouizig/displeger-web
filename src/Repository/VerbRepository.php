@@ -79,13 +79,12 @@ class VerbRepository extends ServiceEntityRepository implements AdminRepositoryI
 
     public function getTranslationSearchBuilder($term, $language)
     {
-        $escapedTerm = str_replace('n', '_', $term);
         return $this->createQueryBuilder('v')
             ->leftJoin('v.translations', 'vt')
             ->where('UPPER(vt.translation) LIKE UPPER(:term)')
             ->andWhere('vt.languageCode = :language')
             ->setParameter('language', $language)
-            ->setParameter('term', '%'.$escapedTerm.'%')
+            ->setParameter('term', '%'.$term.'%')
         ;
     }
 
