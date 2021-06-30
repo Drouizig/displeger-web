@@ -31,7 +31,7 @@
       </trans-unit>
       <trans-unit id="HFAZ1hC" resname="app.amzer.da_zont_hir">
         <source>app.amzer.da_zont_hir</source>
-        <target>Future, forme longue</target>
+        <target>Futur, forme longue</target>
       </trans-unit>
       <trans-unit id="IAzEfvk" resname="app.amzer.da_zont_berr">
         <source>app.amzer.da_zont_berr</source>
@@ -476,6 +476,10 @@ Il manque le verbe "%verb%" sur le site.
       <trans-unit id=".69HyCB" resname="app.source.type.traduction">
         <source>app.source.type.traduction</source>
         <target>Traduction</target>
+      </trans-unit>
+      <trans-unit id="hJWHngx" resname="app.source.type.traduction.br">
+        <source>app.source.type.traduction.br</source>
+        <target>Définition en breton</target>
       </trans-unit>
       <trans-unit id="tF8ytn6" resname="app.source.type.traduction.fr">
         <source>app.source.type.traduction.fr</source>

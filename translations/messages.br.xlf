@@ -103,19 +103,19 @@
       </trans-unit>
       <trans-unit id="NxsSRmV" resname="app.gour.s2">
         <source>app.gour.s2</source>
-        <target>Eil gour undander</target>
+        <target>Eil gour unander</target>
       </trans-unit>
       <trans-unit id="0lFKtYT" resname="app.gour.s3">
         <source>app.gour.s3</source>
-        <target>Trede gour undander</target>
+        <target>Trede gour unander</target>
       </trans-unit>
       <trans-unit id="obm9hlq" resname="app.gour.s3f">
         <source>app.gour.s3f</source>
-        <target>Trede gour benel undander</target>
+        <target>Trede gour benel unander</target>
       </trans-unit>
       <trans-unit id="EBq18Ni" resname="app.gour.s3m">
         <source>app.gour.s3m</source>
-        <target>Trede gour gourel undander</target>
+        <target>Trede gour gourel unander</target>
       </trans-unit>
       <trans-unit id="AY9IYWJ" resname="app.gour.p1">
         <source>app.gour.p1</source>
@@ -280,6 +280,10 @@
       <trans-unit id="tF8ytn6" resname="app.source.type.traduction.fr">
         <source>app.source.type.traduction.fr</source>
         <target>Troidigezh e galleg</target>
+      </trans-unit>
+      <trans-unit id="hJWHngx" resname="app.source.type.traduction.br">
+        <source>app.source.type.traduction.br</source>
+        <target>Termenadur e brezhoneg</target>
       </trans-unit>
       <trans-unit id="2CpGFmH" resname="app.source.type.traduction.en">
         <source>app.source.type.traduction.en</source>

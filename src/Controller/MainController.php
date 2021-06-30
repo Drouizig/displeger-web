@@ -93,6 +93,7 @@ class MainController extends AbstractController
         if ( null === $term ) {
             return $this->redirectToRoute('main');  
         }
+        $term = trim($term);
         /** @var $verbRepository VerbLocalizationRepository */
         $verbLocalizationRepository = $this->getDoctrine()->getRepository(VerbLocalization::class);
         $searchQuery = $verbLocalizationRepository->getFrontSearchQuery($term);
@@ -131,7 +132,7 @@ class MainController extends AbstractController
         if ($request->query->has('term_advanced')) {
             $searchQuery = null;
             $type = 'localization';
-            $term = $request->query->get('term_advanced');
+            $term = trim($request->query->get('term_advanced'));
             /**  @var verbRepository VerbRepository  */
             $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
             if($request->query->get('language') == 'br') {
