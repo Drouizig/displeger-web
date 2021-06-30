@@ -473,6 +473,10 @@ The verb "%verb%" is missing on the website.
         <source>app.source.type.grammar</source>
         <target>Grammar</target>
       </trans-unit>
+      <trans-unit id="hJWHngx" resname="app.source.type.traduction.br">
+        <source>app.source.type.traduction.br</source>
+        <target>Breton definition</target>
+      </trans-unit>
       <trans-unit id=".69HyCB" resname="app.source.type.traduction">
         <source>app.source.type.traduction</source>
         <target>Translation</target>
