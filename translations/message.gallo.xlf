@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="gallo" target-language="gallo" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="rujVJ3G" resname="app.title">
+        <source>app.title</source>
+        <target>Conjugouer de verbes en berton</target>
+      </trans-unit>
+      <trans-unit id="D2WgmoE" resname="app.amzer.gwan">
+        <source>app.amzer.gwan</source>
+        <target>Adjectif de verbe</target>
+      </trans-unit>
+      <trans-unit id="jz7Z0ih" resname="app.amzer.bremañ">
+        <source>app.amzer.bremañ</source>
+        <target>Temp perzent</target>
+      </trans-unit>
+      <trans-unit id="A07Epq5" resname="app.amzer.tremenet_ledan">
+        <source>app.amzer.tremenet_ledan</source>
+        <target>Temp pâssë</target>
+      </trans-unit>
+      <trans-unit id="e5rwBMQ" resname="app.amzer.tremenet_strizh">
+        <source>app.amzer.tremenet_strizh</source>
+        <target>Temp pâssë simpl</target>
+      </trans-unit>
+      <trans-unit id="BGn2fB8" resname="app.amzer.da_zont">
+        <source>app.amzer.da_zont</source>
+        <target>Temp a-veni</target>
+      </trans-unit>
+      <trans-unit id="HFAZ1hC" resname="app.amzer.da_zont_hir">
+        <source>app.amzer.da_zont_hir</source>
+        <target>Temp a-veni, forme longe</target>
+      </trans-unit>
+      <trans-unit id="IAzEfvk" resname="app.amzer.da_zont_berr">
+        <source>app.amzer.da_zont_berr</source>
+        <target>Temp a-veni, forme courte</target>
+      </trans-unit>
+      <trans-unit id="o5To6qe" resname="app.amzer.lechian_breman">
+        <source>app.amzer.lechian_breman</source>
+        <target>Temp perzent</target>
+      </trans-unit>
+      <trans-unit id="o.c5rP0" resname="app.amzer.lechian_tremenet">
+        <source>app.amzer.lechian_tremenet</source>
+        <target>Temp pâssë</target>
+      </trans-unit>
+      <trans-unit id="ZkES5La" resname="app.amzer.boaz_breman">
+        <source>app.amzer.boaz_breman</source>
+        <target>Temp perzent</target>
+      </trans-unit>
+      <trans-unit id="fs_Gri9" resname="app.amzer.boaz_tremenet">
+        <source>app.amzer.boaz_tremenet</source>
+        <target>Temp pâssë</target>
+      </trans-unit>
+      <trans-unit id="9jf.QOM" resname="app.time_category.diskleriañ">
+        <source>app.time_category.diskleriañ</source>
+        <target>Meniere a conter</target>
+      </trans-unit>
+      <trans-unit id="vPN4upg" resname="app.time_category.divizout">
+        <source>app.time_category.divizout</source>
+        <target>Meniere a mouayener</target>
+      </trans-unit>
+      <trans-unit id="baY3TFT" resname="app.time_category.gourchemenn">
+        <source>app.time_category.gourchemenn</source>
+        <target>Meniere a ordoner</target>
+      </trans-unit>
+      <trans-unit id="xPxl5Id" resname="app.time_category.diskleriañ_lechiañ">
+        <source>app.time_category.diskleriañ_lechiañ</source>
+        <target>Meniere a conter – forme d’endret</target>
+      </trans-unit>
+      <trans-unit id="6PJXic9" resname="app.time_category.diskleriañ_boaz">
+        <source>app.time_category.diskleriañ_boaz</source>
+        <target>Meniere a conter – forme d’amouéz</target>
+      </trans-unit>
+      <trans-unit id="T5ilb9H" resname="app.amzer.gallus">
+        <source>app.amzer.gallus</source>
+        <target>Meniere a mouayener le cai fezabl (perzent)</target>
+      </trans-unit>
+      <trans-unit id="4gd2UWr" resname="app.amzer.gallus_hir">
+        <source>app.amzer.gallus_hir</source>
+        <target>Meniere a mouayener le cai fezabl (perzent) - forme longe</target>
+      </trans-unit>
+      <trans-unit id="VLiIei0" resname="app.amzer.gallus_berr">
+        <source>app.amzer.gallus_berr</source>
+        <target>Meniere a mouayener le cai fezabl (perzent) - forme courte</target>
+      </trans-unit>
+      <trans-unit id="PBznQAB" resname="app.amzer.dichallus">
+        <source>app.amzer.dichallus</source>
+        <target>Meniere a mouayener le cai point-fezabl (pâssë)</target>
+      </trans-unit>
+      <trans-unit id="gdjmmRP" resname="app.amzer.kadarnaat">
+        <source>app.amzer.kadarnaat</source>
+        <target>Meniere a assûrer</target>
+      </trans-unit>
+      <trans-unit id="E.k_SsB" resname="app.amzer.nach">
+        <source>app.amzer.nach</source>
+        <target>Meniere negative</target>
+      </trans-unit>
+      <trans-unit id="A4nFME6" resname="app.gour.s1">
+        <source>app.gour.s1</source>
+        <target>Permiere persone ao singhulier</target>
+      </trans-unit>
+      <trans-unit id="NxsSRmV" resname="app.gour.s2">
+        <source>app.gour.s2</source>
+        <target>Deûzieme persone ao singhulier</target>
+      </trans-unit>
+      <trans-unit id="0lFKtYT" resname="app.gour.s3">
+        <source>app.gour.s3</source>
+        <target>Touézieme persône ao singhulier</target>
+      </trans-unit>
+      <trans-unit id="obm9hlq" resname="app.gour.s3f">
+        <source>app.gour.s3f</source>
+        <target>Touézieme persone ao fumelin singhulier</target>
+      </trans-unit>
+      <trans-unit id="EBq18Ni" resname="app.gour.s3m">
+        <source>app.gour.s3m</source>
+        <target>Touézieme persone ao masqhulin singhulier</target>
+      </trans-unit>
+      <trans-unit id="AY9IYWJ" resname="app.gour.p1">
+        <source>app.gour.p1</source>
+        <target>Permiere persone ao puriè/target>
+      </trans-unit>
+      <trans-unit id="lBEG2YM" resname="app.gour.p2">
+        <source>app.gour.p2</source>
+        <target>Deûzieme persone ao puriè</target>
+      </trans-unit>
+      <trans-unit id="xPjEC5M" resname="app.gour.p3">
+        <source>app.gour.p3</source>
+        <target>Touézieme persone ao puriè</target>
+      </trans-unit>
+      <trans-unit id=".4WcQEA" resname="app.gour.i">
+        <source>app.gour.i</source>
+        <target>Meniere point-personale</target>
+      </trans-unit>
+      <trans-unit id="nRpehHf" resname="app.french">
+        <source>app.french</source>
+        <target>Françaez</target>
+      </trans-unit>
+      <trans-unit id="rrATf5W" resname="app.english">
+        <source>app.english</source>
+        <target>Angllaez</target>
+      </trans-unit>
+      <trans-unit id="s7c3Bcz" resname="app.missing_translation.notice">
+        <source>app.missing_translation.notice</source>
+        <target>Qheu deu, le verbe-la n’a point core të terlatë en françaez. Si qe v’étes den le câs de le terlater, vous pouvéz n-s aider a enveyer eun messaije.</target>
+      </trans-unit>
+      <trans-unit id="tzmVoeo" resname="app.form.contact.name">
+        <source>app.form.contact.name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="Ws74RBh" resname="app.form.contact.email">
+        <source>app.form.contact.email</source>
+        <target>Aderce eletroniqe</target>
+      </trans-unit>
+      <trans-unit id="tCR5Ono" resname="app.form.contact.message">
+        <source>app.form.contact.message</source>
+        <target>Messaije</target>
+      </trans-unit>
+      <trans-unit id="BHHgCIS" resname="app.form.contact.submit">
+        <source>app.form.contact.submit</source>
+        <target>Enveyer</target>
+      </trans-unit>
+      <trans-unit id="LBAy94c" resname="app.form.verb.anvVerb">
+        <source>app.form.verb.anvVerb</source>
+        <target>Verbe</target>
+      </trans-unit>
+      <trans-unit id="z1SwB4K" resname="app.form.verb.pennrann">
+        <source>app.form.verb.pennrann</source>
+        <target>Fond du verbe</target>
+      </trans-unit>
+      <trans-unit id="6hnVemI" resname="app.form.verb.category">
+        <source>app.form.verb.category</source>
+        <target>Sorte</target>
+      </trans-unit>
+      <trans-unit id="asKWTj7" resname="app.form.verb.galleg">
+        <source>app.form.verb.galleg</source>
+        <target>Françaez</target>
+      </trans-unit>
+      <trans-unit id="fXFcBzk" resname="app.form.verb.saozneg">
+        <source>app.form.verb.saozneg</source>
+        <target>Angllaez</target>
+      </trans-unit>
+      <trans-unit id="zDU0IGp" resname="app.form.verb.save">
+        <source>app.form.verb.save</source>
+        <target>Saover</target>
+      </trans-unit>
+      <trans-unit id=".ryMytJ" resname="app.form.verb.save_return">
+        <source>app.form.verb.save_return</source>
+        <target>Saover e s’en reveni</target>
+      </trans-unit>
+      <trans-unit id="5GLvbaY" resname="app.form.verb.save_continue">
+        <source>app.form.verb.save_continue</source>
+        <target>Saover e ressieudr</target>
+      </trans-unit>
+      <trans-unit id="4ROlEGX" resname="app.form.verb.localizations">
+        <source>app.form.verb.localizations</source>
+        <target>Terlateries</target>
+      </trans-unit>
+      <trans-unit id="Es6dOsL" resname="app.form.verb.translations">
+        <source>app.form.verb.translations</source>
+        <target>Terlateries</target>
+      </trans-unit>
+      <trans-unit id="4ngq2Cb" resname="app.form.verb.infinitive">
+        <source>app.form.verb.infinitive</source>
+        <target>Verbe</target>
+      </trans-unit>
+      <trans-unit id="izKXDq." resname="app.form.verb.base">
+        <source>app.form.verb.base</source>
+        <target>Fond du verbe</target>
+      </trans-unit>
+      <trans-unit id="W6jmB.2" resname="app.form.verb.sources">
+        <source>app.form.verb.sources</source>
+        <target>Sôces :</target>
+      </trans-unit>
+      <trans-unit id="A5OSCB4" resname="app.form.verb.dialect_code">
+        <source>app.form.verb.dialect_code</source>
+        <target>Parlement (ao chouéz)</target>
+      </trans-unit>
+      <trans-unit id="AEYBWa." resname="app.form.verb.language_code">
+        <source>app.form.verb.language_code</source>
+        <target>Parlement</target>
+      </trans-unit>
+      <trans-unit id="vh7vonG" resname="app.form.verb.translation">
+        <source>app.form.verb.translation</source>
+        <target>Terlaterie </target>
+      </trans-unit>
+      <trans-unit id="I5Xg4gZ" resname="app.form.verb.gouMutation">
+        <source>app.form.verb.gouMutation</source>
+        <target>gou chanj come gw</target>
+      </trans-unit>
+      <trans-unit id="8zNUEDA" resname="app.form.source.code">
+        <source>app.form.source.code</source>
+        <target>Sôce</target>
+      </trans-unit>
+      <trans-unit id="bErPtKz" resname="app.form.source.translations">
+        <source>app.form.source.translations</source>
+        <target>Terlateries</target>
+      </trans-unit>
+      <trans-unit id="W_2k4VK" resname="app.form.source.label">
+        <source>app.form.source.label</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="n3XN8Rn" resname="app.form.source.description">
+        <source>app.form.source.description</source>
+        <target>Ressembllance</target>
+      </trans-unit>
+      <trans-unit id="pXQA4XF" resname="app.form.source.type">
+        <source>app.form.source.type</source>
+        <target>Meniere</target>
+      </trans-unit>
+      <trans-unit id="5JCwPVG" resname="app.form.source.locale">
+        <source>app.form.source.locale</source>
+        <target>Parlement</target>
+      </trans-unit>
+      <trans-unit id="jdAgJ4F" resname="app.form.source.url">
+        <source>app.form.source.url</source>
+        <target>URL</target>
+      </trans-unit>
+      <trans-unit id="OXA1Xnf" resname="app.form.source.url.help">
+        <source>app.form.source.url.help</source>
+        <target>Lésséz vide si qe la n'ét point eun empllâ</target>
+      </trans-unit>
+      <trans-unit id="yrbtyyz" resname="app.form.source.active">
+        <source>app.form.source.active</source>
+        <target>Amontrer su la paije dés sôces</target>
+      </trans-unit>
+      <trans-unit id="FiYcqzv" resname="app.source.type.grammar">
+        <source>app.source.type.grammar</source>
+        <target>Gramére</target>
+      </trans-unit>
+      <trans-unit id=".69HyCB" resname="app.source.type.traduction">
+        <source>app.source.type.traduction</source>
+        <target>Terlaterie</target>
+      </trans-unit>
+      <trans-unit id="tF8ytn6" resname="app.source.type.traduction.fr">
+        <source>app.source.type.traduction.fr</source>
+        <target>Terlaterie en françaez</target>
+      </trans-unit>
+      <trans-unit id="2CpGFmH" resname="app.source.type.traduction.en">
+        <source>app.source.type.traduction.en</source>
+        <target>Terlaterie en angllaez</target>
+      </trans-unit>
+      <trans-unit id="Akd1OXK" resname="app.source.type.verb">
+        <source>app.source.type.verb</source>
+        <target>Verbes</target>
+      </trans-unit>
+      <trans-unit id="TDXevYT" resname="app.form.source.language_code">
+        <source>app.form.source.language_code</source>
+        <target>Parlement</target>
+      </trans-unit>
+      <trans-unit id="rq9ZIs8" resname="app.form.contact.default.translation_missing">
+        <source>app.form.contact.default.translation_missing</source>
+        <target>Ben le bonjou.
+Le "%verb%" n’a point core terlatë en françaez.
+J’ous perpoze de mettr :</target>
+      </trans-unit>
+      <trans-unit id="aRmbN1f" resname="app.form.contact.default.verb">
+        <source>app.form.contact.default.verb</source>
+        <target>Ben le bonjou.
+N-i a pâs ghère le verbe "%verb%" su l’empllâ.</target>
+      </trans-unit>
+      <trans-unit id="56vLyYd" resname="app.verb.not_found">
+        <source>app.verb.not_found</source>
+        <target>Le verbe "%verb%" i n’a point të terouë.</target>
+      </trans-unit>
+      <trans-unit id="KCefEpj" resname="app.verb.contact_invitation">
+        <source>app.verb.contact_invitation</source>
+        <target>Si qe vous sonjéz q’i faraet qi seje su l’empllâ, vous pouvéz n-s enveyer eun messaije eletroniqe d’o la pârchée la-dessour :</target>
+      </trans-unit>
+      <trans-unit id="XMmv1NH" resname="app.search.title">
+        <source>app.search.title</source>
+        <target>Fruts</target>
+      </trans-unit>
+      <trans-unit id="fDlVeXN" resname="app.autocomplete.more">
+        <source>app.autocomplete.more</source>
+        <target>Pus fôt de fruts...</target>
+      </trans-unit>
+      <trans-unit id="g8JD8uC" resname="app.search.advanced">
+        <source>app.search.advanced</source>
+        <target>Sercher eun petit cai pus</target>
+      </trans-unit>
+      <trans-unit id="zrFahLZ" resname="app.home">
+        <source>app.home</source>
+        <target>Receverie</target>
+      </trans-unit>
+      <trans-unit id="HLXBDuz" resname="app.contact">
+        <source>app.contact</source>
+        <target>Nous haoper</target>
+      </trans-unit>
+      <trans-unit id="uLIvh_l" resname="app.header.search.placeholder">
+        <source>app.header.search.placeholder</source>
+        <target>Sercher aprés eun verbe</target>
+      </trans-unit>
+      <trans-unit id="6r5TohA" resname="app.search_advanced.field.breton">
+        <source>app.search_advanced.field.breton</source>
+        <target>Berton</target>
+      </trans-unit>
+      <trans-unit id="SiadndW" resname="app.search_advanced.field.french">
+        <source>app.search_advanced.field.french</source>
+        <target>Françaez</target>
+      </trans-unit>
+      <trans-unit id="Mj3dpTw" resname="app.search_advanced.field.english">
+        <source>app.search_advanced.field.english</source>
+        <target>Angllaez</target>
+      </trans-unit>
+      <trans-unit id="eRniS5." resname="app.locale.fr">
+        <source>app.locale.fr</source>
+        <target>Françaez</target>
+      </trans-unit>
+      <trans-unit id="Neyu0JR" resname="app.locale.en">
+        <source>app.locale.en</source>
+        <target>Angllaez</target>
+      </trans-unit>
+      <trans-unit id="O_HlHJX" resname="app.locale.br">
+        <source>app.locale.br</source>
+        <target>Berton</target>
+      </trans-unit>
+      <trans-unit id="84KJ0cZ" resname="app.legal.notice">
+        <source>app.legal.notice</source>
+        <target>Mencions dés louais</target>
+      </trans-unit>
+      <trans-unit id="AEMWIko" resname="app.thanks">
+        <source>app.thanks</source>
+        <target>Remerciaijes</target>
+      </trans-unit>
+      <trans-unit id="AtUKD3e" resname="app.wiktionnary.alt">
+        <source>app.wiktionnary.alt</source>
+        <target>Wikitionnaire</target>
+      </trans-unit>
+      <trans-unit id="aF88LIP" resname="app.wiktionnary">
+        <source>app.wiktionnary</source>
+        <target>Wikitionnaire</target>
+      </trans-unit>
+      <trans-unit id="VQVcOIW" resname="app.wiktionnary.conjugation">
+        <source>app.wiktionnary.conjugation</source>
+        <target>Conjugement</target>
+      </trans-unit>
+      <trans-unit id="plc0R6e" resname="app.report_error.notice">
+        <source>app.report_error.notice</source>
+        <target>Avizer d’eune bedaine</target>
+      </trans-unit>
+      <trans-unit id="bAgV.gC" resname="app.form.contact.report_error.translation">
+        <source>app.form.contact.report_error.translation</source>
+        <target>Ben le bonjou, je vouraes mai avizer d’eune bedaine su la paije du verbe "%verb%"...</target>
+      </trans-unit>
+      <trans-unit id="nfzBrUo" resname="app.form.contact.email.placeholder">
+        <source>app.form.contact.email.placeholder</source>
+        <target>jan@ferron.bzh</target>
+      </trans-unit>
+      <trans-unit id="qpcmlZC" resname="app.form.contact.name.placeholder">
+        <source>app.form.contact.name.placeholder</source>
+        <target>Jan Ferron</target>
+      </trans-unit>
+      <trans-unit id="Vplte.V" resname="app.form.contact.default.message">
+        <source>app.form.contact.default.message</source>
+        <target>Ben le bonjou, je voudraes vous haoper raport a ...</target>
+      </trans-unit>
+      <trans-unit id="c6orvDZ" resname="app.button.export">
+        <source>app.button.export</source>
+        <target>Bani côme PDF</target>
+      </trans-unit>
+      <trans-unit id="wZ7F4mt" resname="app.button.print">
+        <source>app.button.print</source>
+        <target>Mouler</target>
+      </trans-unit>
+      <trans-unit id="QTUabQP" resname="app.button.report">
+        <source>app.button.report</source>
+        <target>Avizer d’eune bedaine</target>
+      </trans-unit>
+      <trans-unit id="4Rgx8OE" resname="app.header.search.button">
+        <source>app.header.search.button</source>
+        <target>Sercher</target>
+      </trans-unit>
+      <trans-unit id="VXqMm0w" resname="app.admin.source.create.title">
+        <source>app.admin.source.create.title</source>
+        <target>Concrayer eune sôce</target>
+      </trans-unit>
+      <trans-unit id="t8B2K_Y" resname="app.admin.source.edit.title">
+        <source>app.admin.source.edit.title</source>
+        <target>Chanjier eune sôce</target>
+      </trans-unit>
+      <trans-unit id="SOo0Sxy" resname="app.admin.verb.create.title">
+        <source>app.admin.verb.create.title</source>
+        <target>Concrayer eun verbe</target>
+      </trans-unit>
+      <trans-unit id="Ho5ycNZ" resname="app.admin.verb.edit.title">
+        <source>app.admin.verb.edit.title</source>
+        <target>Chanjier eun verbe</target>
+      </trans-unit>
+      <trans-unit id="f70H45G" resname="global.gallo">
+        <source>global.gallo</source>
+        <target>Galo</target>
+      </trans-unit>
+      <trans-unit id="8R3kwUH" resname="app.dialect.kerne">
+        <source>app.dialect.kerne</source>
+        <target>Corneouaillaez</target>
+      </trans-unit>
+      <trans-unit id="dRj1_09" resname="app.dialect.leon">
+        <source>app.dialect.leon</source>
+        <target>Léyonaez</target>
+      </trans-unit>
+      <trans-unit id="ZdD7Zd3" resname="app.dialect.treger">
+        <source>app.dialect.treger</source>
+        <target>Tregoraez</target>
+      </trans-unit>
+      <trans-unit id="TF9joci" resname="app.dialect.gwened">
+        <source>app.dialect.gwened</source>
+        <target>Vanetaez</target>
+      </trans-unit>
+      <trans-unit id="WQ77eab" resname="app.dialect.goelo">
+        <source>app.dialect.goelo</source>
+        <target>Gouélo</target>
+      </trans-unit>
+      <trans-unit id="MDzUI0u" resname="app.dialect.reolad">
+        <source>app.dialect.reolad</source>
+        <target>Qemun</target>
+      </trans-unit>
+      <trans-unit id="8R3kqsdwUH" resname="app.dialect.kerne.url">
+        <source>app.dialect.kerne.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_cornouaillais</target>
+      </trans-unit>
+      <trans-unit id="dzeRj1_09" resname="app.dialect.leon.url">
+        <source>app.dialect.leon.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_l%C3%A9onard</target>
+      </trans-unit>
+      <trans-unit id="ZdD7azZd3" resname="app.dialect.treger.url">
+        <source>app.dialect.treger.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_tr%C3%A9gorrois</target>
+      </trans-unit>
+      <trans-unit id="TF9sdjoci" resname="app.dialect.gwened.url">
+        <source>app.dialect.gwened.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton_vannetais</target>
+      </trans-unit>
+      <trans-unit id="WQ7sd7eab" resname="app.dialect.goelo.url">
+        <source>app.dialect.goelo.url</source>
+        <target>https://fr.wikipedia.org/wiki/Go%C3%ABlo#Articles_connexes</target>
+      </trans-unit>
+      <trans-unit id="O8JcWGW" resname="app.geriafurch.alt">
+        <source>app.geriafurch.alt</source>
+        <target>Geriafurch.alt</target>
+      </trans-unit>
+      <trans-unit id="UnfOmys" resname="app.geriafurch">
+        <source>app.geriafurch</source>
+        <target>Geriafurch</target>
+      </trans-unit>
+      <trans-unit id="RtLOZCs" resname="app.category.d1">
+        <source>app.category.d1</source>
+        <target>Verbe ayere</target>
+      </trans-unit>
+      <trans-unit id="bZkRDMi" resname="app.category.d2">
+        <source>app.category.d2</source>
+        <target>Verbe cantë un fond de verbe en e -a, -o, -eu</target>
+      </trans-unit>
+      <trans-unit id="BWZ1rv0" resname="app.category.d3">
+        <source>app.category.d3</source>
+        <target>Verbe en -a</target>
+      </trans-unit>
+      <trans-unit id="BcsDta3" resname="app.category.d4">
+        <source>app.category.d4</source>
+        <target>Verbe en -iañ</target>
+      </trans-unit>
+      <trans-unit id="h5hybfB" resname="app.category.d5">
+        <source>app.category.d5</source>
+        <target>Verbe en -liañ</target>
+      </trans-unit>
+      <trans-unit id="DPSCftD" resname="app.category.d6">
+        <source>app.category.d6</source>
+        <target>Verbe en -niañ</target>
+      </trans-unit>
+      <trans-unit id="DHhM3kS" resname="app.category.d7">
+        <source>app.category.d7</source>
+        <target>Verbe derivë de "Ober"</target>
+      </trans-unit>
+      <trans-unit id="D3biWbN" resname="app.category.dont">
+        <source>app.category.dont</source>
+        <target>Dont</target>
+      </trans-unit>
+      <trans-unit id="Uj6jnJ5" resname="app.category.gouzout">
+        <source>app.category.gouzout</source>
+        <target>Gouzout</target>
+      </trans-unit>
+      <trans-unit id="wpg5z3F" resname="app.category.bezan">
+        <source>app.category.bezan</source>
+        <target>Bezañ</target>
+      </trans-unit>
+      <trans-unit id="JQRupym" resname="app.category.kaout">
+        <source>app.category.kaout</source>
+        <target>Kaout</target>
+      </trans-unit>
+      <trans-unit id="qNH3zaZ" resname="app.category.mont">
+        <source>app.category.mont</source>
+        <target>Mont</target>
+      </trans-unit>
+      <trans-unit id="GEYPo7S" resname="app.gour.s1.symbol">
+        <source>app.gour.s1.symbol</source>
+        <target>S1</target>
+      </trans-unit>
+      <trans-unit id="G.Cj6oJ" resname="app.gour.s2.symbol">
+        <source>app.gour.s2.symbol</source>
+        <target>S2</target>
+      </trans-unit>
+      <trans-unit id="YYBYQZs" resname="app.gour.s3.symbol">
+        <source>app.gour.s3.symbol</source>
+        <target>S3</target>
+      </trans-unit>
+      <trans-unit id="ioqez8e" resname="app.gour.s3f.symbol">
+        <source>app.gour.s3f.symbol</source>
+        <target>S3f</target>
+      </trans-unit>
+      <trans-unit id="bD9L_Jb" resname="app.gour.s3m.symbol">
+        <source>app.gour.s3m.symbol</source>
+        <target>S3m</target>
+      </trans-unit>
+      <trans-unit id="3ys4Stz" resname="app.gour.p1.symbol">
+        <source>app.gour.p1.symbol</source>
+        <target>P1</target>
+      </trans-unit>
+      <trans-unit id="QbHCTCr" resname="app.gour.p2.symbol">
+        <source>app.gour.p2.symbol</source>
+        <target>P2</target>
+      </trans-unit>
+      <trans-unit id="YbNCYhv" resname="app.gour.p3.symbol">
+        <source>app.gour.p3.symbol</source>
+        <target>P3</target>
+      </trans-unit>
+      <trans-unit id="djpvb1O" resname="app.gour.i.symbol">
+        <source>app.gour.i.symbol</source>
+        <target>I</target>
+      </trans-unit>
+      <trans-unit id="7swrT8u" resname="app.verb.view_more">
+        <source>app.verb.view_more</source>
+        <target>Pus fôt de parlements</target>
+      </trans-unit>
+      <trans-unit id="I0qZ5tR" resname="app.verb.other_forms">
+        <source>app.verb.other_forms</source>
+        <target>Aotrs menieres</target>
+      </trans-unit>
+      <trans-unit id="DesWvMt" resname="app.copy.tense">
+        <source>app.copy.tense</source>
+        <target>Recopier tout le temp-la</target>
+      </trans-unit>
+      <trans-unit id="N.k3Ndy" resname="app.copy.form">
+        <source>app.copy.form</source>
+        <target>Recopier la meniere-la</target>
+      </trans-unit>
+      <trans-unit id="sQE4aYk" resname="app.message.copy.success">
+        <source>app.message.copy.success</source>
+        <target>Le conjugement du verbe a të recopië den le canepin !</target>
+      </trans-unit>
+      <trans-unit id="Y__DXvr" resname="app.message.copy.error">
+        <source>app.message.copy.error</source>
+        <target>Bedaine a recopier den le canepin.</target>
+      </trans-unit>
+      <trans-unit id="e_85FyD" resname="app.message.email.success">
+        <source>app.message.email.success</source>
+        <target>Vôtr messaije a të enveyë sans tabut !</target>
+      </trans-unit>
+      <trans-unit id="nf_l7.9" resname="app.message.email.error">
+        <source>app.message.email.error</source>
+        <target>N-i a-z û eune bedaine a enveyer vôtr messaije. Assayéz core eune fai.</target>
+      </trans-unit>
+      <trans-unit id="bSWqAzf" resname="app.sources.title">
+        <source>app.sources.title</source>
+        <target>Sôces :</target>
+      </trans-unit>
+      <trans-unit id="PCpcKwJ" resname="app.page.sources">
+        <source>app.page.sources</source>
+        <target>Sôces</target>
+      </trans-unit>
+      <trans-unit id="HzXEzV6" resname="app.page.yezhadur">
+        <source>app.page.yezhadur</source>
+        <target>Pâssée de gramére</target>
+      </trans-unit>
+      <trans-unit id="ZSnKs6h" resname="app.source_code">
+        <source>app.source_code</source>
+        <target>Code sôce</target>
+      </trans-unit>
+      <trans-unit id="gV0kdCS" resname="app.form.search.term">
+        <source>app.form.search.term</source>
+        <target>Mot serchë</target>
+      </trans-unit>
+      <trans-unit id=".mQqWei" resname="app.form.search.language_code">
+        <source>app.form.search.language_code</source>
+        <target>Parlement</target>
+      </trans-unit>
+      <trans-unit id="DhjQNwG" resname="app.email.error">
+        <source>app.email.error</source>
+        <target>__app.email.error</target>
+      </trans-unit>
+      <trans-unit id="LFE8SfI" resname="app.email.sent">
+        <source>app.email.sent</source>
+        <target>__app.email.sent</target>
+      </trans-unit>
+      <trans-unit id="pcLKhMk" resname="app.amzer.ober">
+        <source>app.amzer.ober</source>
+        <target>Meniere de fezerie</target>
+      </trans-unit>
+      <trans-unit id="VPTyDLA" resname="app.amzer.enur">
+        <source>app.amzer.enur</source>
+        <target>Meniere en "en ur"</target>
+      </trans-unit>
+      <trans-unit id="GijDdCP" resname="app.verb.tags">
+        <source>app.verb.tags</source>
+        <target>Etiqhette du verbe</target>
+      </trans-unit>
+      <trans-unit id="mK510Lg" resname="app.search.tag">
+        <source>app.search.tag</source>
+        <target>Sercher o eune etiqhette</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
