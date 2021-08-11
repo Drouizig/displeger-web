@@ -7,7 +7,7 @@ parameters:
         p1: ["ehemp", "ahemp"]
         p2: ["ehec'h", "ahec'h"]
         p3: ["ehent", "ahent"]
-        i: [ehed", "ahed"]
+        i: ["ehed", "ahed"]
       dichallus:
         s1: ["ezen", "azen"]
         s2: ["ezes", "azes"]
