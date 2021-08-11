@@ -19,7 +19,7 @@ class VerbouManager
     /**
      * Returns all the endings per possible dialect corresponding with the given category & dialects
      */
-    public function getEndings($category, $dialects)
+    public function getEndings($category, $dialects = null)
     {
         if($dialects === null) {
             $dialects = [];
