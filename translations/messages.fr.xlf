@@ -35,7 +35,7 @@
       </trans-unit>
       <trans-unit id="IAzEfvk" resname="app.amzer.da_zont_berr">
         <source>app.amzer.da_zont_berr</source>
-        <target>Futur, forme longue</target>
+        <target>Futur, forme courte</target>
       </trans-unit>
       <trans-unit id="o5To6qe" resname="app.amzer.lechian_breman">
         <source>app.amzer.lechian_breman</source>
