@@ -7,6 +7,7 @@ parameters:
     locale: 'br'
     email.from: '%env(EMAIL_FROM)%'
     email.to: '%env(EMAIL_TO)%'
+    csv_directory: 'csv'
 
 services:
     # default configuration for services in *this* file

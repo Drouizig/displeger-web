@@ -16,7 +16,7 @@ class VerbTag
      * @ORM\Id
      * @ORM\ManyToOne(
      *     targetEntity="App\Entity\Tag",
-     *     inversedBy="verbs"
+     *     inversedBy="verbs", cascade={"persist"}
      *     )
      * @ORM\JoinColumn(nullable=true)
      */
@@ -24,14 +24,14 @@ class VerbTag
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="App\Entity\Verb", inversedBy="tags")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Verb", inversedBy="tags", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $verb;
 
     /**
      * Many tags have Many Sources.
-     * @ORM\ManyToMany(targetEntity="Source")
+     * @ORM\ManyToMany(targetEntity="Source", cascade={"persist"})
      * @ORM\JoinTable(name="verb_tag_sources",
      *      joinColumns={
      *          @ORM\JoinColumn(name="verb_tag_verb_id", referencedColumnName="verb_id"),

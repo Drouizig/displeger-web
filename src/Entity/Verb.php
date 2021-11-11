@@ -52,7 +52,8 @@ class Verb
     /**
      * @ORM\OneToMany(
      *     targetEntity="App\Entity\VerbTag",
-     *     mappedBy="verb"
+     *     mappedBy="verb",
+     *     cascade={"persist"}
      *     )
      */
     private $tags;
@@ -315,6 +316,37 @@ class Verb
         }
 
         return $this;
+    }
+
+    /**
+     * Has tag.
+     *
+     * @return  self
+     */ 
+    public function hasTag(Tag $tag)
+    {
+        /** @var VerbTag $verbTag */
+        foreach($this->tags as $verbTag) {
+            if($verbTag->getTag()->getId() === $tag->getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * Get Verb tag.
+     *
+     * @return  self
+     */ 
+    public function getVerbTag(Tag $tag)
+    {
+        /** @var VerbTag $verbTag */
+        foreach($this->tags as $verbTag) {
+            if($verbTag->getTag()->getId() === $tag->getId()) {
+                return $verbTag;
+            }
+        }
+        return false;
     }
 
 }
