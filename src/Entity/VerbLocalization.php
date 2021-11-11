@@ -48,7 +48,7 @@ class VerbLocalization
 
     /**
      * Many Tranlations have Many Sources.
-     * @ORM\ManyToMany(targetEntity="Source")
+     * @ORM\ManyToMany(targetEntity="Source", cascade={"persist"})
      * @ORM\JoinTable(name="verb_localization_sources",
      *      joinColumns={@ORM\JoinColumn(name="verb_localization_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="source_id", referencedColumnName="id")}
@@ -204,6 +204,15 @@ class VerbLocalization
         $this->sources->removeElement($source);
 
         return $this;
+    }
+    /**
+     * Has source.
+     *
+     * @return  self
+     */ 
+    public function hasSource(Source $source)
+    {
+        return $this->sources->contains($source);
     }
 
     /**

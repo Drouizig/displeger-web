@@ -65,3 +65,21 @@ parameters:
     gourchemenn:
         - kadarnaat
         # - nach
+
+    
+  organisation.endevout:
+    diskleriañ:
+        - bremañ
+        - tremenet_ledan
+        - tremenet_strizh
+        - da_zont_berr
+        - da_zont_hir
+    diskleriañ_boaz:
+        - boaz_breman
+        - boaz_tremenet
+    divizout:
+        - gallus_hir
+        - gallus_berr
+        - dichallus
+    gourchemenn:
+        - kadarnaat

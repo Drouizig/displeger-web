@@ -1,0 +1,44 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Lodenn verañ{% endblock %}
+
+{% block content %}
+    {% set action = '' %}
+    {% if newVerbs|length > 0 or modifiedFlatVerbs|length > 0 or modifiedTsVerbs|length > 0 %}
+        {% set action = 'import-definitive' %}
+    {% endif %}
+    <h1>{{ 'app.import'|trans }}</h1>
+    <p>Lodenn verañ</p>
+    {{form_start(form, {'action': action})}}
+
+    {{form_row(form)}}
+    
+    {% if newVerbs|length > 0 or modifiedFlatVerbs|length > 0 or modifiedTsVerbs|length > 0%}
+        <button type="sumbit">Enporzhiañ da vat</button>
+    {% else %}
+        <button type="sumbit">Rakwelet ar c'hemmoù</button>
+    {% endif %}
+    {{form_end(form)}}
+
+    {% if newVerbs|length > 0 or modifiedFlatVerbs|length > 0 or modifiedTsVerbs|length > 0 %}
+        <h2>Verboù nevez</h2>
+        {% if newVerbs|length > 0 %}
+            {% include 'admin/partial/import_table.html.twig' with {'tmpVerbs': newVerbs} %}
+        {% endif %}
+
+        <h2>Verboù kemmet o zanvez</h2>
+        {% if modifiedFlatVerbs|length > 0 %}
+            {% include 'admin/partial/import_table.html.twig' with {'tmpVerbs': modifiedFlatVerbs} %}
+        {% endif %}
+        <h2>Verboù kemmet o zikedennoù pe o mamennoù</h2>
+        {% if modifiedTsVerbs|length > 0 %}
+            {% include 'admin/partial/import_table.html.twig' with {'tmpVerbs': modifiedTsVerbs} %}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('chart') }}
+{% endblock %}

@@ -1,0 +1,57 @@
+<table class="table">
+            <thead>
+                <th scope="col"></th>
+                <th scope="col">Anv-verb</th>
+                <th scope="col">Pennrann</th>
+                <th scope="col">Rummad</th>
+                <th scope="col">Brezhoneg</th>
+                <th scope="col">Galleg</th>
+                <th scope="col">Saozneg</th>
+                <th scope="col">Mammennoù</th>
+                <th scope="col">Tikedenn</th>
+            </thead>
+            <tbody>
+            {% for tmpVerb in tmpVerbs %}
+                {% if tmpVerb.dbVerb is defined %}
+                    <tr>
+                        <td> </td>
+                        <td> {{tmpVerb.dbVerb.infinitive}} </td>
+                        <td> {{ tmpVerb.dbVerb.base}} <span {% if tmpVerb.base is defined %}style="color: green;font-weight: bold"{% endif %}>{{tmpVerb.base is defined ? ' > ' ~ tmpVerb.base}}</span> </td>
+                        <td {% if tmpVerb.category is defined %}style="color: green;font-weight: bold"{% endif %}> {{tmpVerb.category is defined ? tmpVerb.category : tmpVerb.dbVerb.category }} </td>
+                        <td {% if tmpVerb.br is defined %}style="color: green;font-weight: bold"{% endif %}> <i>digemm</i> </td>
+                        <td {% if tmpVerb.fr is defined %}style="color: green;font-weight: bold"{% endif %}> <i>digemm</i>  </td>
+                        <td {% if tmpVerb.en is defined %}style="color: green;font-weight: bold"{% endif %}> <i>digemm</i> </td>
+                        <td> {% if tmpVerb.sources is defined %}
+                                {% for source in tmpVerb.sources %}
+                                    <span style="color: green;font-weight: bold"> + {{ source }}</span> ;
+                                {% endfor %}
+                            {% endif %}
+                            {% for source in tmpVerb.dbVerb.sources %}
+                                <span>{{ source.code }}</span> ;
+                            {% endfor %}
+                        </td>
+                        <td> {% if tmpVerb.tags is defined %}
+                                {% for tag in tmpVerb.tags %}
+                                    <span style="color: green;font-weight: bold"> + {{ tag }}</span> ;
+                                {% endfor %}
+                            {% endif %}
+                            {% for tag in tmpVerb.dbVerb.verb.tags %}
+                                <span>{{ tag.tag.code }}</span> ;
+                            {% endfor %} </td>
+                    </tr>
+                {% else %}
+                    <tr style="color: green;font-weight: bold">
+                        <td> + </td>
+                        <td> {{tmpVerb.infinitive}} </td>
+                        <td> {{tmpVerb.base}} </td>
+                        <td> {{tmpVerb.category}} </td>
+                        <td> {{tmpVerb.br}} </td>
+                        <td> {{tmpVerb.fr}} </td>
+                        <td> {{tmpVerb.en}} </td>
+                        <td> {{tmpVerb.sources}} </td>
+                        <td> {{tmpVerb.tags}} </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>

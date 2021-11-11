@@ -21,10 +21,16 @@ use App\Entity\Configuration;
 use App\Entity\Source;
 use App\Entity\TagCategory;
 use App\Entity\VerbLocalization;
+use App\Entity\VerbTag;
 use App\Entity\VerbTranslation;
 use App\Form\ConfigurationType;
+use App\Form\ImportType;
 use App\Form\SourceType;
 use App\Form\TagCategoryType;
+use App\Repository\SourceRepository;
+use App\Repository\TagRepository;
+use App\Repository\VerbLocalizationRepository;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -236,6 +242,370 @@ class AdminController extends AbstractController
         return $this->render($twig, [
             'form' => $form->createView(),
         ]);
+    }
+
+
+    /**
+     * @Route("/admin/import", name="admin_import")
+     */
+    public function importFile(Request $request, VerbLocalizationRepository $vbRepo, SourceRepository $sourceRepo, TagRepository $tagRepo)
+    {
+        $form = $this->createForm(ImportType::class);
+
+        $form->handleRequest($request);
+
+        $modifiedTsVerbs = [];
+        $modifiedFlatVerbs = [];
+        $newVerbs = [];
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $csvFile = $form->get('file')->getData();
+
+            if ($csvFile) {
+                $originalFilename = pathinfo($csvFile->getClientOriginalName(), PATHINFO_FILENAME);
+                
+                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$csvFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $csvFile->move(
+                        $this->getParameter('csv_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+                $handle = fopen($this->getParameter('csv_directory').'/'.$newFilename, "r"); 
+                $csvHandle = fgetcsv($handle, 0, ';');
+
+                // 1 : infinitive
+                // 2 : pennrann
+                // 3 : rummad
+                // 4 : bzhg
+                // 5 : galleg
+                // 6 : saozneg
+                // 8 : Mammenn
+                // 9 : tikedennn
+                while(($csvHandle = fgetcsv($handle, 0, ';'))!== FALSE) {
+                    /** @var VerbLocalization */
+                    $verb = $vbRepo->findOneBy(['infinitive' => $csvHandle[1]]);
+                    $tmpVerb = [];
+                    if($verb != null) {
+                        $isFlat = true;
+                        $isModified = false;
+                        $tmpVerb['dbVerb'] = $verb;
+                        if($csvHandle[2] !== $verb->getBase()) {
+                            $tmpVerb['base'] = $csvHandle[2];
+                             $isModified = true;
+                             $isFlat = true;
+                        }
+                        if($csvHandle[3] !== $verb->getCategory()) {
+                            $tmpVerb['category'] = $csvHandle[3];
+                            $isModified = true;
+                            $isFlat = true;
+                        }
+                        if($verb->getVerb()->getTranslation('br') 
+                        && $csvHandle[4] !== $verb->getVerb()->getTranslation('br')->getTranslation() 
+                        && $csvHandle[4] !== '#brezhoneg') {
+                            $tmpVerb['br'] = $csvHandle[4];
+                            $isModified = true;
+                        }
+                        if($verb->getVerb()->getTranslation('fr')
+                        && $csvHandle[5] !== $verb->getVerb()->getTranslation('fr')->getTranslation() 
+                        && $csvHandle[5] !== '#galleg') {
+                            $tmpVerb['fr'] = $csvHandle[5];
+                            $isModified = true;
+                        }
+                        if($verb->getVerb()->getTranslation('en')
+                        && $csvHandle[6] !== $verb->getVerb()->getTranslation('en')->getTranslation() 
+                        && $csvHandle[6] !== '#saozneg') {
+                            $tmpVerb['en'] = $csvHandle[6];
+                            $isModified = true;
+                        }
+                        $mamennou = explode(',', $csvHandle[7]);
+                        foreach($mamennou as $mammenn) {
+                            $mammenn = trim($mammenn);
+                            /** @var Source */
+                            $source = $sourceRepo->findOneBy(['code' => $mammenn]);
+                            if(!$source || !$verb->hasSource($source)) {
+                                $isFlat = false;
+                                $tmpVerb['sources'][] = $mammenn;
+                                $isModified = true;
+                            }
+                            
+                        }
+                        $tags = explode(',', $csvHandle[8]);
+                        foreach($tags as $tag) {
+                            $tag = trim($tag);
+                            /** @var Tag */
+                            $tagObject = $tagRepo->findOneBy(['code' => $tag]);
+                            if(!$tagObject || !$verb->getVerb()->hasTag($tagObject)) {
+                                $isFlat = false;
+                                $tmpVerb['tags'][] = $tag;
+                                $isModified = true;
+                            }
+                            
+                        }
+                        if($isModified) {
+                            if($isFlat) {
+                                $modifiedFlatVerbs[] = $tmpVerb;
+                            } else {
+                                $modifiedTsVerbs[] = $tmpVerb;
+                            }
+                        }
+                    } else {
+                        // 1 : infinitive
+                        // 2 : pennrann
+                        // 3 : rummad
+                        // 4 : bzhg
+                        // 5 : galleg
+                        // 6 : saozneg
+                        // 8 : Mammenn
+                        // 9 : tikedennn
+                        $tmpVerb['infinitive'] = $csvHandle[1];
+                        $tmpVerb['base'] = $csvHandle[2];
+                        $tmpVerb['category'] = $csvHandle[3];
+                        $tmpVerb['br'] = $csvHandle[4];
+                        $tmpVerb['fr'] = $csvHandle[5];
+                        $tmpVerb['en'] = $csvHandle[6];
+                        $tmpVerb['sources'] = $csvHandle[7];
+                        $tmpVerb['tags'] = $csvHandle[8];
+                        $newVerbs[] = $tmpVerb;
+                    }
+
+                }
+
+
+                
+            }
+        }
+
+
+        return $this->render('admin/import.html.twig', [
+            'form' => $form->createView(),
+            'newVerbs' => $newVerbs,
+            'modifiedTsVerbs' => $modifiedTsVerbs,
+            'modifiedFlatVerbs' => $modifiedFlatVerbs,
+        ]);
+
+    }
+
+    /**
+     * @Route("/admin/import-definitive", name="admin_import_definitive")
+     */
+    public function importDefinitiveFile(Request $request, VerbLocalizationRepository $vbRepo, SourceRepository $sourceRepo, TagRepository $tagRepo)
+    {
+        $form = $this->createForm(ImportType::class);
+
+        $form->handleRequest($request);
+
+        $modifiedVerbs = [];
+        $newVerbs = [];
+        $em = $this->getDoctrine()->getManager();
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $csvFile = $form->get('file')->getData();
+
+            if ($csvFile) {
+                $originalFilename = pathinfo($csvFile->getClientOriginalName(), PATHINFO_FILENAME);
+                
+                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$csvFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $csvFile->move(
+                        $this->getParameter('csv_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+                $handle = fopen($this->getParameter('csv_directory').'/'.$newFilename, "r"); 
+                $csvHandle = fgetcsv($handle, 0, ';');
+
+                $batchSize = 10;
+                $batchIndex = 0;
+                // 1 : infinitive
+                // 2 : pennrann
+                // 3 : rummad
+                // 4 : bzhg
+                // 5 : galleg
+                // 6 : saozneg
+                // 8 : Mammenn
+                // 9 : tikedennn
+                while(($csvHandle = fgetcsv($handle, 0, ';'))!== FALSE) {
+                    /** @var VerbLocalization */
+                    $verb = $vbRepo->findOneBy(['infinitive' => $csvHandle[1]]);
+                    $tmpVerb = [];
+                    if($verb != null) {
+                        $isModified = false;
+                        if($csvHandle[2] !== $verb->getCategory()) {
+                             $verb->setBase($csvHandle[2]);
+                             $isModified = true;
+                        }
+                        if($csvHandle[3] !== $verb->getCategory()) {
+                             $verb->setCategory($csvHandle[3]);
+                             $isModified = true;
+                        }
+                        if($verb->getVerb()->getTranslation('br') 
+                        && $csvHandle[4] !== $verb->getVerb()->getTranslation('br')->getTranslation() 
+                        && $csvHandle[4] !== '#brezhoneg') {
+                            $verbTranslation = $verb->getVerb()->getTranslation('br');
+                            if (null !== $verbTranslation) {
+                                $verbTranslation = new VerbTranslation();
+                                $verbTranslation->setLanguageCode('br');
+                                $verb->getVerb()->addTranslation($verbTranslation);
+                            }
+                            $verbTranslation->setTranslation($csvHandle[4]);
+                            $isModified = true;
+                        }
+                        if($verb->getVerb()->getTranslation('fr')
+                        && $csvHandle[5] !== $verb->getVerb()->getTranslation('fr')->getTranslation() 
+                        && $csvHandle[5] !== '#galleg') {
+                            $verbTranslation = $verb->getVerb()->getTranslation('fr');
+                            if (null !== $verbTranslation) {
+                                $verbTranslation = new VerbTranslation();
+                                $verbTranslation->setLanguageCode('fr');
+                                $verb->getVerb()->addTranslation($verbTranslation);
+                            }
+                            $verbTranslation->setTranslation($csvHandle[5]);
+                            $isModified = true;
+                        }
+                        if($csvHandle[6] !== $verb->getVerb()->getTranslation('en') && $csvHandle[6] !== '#saozneg') {
+                            $verbTranslation = $verb->getVerb()->getTranslation('en');
+                            if (null !== $verbTranslation) {
+                                $verbTranslation = new VerbTranslation();
+                                $verbTranslation->setLanguageCode('en');
+                                $verb->getVerb()->addTranslation($verbTranslation);
+                            }
+                            $verbTranslation->setTranslation($csvHandle[6]);
+                            $isModified = true;
+                        }
+                        $mamennou = explode(',', $csvHandle[7]);
+                        foreach($mamennou as $mammenn) {
+                            $mammenn = trim($mammenn);
+                            /** @var Source */
+                            $source = $sourceRepo->findOneBy(['code' => $mammenn]);
+                            if(!$source || !$verb->hasSource($source)) {
+                                if(!$source) {
+                                    $source = new Source();
+                                    $source->setCode($mammenn);
+                                    $em->persist($source);
+                                    $em->flush();
+                                }
+                                $verb->addSource($source);
+                                $isModified = true;
+                            }
+                            
+                        }
+                        $tags = explode(',', $csvHandle[8]);
+                        foreach($tags as $tag) {
+                            $tag = trim($tag);
+                            /** @var Tag */
+                            $tagObject = $tagRepo->findOneBy(['code' => $tag]);
+                            if(!$tagObject || !$verb->getVerb()->hasTag($tagObject)) {
+                                if(!$tagObject) {
+                                    $tagObject = new Tag();
+                                    $tagObject->setCode($tag);
+                                    $em->persist($tagObject);
+                                    $em->flush();
+                                }
+                                $verbTag = $verb->getVerb()->getVerbTag($tagObject);
+                                if(!$verbTag) {
+                                    $verbTag = new VerbTag();
+                                    $verbTag->setTag($tagObject);
+                                    $verbTag->setVerb($verb->getVerb());
+                                }
+                                $verb->getVerb()->addTag($verbTag);
+                                $isModified = true;
+                            }
+                            
+                        }
+                        if($isModified) {
+                            $em->persist($verb);
+                            $em->persist($verb->getVerb());
+                        }
+                    } else {
+                        $verb = new Verb();
+                        $verbLocalization = new VerbLocalization;
+                        $verbLocalization->setVerb($verb);
+                        $verbLocalization->setInfinitive($csvHandle[1]);
+                        $verbLocalization->setBase($csvHandle[2]);
+                        $verbLocalization->setCategory($csvHandle[3]);
+                        if($csvHandle[4] != '' && $csvHandle[4] != '#brezhoneg') {
+                            $brTranslation = new VerbTranslation();
+                            $brTranslation->setTranslation($csvHandle[4]);
+                            $brTranslation->setLanguageCode('br');
+                            $verb->addTranslation($brTranslation);
+                            $em->persist($brTranslation);
+                        }
+                        if($csvHandle[5] != '' && $csvHandle[5] != '#galleg') {
+                            $frTranslation = new VerbTranslation();
+                            $frTranslation->setTranslation($csvHandle[5]);
+                            $frTranslation->setLanguageCode('fr');
+                            $verb->addTranslation($frTranslation);
+                            $em->persist($frTranslation);
+                        }
+                        if($csvHandle[6] != '' && $csvHandle[6] != '#saozneg') {
+                            $enTranslation = new VerbTranslation();
+                            $enTranslation->setTranslation($csvHandle[6]);
+                            $enTranslation->setLanguageCode('en');
+                            $verb->addTranslation($enTranslation);
+                            $em->persist($enTranslation);
+                        }
+                        $mamennou = explode(',', $csvHandle[7]);
+                        foreach($mamennou as $mammenn) {
+                            $mammenn = trim($mammenn);
+                            /** @var Source */
+                            $source = $sourceRepo->findOneBy(['code' => $mammenn]);
+                            if(!$source) {
+                                $source = new Source();
+                                $source->setCode($mammenn);
+                                $em->persist($source);
+                                $em->flush();
+                            }
+                            $verbLocalization->addSource($source);
+                        }
+                        $tags = explode(',', $csvHandle[8]);
+                        foreach($tags as $tag) {
+                            $tag = trim($tag);
+                            /** @var Tag */
+                            $tagObject = $tagRepo->findOneBy(['code' => $tag]);
+                            if(!$tagObject) {
+                                $tagObject = new Tag();
+                                $tagObject->setCode($tag);
+                                $em->persist($tag);
+                                $em->flush();
+                            }
+                            $verbTag = new VerbTag();
+                            $verbTag->setTag($tagObject);
+                            $verbTag->setVerb($verb);
+                            $verb->addTag($verbTag);
+                            $em->persist($verbTag);
+                        }
+                        $verb->addLocalization($verbLocalization);
+                        $em->persist($verbLocalization);
+                        $em->persist($verb);
+                    }
+                    $batchIndex++;
+                    if($batchIndex > $batchSize) {
+                        $batchIndex = 0;
+                        $em->flush();
+                    }
+                }
+            
+            }
+        }
+
+
+        return $this->render('admin/import.html.twig', [
+            'form' => $form->createView(),
+            'newVerbs' => $newVerbs,
+            'modifiedVerbs' => $modifiedVerbs,
+        ]);
+
     }
 
 }
