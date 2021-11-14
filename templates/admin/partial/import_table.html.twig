@@ -15,7 +15,7 @@
                 {% if tmpVerb.dbVerb is defined %}
                     <tr>
                         <td> </td>
-                        <td> {{tmpVerb.dbVerb.infinitive}} </td>
+                        <td> {{ tmpVerb.dbVerb.infinitive}} <span {% if tmpVerb.infinitive is defined %}style="color: green;font-weight: bold"{% endif %}>{{tmpVerb.infinitive is defined ? ' > ' ~ tmpVerb.infinitive}}</span> </td>
                         <td> {{ tmpVerb.dbVerb.base}} <span {% if tmpVerb.base is defined %}style="color: green;font-weight: bold"{% endif %}>{{tmpVerb.base is defined ? ' > ' ~ tmpVerb.base}}</span> </td>
                         <td {% if tmpVerb.category is defined %}style="color: green;font-weight: bold"{% endif %}> {{tmpVerb.category is defined ? tmpVerb.category : tmpVerb.dbVerb.category }} </td>
                         <td {% if tmpVerb.br is defined %}style="color: green;font-weight: bold"{% endif %}> <i>digemm</i> </td>

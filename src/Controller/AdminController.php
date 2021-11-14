@@ -290,11 +290,19 @@ class AdminController extends AbstractController
                 while(($csvHandle = fgetcsv($handle, 0, ';'))!== FALSE) {
                     /** @var VerbLocalization */
                     $verb = $vbRepo->findOneBy(['infinitive' => $csvHandle[1]]);
+                    if($verb === null) {
+                        $verb = $vbRepo->findOneBy(['infinitive' => str_replace('’', '\'', $csvHandle[1])]);
+                    }
                     $tmpVerb = [];
                     if($verb != null) {
-                        $isFlat = true;
+                        $isFlat = false;
                         $isModified = false;
                         $tmpVerb['dbVerb'] = $verb;
+                        if($csvHandle[1] !== $verb->getInfinitive()) {
+                            $tmpVerb['infinitive'] = $csvHandle[1];
+                             $isModified = true;
+                             $isFlat = true;
+                        }
                         if($csvHandle[2] !== $verb->getBase()) {
                             $tmpVerb['base'] = $csvHandle[2];
                              $isModified = true;
@@ -329,7 +337,6 @@ class AdminController extends AbstractController
                             /** @var Source */
                             $source = $sourceRepo->findOneBy(['code' => $mammenn]);
                             if(!$source || !$verb->hasSource($source)) {
-                                $isFlat = false;
                                 $tmpVerb['sources'][] = $mammenn;
                                 $isModified = true;
                             }
@@ -341,7 +348,6 @@ class AdminController extends AbstractController
                             /** @var Tag */
                             $tagObject = $tagRepo->findOneBy(['code' => $tag]);
                             if(!$tagObject || !$verb->getVerb()->hasTag($tagObject)) {
-                                $isFlat = false;
                                 $tmpVerb['tags'][] = $tag;
                                 $isModified = true;
                             }
