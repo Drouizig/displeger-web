@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VerbRepository")
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="Verb")
  */
 class Verb
@@ -53,6 +56,7 @@ class Verb
      * @ORM\OneToMany(
      *     targetEntity="App\Entity\VerbTag",
      *     mappedBy="verb",
+     *     orphanRemoval=true,
      *     cascade={"persist"}
      *     )
      */
@@ -313,6 +317,7 @@ class Verb
     public function removeTag(VerbTag $tag): self
     {
         if ($this->tags->contains($tag)) {
+            $tag->setVerb(null);
             $this->tags->removeElement($tag);
         }
 
