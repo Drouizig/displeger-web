@@ -22,7 +22,7 @@ class VerbTagType extends AbstractType
             ->add('tag', EntityType::class, [
                 'label' => 'Tikedenn',
                 'class' => Tag::class,
-                'required' => false]
+                'required' => true]
                 )
             ->add('sources', null, [
                 'label' => 'app.form.verb.sources'

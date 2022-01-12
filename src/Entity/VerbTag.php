@@ -53,7 +53,7 @@ class VerbTag
     /**
      * @return Tag
      */
-    public function getTag(): Tag
+    public function getTag(): ?Tag
     {
         return $this->tag;
     }
