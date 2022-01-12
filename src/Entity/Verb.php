@@ -303,6 +303,7 @@ class Verb
     public function addTag(VerbTag $tag): self
     {
         if (!$this->tags->contains($tag)) {
+            $tag->setVerb($this);
             $this->tags[] = $tag;
         }
 

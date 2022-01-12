@@ -436,6 +436,14 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.admin.verb.edit.title</source>
         <target>Kemmañ ur verb</target>
       </trans-unit>
+      <trans-unit id="SOo0sSxdy" resname="app.admin.tag.create.title">
+        <source>app.admin.verb.create.title</source>
+        <target>Krouiñ un dikedenn</target>
+      </trans-unit>
+      <trans-unit id="Ho5yscNZ" resname="app.admin.tag.edit.title">
+        <source>app.admin.verb.edit.title</source>
+        <target>Kemmañ un dikedenn</target>
+      </trans-unit>
       <trans-unit id="f70H45G" resname="global.gallo">
         <source>global.gallo</source>
         <target>Gallaoueg</target>
