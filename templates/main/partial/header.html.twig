@@ -22,7 +22,7 @@
       </ul>
 
       {% macro lang_link(locale) %}
-          {{path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale}))}}
+          {{path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale})|merge(app.request.query))}}
       {% endmacro %}
 
       {%import _self as self %}

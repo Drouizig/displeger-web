@@ -443,6 +443,10 @@ class MainController extends AbstractController
             }
         }
 
+        usort($result, function($a, $b) {
+            return $a->getInfinitive() > $b->getInfinitive();
+        });
+
         $pagination = $knpPaginator->paginate(
             $result,
             $request->query->getInt('page', 1), //page number,
@@ -464,7 +468,7 @@ class MainController extends AbstractController
         $verbLocalizationRepo = $this->getDoctrine()->getRepository(VerbLocalization::class);
 
         $pagination = $knpPaginator->paginate(
-            $verbLocalizationRepo->findBy(['category' => $category]),
+            $verbLocalizationRepo->findBy(['category' => $category], ['infinitive' => 'ASC']),
             $request->query->getInt('page', 1), //page number,
             $request->query->getInt('number', 25) //limit per page
         );

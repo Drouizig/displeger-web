@@ -77,6 +77,14 @@
         <source>app.amzer.gallus</source>
         <target>Conditionnel potentiel (présent)</target>
       </trans-unit>
+      <trans-unit id="4gd2UWr" resname="app.amzer.gallus_hir">
+        <source>app.amzer.gallus_hir</source>
+        <target>Conditionnel potentiel - forme longue</target>
+      </trans-unit>
+      <trans-unit id="VLiIei0" resname="app.amzer.gallus_berr">
+        <source>app.amzer.gallus_berr</source>
+        <target>Conditionnel potentiel - forme courte</target>
+      </trans-unit>
       <trans-unit id="PBznQAB" resname="app.amzer.dichallus">
         <source>app.amzer.dichallus</source>
         <target>Conditionnel irréel (passé)</target>
