@@ -77,6 +77,14 @@
         <source>app.amzer.gallus</source>
         <target>Potential conditional (present)</target>
       </trans-unit>
+      <trans-unit id="4gd2UWr" resname="app.amzer.gallus_hir">
+        <source>app.amzer.gallus_hir</source>
+        <target>Potential conditional- long form</target>
+      </trans-unit>
+      <trans-unit id="VLiIei0" resname="app.amzer.gallus_berr">
+        <source>app.amzer.gallus_berr</source>
+        <target>Potential conditional- short form</target>
+      </trans-unit>
       <trans-unit id="PBznQAB" resname="app.amzer.dichallus">
         <source>app.amzer.dichallus</source>
         <target>Unreal conditional (past)</target>
