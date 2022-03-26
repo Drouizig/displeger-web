@@ -73,7 +73,8 @@ build:
 ##
 
 assets: vendor ## Build assets
-	yarn run dev
+	$(EXEC_PHP) yarn install
+	$(EXEC_PHP) yarn run dev
 
 cache-warmup: vendor ## Warmup caches
 	$(SYMFONY) cache:warmup --env=dev

@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "gregwar/captcha-bundle": "^2.1",
+        "h4cc/wkhtmltopdf-amd64": "^0.12.4",
         "knplabs/knp-paginator-bundle": "^2.8",
         "knplabs/knp-snappy-bundle": "^1.6",
         "sensio/framework-extra-bundle": "^5.1",

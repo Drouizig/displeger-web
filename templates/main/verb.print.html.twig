@@ -12,7 +12,7 @@
 {% block verbContentTable %}
     <table class="verb-items">
         <tr class="row">
-        {% for amzer, endings in verbEndings %}
+        {% for amzer, endings in verbEndings['standard'] %}
             <td class="col-md">
                 <h3>{{ ('app.amzer.' ~ amzer)|trans }}</h3>
                 <ul>
