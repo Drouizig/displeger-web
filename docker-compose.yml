@@ -4,7 +4,7 @@ version: '3.2'
 services:
     
     database:
-      image: postgres
+      image: postgres:12
       working_dir: /srv
       volumes:
         - database:/usr/local/var/postgres
@@ -26,6 +26,15 @@ services:
         networks:
           - displeger
 
+    encore:
+        image: node:10-alpine
+        volumes:
+            - .:/app
+        working_dir: /app
+        networks:
+          - displeger
+        command: ["yarn", "watch"]
+        
     nginx:
         image: nginx:1-alpine
         volumes:

@@ -74,6 +74,15 @@
     "gregwar/captcha-bundle": {
         "version": "v2.1.5"
     },
+    "h4cc/wkhtmltopdf-amd64": {
+        "version": "0.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "0.0",
+            "ref": ""
+        }
+    },
     "knplabs/knp-components": {
         "version": "v1.3.10"
     },

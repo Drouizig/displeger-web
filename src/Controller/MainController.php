@@ -233,6 +233,7 @@ class MainController extends AbstractController
             $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verbLocalization->getInfinitive();
             if($print){
                 if(!file_exists(self::PDF_DIR.$verbLocalization->getInfinitive() . '.pdf')) {
+                    dump($verbEndings);
                     $html = $this->renderView(
                         $template,
                         array(
@@ -243,6 +244,9 @@ class MainController extends AbstractController
                             'nach' => $nach,
                             'contactForm' => $contactForm->createView(),
                             'print' => $print,
+                            'anvGwan' => $anvGwan,
+                            'enur' => $stummEnUr,
+                            'ober' => $stummOber,
                             'anvVerb' => $verbLocalization->getInfinitive()
                         )
                     );
@@ -268,8 +272,6 @@ class MainController extends AbstractController
                     'wikeriadur_conjugation_url' => $wikeriadurConjugationUrl,
                     'previousVerb' => $previousVerb,
                     'nextVerb' => $nextVerb,
-                    'enur' => $stummEnUr,
-                    'ober' => $stummOber
                 ]);
             }
         }

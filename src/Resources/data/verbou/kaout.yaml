@@ -31,8 +31,8 @@ parameters:
     da_zont_berr:
       s1: ["em bo", "am bo"]
       s2: ["ez po", "az po"]
-      s3m: ["he do"]
-      s3f: ["en do"]
+      s3m: ["en do"]
+      s3f: ["he do"]
       p1: ["hor bo"]
       p2: ["ho po"]
       p3: ["o do"]
@@ -58,8 +58,8 @@ parameters:
     boaz_tremenet:
       s1: ["em beze", "am beze"]
       s2: ["ez peze", "az peze"]
-      s3m: ["he deze", "he deveze"]
-      s3f: ["en deze", "en deveze"]
+      s3m: ["en deze", "en deveze"]
+      s3f: ["he deze", "he deveze"]
       p1: ["hor beze"]
       p2: ["ho peze"]
       p3: ["o deze", "o deveze"]
