@@ -32,7 +32,9 @@ $(document).ready(function() {
         return false;
       },
       focus: function(event, ui) {
-        this.value = ui.item['label'];
+        if(!ui.item['value'].includes('/search?term=')) {
+          this.value = ui.item['label'];
+        }
         return false;
       }
   });
