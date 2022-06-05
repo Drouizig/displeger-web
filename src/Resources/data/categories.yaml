@@ -47,6 +47,27 @@ parameters:
         - kadarnaat
         # - nach
 
+  organisation.bout:
+    diskleriañ:
+        - bremañ
+        - tremenet_ledan
+        - tremenet_strizh
+        - da_zont_berr
+        - da_zont_hir
+    diskleriañ_lechiañ:
+        - lechian_breman
+        - lechian_tremenet
+    diskleriañ_boaz:
+        - boaz_breman
+        - boaz_tremenet
+    divizout:
+        - gallus_hir
+        - gallus_berr
+        - dichallus
+    gourchemenn:
+        - kadarnaat
+        # - nach
+
   
   organisation.kaout:
     diskleriañ:

@@ -373,6 +373,10 @@ Il manque le verbe "%verb%" sur le site.
         <source>app.dialect.gwened.url</source>
         <target>https://fr.wikipedia.org/wiki/Breton_vannetais</target>
       </trans-unit>
+      <trans-unit id="cRkPkwd" resname="app.dialect.reolad.url">
+        <source>app.dialect.reolad.url</source>
+        <target>https://fr.wikipedia.org/wiki/Breton</target>
+      </trans-unit>
       <trans-unit id="gjSS1u3" resname="app.dialect.goelo.url">
         <source>app.dialect.goelo.url</source>
         <target>https://fr.wikipedia.org/wiki/Go%C3%ABlo#Articles_connexes</target>
@@ -548,6 +552,14 @@ Il manque le verbe "%verb%" sur le site.
       <trans-unit id="gk1RJt." resname="app.category.">
         <source>app.category.</source>
         <target>__app.category.</target>
+      </trans-unit>
+      <trans-unit id="1vkglp1" resname="app.admin.tag.edit.title">
+        <source>app.admin.tag.edit.title</source>
+        <target>Éditer un tag</target>
+      </trans-unit>
+      <trans-unit id="drwu09u" resname="app.admin.tag.create.title">
+        <source>app.admin.tag.create.title</source>
+        <target>Créer un tag</target>
       </trans-unit>
     </body>
   </file>
