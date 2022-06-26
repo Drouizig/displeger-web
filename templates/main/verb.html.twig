@@ -73,7 +73,8 @@
                     {% if category == 'gourchemenn'%}
                         <div class="col-md js-tense">
                             <h3>{{ ('app.amzer.nach')|trans }} <i class="far fa-copy copy-tense hidden-print" title="{{'app.copy.tense' | trans}}"></i></h3>
-                            <ul>
+                            <div class="btn-group dialect-button-group" role="group"></div>
+                            <ul class="endings active">
                                 {% for person, conjugation in nach %}
                                     <li class="verb-item">
                                         <span class="abbr" data-tooltip="{{ ('app.gour.' ~ person)|trans}}">{{('app.gour.' ~ person ~ '.symbol')|trans}}</span>.

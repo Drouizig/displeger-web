@@ -16,3 +16,11 @@ parameters:
         p2: ["it"]
         p3: ["ent"]
         i: []
+      nach:
+        s1: []
+        s2: ["a"]
+        s3: ["et"]
+        p1: ["omp"]
+        p2: ["it"]
+        p3: ["ent"]
+        i: []
