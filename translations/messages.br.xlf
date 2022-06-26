@@ -436,12 +436,12 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.admin.verb.edit.title</source>
         <target>Kemmañ ur verb</target>
       </trans-unit>
-      <trans-unit id="SOo0sSxdy" resname="app.admin.tag.create.title">
-        <source>app.admin.verb.create.title</source>
+      <trans-unit id="drwu09u" resname="app.admin.tag.create.title">
+        <source>app.admin.tag.create.title</source>
         <target>Krouiñ un dikedenn</target>
       </trans-unit>
-      <trans-unit id="Ho5yscNZ" resname="app.admin.tag.edit.title">
-        <source>app.admin.verb.edit.title</source>
+      <trans-unit id="1vkglp1" resname="app.admin.tag.edit.title">
+        <source>app.admin.tag.edit.title</source>
         <target>Kemmañ un dikedenn</target>
       </trans-unit>
       <trans-unit id="f70H45G" resname="global.gallo">
@@ -499,6 +499,10 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       <trans-unit id="gjSS1u3" resname="app.dialect.goelo.url">
         <source>app.dialect.goelo.url</source>
         <target>https://br.wikipedia.org/wiki/Gouelo%C3%B9</target>
+      </trans-unit>
+      <trans-unit id="cRkPkwd" resname="app.dialect.reolad.url">
+        <source>app.dialect.reolad.url</source>
+        <target>https://br.wikipedia.org/wiki/Brezhoneg</target>
       </trans-unit>
       <trans-unit id="O8JcWGW" resname="app.geriafurch.alt">
         <source>app.geriafurch.alt</source>

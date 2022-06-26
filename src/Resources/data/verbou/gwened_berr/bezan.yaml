@@ -1,0 +1,18 @@
+parameters:
+  verbou.bezan.gwened_berr:
+    gallus_hir:
+      s1: ["behen"]
+      s2: ["behes"]
+      s3: ["behe"]
+      p1: ["behemp"]
+      p2: ["behec'h"]
+      p3: ["behent"]
+      i: ["behed"]
+    dichallus:
+      s1: ["bizen"]
+      s2: ["bizes"]
+      s3: ["bize"]
+      p1: ["bizemp"]
+      p2: ["bizec'h"]
+      p3: ["bizent"]
+      i: ["bized"]

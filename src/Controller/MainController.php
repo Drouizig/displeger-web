@@ -190,16 +190,21 @@ class MainController extends AbstractController
 
             $anvGwan = $verbEndings['standard']['gwan'];
             unset($verbEndings['standard']['gwan']);
-            unset($verbEndings['standard']['nach']);
             $softMutatedBase = $this->kemmaduriouManager->mutateWord($verbLocalization->getBase(), KemmaduriouManager::BLOTAAT, $verbLocalization->getGouMutation());
             $nach = [];
-            foreach($verbEndings['standard']['kadarnaat'] as $person => $ending) {
+            foreach($verbEndings['standard']['nach'] as $person => $ending) {
+                
                 if(count($ending) > 0) {
-                    $nach[$person] = 'na '.$softMutatedBase.'<strong>'.$ending[0].'</strong> ket';
+                    $prefix = 'na ';
+                    if(in_array(substr(($softMutatedBase.$ending[0]), 0, 1), ['a', 'e', 'i' , 'o' , 'u', 'y'])){
+                        $prefix = 'n\'';
+                    }
+                    $nach[$person] = $prefix.$softMutatedBase.'<strong>'.$ending[0].'</strong> ket';
                 } else {
                     $nach[$person] = null;
                 }
             }
+            unset($verbEndings['standard']['nach']);
             $mixedMutatedInfinitive = $this->kemmaduriouManager->mutateWord($verbLocalization->getInfinitive(), KemmaduriouManager::KEMMESKET, $verbLocalization->getGouMutation());
             $stummOber = 'bezañ o '.$mixedMutatedInfinitive;
             if(in_array(substr($mixedMutatedInfinitive, 0,1), ['a', 'e', 'i', 'o', 'u'])) {

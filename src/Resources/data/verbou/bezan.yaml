@@ -108,11 +108,11 @@ parameters:
       p3: ["bezent"]
       i: []
     nach:
-      s1: []
-      s2: []
-      s3: []
-      p1: []
-      p2: []
-      p3: []
+      s1: [] 
+      s2: ["bez"]
+      s3: ["bezet"]
+      p1: ["bezomp"]
+      p2: ["bezit"]
+      p3: ["bezent"]
       i: []
    

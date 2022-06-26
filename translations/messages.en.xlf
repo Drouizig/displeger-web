@@ -377,6 +377,10 @@ The verb "%verb%" is missing on the website.
         <source>app.dialect.goelo.url</source>
         <target>https://en.wikipedia.org/wiki/Breton_language#Geographic_distribution_and_dialects</target>
       </trans-unit>
+      <trans-unit id="cRkPkwd" resname="app.dialect.reolad.url">
+        <source>app.dialect.reolad.url</source>
+        <target>https://en.wikipedia.org/wiki/Breton</target>
+      </trans-unit>
       <trans-unit id="GEYPo7S" resname="app.gour.s1.symbol">
         <source>app.gour.s1.symbol</source>
         <target>S1</target>
@@ -548,6 +552,14 @@ The verb "%verb%" is missing on the website.
       <trans-unit id="gk1RJt." resname="app.category.">
         <source>app.category.</source>
         <target>__app.category.</target>
+      </trans-unit>
+      <trans-unit id="1vkglp1" resname="app.admin.tag.edit.title">
+        <source>app.admin.tag.edit.title</source>
+        <target>Edit a tag</target>
+      </trans-unit>
+      <trans-unit id="drwu09u" resname="app.admin.tag.create.title">
+        <source>app.admin.tag.create.title</source>
+        <target>Create a tag</target>
       </trans-unit>
     </body>
   </file>
