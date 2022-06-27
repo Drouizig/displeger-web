@@ -18,9 +18,9 @@ parameters:
         p3: ["aent"]
         i: ["aed"]
       tremenet_strizh:
-        s1: ['is', 'rejon']
+        s1: ['is', 'ejon']
         s2: ["ejout"]
-        s3: ["reas"]
+        s3: ["eas"]
         p1: ["ejomp"]
         p2: ["ejoc'h"]
         p3: ["ejont"]
