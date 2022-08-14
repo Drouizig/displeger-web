@@ -72,6 +72,10 @@ class Verb
      */
     private $descriptionTranslations;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
 
     public function __construct()
     {
@@ -193,6 +197,20 @@ class Verb
 
         return $this;
     }
+
+
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
     /**
      * Add translation.
      *

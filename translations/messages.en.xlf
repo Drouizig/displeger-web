@@ -197,6 +197,10 @@
         <source>app.form.verb.save_continue</source>
         <target>Save and continue</target>
       </trans-unit>
+      <trans-unit id="EYsvsX5" resname="app.form.verb.active">
+        <source>app.form.verb.active</source>
+        <target>Visible</target>
+      </trans-unit>
       <trans-unit id="rq9ZIs8" resname="app.form.contact.default.translation_missing">
         <source>app.form.contact.default.translation_missing</source>
         <target>Greetings,

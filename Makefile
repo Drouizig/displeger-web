@@ -103,7 +103,7 @@ migrate:
 shell-database:
 	$(DOCKER_COMPOSE) exec database psql -Upostgres displeger
 
-translations: vendor ## Update the translation files
+translations: vendor translations/messages.br.xlf ## Update the translation files
 	$(SYMFONY) tran:up br --output-format=xlf --force
 	$(SYMFONY) tran:up fr --output-format=xlf --force
 	$(SYMFONY) tran:up en --output-format=xlf --force
