@@ -60,6 +60,8 @@ class VerbouManager
             } else if($dialect == 'gwened') {
                 $baseLocalizedEndingsBerr = $this->parameterBag->get('verbou.regular.gwened_berr');
                 $baseLocalizedEndingsHir = $this->parameterBag->get('verbou.regular.gwened_hir');
+                $localizedEndings[$dialect.'_berr'] = $baseLocalizedEndingsBerr;
+                $localizedEndings[$dialect.'_hir'] = $baseLocalizedEndingsHir;
                 if($this->parameterBag->has('verbou.'.$category.'.'.$dialect.'_berr')) {
                     $categoryLocalizedEndingsBerr = $this->parameterBag->get('verbou.'.$category.'.'.$dialect.'_berr');
                     $localizedEndings[$dialect.'_berr'] = array_merge($baseLocalizedEndingsBerr, $categoryLocalizedEndingsBerr);

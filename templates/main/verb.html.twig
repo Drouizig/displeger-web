@@ -49,7 +49,7 @@
                             <div class="btn-group dialect-button-group" role="group">
                                 {% set firstItem = true %}
                                 {% for dialect, localizedTimes in localizedVerbEndings %}
-                                    {% if localizedTimes[time] is defined %}
+                                    {% if localizedTimes[time] is defined and localizedTimes[time] is not null%}
                                         {% if firstItem %}
                                             <button type="button" class="btn btn-primary" disabled="disabled" data-dialect="reolad">{{ 'app.dialect.reolad'|trans }}</button>
                                             {% set firstItem = false %}
