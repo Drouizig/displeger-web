@@ -21,8 +21,10 @@ class VerbLocalizationRepository extends ServiceEntityRepository
     public function findByTermAutocomplete($term)
     {
         $escapedTerm = str_replace('n', '_', $term);
-        return $this->createQueryBuilder('vt')
-            ->andWhere('UPPER(vt.infinitive) LIKE UPPER(:term)')
+        return $this->createQueryBuilder('vl')
+            ->innerJoin('vl.verb', 'v')
+            ->andWhere('UPPER(vl.infinitive) LIKE UPPER(:term)')
+            ->andWhere('v.enabled = true')
             ->setParameter('term', $escapedTerm.'%')
             ->getQuery()
             ->getResult()
@@ -40,7 +42,9 @@ class VerbLocalizationRepository extends ServiceEntityRepository
     {
         $escapedTerm = str_replace('n', '_', $term);
         return $this->createQueryBuilder('vl')
+            ->innerJoin('vl.verb', 'v')
             ->andWhere('UPPER(vl.infinitive) LIKE UPPER(:term)')
+            ->andWhere('v.enabled = true')
             ->setParameter('term', '%'.$escapedTerm.'%')
         ;
     }

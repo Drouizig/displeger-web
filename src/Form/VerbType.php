@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\DescriptionTranslationType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class VerbType extends AbstractType
 {
@@ -54,6 +55,10 @@ class VerbType extends AbstractType
                 'prototype' => true,
                 'allow_delete' => true,
                 'by_reference' => false
+            ])
+            ->add('enabled', CheckboxType::class, [
+                'label' => 'app.form.verb.active',
+                'required' => false
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'app.form.verb.save'

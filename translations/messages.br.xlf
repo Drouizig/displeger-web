@@ -233,6 +233,10 @@
         <source>app.form.verb.gouMutation</source>
         <target>gou a gemm evel gw</target>
       </trans-unit>
+      <trans-unit id="EYsvsX5" resname="app.form.verb.active">
+        <source>app.form.verb.active</source>
+        <target>Hewel</target>
+      </trans-unit>
       <trans-unit id="8zNUEDA" resname="app.form.source.code">
         <source>app.form.source.code</source>
         <target>Bonneg</target>
