@@ -20,12 +20,7 @@ class VerbLocalizationRepository extends ServiceEntityRepository
 
     public function findByTermAutocomplete($term)
     {
-        $escapedTerm = str_replace('n', '_', $term);
-        return $this->createQueryBuilder('vl')
-            ->innerJoin('vl.verb', 'v')
-            ->andWhere('UPPER(vl.infinitive) LIKE UPPER(:term)')
-            ->andWhere('v.enabled = true')
-            ->setParameter('term', $escapedTerm.'%')
+        return $this->getFrontSearchQueryBuilder($term)
             ->getQuery()
             ->getResult()
         ;
@@ -40,13 +35,56 @@ class VerbLocalizationRepository extends ServiceEntityRepository
     
     public function getFrontSearchQueryBuilder($term)
     {
-        $escapedTerm = str_replace('n', '_', $term);
-        return $this->createQueryBuilder('vl')
+        $term = strtolower($term);
+        
+        $possibilities = self::get_all_posibilities($term);
+        unset($possibilities[0]);
+        $qb = $this->createQueryBuilder('vl')
             ->innerJoin('vl.verb', 'v')
-            ->andWhere('UPPER(vl.infinitive) LIKE UPPER(:term)')
             ->andWhere('v.enabled = true')
-            ->setParameter('term', '%'.$escapedTerm.'%')
+            ->andWhere('LOWER(vl.infinitive) LIKE :term');
+            foreach($possibilities as $i => $possibility) {
+                $qb->orWhere('LOWER(vl.infinitive) LIKE :term'.$i);
+                $qb->setParameter(':term'.$i, '%'.$possibility.'%');
+            }
+
+
+        return $qb->setParameter('term', '%'.$term.'%')
         ;
+    }
+
+    static function get_all_posibilities($term)
+    {
+        $tmpRerm = $term;
+        $indexes = [];
+        $i = 0; // Limit the number of N to replace to 6 otherwise the request is too big
+        while(($pos = strpos($tmpRerm, 'n')) !== false && $i<= 6) {
+            $indexes[] = $pos;
+            $tmpRerm[$pos] = '_';
+            $i++;
+        }
+
+        $combinations = self::all_combinations($indexes);
+
+        $possibilities = [];
+        foreach($combinations as $combination) {
+            $newTerm = $term;
+            foreach($combination as $pos) {
+                $newTerm = substr_replace($newTerm, 'ñ', $pos).substr($newTerm, $pos+1);
+            }
+            $possibilities[] = $newTerm;
+        }
+
+        return $possibilities;
+    }
+
+    static function all_combinations($array) {
+        $results = [[]];
+        foreach ($array as $element)
+            foreach ($results as $combination)
+                array_push($results, array_merge([$element], $combination));
+    
+        return $results;
     }
 
     public function findCategoryStatistics()
