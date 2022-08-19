@@ -35,7 +35,7 @@ class VerbLocalizationRepository extends ServiceEntityRepository
     
     public function getFrontSearchQueryBuilder($term)
     {
-        $term = strtolower($term);
+        $term = str_replace('Ñ', 'ñ', strtolower($term));
         
         $possibilities = self::get_all_posibilities($term);
         unset($possibilities[0]);
