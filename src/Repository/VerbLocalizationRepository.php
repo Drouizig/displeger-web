@@ -40,6 +40,7 @@ class VerbLocalizationRepository extends ServiceEntityRepository
         $possibilities = self::get_all_posibilities($term);
         unset($possibilities[0]);
         $qb = $this->createQueryBuilder('vl')
+            ->addSelect('CASE WHEN LOWER(vl.infinitive) LIKE :term_begin THEN 1 ELSE 0 END AS HIDDEN sortCondition')
             ->innerJoin('vl.verb', 'v')
             ->andWhere('v.enabled = true')
             ->andWhere('LOWER(vl.infinitive) LIKE :term');
@@ -47,9 +48,11 @@ class VerbLocalizationRepository extends ServiceEntityRepository
                 $qb->orWhere('LOWER(vl.infinitive) LIKE :term'.$i);
                 $qb->setParameter(':term'.$i, '%'.$possibility.'%');
             }
+        $qb->setParameter('term', '%'.$term.'%')
+           ->setParameter('term_begin', $term.'%')
+           ->orderBy('sortCondition', 'DESC');
 
-
-        return $qb->setParameter('term', '%'.$term.'%')
+        return $qb;
         ;
     }
 
