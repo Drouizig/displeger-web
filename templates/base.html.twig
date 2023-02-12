@@ -56,5 +56,25 @@
         data-email-success="{{'app.message.email.success'|trans}}"
         data-email-error="{{'app.message.email.error'|trans}}"
         ></div>
+        <div class="scroll-to-top">
+            <span class="btn">^</i>
+        </div>
+        <script>
+            const scrollBtn = document.querySelector(".scroll-to-top .btn");
+            console.log(scrollBtn);
+            document.addEventListener("scroll", () => {
+                if (window.scrollY > 400) {
+                    scrollBtn.style.visibility = "visible";
+                } else {
+                    scrollBtn.style.visibility = "hidden";
+                }
+            });
+            scrollBtn.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+        </script>
     </body>
 </html>
