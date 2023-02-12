@@ -658,11 +658,11 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
       </trans-unit>
       <trans-unit id="DhjQNwG" resname="app.email.error">
         <source>app.email.error</source>
-        <target>__app.email.error</target>
+        <target>Fazi en ur gas ar postel</target>
       </trans-unit>
       <trans-unit id="LFE8SfI" resname="app.email.sent">
         <source>app.email.sent</source>
-        <target>__app.email.sent</target>
+        <target>Postel kaset gant berzh</target>
       </trans-unit>
       <trans-unit id="pcLKhMk" resname="app.amzer.ober">
         <source>app.amzer.ober</source>
@@ -684,9 +684,26 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.description</source>
         <target>Evezhiadenn:</target>
       </trans-unit>
-      <trans-unit id="gk1RJt." resname="app.category.">
-        <source>app.category.</source>
-        <target>__app.category.</target>
+
+      <trans-unit id="mK5s1e0Lg" resname="app.title.mutations">
+        <source>app.title.mutations</source>
+        <target>Kemmadurioù</target>
+      </trans-unit>
+      <trans-unit id="mK51h0Lsg" resname="app.mutations.soft">
+        <source>app.mutations.soft</source>
+        <target>Dre vlotaat</target>
+      </trans-unit>
+      <trans-unit id="msK51h0Lg" resname="app.mutations.hard">
+        <source>app.search.hard</source>
+        <target>Dre galetaat</target>
+      </trans-unit>
+      <trans-unit id="mKq510sLg" resname="app.mutations.spirant">
+        <source>app.mutations.spirant</source>
+        <target>Dre c'hwezhañ</target>
+      </trans-unit>
+      <trans-unit id="qmK510Lg" resname="app.mutations.mixed">
+        <source>app.mutations.mixed</source>
+        <target>Kemmesket</target>
       </trans-unit>
     </body>
   </file>

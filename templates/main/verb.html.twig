@@ -24,6 +24,24 @@
 {% if verb is not null %}
 
   {% include 'main/verb_partials/header.html.twig' %}
+  <h5>{{'app.title.mutations'|trans}}</h5>
+  <table class="table-sm">
+    <thead>
+        <th>{{'app.mutations.soft'|trans}}</th>
+        <th>{{'app.mutations.hard'|trans}}</th>
+        <th>{{'app.mutations.spirant'|trans}}</th>
+        <th>{{'app.mutations.mixed'|trans}}</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{verbLocalization.infinitive|mutate(constant('App\\Util\\KemmaduriouManager::BLOTAAT'))}}</td>
+            <td>{{verbLocalization.infinitive|mutate(constant('App\\Util\\KemmaduriouManager::KALETAAT'))}}</td>
+            <td>{{verbLocalization.infinitive|mutate(constant('App\\Util\\KemmaduriouManager::CHWEZHAN'))}}</td>
+            <td>{{verbLocalization.infinitive|mutate(constant('App\\Util\\KemmaduriouManager::KEMMESKET'))}}</td>
+        </tr>
+    </tbody>
+
+  </table>
     <div class="row">
         <div class="col-md alt-item"> {{ 'app.amzer.gwan'|trans }} : <span class="js-verb">{{verbLocalization.base }}<strong>{{anvGwan}}</strong></span><i class="far fa-copy copy hidden-print" title="{{'app.copy.form' | trans}}"></i></div>
     </div>

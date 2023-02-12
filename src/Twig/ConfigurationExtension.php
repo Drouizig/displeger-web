@@ -3,8 +3,10 @@ namespace App\Twig;
 
 use App\Entity\ConfigurationTranslation;
 use App\Repository\ConfigurationTranslationRepository;
+use App\Util\KemmaduriouManager;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class ConfigurationExtension extends AbstractExtension
@@ -16,10 +18,14 @@ class ConfigurationExtension extends AbstractExtension
     /** @var RequestSack */
     protected $requestStack;
 
-    public function __construct(ConfigurationTranslationRepository $configurationTranslationRepository,RequestStack $requestStack)
+    /** @var KemmaduriouManager */
+    protected $kemmaduriouManager;
+
+    public function __construct(ConfigurationTranslationRepository $configurationTranslationRepository,RequestStack $requestStack, KemmaduriouManager $kemmaduriouManager)
     {
         $this->configurationTranslationRepository = $configurationTranslationRepository;
         $this->requestStack = $requestStack;
+        $this->kemmaduriouManager = $kemmaduriouManager;
         
     }
 
@@ -27,6 +33,12 @@ class ConfigurationExtension extends AbstractExtension
     {
         return [
             new TwigFunction('configuration', [$this, 'configuration']),
+        ];
+    }
+    public function getFilters()
+    {
+        return [
+            new TwigFilter('mutate', [$this, 'mutate']),
         ];
     }
 
@@ -44,5 +56,11 @@ class ConfigurationExtension extends AbstractExtension
         } else {
             return '';
         }
+    }
+
+    public function mutate($verb, $mutation)
+    {
+        $mutated = $this->kemmaduriouManager->mutateWord($verb, $mutation);
+        return $mutated === $verb ? '-' : $mutated;
     }
 }

@@ -8,7 +8,7 @@ class KemmaduriouManager
 
     const BLOTAAT = 'blotaat';
     const BLOTAAT_GM = 'blotaat_gm';
-    const CHWEZAN = 'chwezhan';
+    const CHWEZHAN = 'chwezhan';
     const KALETAAT = 'kaletaat';
     const KEMMESKET = 'kemmesket';
     const DIGLOK = 'diglok';
