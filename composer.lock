@@ -2542,6 +2542,7 @@
                     "type": "tidelift"
                 }
             ],
+            "abandoned": "symfony/mailer",
             "time": "2021-03-09T12:30:35+00:00"
         },
         {
@@ -6130,21 +6131,22 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v4.4.25",
+            "version": "v4.4.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "6db3eb4f1bb437cd3730f52353ba4b568acaddf5"
+                "reference": "1b2ae02cb1b923987947e013688c51954a80b751"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/6db3eb4f1bb437cd3730f52353ba4b568acaddf5",
-                "reference": "6db3eb4f1bb437cd3730f52353ba4b568acaddf5",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/1b2ae02cb1b923987947e013688c51954a80b751",
+                "reference": "1b2ae02cb1b923987947e013688c51954a80b751",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
-                "symfony/polyfill-ctype": "~1.8"
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-php80": "^1.16"
             },
             "conflict": {
                 "phpdocumentor/reflection-docblock": "<3.0|>=3.2.0,<3.2.2",
@@ -6216,7 +6218,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-26T11:20:16+00:00"
+            "time": "2021-11-24T08:12:42+00:00"
         },
         {
             "name": "symfony/serializer-pack",
@@ -8970,7 +8972,6 @@
                     "type": "github"
                 }
             ],
-            "abandoned": true,
             "time": "2020-09-28T06:45:17+00:00"
         },
         {
@@ -9621,6 +9622,12 @@
                 "symfony",
                 "testing",
                 "webdriver"
+            ],
+            "funding": [
+                {
+                    "url": "https://www.panthera.org/donate",
+                    "type": "custom"
+                }
             ],
             "time": "2020-02-24T12:05:49+00:00"
         },
