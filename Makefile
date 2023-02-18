@@ -10,6 +10,7 @@ DOCKER_COMPOSE_UP	   = $(DOCKER_COMPOSE) up -d --remove-orphans --no-recreate
 
 EXEC_PHP	   = $(DOCKER_COMPOSE_EXEC) php gosu foo
 EXEC_DATABASE  = $(DOCKER_COMPOSE_EXEC) database
+EXEC_ENCORE	   = $(DOCKER_COMPOSE_EXEC) encore
 
 SYMFONY		   = $(EXEC_PHP) php bin/console
 COMPOSER	   = $(EXEC_PHP) composer
@@ -36,7 +37,7 @@ composer-install-no-scripts: composer.lock ## Install Composer dependencies with
 shell: ## Enter in web container
 	$(DOCKER_COMPOSE) exec php gosu foo sh
 
-install: database assets ## Install everything
+install: database ## Install everything
 
 clean: start ## Remove dependencies and built resources
 	$(DOCKER_COMPOSE) exec php rm -Rf public/build/*
@@ -73,8 +74,11 @@ build:
 ##
 
 assets: vendor ## Build assets
-	$(EXEC_PHP) yarn install
-	$(EXEC_PHP) yarn run dev
+	$(EXEC_ENCORE) yarn install
+	$(EXEC_ENCORE) yarn run dev
+
+assets-prod: vendor ## Build assets
+	$(EXEC_ENCORE) yarn run build
 
 cache-warmup: vendor ## Warmup caches
 	$(SYMFONY) cache:warmup --env=dev
