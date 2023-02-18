@@ -355,6 +355,18 @@ textarea {
   }
   
 }
+
+.search-form {
+    input  {
+        width: 78%;
+        display:inline;
+    }
+    button {
+        display:inline;    
+    }
+    max-width: 65%;
+
+}
 @media print {
 
     .print-button,  .search-form, .missing_translation .report_error {
