@@ -3,22 +3,22 @@
     "app": {
       "js": [
         "/build/runtime.d94b3b43.js",
-        "/build/app.210fd432.js"
+        "/build/app.9b6162d8.js"
       ],
       "css": [
-        "/build/app.3cf5ef7a.css"
+        "/build/app.d9dd5496.css"
       ]
     },
     "chart": {
       "js": [
         "/build/runtime.d94b3b43.js",
-        "/build/chart.aaeded81.js"
+        "/build/chart.0f1db6f5.js"
       ]
     },
     "admin": {
       "js": [
         "/build/runtime.d94b3b43.js",
-        "/build/admin.c3818b61.js"
+        "/build/admin.e44abb4b.js"
       ]
     }
   }
