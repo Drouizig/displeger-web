@@ -10,6 +10,7 @@ DOCKER_COMPOSE_UP	   = $(DOCKER_COMPOSE) up -d --remove-orphans --no-recreate
 
 EXEC_PHP	   = $(DOCKER_COMPOSE_EXEC) php gosu foo
 EXEC_DATABASE  = $(DOCKER_COMPOSE_EXEC) database
+EXEC_ENCORE	   = $(DOCKER_COMPOSE_EXEC) encore
 
 SYMFONY		   = $(EXEC_PHP) php bin/console
 COMPOSER	   = $(EXEC_PHP) composer
@@ -73,8 +74,11 @@ build:
 ##
 
 assets: vendor ## Build assets
-	$(EXEC_PHP) yarn install
-	$(EXEC_PHP) yarn run dev
+	$(EXEC_ENCORE) yarn install
+	$(EXEC_ENCORE) yarn run dev
+
+assets-prod: vendor ## Build assets
+	$(EXEC_ENCORE) yarn run build
 
 cache-warmup: vendor ## Warmup caches
 	$(SYMFONY) cache:warmup --env=dev
