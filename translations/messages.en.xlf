@@ -565,6 +565,26 @@ The verb "%verb%" is missing on the website.
         <source>app.admin.tag.create.title</source>
         <target>Create a tag</target>
       </trans-unit>
+      <trans-unit id="mK5s1e0Lg" resname="app.title.mutations">
+        <source>app.title.mutations</source>
+        <target>Mutations</target>
+      </trans-unit>
+      <trans-unit id="mK51h0Lsg" resname="app.mutations.soft">
+        <source>app.mutations.soft</source>
+        <target>Soft</target>
+      </trans-unit>
+      <trans-unit id="msK51h0Lg" resname="app.mutations.hard">
+        <source>app.search.hard</source>
+        <target>Hard</target>
+      </trans-unit>
+      <trans-unit id="mKq510sLg" resname="app.mutations.spirant">
+        <source>app.mutations.spirant</source>
+        <target>Spirant</target>
+      </trans-unit>
+      <trans-unit id="qmK510Lg" resname="app.mutations.mixed">
+        <source>app.mutations.mixed</source>
+        <target>Mixed</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

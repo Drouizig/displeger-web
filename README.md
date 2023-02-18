@@ -44,3 +44,8 @@ Translation
 
 Translation is managed by Weblate https://hosted.weblate.org/projects/displeger-verbou/
 Please contact the developers to add a language.
+
+Discord
+===========
+
+The project has a Discord server, if you want to help or come to talk about the project: https://discord.gg/ZkrZwJw

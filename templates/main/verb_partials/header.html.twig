@@ -134,7 +134,7 @@
                             {% if translation.sources|length > 0 %}
                                 <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
                                 {% for source in translation.sources %}
-                                    <li>{{source.getNearestTranslation(app.request.locale).label}}</li>
+                                    <li>{{source.getNearestTranslation(app.request.locale) ? source.getNearestTranslation(app.request.locale).label : ''}}</li>
                                 {% endfor %}
                                ">
                                 <i class="fa fa-book"></i>

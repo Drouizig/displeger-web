@@ -325,6 +325,48 @@ textarea {
     color: red;
 }
 
+.scroll-to-top {
+    position: relative;
+
+    .btn {
+        position: fixed;
+        bottom: 40px;
+        right: 25px;
+        z-index: 20;
+        background-color: #551b54;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+    
+  }
+  
+  .icon-style:hover {
+    background: #fff;
+    color: #551b54;
+    border: 2px solid #551b54;
+  }
+  
+}
+
+.search-form {
+    input  {
+        width: 78%;
+        display:inline;
+    }
+    button {
+        display:inline;    
+    }
+    max-width: 65%;
+
+}
 @media print {
 
     .print-button,  .search-form, .missing_translation .report_error {

@@ -5,12 +5,12 @@
       <a href="{{ path('main') }}"><img src="{{ asset('build/logo_bihan_sklaer_beta.png') }}" alt="{{ 'app.title'|trans }}"/></a>
       
 
+      {% include 'main/partial/search_form.html.twig' %}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    {% include 'main/partial/search_form.html.twig' %}
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="{{path('search_advanced')}}">{{'app.search.advanced'|trans}}</a>
