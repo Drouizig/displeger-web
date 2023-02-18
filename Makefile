@@ -36,7 +36,7 @@ composer-install-no-scripts: composer.lock ## Install Composer dependencies with
 shell: ## Enter in web container
 	$(DOCKER_COMPOSE) exec php gosu foo sh
 
-install: database assets ## Install everything
+install: database ## Install everything
 
 clean: start ## Remove dependencies and built resources
 	$(DOCKER_COMPOSE) exec php rm -Rf public/build/*

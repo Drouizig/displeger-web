@@ -13,10 +13,9 @@ RUN apk add --no-cache freetype libpng libjpeg libjpeg-turbo freetype-dev libpng
 RUN apk add --no-cache \
     libgcc libstdc++ libx11 glib libxrender libxext libintl \
     libcrypto1.1 libssl1.1 \
-    ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family
+    ttf-dejavu ttf-droid ttf-freefont ttf-liberation
 
 RUN docker-php-ext-install intl zip exif
-RUN docker-php-ext-install -j$(nproc) iconv
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-enable opcache
