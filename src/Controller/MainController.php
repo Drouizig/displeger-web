@@ -60,7 +60,7 @@ class MainController extends AbstractController
      */
     public function preLocale(Request $request)
     {
-        $supportedLanguages = ['br', 'fr', 'en'];
+        $supportedLanguages = ['br', 'fr', 'en', 'gallo'];
         $acceptedLanguages = explode(',',$request->headers->get('accept-language'));
         foreach($acceptedLanguages as $fullLocale) {
             $locale = explode(';', $fullLocale)[0];
@@ -74,7 +74,7 @@ class MainController extends AbstractController
 
     /**
      * @Route("/{_locale}", name="main", requirements= {
-     *      "_locale": "br|fr|en"
+     *      "_locale": "br|fr|en|gallo"
      * })
      */
     public function index(Request $request) {
@@ -375,7 +375,7 @@ class MainController extends AbstractController
     
     /**
      * @Route("/{_locale}/sources", name="sources", requirements= {
-     *      "_locale": "br|fr|en"
+     *      "_locale": "br|fr|en|gallo"
      * })
      */
     public function sources() {
@@ -399,7 +399,7 @@ class MainController extends AbstractController
 
     /**
      * @Route("/{_locale}/page/{code}", name="page", requirements= {
-     *      "_locale": "br|fr|en"
+     *      "_locale": "br|fr|en|gallo"
      * })
      */
     public function CMSPage(
@@ -408,13 +408,16 @@ class MainController extends AbstractController
         ConfigurationTranslationRepository $configurationTranslationRepository) {
         /** @var ConfigurationTranslation $configurationTranslation  */
         $configurationTranslation = $configurationTranslationRepository->findByCodeAndLocale($code, $request->getLocale());
+        if ($configurationTranslation === null) {
+            $configurationTranslation = $configurationTranslationRepository->findByCodeAndLocale($code, 'fr');
+        }
         
         return $this->render('misc/cms.html.twig', ['configurationTranslation' => $configurationTranslation]);
     }
 
     /**
      * @Route("/{_locale}/random", name="random", requirements= {
-     *      "_locale": "br|fr|en"
+     *      "_locale": "br|fr|en|gallo"
      * })
      */
     public function randomVerb(){

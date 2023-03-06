@@ -28,7 +28,7 @@ class ConfigurationTranslationRepository extends ServiceEntityRepository
             ->setParameter('code', $code)
             ->setParameter('locale', $locale)
             ->getQuery()
-            ->getSingleResult()
+            ->getOneOrNullResult()
         ;
     }
 }
