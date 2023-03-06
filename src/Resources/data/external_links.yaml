@@ -2,12 +2,12 @@ parameters:
   url_wikeriadur:
     br: https://br.wiktionary.org/wiki/
     fr: https://fr.wiktionary.org/wiki/
-    gallo: https://fr.wiktionary.org/wiki/
+    galo: https://fr.wiktionary.org/wiki/
     en: https://en.wiktionary.org/wiki/
   url_wikeriadur_conjugation:
     br: https://br.wiktionary.org/wiki/Stagadenn:Displegadurioù_brezhonek/
     fr: https://fr.wiktionary.org/wiki/Annexe:Conjugaison_en_breton/
-    gallo: https://fr.wiktionary.org/wiki/Annexe:Conjugaison_en_breton/
+    galo: https://fr.wiktionary.org/wiki/Annexe:Conjugaison_en_breton/
     en: https://en.wiktionary.org/wiki/
   url_geriafurch:
     br: https://geriafurch.bzh/br?d=brfr&q=

@@ -74,7 +74,7 @@ class MainController extends AbstractController
 
     /**
      * @Route("/{_locale}", name="main", requirements= {
-     *      "_locale": "br|fr|en|gallo"
+     *      "_locale": "br|fr|en|galo"
      * })
      */
     public function index(Request $request) {
@@ -375,7 +375,7 @@ class MainController extends AbstractController
     
     /**
      * @Route("/{_locale}/sources", name="sources", requirements= {
-     *      "_locale": "br|fr|en|gallo"
+     *      "_locale": "br|fr|en|galo"
      * })
      */
     public function sources() {
@@ -399,7 +399,7 @@ class MainController extends AbstractController
 
     /**
      * @Route("/{_locale}/page/{code}", name="page", requirements= {
-     *      "_locale": "br|fr|en|gallo"
+     *      "_locale": "br|fr|en|"
      * })
      */
     public function CMSPage(
@@ -417,7 +417,7 @@ class MainController extends AbstractController
 
     /**
      * @Route("/{_locale}/random", name="random", requirements= {
-     *      "_locale": "br|fr|en|gallo"
+     *      "_locale": "br|fr|en|galo"
      * })
      */
     public function randomVerb(){
