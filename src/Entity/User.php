@@ -1,17 +1,37 @@
 <?php
 
-namespace App\Security;
+namespace App\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Table(name="User")
+ */
 class User implements UserInterface
 {
-    private $username;
-
-    private $roles = [];
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
     /**
-     * @var string The hashed password
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="json", length=255, nullable=true)
+     */
+    private $roles = [];
+
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $password;
 
