@@ -45,6 +45,12 @@ Translation
 Translation is managed by Weblate https://hosted.weblate.org/projects/displeger-verbou/
 Please contact the developers to add a language.
 
+Database entries
+===========
+
+You will find all the database entries here: https://github.com/Drouizig/displeger-verbou/blob/master/data/verbs.json
+
+
 Discord
 ===========
 
