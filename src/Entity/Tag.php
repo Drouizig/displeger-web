@@ -163,4 +163,5 @@ class Tag
 
         return $this;
     }
+
 }

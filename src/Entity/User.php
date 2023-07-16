@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
- * @ORM\Table(name="User")
+ * @ORM\Table(name="app_user")
  */
 class User implements UserInterface
 {
@@ -29,11 +29,21 @@ class User implements UserInterface
      */
     private $roles = [];
 
-    
+
+    private $plainPassword;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $password;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * A visual identifier that represents this user.
@@ -91,6 +101,17 @@ class User implements UserInterface
         return $this->getUsername();
     }
 
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
 
     /**
      * @see UserInterface

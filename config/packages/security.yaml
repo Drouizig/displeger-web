@@ -1,6 +1,6 @@
 security:
 #    encoders:
-#        App\Security\User:
+#        App\Entity\User:
 #            algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -18,6 +18,9 @@ security:
             # activate different ways to authenticate
             #http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            logout:
+                path: app_logout
 
             form_login:
                 login_path: login

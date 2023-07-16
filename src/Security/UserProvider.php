@@ -5,16 +5,24 @@ namespace App\Security;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use App\Entity\User;
+use App\Repository\UserRepository;
 
 class UserProvider implements UserProviderInterface
 {
 
+    private $userRepository;
+
+    private $userRepository;
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+
     public function loadUserByIdentifier(string $identifier): UserInterface
     {
-        $user = new User();
-        $user->setUsername('admin');
-        $user->setPassword('$2y$13$W6Q.FFoPZmYZjDC/IBA8qebUVoM0Famj49jBuV6quRRNuLPs/v/4O');
-        $user->setRoles(['ROLE_ADMIN']);
+        $user = $this->userRepository->findOneBy(['username' => $identifier]);
 
         return $user;
     }
@@ -38,10 +46,9 @@ class UserProvider implements UserProviderInterface
             throw new UnsupportedUserException(sprintf('Invalid user class "%s".', get_class($user)));
         }
 
-        $user = new User();
-        $user->setUsername('admin');
-        $user->setPassword('$2y$13$W6Q.FFoPZmYZjDC/IBA8qebUVoM0Famj49jBuV6quRRNuLPs/v/4O');
-        $user->setRoles(['ROLE_ADMIN']);
+
+        $user = $this->userRepository->findOneBy(['username' => $user->getUsername()]);
+
         return $user;
     }
 

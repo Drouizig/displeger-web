@@ -1,0 +1,13 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title 'Lodenn veran' %}
+
+{% block main %}
+
+<p>Niver a verboù : {{ statisticsManager.total }}</p>
+{# <p>Dregantad a verboù troet e galleg : {{ (( 1 - statisticsManager.percentage({'galleg': null})) * 100)|round(2) }} %</p>
+    <p>Dregantad a verboù troet e saozneg : {{ (( 1 - statisticsManager.percentage({'saozneg': null})) * 100)|round(2) }} %</p> #}
+<div id="js-category-chart" data-title="Rummadoù" data-categories='{{ statisticsManager.categoryData|raw }}'/>
+{% endblock %}
+

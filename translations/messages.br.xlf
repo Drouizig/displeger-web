@@ -705,6 +705,10 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>app.mutations.mixed</source>
         <target>Kemmesket</target>
       </trans-unit>
+      <trans-unit id="qsdqs" resname="action.new">
+        <source>action.new</source>
+        <target>Nevez</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
