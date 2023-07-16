@@ -50,6 +50,9 @@ class ConfigurationExtension extends AbstractExtension
         
         /** @var ConfigurationTranslation $configurationTranslation  */
         $configurationTranslation = $this->configurationTranslationRepository->findByCodeAndLocale($code, $locale);
+        if($configurationTranslation === null) {
+            $configurationTranslation = $this->configurationTranslationRepository->findByCodeAndLocale($code, 'fr');
+        }
         
         if($configurationTranslation !== null) {
             return $configurationTranslation->getText();

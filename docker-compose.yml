@@ -26,14 +26,12 @@ services:
         networks:
           - displeger
 
-    encore:
-        image: node:10-alpine
+    node:
+        build:
+            context: ./docker/node
+        working_dir: /srv
         volumes:
-            - .:/app
-        working_dir: /app
-        networks:
-          - displeger
-        command: ["yarn", "watch"]
+            - ./:/srv/
         
     nginx:
         image: nginx:1-alpine

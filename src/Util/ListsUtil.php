@@ -38,9 +38,12 @@ class ListsUtil
         $requestLocale = 'br';
         if($this->requestStack->getCurrentRequest() !== null) {
             $requestLocale = $this->requestStack->getCurrentRequest()->getLocale();
+            if($requestLocale === 'gallo') {
+                $requestLocale = 'fr';
+            }
         }
         $locales = Intl::getLocaleBundle()->getLocaleNames($requestLocale);
-        $locales['gal'] = $this->translator->trans('global.gallo');
+        $locales['gallo'] = $this->translator->trans('global.gallo');
         ksort($locales);
         return $locales;
     }

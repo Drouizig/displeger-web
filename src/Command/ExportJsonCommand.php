@@ -19,9 +19,9 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
-class ExportCsvCommand extends Command
+class ExportJsonCommand extends Command
 {
-    protected static $defaultName = 'app:export-csv';
+    protected static $defaultName = 'app:export-json';
 
     /** @var EntityManagerInterface */
     protected $em;
@@ -35,9 +35,9 @@ class ExportCsvCommand extends Command
     protected function configure()
     {
         $this
-        ->setDescription('Add a short description for your command')
-        ->addArgument('file', InputArgument::REQUIRED, 'Argument description')
-        ;
+        ->setDescription('Export the verbs as JSON')
+        ->addArgument('file')
+        ; 
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -74,9 +74,18 @@ class ExportCsvCommand extends Command
             return $ret;
         };
         
+        $tagCallback = function ($innerObject, $outerObject, string $attributeName, string $format = null, array $context = []) {
+            $ret = [];
+            foreach($innerObject as $tag) {
+                $ret[] = $tag->getTag()->getCode();
+            }
+            return $ret;
+        };
+
         $defaultContext = [
             AbstractNormalizer::CALLBACKS => [
                 'sources' => $sourceCallback,
+                'tags' => $tagCallback,
             ],
         ];
 

@@ -11,6 +11,8 @@ It uses Symfony 4, with yarn, bootstrap and jquery as front technologies. It has
 Set up the project with Docker
 ==============================
 
+Prerequisite : docker, docker-compose, Makefile
+
 Simply execute the following commands:
 
 `make start`
@@ -24,6 +26,8 @@ To compile the assets when you change them, execute :
 
 Set up the project without docker
 =================================
+
+Prerequisite : php, composer, mysql, node10, yarn
 
 Clone the repo and execute :
 
@@ -39,11 +43,21 @@ Set up you databse info in the .env file and execute :
  
 You can then import the database dump that is located at `docker/database/displeger_dump.sql.gz`
 
+Launch the server with 
+
+ `bin/console server:start`
+
 Translation
 ===========
 
 Translation is managed by Weblate https://hosted.weblate.org/projects/displeger-verbou/
 Please contact the developers to add a language.
+
+Database entries
+===========
+
+You will find all the database entries here: https://github.com/Drouizig/displeger-verbou/blob/master/data/verbs.json
+
 
 Discord
 ===========
