@@ -66,13 +66,11 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getSalt()
+    public function getUserIdentifier(): string
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
+        return $this->getUsername();
     }
+
 
     /**
      * @see UserInterface

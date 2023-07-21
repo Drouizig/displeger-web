@@ -1,7 +1,7 @@
 security:
-    encoders:
-        App\Security\User:
-            algorithm: bcrypt
+#    encoders:
+#        App\Security\User:
+#            algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -14,7 +14,6 @@ security:
             security: false
         main:
             pattern: ^/
-            anonymous: true
 
             # activate different ways to authenticate
             #http_basic: true
@@ -23,9 +22,8 @@ security:
             form_login:
                 login_path: login
                 check_path: login
-            guard:
-                authenticators:
-                    - App\Security\AdminAuthenticator
+#            authenticators:
+#                - App\Security\AdminAuthenticator
             # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site
