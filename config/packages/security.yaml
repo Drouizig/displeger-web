@@ -3,6 +3,9 @@ security:
 #        App\Entity\User:
 #            algorithm: bcrypt
 
+    password_hashers:
+        # auto hasher with default options for the User class (and children)
+        App\Entity\User: 'auto'
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)

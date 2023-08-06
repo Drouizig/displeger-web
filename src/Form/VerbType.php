@@ -31,7 +31,7 @@ class VerbType extends AbstractType
                 'prototype' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'attrs' => ['class' => 'field-select']
+//                'attrs' => ['class' => 'field-select']
             ])
             ->add('descriptionTranslations', CollectionType::class, [
                 'label' => 'app.form.verb.descriptions',

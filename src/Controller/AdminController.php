@@ -8,6 +8,8 @@ use App\Entity\TagCategoryTranslation;
 use App\Entity\TagTranslation;
 use App\Form\TagType;
 use App\Util\StatisticsManager;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,11 +39,12 @@ use Symfony\Component\Translation\TranslatorInterface;
 class AdminController extends AbstractController
 {
 
-    private $knpPaginator;
 
-    public function __construct(PaginatorInterface $knpPaginator)
+    public function __construct(
+        private readonly PaginatorInterface $knpPaginator,
+        private readonly EntityManagerInterface $entityManager,
+    )
     {
-        $this->knpPaginator = $knpPaginator;
     }
 
     /**
@@ -89,7 +92,7 @@ class AdminController extends AbstractController
 
     public function adminList(Request $request, string $class,string $twig) {
         /** @var AdminRepositoryInterface */
-        $repository = $this->getDoctrine()->getRepository($class);
+        $repository = $this->entityManager->getRepository($class);
 
         $search = $request->query->get('search', null);
         $query = $repository->getBackSearchQuery($search);
@@ -204,15 +207,15 @@ class AdminController extends AbstractController
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()) {
                 $data = $form->getData();
-                $this->getDoctrine()->getManager()->persist($data);
-                $this->getDoctrine()->getManager()->flush();
+                $this->entityManager->persist($data);
+                $this->entityManager->flush();
                 if(key_exists('save', $request->request->get($form->getName()))) {
                     return $this->redirect($request->getUri());
                 } elseif(key_exists('save_return', $request->request->get($form->getName()))) {
                     return $this->redirectToRoute($redirect_to_list, $request->query->get('params', []));
                 } else {
                     /** @var AdminRepositoryInterface $repository */
-                    $repository = $this->getDoctrine()->getRepository($class);
+                    $repository = $this->entityManager->getRepository($class);
                     $params = $request->query->get('params', []);
                     $search = null;
                     $offset = $request->query->get('offset', 0);
@@ -408,7 +411,7 @@ class AdminController extends AbstractController
 
         $modifiedVerbs = [];
         $newVerbs = [];
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->entityManager;
         if($form->isSubmitted() && $form->isValid()) {
 
             $csvFile = $form->get('file')->getData();

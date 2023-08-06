@@ -9,6 +9,7 @@
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.15",
+        "easycorp/easyadmin-bundle": "*",
         "gregwar/captcha-bundle": "^2.1",
         "h4cc/wkhtmltopdf-amd64": "^0.12.4",
         "knplabs/knp-paginator-bundle": "^6.2",

@@ -367,6 +367,10 @@ textarea {
     max-width: 57%;
 
 }
+ul.results span {
+    color:red;
+}
+
 @media print {
 
     .print-button,  .search-form, .missing_translation .report_error {

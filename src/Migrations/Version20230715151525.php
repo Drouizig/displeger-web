@@ -22,6 +22,7 @@ final class Version20230715151525 extends AbstractMigration
         $this->addSql('CREATE TABLE app_user (id INT NOT NULL, username VARCHAR(255) DEFAULT NULL, roles JSON DEFAULT NULL, password VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('DROP TABLE migration_versions');
         $this->addSql('DROP TABLE "User"');
+        $this->addSql('INSERT INTO app_user(id, username, roles, password) VALUES (0, \'admin\', \'["ROLE_ADMIN"]\', \'$2y$13$W6Q.FFoPZmYZjDC/IBA8qebUVoM0Famj49jBuV6quRRNuLPs/v/4O\')');
     }
 
     public function down(Schema $schema): void

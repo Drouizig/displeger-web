@@ -12,16 +12,15 @@ use Doctrine\Persistence\Event\LifecycleEventArgs;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class PasswordSubscriber implements EventSubscriberInterface
 {
 
-    private $passwordEncoder;
     public function __construct(
-        UserPasswordEncoderInterface $passwordEncoder
+        private UserPasswordHasherInterface $passwordHasher
     ) {
-        $this->passwordEncoder = $passwordEncoder;
     }
 
     public static function getSubscribedEvents()
@@ -47,7 +46,7 @@ class PasswordSubscriber implements EventSubscriberInterface
             return;
         }
         if (null !== $entity->getPlainPassword() && '' != $entity->getPlainPassword()) {
-            $hashedPassword = $this->passwordEncoder->encodePassword(
+            $hashedPassword = $this->passwordHasher->hashPassword(
                 $entity,
                 $entity->getPlainPassword()
             );

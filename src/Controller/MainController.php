@@ -4,10 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Tag;
 use App\Repository\VerbLocalizationRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use http\Client;
+use http\Env\Response;
 use Knp\Snappy\Pdf;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
@@ -27,6 +31,7 @@ use App\Entity\SourceTypeEnum;
 use App\Entity\VerbLocalization;
 use App\Form\AdvancedSearchType;
 use App\Repository\ConfigurationTranslationRepository;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class MainController extends AbstractController
 {
@@ -34,9 +39,11 @@ class MainController extends AbstractController
     const PDF_DIR="pdf_export/";
 
     public function __construct(
-        protected readonly VerbouManager $verbouManager,
-        protected readonly KemmaduriouManager $kemmaduriouManager,
-        protected readonly MailerInterface $mailer
+        private readonly VerbouManager $verbouManager,
+        private readonly KemmaduriouManager $kemmaduriouManager,
+        private readonly MailerInterface $mailer,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly HttpClientInterface $client,
     )
     {
     }
@@ -74,7 +81,7 @@ class MainController extends AbstractController
         }
         $term = trim($term);
         /** @var $verbRepository VerbLocalizationRepository */
-        $verbLocalizationRepository = $this->getDoctrine()->getRepository(VerbLocalization::class);
+        $verbLocalizationRepository = $this->entityManager->getRepository(VerbLocalization::class);
         $searchQuery = $verbLocalizationRepository->getFrontSearchQuery($term);
         
         $pagination = $knpPaginator->paginate(
@@ -91,7 +98,8 @@ class MainController extends AbstractController
         }
 
         return $this->render('main/search.html.twig', [
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'term' => $term
         ]);
     }
 
@@ -111,7 +119,7 @@ class MainController extends AbstractController
             $type = 'localization';
             $term = trim($request->query->get('term_advanced'));
             /**  @var VerbRepository VerbRepository  */
-            $verbRepository = $this->getDoctrine()->getRepository(Verb::class);
+            $verbRepository = $this->entityManager->getRepository(Verb::class);
             if($request->query->get('language') == 'br') {
                 $searchQuery = $verbRepository->getLocalizationSearchBuilder($term);
             } else {
@@ -143,9 +151,11 @@ class MainController extends AbstractController
     public function verb(
         Request $request,
         Pdf $pdf,
-        #[MapEntity(mapping: ["infinitive" => "infinitive"])] VerbLocalization $verbLocalization = null,
+        string $infinitive
     )
     {
+        $verbLocalization = $this->entityManager
+            ->getRepository(VerbLocalization::class)->findOneBy(['infinitive' => $infinitive]);
         $contactForm = $this->createForm(ContactType::class);
         $reportErrorForm = $this->createForm(ContactType::class);
         $template = 'main/verb.html.twig';
@@ -160,7 +170,7 @@ class MainController extends AbstractController
             $verb = $verbLocalization->getVerb();
 
             /** @var verbLocalizationRepository VerbLocalizationRepository */
-            $verbLocalizationRepository = $this->getDoctrine()->getRepository(VerbLocalization::class);
+            $verbLocalizationRepository = $this->entityManager->getRepository(VerbLocalization::class);
             $previousVerb = $verbLocalizationRepository->getPreviousVerb($verbLocalization->getInfinitive());
             $nextVerb = $verbLocalizationRepository->getNextVerb($verbLocalization->getInfinitive());
             $locale = $request->get('_locale', 'br');
@@ -202,6 +212,15 @@ class MainController extends AbstractController
             }
 
             $wikeriadurUrl = $this->getParameter('url_wikeriadur')[$locale].$verbLocalization->getInfinitive();
+            if(null === $verb->getWiktionnaryExists()) {
+                $result = $this->client->request('GET', $wikeriadurUrl);
+                if ($result->getStatusCode() == \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND) {
+                    $verb->setWiktionnaryExists(false);
+                } else {
+                    $verb->setWiktionnaryExists(true);
+                }
+            }
+
             $geriafurchUrl = '';
             if(isset($this->getParameter('url_geriafurch')[$locale])) {
                 $geriafurchUrl = $this->getParameter('url_geriafurch')[$locale].$verbLocalization->getInfinitive();
@@ -209,11 +228,21 @@ class MainController extends AbstractController
                 $geriafurchUrl = $this->getParameter('url_geriafurch')['br'].$verbLocalization->getInfinitive();
             }
             $organisation = $this->getParameter('organisation');
-            if( null != $this->get('parameter_bag')->has('organisation.'.$verbLocalization->getInfinitive())) {
+            try {
                 $organisation = $this->getParameter('organisation.'.$verbLocalization->getInfinitive());
+            } catch (ParameterNotFoundException $e) {
             }
 
             $wikeriadurConjugationUrl = $this->getParameter('url_wikeriadur_conjugation')[$locale].$verbLocalization->getInfinitive();
+            if(null === $verb->getWiktionnaryConjugationExists()) {
+                $result = $this->client->request('GET', $wikeriadurConjugationUrl);
+                if ($result->getStatusCode() == \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND) {
+                    $verb->setWiktionnaryConjugationExists(false);
+                } else {
+                    $verb->setWiktionnaryConjugationExists(true);
+                }
+            }
+
             if($print){
                 if(!file_exists(self::PDF_DIR.$verbLocalization->getInfinitive() . '.pdf')) {
                     $html = $this->renderView(
@@ -275,7 +304,7 @@ class MainController extends AbstractController
             return new JsonResponse();
         }
         /** @var VerbLocalizationRepository $verbLocalizationRepository */
-        $verbLocalizationRepository = $this->getDoctrine()->getRepository(VerbLocalization::class);
+        $verbLocalizationRepository = $this->entityManager->getRepository(VerbLocalization::class);
         $result = $verbLocalizationRepository->findByTermAutocomplete($term);
         $array = [];
         /** @var Verb $res */
@@ -350,7 +379,7 @@ class MainController extends AbstractController
     
     #[Route("/{_locale}/sources", name: "sources", requirements: ["_locale" => "br|fr|en|galo"])]
     public function sources() {
-        $sourceRepo = $this->getDoctrine()->getRepository(Source::class);
+        $sourceRepo = $this->entityManager->getRepository(Source::class);
         $sourceEntities = $sourceRepo->findBy(['active'=>true]);
         $sources = [
             SourceTypeEnum::GRAMMAR => [],
@@ -384,7 +413,7 @@ class MainController extends AbstractController
 
     #[Route("/{_locale}/random", name: "random", requirements: ["_locale" => "br|fr|en|galo"])]
     public function randomVerb(){
-        $verb = $this->getDoctrine()->getRepository(VerbLocalization::class)->findRandomVerb();
+        $verb = $this->entityManager->getRepository(VerbLocalization::class)->findRandomVerb();
         $route = 'main';
         $args = null;
         if($verb != null){
@@ -400,8 +429,8 @@ class MainController extends AbstractController
     {
         $result = [];
         $tag = $request->get('tag', null);
-        $tagRepo = $this->getDoctrine()->getRepository(Tag::class);
-        $verbLocalizationRepo = $this->getDoctrine()->getRepository(VerbLocalization::class);
+        $tagRepo = $this->entityManager->getRepository(Tag::class);
+        $verbLocalizationRepo = $this->entityManager->getRepository(VerbLocalization::class);
 
         $tagObject = $tagRepo->findOneBy(['code' => $tag]);
         if($tagObject != null)
@@ -435,7 +464,7 @@ class MainController extends AbstractController
     public function verbsByCategory(Request $request, PaginatorInterface $knpPaginator, TranslatorInterface $translator)
     {
         $category = $request->get('category', null);
-        $verbLocalizationRepo = $this->getDoctrine()->getRepository(VerbLocalization::class);
+        $verbLocalizationRepo = $this->entityManager->getRepository(VerbLocalization::class);
 
         $pagination = $knpPaginator->paginate(
             $verbLocalizationRepo->findBy(['category' => $category], ['infinitive' => 'ASC']),

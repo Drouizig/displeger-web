@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use App\Entity\User;
@@ -11,12 +12,10 @@ use App\Repository\UserRepository;
 class UserProvider implements UserProviderInterface
 {
 
-    private $userRepository;
-
-    private $userRepository;
-    public function __construct(UserRepository $userRepository)
+    public function __construct(
+        private readonly UserRepository $userRepository
+    )
     {
-        $this->userRepository = $userRepository;
     }
 
 
@@ -24,22 +23,13 @@ class UserProvider implements UserProviderInterface
     {
         $user = $this->userRepository->findOneBy(['username' => $identifier]);
 
+        if ($user == null) {
+            throw new UserNotFoundException('N\'eo ket bet kavet an implijer '.$identifier);
+        }
+
         return $user;
     }
 
-    /**
-     * Refreshes the user after being reloaded from the session.
-     *
-     * When a user is logged in, at the beginning of each request, the
-     * User object is loaded from the session and then this method is
-     * called. Your job is to make sure the user's data is still fresh by,
-     * for example, re-querying for fresh User data.
-     *
-     * If your firewall is "stateless: true" (for a pure API), this
-     * method is not called.
-     *
-     * @return UserInterface
-     */
     public function refreshUser(UserInterface $user)
     {
         if (!$user instanceof User) {

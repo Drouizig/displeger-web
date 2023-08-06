@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Configuration;
 use App\Entity\Source;
 use App\Entity\Tag;
 use App\Entity\TagCategory;
@@ -56,7 +57,9 @@ class DashboardController extends AbstractDashboardController
          yield MenuItem::linkToCrud('Mammennoù', 'fas fa-book', Source::class);
          yield MenuItem::linkToCrud('Tikedennoù', 'fas fa-tag', Tag::class);
          yield MenuItem::linkToCrud('Rummadoù tikedennoù', 'fas fa-tag', TagCategory::class);
+         yield MenuItem::linkToCrud('Testennoù al lec’hienn', 'fas fa-scroll', Configuration::class);
          yield MenuItem::linkToCrud('Implijerien', 'fas fa-user', User::class);
+         yield MenuItem::linkToRoute('Lec’hienn', 'fas fa-earth', 'pre_locale', ['target'=> '_blank']);
     }
 
     public function configureAssets(): Assets

@@ -8,9 +8,11 @@
   <div class="navigation">
       {{ knp_pagination_render(pagination) }}
   </div>
-  <ul>
+  <ul class="results">
     {% for result in pagination %}
-      <li><a href="{{ path('verb', {'infinitive': result.infinitive}) }}">{{ result.infinitive }}</a></li>
+      <li><a href="{{ path('verb', {'infinitive': result.infinitive}) }}">
+          {{ result.infinitive|highlight(term)|raw }}
+          </a></li>
     {% endfor %}
   </ul>
 

@@ -205,6 +205,14 @@
         <source>app.form.verb.translations</source>
         <target>Troidigezhioù</target>
       </trans-unit>
+      <trans-unit id="Es6dqsdOsL" resname="app.form.verb.descriptions">
+        <source>app.form.verb.descriptions</source>
+        <target>Deskrivadurioù</target>
+      </trans-unit>
+      <trans-unit id="Eazes6dOsL" resname="app.form.verb.tags">
+        <source>app.form.verb.tags</source>
+        <target>Tikedennoù</target>
+      </trans-unit>
       <trans-unit id="4ngq2Cb" resname="app.form.verb.infinitive">
         <source>app.form.verb.infinitive</source>
         <target>Anv-verb</target>
