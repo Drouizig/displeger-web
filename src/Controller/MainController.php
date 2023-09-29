@@ -293,7 +293,7 @@ class MainController extends AbstractController
     }
 
     #[Route("/{_locale}/autocomplete", name: "autocomplete")]
-    public function autocomplete(Request $request, RouterInterface $router, Transla $translator)
+    public function autocomplete(Request $request, RouterInterface $router, TranslatorInterface $translator)
     {
         $term = $request->query->get('term');
         if (null === $term) {
