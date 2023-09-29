@@ -3,56 +3,42 @@
 namespace App\Security;
 
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use App\Entity\User;
+use App\Repository\UserRepository;
 
 class UserProvider implements UserProviderInterface
 {
-    /**
-     * Symfony calls this method if you use features like switch_user
-     * or remember_me.
-     *
-     * If you're not using these features, you do not need to implement
-     * this method.
-     *
-     * @return UserInterface
-     *
-     * @throws UsernameNotFoundException if the user is not found
-     */
-    public function loadUserByUsername($username)
+
+    public function __construct(
+        private readonly UserRepository $userRepository
+    )
     {
-        $user = new User();
-        $user->setUsername('admin');
-        $user->setPassword('$2y$13$W6Q.FFoPZmYZjDC/IBA8qebUVoM0Famj49jBuV6quRRNuLPs/v/4O');
-        $user->setRoles(['ROLE_ADMIN']);
+    }
+
+
+    public function loadUserByIdentifier(string $identifier): UserInterface
+    {
+        $user = $this->userRepository->findOneBy(['username' => $identifier]);
+
+        if ($user == null) {
+            throw new UserNotFoundException('N\'eo ket bet kavet an implijer '.$identifier);
+        }
 
         return $user;
     }
 
-    /**
-     * Refreshes the user after being reloaded from the session.
-     *
-     * When a user is logged in, at the beginning of each request, the
-     * User object is loaded from the session and then this method is
-     * called. Your job is to make sure the user's data is still fresh by,
-     * for example, re-querying for fresh User data.
-     *
-     * If your firewall is "stateless: true" (for a pure API), this
-     * method is not called.
-     *
-     * @return UserInterface
-     */
     public function refreshUser(UserInterface $user)
     {
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Invalid user class "%s".', get_class($user)));
         }
 
-        $user = new User();
-        $user->setUsername('admin');
-        $user->setPassword('$2y$13$W6Q.FFoPZmYZjDC/IBA8qebUVoM0Famj49jBuV6quRRNuLPs/v/4O');
-        $user->setRoles(['ROLE_ADMIN']);
+
+        $user = $this->userRepository->findOneBy(['username' => $user->getUsername()]);
+
         return $user;
     }
 

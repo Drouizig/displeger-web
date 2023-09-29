@@ -4,6 +4,7 @@ namespace App\Util;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Intl\Intl;
+use Symfony\Component\Intl\Locales;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ListsUtil
@@ -42,7 +43,7 @@ class ListsUtil
                 $requestLocale = 'fr';
             }
         }
-        $locales = Intl::getLocaleBundle()->getLocaleNames($requestLocale);
+        $locales = Locales::getNames($requestLocale);
         $locales['gallo'] = $this->translator->trans('global.gallo');
         ksort($locales);
         return $locales;

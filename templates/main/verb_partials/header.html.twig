@@ -77,15 +77,17 @@
     {% endif %}
     {% if verb.localizations|length > 1 %}
         <p class="subtitle">{{'app.verb.other_forms'|trans}} :
-        {% for other_localization in verb.localizations if other_localization != verbLocalization %}
-            <a href={{path('verb', {'infinitive': other_localization.infinitive})}}>{{other_localization.infinitive}}</a>
-            {% if other_localization.dialectCode != null %}
-                ({%- for dialect in other_localization.dialectCode -%}
-                        {%if loop.index != 1%}, {%endif%}{{('app.dialect.'~dialect)|trans}}
-                        <a href="{{('app.dialect.'~dialect~'.url')|trans}}"><img src="{{ asset('build/wiki.webp') }}"/></a>
-                    {%- endfor -%})
+        {% for other_localization in verb.localizations %}
+            {% if  other_localization != verbLocalization  %}
+                <a href={{path('verb', {'infinitive': other_localization.infinitive})}}>{{other_localization.infinitive}}</a>
+                {% if other_localization.dialectCode != null %}
+                    ({%- for dialect in other_localization.dialectCode -%}
+                            {%if loop.index != 1%}, {%endif%}{{('app.dialect.'~dialect)|trans}}
+                            <a href="{{('app.dialect.'~dialect~'.url')|trans}}"><img src="{{ asset('build/wiki.webp') }}"/></a>
+                        {%- endfor -%})
+                {% endif %}
+                {% if loop.index +1 != verb.localizations|length %},{% endif %}
             {% endif %}
-            {% if loop.index +1 != verb.localizations|length %},{% endif %}
         {% endfor %}
         </p>
     {% endif %}
@@ -128,19 +130,21 @@
                 <p><a class="js-view_more" href="javascript:;">⯆ {{'app.verb.view_more'|trans}} ({{(verb.translations|length)-1}}) </a></p>
                 <div class="js-translations" style="display:none;">
                     <ul>
-                        {% for translation in verb.translations if translation.languageCode != language %}
-                            <li>{{listsUtil.locales[translation.languageCode]|capitalize}} : 
-                            {{translation.translation}} 
-                            {% if translation.sources|length > 0 %}
-                                <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
-                                {% for source in translation.sources %}
-                                    <li>{{source.getNearestTranslation(app.request.locale) ? source.getNearestTranslation(app.request.locale).label : ''}}</li>
-                                {% endfor %}
-                               ">
-                                <i class="fa fa-book"></i>
-                                </span>
+                        {% for translation in verb.translations %}
+                            {% if translation.languageCode != language  %}
+                                <li>{{listsUtil.locales[translation.languageCode]|capitalize}} :
+                                    {{translation.translation}}
+                                    {% if translation.sources|length > 0 %}
+                                        <span class="abbr" data-tooltip="{{'app.sources.title'|trans}}<ul>
+                                        {% for source in translation.sources %}
+                                            <li>{{source.getNearestTranslation(app.request.locale) ? source.getNearestTranslation(app.request.locale).label : ''}}</li>
+                                        {% endfor %}
+                                       ">
+                                        <i class="fa fa-book"></i>
+                                        </span>
+                                    {% endif %}
+                                </li>
                             {% endif %}
-                            </li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -157,13 +161,19 @@
 
     
     {% if print == false %}
-        <div class="row">
-            <div class="col-md">
-                <p><a href="{{wikeriadur_url}}" target="_blank">
-                <img class="icon" src="{{ asset('build/wikeriadur.ico') }}" alt="{{'app.wiktionnary.alt'|trans}}" />
-                {{'app.wiktionnary'|trans}}</a> (<a href="{{wikeriadur_conjugation_url}}" target="_blank">{{'app.wiktionnary.conjugation'|trans}}</a>)</p>
+        {% if verb.wiktionnaryExists %}
+            <div class="row">
+                <div class="col-md">
+                    <p><a href="{{wikeriadur_url}}" target="_blank">
+                    <img class="icon" src="{{ asset('build/wikeriadur.ico') }}" alt="{{'app.wiktionnary.alt'|trans}}" />
+                    {{'app.wiktionnary'|trans}}</a>
+                        {% if verb.wiktionnaryConjugationExists %}
+                            (<a href="{{wikeriadur_conjugation_url}}" target="_blank">{{'app.wiktionnary.conjugation'|trans}}</a>)
+                            {% endif %}
+                            </p>
+                </div>
             </div>
-        </div>
+        {% endif %}
         <div class="row">
             <div class="col-md">
                 <p><a href="{{geriafurch_url}}" target="_blank">

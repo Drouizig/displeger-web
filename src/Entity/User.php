@@ -1,19 +1,50 @@
 <?php
 
-namespace App\Security;
+namespace App\Entity;
 
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping as ORM;
 
-class User implements UserInterface
+/**
+ * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Table(name="app_user")
+ */
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    private $username;
-
-    private $roles = [];
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
     /**
-     * @var string The hashed password
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="json", length=255, nullable=true)
+     */
+    private $roles = [];
+
+
+    private $plainPassword;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $password;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * A visual identifier that represents this user.
@@ -66,12 +97,21 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getSalt()
+    public function getUserIdentifier(): string
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
+        return $this->getUsername();
+    }
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
     }
 
     /**

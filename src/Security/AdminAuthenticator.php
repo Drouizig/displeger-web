@@ -4,23 +4,28 @@ namespace App\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
-use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
+use Symfony\Component\Security\Http\Authentication\AuthenticatorManagerInterface;
+use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
-use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 
-class AdminAuthenticator extends AbstractFormLoginAuthenticator
+class AdminAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
@@ -29,7 +34,7 @@ class AdminAuthenticator extends AbstractFormLoginAuthenticator
     private $passwordEncoder;
 
     /**
-     * @var AuthenticationManagerInterface
+     * @var AuthenticatorManagerInterface
      */
     private $authenticationManager;
     /**
@@ -41,8 +46,8 @@ class AdminAuthenticator extends AbstractFormLoginAuthenticator
     public function __construct(
         RouterInterface $router, 
         CsrfTokenManagerInterface $csrfTokenManager, 
-        UserPasswordEncoderInterface $passwordEncoder,
-        AuthenticationManagerInterface $authenticationManager,
+        UserPasswordHasherInterface $passwordEncoder,
+        AuthenticatorManagerInterface $authenticationManager,
         TokenStorageInterface $tokenStorage
         )
     {
@@ -53,11 +58,16 @@ class AdminAuthenticator extends AbstractFormLoginAuthenticator
         $this->tokenStorage = $tokenStorage;
     }
 
-    public function supports(Request $request)
+    public function authenticate(Request $request): Passport
     {
-        return 'app_login' === $request->attributes->get('_route')
-            && $request->isMethod('POST');
+        $credentials = [
+            'username' => $request->request->get('username'),
+            'password' => $request->request->get('password'),
+        ];
+
+        return new Passport(new UserBadge($credentials['username']), new PasswordCredentials($credentials['password']));
     }
+
 
     public function getCredentials(Request $request)
     {
@@ -83,8 +93,6 @@ class AdminAuthenticator extends AbstractFormLoginAuthenticator
 
         // Load / create our user however you need.
         // You can do this by calling the user provider, or with custom logic here.
-        $user = $userProvider->loadUserByUsername($credentials['username']);
-
         if (!$user) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
@@ -98,7 +106,7 @@ class AdminAuthenticator extends AbstractFormLoginAuthenticator
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
@@ -108,7 +116,7 @@ class AdminAuthenticator extends AbstractFormLoginAuthenticator
         return new RedirectResponse($this->router->generate('admin'));
     }
 
-    protected function getLoginUrl()
+    protected function getLoginUrl(Request $request): string
     {
         return $this->router->generate('app_login');
     }

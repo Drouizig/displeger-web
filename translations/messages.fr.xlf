@@ -157,10 +157,6 @@
         <source>app.form.contact.message</source>
         <target>Message</target>
       </trans-unit>
-      <trans-unit id="oUqwEYh" resname="app.form.contact.captcha">
-        <source>app.form.contact.captcha</source>
-        <target>Écrivez les caractères sur l'image</target>
-      </trans-unit>
       <trans-unit id="BHHgCIS" resname="app.form.contact.submit">
         <source>app.form.contact.submit</source>
         <target>Envoyer</target>
