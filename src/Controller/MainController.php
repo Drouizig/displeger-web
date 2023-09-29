@@ -5,15 +5,10 @@ namespace App\Controller;
 use App\Entity\Tag;
 use App\Repository\VerbLocalizationRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Client;
-use http\Env\Response;
 use Knp\Snappy\Pdf;
-use Psr\Log\LoggerInterface;
-use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use App\Form\ContactType;
@@ -32,6 +27,7 @@ use App\Entity\VerbLocalization;
 use App\Form\AdvancedSearchType;
 use App\Repository\ConfigurationTranslationRepository;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MainController extends AbstractController
 {
@@ -297,7 +293,7 @@ class MainController extends AbstractController
     }
 
     #[Route("/{_locale}/autocomplete", name: "autocomplete")]
-    public function autocomplete(Request $request, RouterInterface $router, TranslatorInterface $translator)
+    public function autocomplete(Request $request, RouterInterface $router, Transla $translator)
     {
         $term = $request->query->get('term');
         if (null === $term) {
@@ -363,7 +359,7 @@ class MainController extends AbstractController
             }
         } else if ($contactForm->isSubmitted() && !$contactForm->isValid()) {
             if ($request->isXmlHttpRequest()) {
-                return new JsonResponse(['result' => 'nok', 'errors' => $contactForm->getErrors(true)]);
+                return new JsonResponse(['result' => 'nok', 'errors' => iterator_to_array($contactForm->getErrors(true, true))]);
             } else {
                 return $this->render('main/email.html.twig', [
                     'form_object' => $contactForm->createView()

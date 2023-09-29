@@ -161,13 +161,19 @@
 
     
     {% if print == false %}
-        <div class="row">
-            <div class="col-md">
-                <p><a href="{{wikeriadur_url}}" target="_blank">
-                <img class="icon" src="{{ asset('build/wikeriadur.ico') }}" alt="{{'app.wiktionnary.alt'|trans}}" />
-                {{'app.wiktionnary'|trans}}</a> (<a href="{{wikeriadur_conjugation_url}}" target="_blank">{{'app.wiktionnary.conjugation'|trans}}</a>)</p>
+        {% if verb.wiktionnaryExists %}
+            <div class="row">
+                <div class="col-md">
+                    <p><a href="{{wikeriadur_url}}" target="_blank">
+                    <img class="icon" src="{{ asset('build/wikeriadur.ico') }}" alt="{{'app.wiktionnary.alt'|trans}}" />
+                    {{'app.wiktionnary'|trans}}</a>
+                        {% if verb.wiktionnaryConjugationExists %}
+                            (<a href="{{wikeriadur_conjugation_url}}" target="_blank">{{'app.wiktionnary.conjugation'|trans}}</a>)
+                            {% endif %}
+                            </p>
+                </div>
             </div>
-        </div>
+        {% endif %}
         <div class="row">
             <div class="col-md">
                 <p><a href="{{geriafurch_url}}" target="_blank">

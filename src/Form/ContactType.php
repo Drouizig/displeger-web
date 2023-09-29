@@ -23,9 +23,6 @@ class ContactType extends AbstractType
             ->add('message', TextareaType::class, [
                 'label' => 'app.form.contact.message'
             ])
-            ->add('captcha', CaptchaType::class, [
-                'label' => 'app.form.contact.captcha'
-            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'app.form.contact.submit'
             ])

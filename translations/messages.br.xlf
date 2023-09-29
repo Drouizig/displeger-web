@@ -161,10 +161,6 @@
         <source>app.form.contact.submit</source>
         <target>Kas</target>
       </trans-unit>
-      <trans-unit id="oUqwEYh" resname="app.form.contact.captcha">
-        <source>app.form.contact.captcha</source>
-        <target>Skrivit an arouezennoù er skeudenn</target>
-      </trans-unit>
       <trans-unit id="LBAy94c" resname="app.form.verb.anvVerb">
         <source>app.form.verb.anvVerb</source>
         <target>Anv-verb</target>

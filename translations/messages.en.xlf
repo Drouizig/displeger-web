@@ -161,10 +161,6 @@
         <source>app.form.contact.submit</source>
         <target>Send</target>
       </trans-unit>
-      <trans-unit id="oUqwEYh" resname="app.form.contact.captcha">
-        <source>app.form.contact.captcha</source>
-        <target>Please write the characters on the image</target>
-      </trans-unit>
       <trans-unit id="LBAy94c" resname="app.form.verb.anvVerb">
         <source>app.form.verb.anvVerb</source>
         <target>Infinitive</target>

@@ -78,10 +78,10 @@ class Verb
     private $enabled;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $wiktionnaryExists;
+    private ?bool $wiktionnaryExists = null;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $wiktionnaryConjugationExists;
+    private ?bool $wiktionnaryConjugationExists = null;
 
     public function __construct()
     {
