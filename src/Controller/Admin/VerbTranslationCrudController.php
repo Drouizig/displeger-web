@@ -24,10 +24,10 @@ class VerbTranslationCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('translation'),
-            ChoiceField::new('languageCode')
+            TextField::new('translation', 'app.form.verb.translation'),
+            ChoiceField::new('languageCode', 'app.form.verb.language_code')
                 ->setChoices(array_flip($this->listsUtil->getLocales())),
-            AssociationField::new('sources'),
+            AssociationField::new('sources', 'app.form.verb.sources'),
         ];
     }
 

@@ -27,10 +27,10 @@ class DescriptionTranslationCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextareaField::new('content'),
-            ChoiceField::new('languageCode')
+            TextareaField::new('content', 'app.form.source.description'),
+            ChoiceField::new('languageCode', 'app.form.verb.language_code')
                 ->setChoices(array_flip($this->listsUtil->getLocales())),
-            AssociationField::new('sources'),
+            AssociationField::new('sources', 'app.form.verb.sources'),
         ];
     }
 

@@ -7,12 +7,14 @@ use App\Entity\SourceTypeEnum;
 use App\Form\SourceTranslationType;
 use App\Util\ListsUtil;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
 
 class SourceCrudController extends AbstractCrudController
 {
@@ -31,7 +33,9 @@ class SourceCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return parent::configureCrud($crud)->setPageTitle(Crud::PAGE_INDEX,'app.page.sources');
+        return parent::configureCrud($crud)
+            ->setEntityLabelInSingular('Mammenn')
+            ->setEntityLabelInPlural('Mammennoù');
     }
 
 
@@ -67,6 +71,19 @@ class SourceCrudController extends AbstractCrudController
                 CollectionField::new('translations', 'app.form.source.translations')->setEntryType(SourceTranslationType::class)
             ];
         }
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return parent::configureFilters($filters)
+            ->add(ChoiceFilter::new('locale')->setChoices(
+                [
+                    'Français' => 'fr',
+                    'Brezhoneg' => 'br',
+                    'English' => 'en'
+                ]
+            ))
+            ;
     }
 
 }

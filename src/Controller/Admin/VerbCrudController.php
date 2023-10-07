@@ -3,12 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Verb;
-use App\Form\VerbLocalizationType;
-use App\Form\VerbTagType;
-use Doctrine\Common\Collections\Collection;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class VerbCrudController extends AbstractCrudController
 {
@@ -19,7 +18,8 @@ class VerbCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setSearchFields(['localizations.infinitive']);
+        return $crud->setSearchFields(['localizations.infinitive'])
+            ;
     }
 
 
@@ -27,17 +27,29 @@ class VerbCrudController extends AbstractCrudController
     {
         if ($pageName == Crud::PAGE_INDEX) {
             return [
-                CollectionField::new('localizations', 'app.form.verb.localizations'),
+                CollectionField::new('localizations', 'app.form.verb.localizations')->setSortable(true),
                 CollectionField::new('translations', 'app.form.verb.translations'),
                 CollectionField::new('tags', 'app.form.verb.tags'),
+                TextField::new('categories', 'app.form.verb.category')
             ];
         }
         return [
-            CollectionField::new('localizations', 'app.form.verb.localizations')->useEntryCrudForm()->renderExpanded(),
-            CollectionField::new('descriptionTranslations', 'app.form.verb.descriptions')->useEntryCrudForm(),
-            CollectionField::new('translations', 'app.form.verb.translations')->useEntryCrudForm()->renderExpanded(),
+            CollectionField::new('localizations', 'app.form.verb.localizations')->useEntryCrudForm()->renderExpanded()
+                ->setDefaultColumns('col-md-12'),
+            CollectionField::new('descriptionTranslations', 'app.form.verb.descriptions')->useEntryCrudForm()
+                ->setDefaultColumns('col-md-12'),
+            CollectionField::new('translations', 'app.form.verb.translations')->useEntryCrudForm()->renderExpanded()
+                ->setDefaultColumns('col-md-12'),
             CollectionField::new('tags', 'app.form.verb.tags')->useEntryCrudForm(),
         ];
     }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+
+        return parent::configureFilters($filters)
+            ;
+    }
+
 
 }
