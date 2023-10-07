@@ -16,8 +16,8 @@ class VerbTagCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('tag'),
-            AssociationField::new('sources'),
+            AssociationField::new('tag', 'app.form.verb.tags'),
+            AssociationField::new('sources', 'app.form.verb.sources'),
         ];
     }
 

@@ -27,13 +27,13 @@ class VerbLocalizationCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('infinitive'),
-            TextField::new('base'),
-            ChoiceField::new('category')
+            TextField::new('infinitive', 'app.form.verb.infinitive'),
+            TextField::new('base', 'app.form.verb.base'),
+            ChoiceField::new('category', 'app.form.verb.category')
                 ->setChoices(array_flip($this->listsUtil->getCategories())),
-            ChoiceField::new('dialect_code')
+            ChoiceField::new('dialect_code', 'app.form.verb.dialect_code')
                 ->setChoices(array_flip($this->listsUtil->getDialects()))->allowMultipleChoices(true),
-            AssociationField::new('sources'),
+            AssociationField::new('sources', 'app.form.verb.sources'),
         ];
     }
 

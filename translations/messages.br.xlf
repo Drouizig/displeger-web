@@ -713,6 +713,18 @@ Mankout a ra ar verb "%verb%" war al lec'hienn.</target>
         <source>action.new</source>
         <target>Nevez</target>
       </trans-unit>
+      <trans-unit id="qsd1qs" resname="app.form.user.username">
+        <source>app.form.user.username</source>
+        <target>Anv implijer</target>
+      </trans-unit>
+      <trans-unit id="qsdq2s" resname="app.form.user.password">
+        <source>app.form.user.password</source>
+        <target>Ger-tremen</target>
+      </trans-unit>
+      <trans-unit id="qsdq3s" resname="app.form.user.roles">
+        <source>app.form.user.roles</source>
+        <target>Roloù</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -399,5 +399,17 @@ class Verb
         $this->wiktionnaryConjugationExists = $wiktionnaryConjugationExists;
     }
 
+    public function getCategories()
+    {
+        $categories = [];
+        /** @var VerbLocalization $localization */
+        foreach($this->localizations as $localization) {
+            if(!in_array($localization->getCategory(), $categories)) {
+                $categories[] = $localization->getCategory();
+            }
+        }
+        return join(', ', $categories);
+    }
+
 
 }
