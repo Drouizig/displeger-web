@@ -80,11 +80,16 @@ class VerbRepository extends ServiceEntityRepository implements AdminRepositoryI
     public function getTranslationSearchBuilder($term, $language)
     {
         return $this->createQueryBuilder('v')
+            ->addSelect('LOCATE(UPPER(:term), UPPER(vt.translation)) idx,
+             CASE WHEN LOCATE(\',\', vt.translation) = 0 THEN LENGTH(vt.translation) ELSE LOCATE(\',\', vt.translation) END comma, 
+             LENGTH(vt.translation) len')
             ->leftJoin('v.translations', 'vt')
-            ->where('UPPER(vt.translation) LIKE UPPER(:term)')
+            ->where('UPPER(vt.translation) LIKE UPPER(:termWildcard)')
             ->andWhere('vt.languageCode = :language')
+            ->orderBy('idx, comma, len')
             ->setParameter('language', $language)
-            ->setParameter('term', '%'.$term.'%')
+            ->setParameter('termWildcard', '%'.$term.'%')
+            ->setParameter('term', $term)
         ;
     }
 

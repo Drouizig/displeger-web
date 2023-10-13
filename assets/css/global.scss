@@ -230,11 +230,6 @@ a {
     }
 }
 
-.pagination {
-    span {
-        padding: 5px;
-    }
-}
 .form-control {
     width: inherit;
 }
@@ -367,7 +362,7 @@ textarea {
     max-width: 57%;
 
 }
-ul.results span {
+.list-group.results span {
     color:red;
 }
 
