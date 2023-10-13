@@ -8,14 +8,13 @@
   {% if pagination is defined and pagination.count > 0 %}
     <h2>{{'app.search.title'|trans}}</h2>
 
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-    </div>
-    <ul>
+
+    {{ knp_pagination_render(pagination, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}
+    <div class="list-group results" role="list">
       {% for result in pagination %}
         {% if type == 'localization' %}
           <li>
-            {% for localization in result.localizations %}
+            {% for localization in result.0.localizations %}
               {% if loop.index != 1 %};{% endif %}
               <b>
                 <a href="{{ path('verb', {'infinitive': localization.infinitive}) }}">{{ localization.infinitive }}</a>
@@ -23,21 +22,21 @@
             {% endfor %}
           </li>
         {% else %}
-          <li>{{result.translation(language)|replace({ (term) : '<b>' ~ term ~ '</b>'})|raw}} : 
-          {% for localization in result.localizations %}
+          <div role="listitem" class="list-group-item list-group-item-action" >
+              <p>{{result.0.translation(language)|highlight(term)|replace({ (term) : '<b>' ~ term ~ '</b>'})|raw}} :</p>
+              <p>
+          {% for localization in result.0.localizations %}
             {% if loop.index != 1 %};{% endif %}
-            <b>
-              <a href="{{ path('verb', {'infinitive': localization.infinitive}) }}">{{ localization.infinitive }}</a>
-            </b>
+                <a href="{{ path('verb', {'infinitive': localization.infinitive}) }}">{{ localization.infinitive }}</a>
           {% endfor %}
-          </li>
+              </p>
+          </div>
         {% endif %}
 
       {% endfor %}
-    </ul>
-
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
     </div>
+
+
+  {{ knp_pagination_render(pagination, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}
   {% endif %}
 {% endblock %}

@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Tag;
 use App\Repository\VerbLocalizationRepository;
+use App\Repository\VerbRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
 use Knp\Snappy\Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
@@ -78,13 +80,45 @@ class MainController extends AbstractController
         $term = trim($term);
         /** @var $verbRepository VerbLocalizationRepository */
         $verbLocalizationRepository = $this->entityManager->getRepository(VerbLocalization::class);
+        /**  @var VerbRepository VerbRepository  */
+        $verbRepository = $this->entityManager->getRepository(Verb::class);
+        /** @var Query $searchQuery */
         $searchQuery = $verbLocalizationRepository->getFrontSearchQuery($term);
+        $twig = 'main/search.html.twig';
         
         $pagination = $knpPaginator->paginate(
             $searchQuery,
             $request->query->getInt('page', 1)/*page number*/,
             $request->query->getInt('number', 25)/*limit per page*/
         );
+
+        if($request->getLocale() != 'br' && $pagination->getTotalItemCount() === 0) {
+            $searchQuery = $verbRepository->getTranslationSearchBuilder($term, $request->getLocale());
+            $twig = 'main/search_advanced.html.twig';
+            $form = $this->createForm(AdvancedSearchType::class,
+                [
+                    'term_advanced' => $term,
+                    'language' => $request->getLocale(),
+                    'conjugated' => null,
+                ]
+            );
+            $pagination = $knpPaginator->paginate(
+                $searchQuery,
+                $request->query->getInt('page', 1)/*page number*/,
+                $request->query->getInt('number', 25)/*limit per page*/
+            );
+
+            if($pagination->getTotalItemCount() === 0) {
+                return $this->redirectToRoute('verb', ['infinitive' => $term]);
+            }
+            return $this->render($twig, [
+                'pagination' => $pagination,
+                'term' => $term,
+                'form' => $form->createView(),
+                'type' => 'translation',
+                'language' => $request->getLocale()
+            ]);
+        }
 
         if($pagination->getTotalItemCount() <= 1) {
             if($pagination->getTotalItemCount() === 1) {
@@ -93,7 +127,7 @@ class MainController extends AbstractController
             return $this->redirectToRoute('verb', ['infinitive' => $term]);
         }
 
-        return $this->render('main/search.html.twig', [
+        return $this->render($twig, [
             'pagination' => $pagination,
             'term' => $term
         ]);
@@ -121,6 +155,7 @@ class MainController extends AbstractController
             } else {
                 $type = 'translation';
                 $searchQuery = $verbRepository->getTranslationSearchBuilder($term, $request->query->get('language'));
+                dump($searchQuery->getQuery()->getResult());
             }
             
             $pagination = $knpPaginator->paginate(

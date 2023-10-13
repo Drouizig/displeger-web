@@ -5,18 +5,17 @@
 {% block content %}
   <h2>{{'app.search.title'|trans}}</h2>
 
-  <div class="navigation">
-      {{ knp_pagination_render(pagination) }}
-  </div>
-  <ul class="results">
-    {% for result in pagination %}
-      <li><a href="{{ path('verb', {'infinitive': result.infinitive}) }}">
-          {{ result.infinitive|highlight(term)|raw }}
-          </a></li>
-    {% endfor %}
-  </ul>
+    {{ knp_pagination_render(pagination, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}
+    <div class="list-group results" role="list">
+        {% for result in pagination %}
+            <a role="listitem" class="list-group-item list-group-item-action"
+                   href="{{ path('verb', {'infinitive': result.infinitive}) }}">
+                    {{ result.infinitive|highlight(term)|raw }}
+                </a>
+        {% endfor %}
+    </div>
 
   <div class="navigation">
-      {{ knp_pagination_render(pagination) }}
+      {{ knp_pagination_render(pagination, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}
   </div>
 {% endblock %}
