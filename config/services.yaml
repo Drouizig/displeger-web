@@ -8,6 +8,8 @@ parameters:
     email.from: '%env(EMAIL_FROM)%'
     email.to: '%env(EMAIL_TO)%'
     csv_directory: 'csv'
+imports:
+    - { resource: '../src/Resources/data/' }
 
 services:
     # default configuration for services in *this* file

@@ -92,9 +92,7 @@ class TagTranslation
 
     public function __toString()
     {
-        return '#' . $this->getTag() . ' - ' .
-            $this->getLanguageCode() . ' - ' .
-            $this->getLabel() . ' - ' .
-            $this->getDescription();
+        return '['.$this->getLanguageCode().'] '.
+            $this->getLabel();
     }
 }

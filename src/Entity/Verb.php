@@ -77,6 +77,12 @@ class Verb
      */
     private $enabled;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $wiktionnaryExists = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $wiktionnaryConjugationExists = null;
+
     public function __construct()
     {
         $this->translations = new ArrayCollection();
@@ -372,5 +378,38 @@ class Verb
         }
         return false;
     }
+
+    public function getWiktionnaryExists(): ?bool
+    {
+        return $this->wiktionnaryExists;
+    }
+
+    public function setWiktionnaryExists(?bool $wiktionnaryExists): void
+    {
+        $this->wiktionnaryExists = $wiktionnaryExists;
+    }
+
+    public function getWiktionnaryConjugationExists(): ?bool
+    {
+        return $this->wiktionnaryConjugationExists;
+    }
+
+    public function setWiktionnaryConjugationExists(?bool $wiktionnaryConjugationExists): void
+    {
+        $this->wiktionnaryConjugationExists = $wiktionnaryConjugationExists;
+    }
+
+    public function getCategories()
+    {
+        $categories = [];
+        /** @var VerbLocalization $localization */
+        foreach($this->localizations as $localization) {
+            if(!in_array($localization->getCategory(), $categories)) {
+                $categories[] = $localization->getCategory();
+            }
+        }
+        return join(', ', $categories);
+    }
+
 
 }

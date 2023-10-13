@@ -94,4 +94,11 @@ class ConfigurationTranslation
     {
         $this->configuration = $configuration;
     }
+
+    public function __toString(): string
+    {
+        return $this->title;
+    }
+
+
 }

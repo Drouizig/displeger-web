@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\SourceTranslation;
 use App\Util\ListsUtil;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,7 +27,7 @@ class SourceTranslationType extends AbstractType
             ->add('label', null, [
                 'label' => 'app.form.source.label'
             ])
-            ->add('description', null, [
+            ->add('description', TextareaType::class, [
                 'label' => 'app.form.source.description'
             ])
             ->add('languageCode', ChoiceType::class, [

@@ -12,8 +12,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class VerbTag
 {
+
     /**
-     * @ORM\Id
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
      * @ORM\ManyToOne(
      *     targetEntity="App\Entity\Tag",
      *     inversedBy="verbs", cascade={"persist"}
@@ -23,7 +30,6 @@ class VerbTag
     private $tag;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="App\Entity\Verb", inversedBy="tags", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
@@ -32,11 +38,8 @@ class VerbTag
     /**
      * Many tags have Many Sources.
      * @ORM\ManyToMany(targetEntity="Source", cascade={"persist"})
-     * @ORM\JoinTable(name="verb_tag_sources",
-     *      joinColumns={
-     *          @ORM\JoinColumn(name="verb_tag_verb_id", referencedColumnName="verb_id"),
-     *          @ORM\JoinColumn(name="verb_tag_tag_id", referencedColumnName="tag_id")
-     *       },
+     * @ORM\JoinTable(name="verb_tag_sources_new",
+     *      joinColumns={@ORM\JoinColumn(name="verb_tag_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="source_id", referencedColumnName="id")}
      *      )
      */
@@ -48,6 +51,11 @@ class VerbTag
         $this->verbs = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->sources = new ArrayCollection();
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -123,6 +131,11 @@ class VerbTag
 
        return $this;
    }
+
+    public function __toString(): string
+    {
+        return $this->getTag()->getCode();
+    }
 
 
 }

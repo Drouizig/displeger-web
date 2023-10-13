@@ -130,4 +130,11 @@ class SourceTranslation
     {
         return $this->id;
     }
+
+    public function __toString()
+    {
+        return '['.strtoupper($this->languageCode).'] '.$this->label;
+    }
+
+
 }

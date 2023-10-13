@@ -1,8 +1,11 @@
 security:
-    encoders:
-        App\Security\User:
-            algorithm: bcrypt
+#    encoders:
+#        App\Entity\User:
+#            algorithm: bcrypt
 
+    password_hashers:
+        # auto hasher with default options for the User class (and children)
+        App\Entity\User: 'auto'
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
@@ -14,22 +17,23 @@ security:
             security: false
         main:
             pattern: ^/
-            anonymous: true
 
             # activate different ways to authenticate
             #http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
+            logout:
+                path: app_logout
+
             form_login:
                 login_path: login
                 check_path: login
-            guard:
-                authenticators:
-                    - App\Security\AdminAuthenticator
+#            authenticators:
+#                - App\Security\AdminAuthenticator
             # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/ezadmin, roles: ROLE_USER }
