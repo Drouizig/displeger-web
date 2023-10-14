@@ -155,7 +155,6 @@ class MainController extends AbstractController
             } else {
                 $type = 'translation';
                 $searchQuery = $verbRepository->getTranslationSearchBuilder($term, $request->query->get('language'));
-                dump($searchQuery->getQuery()->getResult());
             }
             
             $pagination = $knpPaginator->paginate(
