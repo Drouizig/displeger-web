@@ -23,11 +23,11 @@
           </li>
         {% else %}
           <div role="listitem" class="list-group-item list-group-item-action" >
-              <p>{{result.0.translation(language)|highlight(term)|replace({ (term) : '<b>' ~ term ~ '</b>'})|raw}} :</p>
+              <p>{{result.0.translation(language)|highlight(term)|replace({ (term) : '<strong>' ~ term ~ '</strong>'})|raw}} :</p>
               <p>
           {% for localization in result.0.localizations %}
             {% if loop.index != 1 %};{% endif %}
-                <a href="{{ path('verb', {'infinitive': localization.infinitive}) }}">{{ localization.infinitive }}</a>
+                <a href="{{ path('verb', {'infinitive': localization.infinitive}) }}"><i aria-hidden="true" class="far fa-file"></i>{{ localization.infinitive }}</a>
           {% endfor %}
               </p>
           </div>
