@@ -13,6 +13,8 @@ html[data-theme='dark'] {
   --message-color: var(--gray-dark);
   --title-color: white;
   --text-color: white;
+  --text-disabled-color: #938a82;
+  --border: #{darken(white, 15%)};
   --button-color: #{$primary-dark};
   --button-hover: #{darken($primary-dark, 10%)};
   --button-focus: #{darken($primary-dark, 15%)};

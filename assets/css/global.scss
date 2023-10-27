@@ -18,6 +18,8 @@ html {
     --message-color: lightblue;
     --title-color: black;
     --text-color: black;
+    --text-disabled-color: #6c757d;
+    --border: #{lighten(black, 15%)};
     --button-color: #{$primary};
     --button-hover: #{darken($primary, 10%)};
     --button-focus: #{darken($primary, 15%)};
@@ -351,6 +353,16 @@ textarea {
   
 }
 
+.list-group {
+    .list-group-item {
+        strong {
+            color: var(--text-color);
+        }
+        color: var(--text-color);
+        background-color: var(--background);
+        border: 1px solid var(--border)
+    }
+}
 .search-form {
     input  {
         width: 73%;
@@ -364,6 +376,20 @@ textarea {
 }
 .list-group.results span {
     color:red;
+}
+
+.pagination {
+
+    .page-link {
+        color: var(--text-color);
+        background-color: var(--background);
+    }
+    .page-item.disabled {
+        .page-link {
+            color: var(--text-disabled-color);
+            background-color: var(--background);
+        }
+    }
 }
 
 @media print {
