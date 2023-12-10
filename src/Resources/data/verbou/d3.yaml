@@ -1,5 +1,13 @@
 parameters:
   verbou.d3:
+      bremañ:
+        s1: ["an"]
+        s2: ["ez"]
+        s3: ["a"]
+        p1: ["omp"]
+        p2: ["it"]
+        p3: ["ont"]
+        i: ["er"]
       da_zont:
         s1: ["in"]
         s2: ["i"]
