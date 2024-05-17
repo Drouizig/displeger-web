@@ -26,6 +26,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $username;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $language;
+
+    /**
      * @ORM\Column(type="json", length=255, nullable=true)
      */
     private $roles = [];
@@ -112,6 +117,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->plainPassword = $plainPassword;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param mixed $language
+     */
+    public function setLanguage($language): void
+    {
+        $this->language = $language;
     }
 
     /**

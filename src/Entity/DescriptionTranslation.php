@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=DescriptionTranslationRepository::class)
  */
-class DescriptionTranslation
+class DescriptionTranslation implements \Stringable
 {
     /**
      * @ORM\Id()
@@ -126,5 +126,10 @@ class DescriptionTranslation
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return sprintf('[%s] %s', $this->getLanguageCode(), $this->getContent());
     }
 }

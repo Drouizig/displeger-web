@@ -34,11 +34,11 @@ class VerbCrudController extends AbstractCrudController
             ];
         }
         return [
-            CollectionField::new('localizations', 'app.form.verb.localizations')->useEntryCrudForm()->renderExpanded()
+            CollectionField::new('localizations', 'app.form.verb.localizations')->setRequired(true)->useEntryCrudForm()->renderExpanded()
                 ->setDefaultColumns('col-md-12'),
             CollectionField::new('descriptionTranslations', 'app.form.verb.descriptions')->useEntryCrudForm()
                 ->setDefaultColumns('col-md-12'),
-            CollectionField::new('translations', 'app.form.verb.translations')->useEntryCrudForm()->renderExpanded()
+            CollectionField::new('translations', 'app.form.verb.translations')->useEntryCrudForm(null, 'embed_new', 'embed_edit')->renderExpanded()
                 ->setDefaultColumns('col-md-12'),
             CollectionField::new('tags', 'app.form.verb.tags')->useEntryCrudForm(),
         ];

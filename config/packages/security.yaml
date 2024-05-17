@@ -3,6 +3,8 @@ security:
 #        App\Entity\User:
 #            algorithm: bcrypt
 
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_USER, ROLE_TRANSLATOR]
     password_hashers:
         # auto hasher with default options for the User class (and children)
         App\Entity\User: 'auto'

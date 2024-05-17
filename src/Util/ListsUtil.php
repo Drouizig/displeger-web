@@ -34,9 +34,8 @@ class ListsUtil
         $this->categories = $categories;
     }
 
-    public function getLocales() 
+    public function getLocales($requestLocale = 'br')
     {
-        $requestLocale = 'br';
         if($this->requestStack->getCurrentRequest() !== null) {
             $requestLocale = $this->requestStack->getCurrentRequest()->getLocale();
             if($requestLocale === 'gallo') {

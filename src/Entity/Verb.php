@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="Verb")
  */
-class Verb
+class Verb implements \Stringable
 {
     /**
      * @ORM\Id()
@@ -409,6 +409,11 @@ class Verb
             }
         }
         return join(', ', $categories);
+    }
+
+    public function __toString()
+    {
+        return implode(', ', array_map(function(VerbLocalization $l) {return $l->getInfinitive();}, $this->getLocalizations()->toArray()));
     }
 
 

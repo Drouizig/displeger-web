@@ -19,7 +19,9 @@ class ConfigurationCrudController extends AbstractCrudController
     {
         return parent::configureCrud($crud)
             ->setEntityLabelInSingular('Testenn')
-            ->setEntityLabelInPlural('Testennoù');
+            ->setEntityLabelInPlural('Testennoù')
+            ->setEntityPermission('ROLE_ADMIN')
+            ;
     }
 
     public function configureFields(string $pageName): iterable

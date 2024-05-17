@@ -35,7 +35,9 @@ class SourceCrudController extends AbstractCrudController
     {
         return parent::configureCrud($crud)
             ->setEntityLabelInSingular('Mammenn')
-            ->setEntityLabelInPlural('Mammennoù');
+            ->setEntityLabelInPlural('Mammennoù')
+            ->setEntityPermission('ROLE_ADMIN')
+            ;
     }
 
 

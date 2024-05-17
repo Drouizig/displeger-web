@@ -76,19 +76,19 @@
         <a href="{{ path('admin_verb', {'id' : verbLocalization.verb.id}) }}">Kemmañ</a>
     {% endif %}
     {% if verb.localizations|length > 1 %}
-        <p class="subtitle">{{'app.verb.other_forms'|trans}} :
-        {% for other_localization in verb.localizations %}
-            {% if  other_localization != verbLocalization  %}
+        <p class="subtitle">{{'app.verb.other_forms'|trans}}&nbsp;:&nbsp;
+        {%- for other_localization in verb.localizations -%}
+            {%- if  other_localization != verbLocalization  -%}
                 <a href={{path('verb', {'infinitive': other_localization.infinitive})}}>{{other_localization.infinitive}}</a>
-                {% if other_localization.dialectCode != null %}
+                {%- if other_localization.dialectCode != null -%}
                     ({%- for dialect in other_localization.dialectCode -%}
                             {%if loop.index != 1%}, {%endif%}{{('app.dialect.'~dialect)|trans}}
                             <a href="{{('app.dialect.'~dialect~'.url')|trans}}"><img src="{{ asset('build/wiki.webp') }}"/></a>
                         {%- endfor -%})
-                {% endif %}
-                {% if loop.index +1 != verb.localizations|length %},{% endif %}
-            {% endif %}
-        {% endfor %}
+                {%- endif -%}
+                {% if loop.index < verb.localizations|length %}, {% endif %}
+            {%- endif -%}
+        {%- endfor -%}
         </p>
     {% endif %}
 

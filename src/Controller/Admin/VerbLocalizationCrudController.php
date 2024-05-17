@@ -26,6 +26,7 @@ class VerbLocalizationCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+
         return [
             TextField::new('infinitive', 'app.form.verb.infinitive'),
             TextField::new('base', 'app.form.verb.base'),

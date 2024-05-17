@@ -22,7 +22,9 @@ class TagCrudController extends AbstractCrudController
     {
         return parent::configureCrud($crud)
             ->setEntityLabelInSingular('Tikedenn')
-            ->setEntityLabelInPlural('Tikedennoù');
+            ->setEntityLabelInPlural('Tikedennoù')
+            ->setEntityPermission('ROLE_ADMIN')
+            ;
     }
 
     public function configureFields(string $pageName): iterable
