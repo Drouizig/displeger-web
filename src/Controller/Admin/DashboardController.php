@@ -61,11 +61,16 @@ class DashboardController extends AbstractDashboardController
          yield MenuItem::linkToCrud('Rummadoù tikedennoù', 'fas fa-tag', TagCategory::class)->setPermission('ROLE_ADMIN');
          yield MenuItem::linkToCrud('Testennoù al lec’hienn', 'fas fa-scroll', Configuration::class)->setPermission('ROLE_ADMIN');
          yield MenuItem::linkToCrud('Implijerien', 'fas fa-user', User::class)->setPermission('ROLE_ADMIN');
-         yield MenuItem::linkToUrl(
-             'Troidigezhioù',
-             'fas fa-language',
-             $this->adminUrlGenerator->setController(TranslatorVerbCrudController::class)->setAction(Action::INDEX)->generateUrl()
-         )->setPermission('ROLE_TRANSLATOR');;
+         if($this->getUser()->getLanguage()) {
+             yield MenuItem::linkToUrl(
+                 'Troidigezhioù',
+                 'fas fa-language',
+                 $this->adminUrlGenerator
+                     ->unsetAll()
+                     ->setController(TranslatorVerbCrudController::class)
+                     ->setAction(Action::INDEX)->generateUrl()
+             )->setPermission('ROLE_TRANSLATOR');
+         }
          yield MenuItem::linkToRoute('Lec’hienn', 'fas fa-earth', 'pre_locale', ['target'=> '_blank']);
     }
 
