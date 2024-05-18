@@ -3,8 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Tag;
+use App\Entity\TagCategory;
 use App\Form\TagCategoryTranslationType;
 use App\Form\TagTranslationType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -34,6 +37,17 @@ class TagCrudController extends AbstractCrudController
             AssociationField::new('category', 'Rummad')->setCrudController(TagCategoryTranslationType::class),
             CollectionField::new('translations',  'app.form.source.translations')->setEntryType(TagTranslationType::class),
         ];
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
+                return $action->displayIf(function(Tag $tag) {
+                    return count($tag->getVerbs()) == 0;
+                });
+            })
+            ;
     }
 
 }

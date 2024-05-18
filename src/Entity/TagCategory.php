@@ -33,7 +33,7 @@ class TagCategory
     private $color;
 
     /**
-     * @ORM\OneToMany(targetEntity=Verb::class, mappedBy="tags")
+     * @ORM\OneToMany(targetEntity=Tag::class, mappedBy="category")
      */
     private $tags;
 
