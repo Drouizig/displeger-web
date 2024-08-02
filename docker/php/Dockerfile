@@ -12,7 +12,7 @@ RUN apk add --no-cache freetype libpng libjpeg libjpeg-turbo freetype-dev libpng
 
 RUN apk add --no-cache \
     libgcc libstdc++ libx11 glib libxrender libxext libintl \
-    libcrypto1.1 libssl1.1 \
+    libcrypto3 libssl3 \
     ttf-dejavu ttf-droid ttf-freefont ttf-liberation
 
 RUN docker-php-ext-install intl zip exif
