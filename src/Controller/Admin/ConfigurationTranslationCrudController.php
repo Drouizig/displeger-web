@@ -26,13 +26,6 @@ class ConfigurationTranslationCrudController extends AbstractCrudController
         return ConfigurationTranslation::class;
     }
 
-    public function configureAssets(Assets $assets): Assets
-    {
-        return $assets
-            ->addCssFile(Asset::fromEasyAdminAssetPackage('field-text-editor.css'))
-            ->addJsFile(Asset::fromEasyAdminAssetPackage('field-text-editor.js'));
-    }
-
 
     public function configureFields(string $pageName): iterable
     {
@@ -40,7 +33,7 @@ class ConfigurationTranslationCrudController extends AbstractCrudController
             ChoiceField::new('locale')
                 ->setChoices(array_flip($this->listsUtil->getLocales())),
             TextField::new('title'),
-            TextareaField::new('text')->setFormTypeOption('attr', ['class' => 'tinymce']),
+            TextEditorField::new('text')->setColumns(''),
         ];
     }
 

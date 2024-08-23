@@ -6,6 +6,7 @@ use App\Entity\Verb;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -30,7 +31,7 @@ class VerbCrudController extends AbstractCrudController
                 CollectionField::new('localizations', 'app.form.verb.localizations')->setSortable(true),
                 CollectionField::new('translations', 'app.form.verb.translations'),
                 CollectionField::new('tags', 'app.form.verb.tags'),
-                TextField::new('categories', 'app.form.verb.category')
+                TextField::new('categories', 'app.form.verb.category'),
             ];
         }
         return [
@@ -41,6 +42,7 @@ class VerbCrudController extends AbstractCrudController
             CollectionField::new('translations', 'app.form.verb.translations')->useEntryCrudForm(null, 'embed_new', 'embed_edit')->renderExpanded()
                 ->setDefaultColumns('col-md-12'),
             CollectionField::new('tags', 'app.form.verb.tags')->useEntryCrudForm(),
+            BooleanField::new('enabled')
         ];
     }
 
