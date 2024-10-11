@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block meta %}
+    {% if verb is not null and not verb.enabled %}
+        <meta name=”robots” content=”noindex”> 
+    {% endif %}
+{% endblock %}
 {% block title %}Displeger verboù brezhonek - {{verbLocalization.infinitive}}{% endblock %}
 
 {% block content %}
