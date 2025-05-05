@@ -177,7 +177,7 @@ class MainController extends AbstractController
         }
     }
 
-    #[Route('/{_locale}/verb/{infinitive}', name: 'verb', defaults: ['print' => false])]
+    #[Route('/{_locale}/verb/{infinitive}', name: 'verb', defaults: ['print' => false], priority: 0)]
     public function verb(
         Request $request,
         Pdf $pdf,

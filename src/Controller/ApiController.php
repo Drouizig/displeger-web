@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
 /**
- * @Route("/api")
+ * @Route("/api_legacy")
  */
 class ApiController extends AbstractController
 {
